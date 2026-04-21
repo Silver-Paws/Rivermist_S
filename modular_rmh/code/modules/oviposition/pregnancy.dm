@@ -229,7 +229,7 @@
 	if(!storage || !max_stage)
 		return
 
-	var/new_bulk = max(1, stage) * 2
+	var/new_bulk = egg.get_storage_bulk_for_stage(stage)
 	if(egg.body_storage_bulk == new_bulk)
 		return
 
@@ -372,7 +372,22 @@
 /datum/component/pregnancy/proc/create_hatch_result()
 	if(!egg || !hatch_result_type || !ispath(hatch_result_type, /atom/movable))
 		return null
-	return new hatch_result_type(get_turf(egg))
+	var/atom/movable/hatch_result = new hatch_result_type(get_turf(egg))
+	apply_hatch_result_appearance(hatch_result)
+	return hatch_result
+
+/datum/component/pregnancy/proc/apply_hatch_result_appearance(atom/movable/hatch_result)
+	if(!egg || !istype(hatch_result, /obj/item/reagent_containers/food/snacks/oviposition_egg))
+		return
+
+	var/obj/item/reagent_containers/food/snacks/oviposition_egg/hatch_item = hatch_result
+	hatch_item.name = egg.name
+	hatch_item.desc = egg.desc
+	hatch_item.icon = egg.icon
+	hatch_item.icon_state = egg.icon_state
+	hatch_item.color = egg.color
+	hatch_item.transform = egg.transform
+	egg.apply_trait_reagents_to(hatch_item)
 
 /datum/component/pregnancy/proc/hatch_living_inside_host(mob/living/hatchling)
 	if(!egg || !container || !carrier || !hatchling)
@@ -643,10 +658,10 @@
 	if(!release_location)
 		return FALSE
 
+	holder.allow_internal_release = TRUE
 	if(container)
 		SEND_SIGNAL(container, COMSIG_BODYSTORAGE_TRY_REMOVE, holder, null, BODYSTORAGE_REMOVE_INTERNAL)
-
-	holder.allow_internal_release = TRUE
+	holder.remove_from_hole_storage()
 	holder.forceMove(release_location)
 
 	if(!silent && carrier)

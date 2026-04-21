@@ -1,20 +1,3 @@
-#define STORAGE_LAYER_OUTER "layer_outer"
-#define STORAGE_LAYER_INNER "layer_inner"
-#define STORAGE_LAYER_DEEP "layer_deep"
-
-#define INSERT_FEEDBACK_OK "feedback_ok"
-#define INSERT_FEEDBACK_OK_FORCE "feedback_ok_force"
-#define INSERT_FEEDBACK_OK_OVERRIDE "feedback_override"
-#define INSERT_FEEDBACK_ALMOST_FULL "feedback_almost"
-#define INSERT_FEEDBACK_STUFFED "feedback_stuffed"
-#define INSERT_FEEDBACK_TRY_FORCE "feedback_try_force"
-
-#define OUTER_LAYER_DEFAULT_BULK 1
-#define INNER_LAYER_DEFAULT_BULK 8
-#define DEEP_LAYER_DEFAULT_BULK 15
-
-#define HOLE_MAX_BULK_INSERT 10 //we want to have it possible that a sufficiently big insertible will trigger stretching on it's own
-
 /datum/component/body_storage
 	var/obj/item/organ/organ_storing
 	var/mob/living/owner

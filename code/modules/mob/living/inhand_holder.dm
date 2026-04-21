@@ -112,14 +112,27 @@
 
 /obj/item/mob_holder/internal_womb/Destroy()
 	allow_internal_release = TRUE
+	remove_from_hole_storage()
 	return ..()
 
 /obj/item/mob_holder/internal_womb/proc/set_internal_bulk(new_bulk)
 	body_storage_bulk = max(1, round(new_bulk))
 	return body_storage_bulk
 
+/obj/item/mob_holder/internal_womb/proc/remove_from_hole_storage()
+	if(!is_in_hole_storage())
+		return FALSE
+
+	var/obj/item/organ/storage_organ = loc
+	return SEND_SIGNAL(storage_organ, COMSIG_BODYSTORAGE_TRY_REMOVE, src, null, BODYSTORAGE_REMOVE_INTERNAL)
+
 /obj/item/mob_holder/internal_womb/can_release_from_hole_storage()
 	return allow_internal_release
+
+/obj/item/mob_holder/internal_womb/release(del_on_release = TRUE)
+	if(allow_internal_release)
+		remove_from_hole_storage()
+	return ..()
 
 /obj/item/mob_holder/internal_womb/relaymove(mob/user)
 	if(allow_internal_release)

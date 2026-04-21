@@ -222,6 +222,7 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 	var/alignment = ALIGNMENT_TN
 	var/list/quirks = list()
 	var/list/quirk_customizations = list() // Maps quirk_type -> customization_value
+	var/list/quirk_extra_customizations = list() // Maps quirk_type -> list(key = value, ...)
 
 	/// Family system
 	var/family = FAMILY_NONE
