@@ -45,6 +45,8 @@ GLOBAL_LIST_INIT(reverse_slave_phrases_translations, list(
 	icon_state = "collar"
 	item_state = "collar"
 	smeltresult = /obj/item/ingot/iron
+	melting_material = /datum/material/iron
+	melt_amount = 100
 	anvilrepair = /datum/skill/craft/armorsmithing
 	max_integrity = 150
 	resistance_flags = FIRE_PROOF
