@@ -201,10 +201,27 @@
 	bell = FALSE
 	resistance_flags = FLAMMABLE
 	smeltresult = /obj/item/fertilizer/ash
+	/// Text engraved on the collar's tag via a feather or thorn.
+	var/tag_text
 
 	armor = ARMOR_LEATHER
 	max_integrity = INTEGRITY_WORST
 	prevent_crits = CUT_AND_MINOR_CRITS
+
+/obj/item/clothing/neck/leathercollar/examine(mob/user)
+	. = ..()
+	if(tag_text)
+		. += span_notice("A small tag reads: \"[tag_text]\"")
+
+/obj/item/clothing/neck/leathercollar/attackby(obj/item/attacking_item, mob/living/user, params)
+	if(istype(attacking_item, /obj/item/natural/feather) || istype(attacking_item, /obj/item/natural/thorn))
+		var/new_tag = browser_input_text(user, "What would you like to engrave on the collar's tag?", "Collar Tag", tag_text, max_length = 42)
+		if(!new_tag || !Adjacent(user))
+			return
+		tag_text = new_tag
+		to_chat(user, span_notice("You carefully engrave \"[tag_text]\" onto the collar's tag."))
+		return
+	return ..()
 
 /obj/item/clothing/neck/bellcollar
 	name = "bell collar"

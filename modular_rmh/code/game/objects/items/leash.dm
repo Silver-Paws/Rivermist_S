@@ -1,6 +1,14 @@
 // Status effect helpers for leashes
 #define STATUS_EFFECT_LEASH_PET /datum/status_effect/leash_pet
 #define STATUS_EFFECT_LEASH_OWNER /datum/status_effect/leash_owner
+#define MOVESPEED_ID_LEASH_HEEL "LEASH_HEEL"
+
+/// Chain leash ambient step sounds.
+#define SFX_LEASH_CHAIN_STEP pick(\
+	'sound/foley/footsteps/armor/chain (1).ogg',\
+	'sound/foley/footsteps/armor/chain (2).ogg',\
+	'sound/foley/footsteps/armor/chain (3).ogg',\
+)
 
 ///// STATUS EFFECTS /////
 // Simple flag effects that display alerts to the leash holder and pet.
@@ -72,6 +80,8 @@
 	var/struggle_time = 3 SECONDS
 	/// Cooldown tracker for yanking.
 	var/last_yank
+	/// Cooldown tracker for choking (feature 5). Separate from yank so you can't accidentally chain chokes.
+	var/last_choke
 	/// Timer ID for the deferred master-state update so rapid slot swaps don't race.
 	var/master_update_timer
 	/// Sound played when the leash clips onto a collar.
@@ -80,8 +90,12 @@
 	var/yank_sound = 'sound/foley/equip/rummaging-01.ogg'
 	/// Sound played when the leash snaps or is removed.
 	var/snap_sound = 'sound/foley/cloth_rip.ogg'
-	/// How much integrity the leash loses per yank or struggle tick.
+	/// How much integrity the leash loses per yank or struggle tick. Also used as stamina drain in heel mode.
 	var/strain_damage = 5
+	/// Whether the pet is in heel (force-follow) mode.
+	var/heel_mode = FALSE
+	/// How much oxyloss a cmode yank at close range applies (capped at 45 total).
+	var/choke_strength = 5
 
 /obj/item/leash/leather
 	name = "leather leash"
@@ -94,6 +108,7 @@
 	max_integrity = INTEGRITY_STANDARD
 	strain_damage = 3
 	attach_sound = 'sound/foley/latch.ogg'
+	choke_strength = 10
 
 /obj/item/leash/chain
 	name = "chain leash"
@@ -111,15 +126,30 @@
 	attach_sound = 'sound/foley/equip/equip_armor_chain.ogg'
 	yank_sound = 'sound/foley/equip/equip_armor_chain.ogg'
 	snap_sound = 'sound/foley/dropsound/chain_drop.ogg'
+	choke_strength = 15
+
+// ---- Examine (feature 7: tension indicator) ----
 
 /obj/item/leash/examine(mob/user)
 	. = ..()
 	if(leash_pet)
 		. += span_notice("It's connected to [leash_pet]'s neck.")
+		// Tension indicator.
+		var/dist = leash_master ? get_dist(leash_pet, leash_master) : 0
+		if(dist >= leash_distance)
+			. += span_danger("The leash is straining!")
+		else if(dist >= leash_distance - 1 && dist > 1)
+			. += span_warning("The leash is taut.")
+		else
+			. += span_info("The leash hangs slack.")
+		// Durability indicator.
 		if(get_integrity() < max_integrity * 0.5)
 			. += span_warning("It looks like it's about to snap!")
 		else if(get_integrity() < max_integrity * 0.75)
 			. += span_warning("It's showing signs of wear.")
+		// Heel mode indicator.
+		if(heel_mode)
+			. += span_notice("[leash_pet] is heeling obediently.")
 	else
 		. += "It's not connected to anything."
 
@@ -161,6 +191,10 @@
 	RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(on_pet_examined))
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(on_pet_deleted))
 
+	// Feature 9: Chain leash walking sounds.
+	if(leash_type == "chain")
+		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_pet_step))
+
 	playsound(target, attach_sound, 50, TRUE)
 
 /// Fully disconnect the pet, clean up all signals and status effects.
@@ -172,8 +206,15 @@
 	var/mob/living/old_pet = leash_pet
 	var/mob/living/old_master = leash_master
 
-	// Unregister everything from the pet.
-	UnregisterSignal(old_pet, list(COMSIG_MOB_UNEQUIPPED_ITEM, COMSIG_PARENT_EXAMINE, COMSIG_PARENT_QDELETING))
+	// Disable heel mode first so signals get cleaned up.
+	if(heel_mode)
+		disable_heel(silent = TRUE)
+
+	// Unregister everything from the pet. Build the signal list dynamically.
+	var/list/pet_signals = list(COMSIG_MOB_UNEQUIPPED_ITEM, COMSIG_PARENT_EXAMINE, COMSIG_PARENT_QDELETING)
+	if(leash_type == "chain")
+		pet_signals += COMSIG_MOVABLE_MOVED
+	UnregisterSignal(old_pet, pet_signals)
 	old_pet.remove_status_effect(/datum/status_effect/leash_pet)
 
 	if(leash_component)
@@ -309,25 +350,201 @@
 	detach_pet()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-/// Use in hand to yank the pet closer.
+/// Use in hand: cmode = yank/choke, no cmode = toggle heel.
 /obj/item/leash/attack_self(mob/living/user)
 	if(!leash_pet || !leash_master)
+		return
+	if(user != leash_master)
+		return
+
+	if(user.cmode)
+		// Feature 5: If adjacent, choke instead of yank.
+		if(get_dist(leash_pet, leash_master) <= 1)
+			choke_pet(user)
+			return
+		// Normal yank.
+		if(world.time < last_yank + 15)
+			return
+		apply_tug_mob_to_mob(leash_pet, leash_master, 1)
+		log_combat(leash_master, leash_pet, "leash-yanked")
+		playsound(src, yank_sound, 50, TRUE)
+		apply_strain(strain_damage)
+		leash_pet.Knockdown(2 SECONDS)
+		leash_pet.visible_message(span_warning("[leash_master] harshly yanks [leash_pet] down with \the [src], knocking them over."))
+		apply_arousal_effects(10, 15) // Feature 8: higher arousal for violent yank.
+		last_yank = world.time
+	else
+		// Feature 2: Toggle heel mode.
+		if(heel_mode)
+			disable_heel()
+		else
+			enable_heel(user)
+
+// ---- Feature 5: Choke on adjacent hard yank ----
+
+/// Choke the pet when yanked in cmode at close range. Separate 3-second cooldown.
+/// Oxyloss is capped at 45 total so the pet can never die from choking alone.
+/obj/item/leash/proc/choke_pet(mob/living/user)
+	if(world.time < last_choke + 50) // 3 second cooldown
+		to_chat(user, span_warning("You just choked them, give it a moment."))
+		return
+	if(!leash_pet || QDELETED(leash_pet))
+		return
+
+	// Cap oxyloss so it never kills.
+	var/oxy_to_apply = min(choke_strength, max(0, 45 - leash_pet.getOxyLoss()))
+	if(oxy_to_apply > 0)
+		leash_pet.adjustOxyLoss(oxy_to_apply)
+
+	leash_pet.Stun(1 SECONDS)
+	INVOKE_ASYNC(leash_pet, TYPE_PROC_REF(/mob, emote), "choke")
+	playsound(src, yank_sound, 50, TRUE)
+	apply_strain(strain_damage)
+	log_combat(leash_master, leash_pet, "leash-choked")
+
+	leash_pet.visible_message( \
+		span_danger("[leash_master] yanks \the [src] tight around [leash_pet]'s neck, choking them!"), \
+		span_userdanger("[leash_master] yanks your leash tight, choking you!"), \
+	)
+
+	apply_arousal_effects(10, 15) // Feature 8: high arousal for choke.
+	last_choke = world.time
+
+// ---- Feature 6: Kneel yank via AltClick ----
+
+/obj/item/leash/AltClick(mob/user)
+	. = ..()
+	if(!leash_pet || !leash_master)
+		return
+	if(user != leash_master)
 		return
 	if(world.time < last_yank + 15)
 		return
 
-	apply_tug_mob_to_mob(leash_pet, leash_master, 1)
-	log_combat(leash_master, leash_pet, "leash-yanked")
-	playsound(src, yank_sound, 50, TRUE)
-	apply_strain(strain_damage)
-
-	if(user.cmode)
-		leash_pet.Knockdown(2 SECONDS)
-		leash_pet.visible_message(span_warning("[leash_master] harshly yanks [leash_pet] down with \the [src], knocking them over."))
-	else
-		leash_pet.visible_message(span_warning("[leash_master] yanks [leash_pet] closer with \the [src]."))
-
+	playsound(src, yank_sound, 40, TRUE)
+	leash_pet.set_resting(TRUE, silent = FALSE)
+	leash_pet.visible_message( \
+		span_warning("[leash_master] yanks [leash_pet] to their knees with \the [src]!"), \
+		span_warning("[leash_master] yanks you to your knees!"), \
+	)
+	apply_arousal_effects(3, 5) // Feature 8: small arousal for kneel.
 	last_yank = world.time
+
+// ---- Feature 2+3: Heel mode (force-follow) + stamina drag ----
+
+/// Enable heel mode — the pet follows the master's movement.
+/obj/item/leash/proc/enable_heel(mob/living/user)
+	if(!leash_pet || !leash_master || heel_mode)
+		return
+	heel_mode = TRUE
+	RegisterSignal(leash_master, COMSIG_MOVABLE_MOVED, PROC_REF(on_master_move))
+	leash_pet.add_movespeed_modifier(MOVESPEED_ID_LEASH_HEEL, multiplicative_slowdown = 1)
+	to_chat(leash_master, span_notice("You tug the leash short. [leash_pet] will heel now."))
+	to_chat(leash_pet, span_warning("[leash_master] tugs the leash short. You must heel."))
+	playsound(src, yank_sound, 40, TRUE)
+
+/// Disable heel mode and clean up signals/movespeed.
+/obj/item/leash/proc/disable_heel(silent = FALSE)
+	if(!heel_mode)
+		return
+	heel_mode = FALSE
+	if(leash_master)
+		UnregisterSignal(leash_master, COMSIG_MOVABLE_MOVED)
+	if(leash_pet)
+		leash_pet.remove_movespeed_modifier(MOVESPEED_ID_LEASH_HEEL)
+	if(!silent)
+		if(leash_master)
+			to_chat(leash_master, span_notice("You loosen the leash. [leash_pet] is free to roam."))
+		if(leash_pet)
+			to_chat(leash_pet, span_notice("The leash loosens. You no longer have to heel."))
+
+/// Signal handler: master moved while heel mode is active.
+/obj/item/leash/proc/on_master_move()
+	SIGNAL_HANDLER
+	if(!heel_mode || !leash_pet || !leash_master)
+		return
+	if(get_dist(leash_pet, leash_master) > 1)
+		addtimer(CALLBACK(src, PROC_REF(heel_step)), 2, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/// Deferred heel step: move the pet one tile toward the master.
+/obj/item/leash/proc/heel_step()
+	if(!heel_mode || !leash_pet || !leash_master)
+		return
+	if(get_dist(leash_pet, leash_master) <= 1)
+		return
+
+	// Feature 3: If pet is in cmode, drain master stamina. Exhaustion breaks heel.
+	if(iscarbon(leash_pet))
+		var/mob/living/carbon/carbon_pet = leash_pet
+		if(carbon_pet.cmode)
+			if(!leash_master.adjust_stamina(strain_damage))
+				// Master exhausted — pet breaks free of heel.
+				leash_master.visible_message( \
+					span_warning("[leash_pet] resists the leash, exhausting [leash_master]!"), \
+					span_warning("[leash_pet] is too strong! You can't hold the leash taut!"), \
+				)
+				disable_heel()
+				return
+
+	step_towards(leash_pet, leash_master)
+
+// ---- Feature 9: Chain walking sounds ----
+
+/// Signal handler: pet moved while leashed with a chain. Plays a subtle chain rattle.
+/obj/item/leash/proc/on_pet_step()
+	SIGNAL_HANDLER
+	if(!leash_pet || QDELETED(leash_pet))
+		return
+	playsound(leash_pet, SFX_LEASH_CHAIN_STEP, 15, TRUE)
+
+// ---- Feature 8: Arousal integration (sadist/masochist gated) ----
+
+/// Apply arousal effects to master (if sadist) and pet (if masochist).
+/// Only triggers when the relevant vice quirk is present.
+/obj/item/leash/proc/apply_arousal_effects(master_amount, pet_amount)
+	if(!leash_master || !leash_pet)
+		return
+	// Master: sadist gets aroused and sated from dominating.
+	if(ishuman(leash_master))
+		var/mob/living/carbon/human/master_human = leash_master
+		if(master_human.has_quirk(/datum/quirk/vice/sadist))
+			SEND_SIGNAL(leash_master, COMSIG_SEX_ADJUST_AROUSAL, master_amount)
+			master_human.sate_addiction(/datum/quirk/vice/sadist)
+	// Pet: masochist gets aroused and sated from being dominated.
+	if(ishuman(leash_pet))
+		var/mob/living/carbon/human/pet_human = leash_pet
+		if(pet_human.has_quirk(/datum/quirk/vice/masochist))
+			SEND_SIGNAL(leash_pet, COMSIG_SEX_ADJUST_AROUSAL, pet_amount)
+			pet_human.sate_addiction(/datum/quirk/vice/masochist)
+
+// ---- Feature 4: Slave collar command radial menu via middle-click ----
+
+/obj/item/leash/MiddleClick(mob/user, params)
+	if(!leash_pet || !leash_master)
+		return ..()
+	if(user != leash_master)
+		return ..()
+	// Check if the pet is wearing a slave collar.
+	var/obj/item/clothing/neck/slave_collar/collar = leash_pet.get_item_by_slot(ITEM_SLOT_NECK)
+	if(!istype(collar))
+		return ..()
+	// Build radial menu from the collar's phrase translations.
+	var/list/choices = list()
+	for(var/translation_key in GLOB.slave_phrases_translations)
+		var/display_name = GLOB.slave_phrases_translations[translation_key]
+		choices[display_name] = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_slice")
+	var/chosen = show_radial_menu(user, src, choices, tooltips = TRUE, require_near = TRUE)
+	if(!chosen || !leash_pet || !leash_master)
+		return
+	// Reverse-lookup the internal key from the display name.
+	var/internal_key = GLOB.reverse_slave_phrases_translations[chosen]
+	if(!internal_key || !collar.phrases_list[internal_key])
+		return
+	if(collar.perform_command(normalize_slave_phrase(collar.phrases_list[internal_key])))
+		to_chat(user, span_notice("You tug the leash with authority — the command takes hold."))
+	else
+		to_chat(user, span_warning("The collar doesn't respond."))
+	return
 
 /// Clicking on a structure with the leash ties the pet to it.
 /obj/item/leash/afterattack(atom/target, mob/living/user, proximity_flag, list/modifiers)
@@ -355,13 +572,18 @@
 	user.dropItemToGround(src, silent = TRUE)
 	forceMove(target.loc)
 
-/// The pet can struggle free via the examine link.
+/// The pet can struggle free via the examine link. Tension is shown to all viewers.
 /obj/item/leash/proc/on_pet_examined(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	// Only the pet themselves should see the struggle link.
-	if(user != leash_pet)
-		return
-	examine_list += "<a href='byond://?src=[REF(src)];pull_harpoon=1'>You are leashed!</a>"
+	// Tension indicator visible to everyone.
+	var/dist = leash_master ? get_dist(leash_pet, leash_master) : 0
+	if(dist >= leash_distance)
+		examine_list += span_danger("The leash is straining against [leash_pet.p_their()] collar!")
+	else if(dist >= leash_distance - 1 && dist > 1)
+		examine_list += span_warning("The leash between [leash_pet] and [leash_pet.p_their()] master is taut.")
+	// Only the pet sees the struggle link.
+	if(user == leash_pet)
+		examine_list += "<a href='byond://?src=[REF(src)];pull_harpoon=1'>You are leashed!</a>"
 
 /obj/item/leash/Topic(href, href_list)
 	. = ..()
