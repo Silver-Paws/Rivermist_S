@@ -52,14 +52,12 @@
 	var/list/customizers = pref_species.customizers
 	if(!customizers)
 		return
-	dat += "<table align='center' width='100%' style='background-color:#1c1313; border:1px solid #4e3b32; margin-bottom:10px;'><tr><td align='center'>"
-	dat += "<b>Genital Set:</b> [get_current_genital_set_label()]"
-	dat += "<br><a href='?_src_=prefs;task=change_customizer;customizer_task=toggle_genital_set'>Toggle Genitals</a>"
-	dat += "<br><small>You must keep either a complete masculine or feminine set.</small>"
-	dat += "</td></tr></table>"
-	dat += "<table width='100%'>"
-	dat += "<td valign='top' width='33%'>"
-	var/iterated_customizers = 0
+	dat += "<div class='genital-set-card'>"
+	dat += "<div><b>Genital Set:</b> [get_current_genital_set_label()]</div>"
+	dat += "<a href='?_src_=prefs;task=change_customizer;customizer_task=toggle_genital_set'>Toggle Genitals</a>"
+	dat += "<small>You must keep either a complete masculine or feminine set.</small>"
+	dat += "</div>"
+	dat += "<div class='feature-grid'>"
 	for(var/customizer_type as anything in customizers)
 		var/datum/customizer/customizer = CUSTOMIZER(customizer_type)
 		if(!customizer.is_allowed(src))
@@ -70,18 +68,13 @@
 			continue
 		var/datum/customizer_choice/choice = CUSTOMIZER_CHOICE(entry.customizer_choice_type)
 
-		var/customizer_link
-
-		if(entry.disabled)
-			customizer_link = "href='?_src_=prefs;task=change_customizer;customizer=[customizer_type];customizer_task=toggle_missing'"
+		var/card_class = entry.disabled ? "feature-card disabled" : "feature-card"
+		dat += "<div class='[card_class]'>"
+		if(customizer.allows_disabling)
+			var/title_status = entry.disabled ? "Enable" : "Disable"
+			dat += "<a class='feature-title' href='?_src_=prefs;task=change_customizer;customizer=[customizer_type];customizer_task=toggle_missing'>[customizer.name]<small>[title_status]</small></a>"
 		else
-			if(customizer.allows_disabling)
-				customizer_link = "href='?_src_=prefs;task=change_customizer;customizer=[customizer_type];customizer_task=toggle_missing' class='linkOn'"
-			else
-				customizer_link = ""
-
-		dat += "<table align='center'; width='100%'; height='100px'; style='background-color:#1c1313'><td width=100%>"
-		dat += "<a [customizer_link]>[customizer.name]</a>"
+			dat += "<div class='feature-title static'>[customizer.name]<small>Fixed</small></div>"
 		if(!entry.disabled)
 			var/choice_link
 			if(length(customizer.customizer_choices) > 1)
@@ -89,18 +82,20 @@
 			else
 				choice_link = "class='linkOff'"
 			if(length(customizer.customizer_choices) > 1)
-				dat += "<br><a [choice_link]>[choice.name]</a>"
+				dat += "<a class='feature-choice' [choice_link]>[choice.name]<small>Change type</small></a>"
+			else
+				dat += "<div class='feature-choice static'>[choice.name]</div>"
 
 			var/list/choice_list = choice.show_pref_choices(src, entry, customizer_type)
 			if(choice_list)
+				dat += "<div class='feature-controls'>"
 				dat += choice_list
+				dat += "</div>"
+		else
+			dat += "<div class='muted'>Disabled</div>"
 
-		dat += "</td></table><br>"
-		iterated_customizers += 1
-		if(iterated_customizers >= 8)
-			dat += "</td><td valign='top' width='33%'>"
-			iterated_customizers = 0
-	dat += "</td></table>"
+		dat += "</div>"
+	dat += "</div>"
 	return
 
 /// We dont associate the entries just to be safer for save/load, so we can't lookup easily and we do this.
@@ -283,8 +278,268 @@
 
 /datum/preferences/proc/ShowCustomizers(mob/user)
 	var/list/dat = list()
-	dat += "<style>span.color_holder_box{display: inline-block; width: 20px; height: 8px; border:1px solid #000; padding: 0px;}</style>"
+	dat += {"
+	<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<style>
+			body {
+				margin: 0;
+				background: #1a1a1a;
+				color: #d8cf9f;
+				font-family: Verdana, Geneva, sans-serif;
+				font-size: 12px;
+			}
+			.wrap {
+				padding: 14px;
+			}
+			.panel {
+				background: #2a2723;
+				border: 2px solid #5b4b40;
+				box-shadow: inset 0 0 0 1px #141211;
+				padding: 12px;
+			}
+			h2 {
+				margin: 0 0 10px;
+				color: #eee69c;
+				font-size: 16px;
+				text-transform: uppercase;
+				letter-spacing: 0;
+			}
+			a {
+				color: #eee69c;
+				font-weight: bold;
+				text-decoration: none;
+			}
+			a:hover {
+				color: #f1e78b;
+			}
+			.genital-set-card {
+				background: #342d28;
+				border: 1px solid #5b4b40;
+				box-shadow: inset 0 0 0 1px #171515;
+				margin-bottom: 12px;
+				padding: 9px 10px;
+				text-align: center;
+			}
+			.genital-set-card small {
+				display: block;
+				color: #9f9377;
+				margin-top: 3px;
+			}
+			.feature-grid {
+				text-align: left;
+			}
+			.feature-card {
+				display: inline-block;
+				vertical-align: top;
+				width: 31.8%;
+				min-height: 138px;
+				box-sizing: border-box;
+				background: #342d28;
+				border: 1px solid #5b4b40;
+				box-shadow: inset 0 0 0 1px #171515;
+				margin: 0 1% 10px 0;
+				padding: 8px;
+			}
+			.feature-card.disabled {
+				background: #211f1d;
+				opacity: 0.78;
+			}
+			.feature-title {
+				display: block;
+				background: #705d4f;
+				border: 1px solid #171515;
+				color: #161418;
+				font-weight: bold;
+				margin-bottom: 6px;
+				padding: 6px 7px;
+				text-transform: uppercase;
+			}
+			.feature-title:hover {
+				background: #8b735f;
+				color: #161418;
+			}
+			.feature-title small {
+				float: right;
+				color: #2b2320;
+				font-weight: normal;
+				text-transform: none;
+			}
+			.feature-title.static {
+				cursor: default;
+			}
+			.feature-choice {
+				display: block;
+				background: #171515;
+				border: 1px solid #5b4b40;
+				margin-bottom: 7px;
+				padding: 5px 7px;
+			}
+			.feature-choice small {
+				display: block;
+				color: #8f846c;
+				font-weight: normal;
+				margin-top: 2px;
+			}
+			.feature-choice.static {
+				color: #bcae82;
+				font-weight: bold;
+			}
+			.feature-controls {
+				color: #d8cf9f;
+				line-height: 1.55;
+			}
+			.feature-controls a {
+				color: #eee69c;
+			}
+			.linkOff {
+				color: #8f846c !important;
+			}
+			.muted {
+				color: #8f846c;
+				margin-top: 8px;
+			}
+			.accessory-box {
+				text-align: center;
+				margin: 9px 0;
+			}
+			.accessory-frame {
+				background: #161418;
+				border: 1px solid #5b4b40;
+				display: inline-block;
+				padding: 8px;
+			}
+			.accessory-preview {
+				margin-bottom: 5px;
+				line-height: 64px;
+				min-height: 64px;
+			}
+			.accessory-preview img {
+				height: 64px;
+				image-rendering: pixelated;
+				vertical-align: middle;
+				width: 64px;
+			}
+			.accessory-controls {
+				margin-top: 5px;
+			}
+			.accessory-arrow {
+				font-size: 16px;
+				padding: 0 5px;
+			}
+			.accessory-dropdown {
+				background: #1d1a17;
+				border: 1px solid #5b4b40;
+				margin: 9px 0;
+				max-height: 300px;
+				overflow-y: auto;
+				padding: 8px;
+			}
+			.accessory-grid-card {
+				display: inline-block;
+				vertical-align: top;
+				width: 92px;
+				min-height: 96px;
+				background: #161418;
+				border: 1px solid #43372f;
+				margin: 3px;
+				padding: 5px;
+				text-align: center;
+			}
+			.accessory-grid-card.selected {
+				border-color: #eee69c;
+			}
+			.accessory-grid-card img {
+				display: block;
+				height: 64px;
+				image-rendering: pixelated;
+				margin: 0 auto;
+				width: 64px;
+			}
+			.accessory-grid-label {
+				color: #d8cf9f;
+				font-size: 10px;
+				margin-top: 3px;
+			}
+			.accessory-grid-card.selected .accessory-grid-label {
+				color: #eee69c;
+			}
+			.color_holder_box {
+				display: inline-block;
+				width: 24px;
+				height: 10px;
+				border: 1px solid #161616;
+				padding: 0;
+				vertical-align: middle;
+			}
+			.footer {
+				margin-top: 12px;
+				text-align: right;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="panel">
+				<h2>Features</h2>
+	"}
 	dat += print_customizers_page()
+	dat += {"
+				<div class="footer"><a href='?_src_=prefs;preference=body_customize;task=menu'>Customize Appearance</a></div>
+			</div>
+		</div>
+		<script>
+			(function() {
+				function getDirection(step) {
+					switch(step) {
+						case 1:
+							return "&dir=4";
+						case 2:
+							return "&dir=8";
+						case 3:
+							return "&dir=1";
+					}
+					return "";
+				}
+				function setPreview(card, step) {
+					var img = card.getElementsByTagName("img").item(0);
+					if(!img) {
+						return;
+					}
+					img.src = card.getAttribute("data-icon") + "?state=" + card.getAttribute("data-state") + getDirection(step);
+				}
+				function wireCard(card) {
+					if(!card.addEventListener) {
+						return;
+					}
+					card.addEventListener("mouseenter", function() {
+						card.spinStep = 0;
+						card.spinTimer = setInterval(function() {
+							card.spinStep = (card.spinStep + 1) % 4;
+							setPreview(card, card.spinStep);
+						}, 200);
+					});
+					card.addEventListener("mouseleave", function() {
+						clearInterval(card.spinTimer);
+						card.spinStep = 0;
+						setPreview(card, 0);
+					});
+				}
+				var divs = document.getElementsByTagName("div");
+				var i = 0;
+				while(i < divs.length) {
+					var card = divs.item(i);
+					if((" " + card.className + " ").indexOf(" accessory-grid-card ") >= 0) {
+						wireCard(card);
+					}
+					i++;
+				}
+			})();
+		</script>
+	</body>
+	</html>
+	"}
 	var/datum/browser/popup = new(user, "customization", "<div align='center'>Customization</div>", 630, 730)
 	popup.set_content(dat.Join())
 	popup.open(FALSE)

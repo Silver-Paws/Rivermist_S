@@ -878,9 +878,12 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			if('gender' in data) {
 				updateField('char-gender', data.gender || '');
 				var silhouette = document.getElementById('silhouette');
-				silhouette.style.backgroundImage = "url('features_bodytype_" + data.gender + ".png')";
-				if (data.gender === "F") silhouette.style.width = "15px";
-				if (data.gender === "M") silhouette.style.width = "18px";
+				var bodyTypeSuffix = data.gender;
+				if (data.gender === "Fem" || data.gender === "F") bodyTypeSuffix = "f";
+				if (data.gender === "Masc" || data.gender === "M") bodyTypeSuffix = "m";
+				silhouette.style.backgroundImage = "url('features_bodytype_" + bodyTypeSuffix + ".png')";
+				if (bodyTypeSuffix === "f") silhouette.style.width = "15px";
+				if (bodyTypeSuffix === "m") silhouette.style.width = "18px";
 			}
 
 			// Update voice color blob
@@ -1037,7 +1040,7 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 	<a href='?_src_=prefs;preference=customizers;task=menu'><div class="sprite f-btn"></div></a>
 	<a href='?_src_=prefs;preference=randomiseappearanceprefs;'><div class="sprite f-random"></div></a>
 
-	<div class="sprite features-bg"><div id="silhouette" class="sprite" style="background-image: url('features_bodytype_[gender == MALE ? "m" : "f"].png');"></div></div>
+	<div class="sprite features-bg"><div id="silhouette" class="sprite" style="width:[gender == MALE ? 18 : 15]px; background-image: url('features_bodytype_[gender == MALE ? "m" : "f"].png');"></div></div>
 
 	<div class="sprite v-color-box">
 		<a href='?_src_=prefs;preference=voice;task=input' style="display: block; width: 100%; height: 100%;">
