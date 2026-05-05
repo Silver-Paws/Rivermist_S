@@ -11,6 +11,8 @@
 	name = "Huge Breasts"
 	desc = "They feel as heavy as gold and are massive... My back hurts."
 	icon_state = "status"
+	icon = 'modular_rmh/icons/mob/screen_alert.dmi'
+	icon_state = "bigboobs"
 
 
 /datum/status_effect/debuff/boobs_quirk/on_apply()

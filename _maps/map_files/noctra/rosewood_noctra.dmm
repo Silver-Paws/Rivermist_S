@@ -22178,7 +22178,7 @@
 /area/indoors/town/clocktower)
 "mDJ" = (
 /obj/structure/toilet,
-/obj/structure/fluff/clodpile{
+/obj/structure/fluff/clodpile/dirt{
 	pixel_y = 7;
 	name = "nitesoil pile"
 	},

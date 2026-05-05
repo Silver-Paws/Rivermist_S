@@ -2092,7 +2092,7 @@
 /turf/open/floor/sandstone_tile,
 /area/under/rmh_desert/pyramid)
 "dtB" = (
-/obj/structure/fluff/clodpile,
+/obj/structure/fluff/clodpile/dirt,
 /turf/open/floor/sandstone,
 /area/under/town/rmh/sewer)
 "dtK" = (
@@ -5703,7 +5703,7 @@
 /turf/open/floor/ruinedwood/turned,
 /area/indoors/rmh_desert/phouse)
 "iIU" = (
-/obj/structure/fluff/clodpile,
+/obj/structure/fluff/clodpile/dirt,
 /turf/open/floor/greenstone,
 /area/under/town/rmh/sewer)
 "iKf" = (
@@ -7584,7 +7584,7 @@
 /turf/open/floor/cobble,
 /area/under/town/rmh/basement/basement)
 "loz" = (
-/obj/structure/fluff/clodpile,
+/obj/structure/fluff/clodpile/dirt,
 /turf/open/floor/dirt,
 /area/under/town/rmh/sewer)
 "loQ" = (
@@ -13852,7 +13852,7 @@
 	},
 /area/under/rmh_dungeon)
 "uqf" = (
-/obj/structure/fluff/clodpile,
+/obj/structure/fluff/clodpile/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/greenstone,
 /area/under/town/rmh/sewer)
