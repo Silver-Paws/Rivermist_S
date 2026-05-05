@@ -8,7 +8,7 @@
 	alternate_worn_layer = UNDER_CLOAK_LAYER
 	strip_delay = 20
 	sewrepair = TRUE
-	item_weight = 4
+	item_weight = 750 GRAMS
 	/// Max amount of ammo to hold
 	var/max_storage
 	/// Instances of ammo this contains
@@ -28,6 +28,11 @@
 			var/obj/item/ammo = new fill_type(src)
 			ammo_list += ammo
 		update_appearance(UPDATE_ICON_STATE)
+
+/obj/item/ammo_holder/get_carry_weight(atom/carrier)
+	. = item_weight
+	for(var/obj/item/ammo as anything in ammo_list)
+		. += ammo.get_carry_weight(carrier)
 
 /obj/item/ammo_holder/attackby(obj/A, loc, list/modifiers)
 	for(var/i in ammo_type)

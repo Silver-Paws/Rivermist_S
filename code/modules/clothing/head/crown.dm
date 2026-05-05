@@ -1,4 +1,5 @@
 /obj/item/clothing/head/crown		// doesn't hide hair
+	item_weight = 2.23 KILOGRAMS
 	dynamic_hair_suffix = ""				// this just means hair does not change when item is worn
 	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -7,6 +8,7 @@
 	abstract_type = /obj/item/clothing/head/crown
 
 /obj/item/clothing/head/crown/circlet
+	item_weight = 600 GRAMS
 	name = "golden circlet"
 	icon_state = "goldcirclet"
 	sellprice = VALUE_GOLD_ITEM
@@ -27,11 +29,13 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/clothing/head/crown/circlet/goldheaddress
+	item_weight = 125 GRAMS
 	name = "zenarii headdress"
 	desc = "A fancy headdress made out of zenarii. Light and fashionable, it's worn by the noble ladies of The Zakharani Dynasty."
 	icon_state = "headdress_g"
 
 /obj/item/clothing/head/crown/circlet/silverheaddress
+	item_weight = 125 GRAMS
 	name = "ziliquae headdress"
 	desc = "A fancy headdress made out of ziliquae. Light and fashionable, it's worn by the noble ladies of The Zakharani Dynasty."
 	icon_state = "headdress_s"
@@ -128,6 +132,7 @@
 	sellprice = VALUE_GOLD_ITEM
 
 /obj/item/clothing/head/crown/sparrowcrown
+	item_weight = 125 GRAMS
 	name = "champions circlet"
 	desc = "Winner of tournaments, bask in Tempus's glory."
 	icon_state = "sparrowcrown"

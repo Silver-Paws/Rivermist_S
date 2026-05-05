@@ -1,4 +1,5 @@
 /obj/item/clothing/face/goggles
+	item_weight = 95 GRAMS
 	name = "goggles"
 	icon_state = "artigoggles"
 	desc = "Protective goggles with green lenses. Perfect for staring into fires."

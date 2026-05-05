@@ -1,4 +1,5 @@
 /obj/item/clothing/pants/tights
+	item_weight = 65 GRAMS
 	name = "tights"
 	desc = "Comfortable loose pants."
 	gender = PLURAL

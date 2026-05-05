@@ -2,6 +2,7 @@
 
 
 /obj/item/lipstick
+	item_weight = 20 GRAMS
 	gender = PLURAL
 	name = "red lipstick"
 	desc = ""

@@ -1,4 +1,5 @@
 /obj/item/reagent_containers/pill
+	item_weight = 5 GRAMS
 	name = "pill"
 	desc = ""
 	icon = 'icons/obj/medical.dmi'

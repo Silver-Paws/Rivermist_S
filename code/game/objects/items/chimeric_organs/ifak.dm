@@ -1,5 +1,6 @@
 
 /obj/item/storage/fancy/ifak
+	item_weight = 740 GRAMS
 	name = "personal patch kit"
 	desc = "Personal treatment pouch; has all you need to stop you or someone else from meeting Jergal."
 	icon = 'icons/obj/medical.dmi'

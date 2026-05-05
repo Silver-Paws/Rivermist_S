@@ -1,4 +1,5 @@
 /obj/item/customlock //custom lock unfinished
+	item_weight = 200 GRAMS
 	name = "unfinished lock"
 	desc = "A lock without its pins set. Endless possibilities..."
 	icon = 'icons/roguetown/items/keys.dmi'

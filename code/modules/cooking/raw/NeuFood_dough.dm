@@ -12,6 +12,7 @@
 
 /*	.................   Dough   ................... */
 /obj/item/reagent_containers/food/snacks/dough_base
+	item_weight = 200 GRAMS
 	name = "unfinished dough"
 	desc = "With a little more ambition, you will conquer."
 	icon_state = "dough_base"
@@ -25,6 +26,7 @@
 	tastes = list("dough" = 1)
 
 /obj/item/reagent_containers/food/snacks/dough
+	item_weight = 300 GRAMS
 	name = "dough"
 	desc = "The triumph of all bakers."
 	icon_state = "dough"
@@ -44,6 +46,7 @@
 
 /*	.................   Smalldough   ................... */
 /obj/item/reagent_containers/food/snacks/dough_slice
+	item_weight = 150 GRAMS
 	name = "smalldough"
 	icon_state = "doughslice"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -85,6 +88,7 @@
 
 /*	.................   Butterdough   ................... */
 /obj/item/reagent_containers/food/snacks/butterdough
+	item_weight = 350 GRAMS
 	name = "butterdough"
 	desc = "What is a triumph, to a legacy?"
 	icon_state = "butterdough"
@@ -105,6 +109,7 @@
 
 /*	.................   Butterdough piece   ................... */
 /obj/item/reagent_containers/food/snacks/butterdough_slice
+	item_weight = 175 GRAMS
 	name = "butterdough piece"
 	desc = "A slice of pedigree, to create lines of history."
 	icon_state = "butterdoughslice"
@@ -153,6 +158,7 @@
 
 /*	.................   Hardtack   ................... */
 /obj/item/reagent_containers/food/snacks/foodbase/hardtack_raw
+	item_weight = 100 GRAMS
 	name = "raw hardtack"
 	desc = "Doughy, soft, unacceptable."
 	icon_state = "raw_tack"
@@ -166,6 +172,7 @@
 	tastes = list("dough" = 1)
 
 /obj/item/reagent_containers/food/snacks/hardtack
+	item_weight = 100 GRAMS
 	name = "hardtack"
 	desc = "Very, very hard and dry. Keeps well."
 	icon_state = "tack"
@@ -181,6 +188,7 @@
 
 /*	.................   Piedough   ................... */
 /obj/item/reagent_containers/food/snacks/piedough
+	item_weight = 175 GRAMS
 	name = "piedough"
 	desc = "The beginning of greater things to come."
 	icon_state = "piedough"
@@ -200,6 +208,7 @@
 
 /*	.................   Bread   ................... */
 /obj/item/reagent_containers/food/snacks/bread
+	item_weight = 500 GRAMS
 	name = "bread loaf"
 	desc = "One of the staple foods of commoners. A simple meal, yet a luxury men will die for."
 	icon_state = "loaf"
@@ -237,6 +246,7 @@
 
 /*	.................   Breadslice & Toast   ................... */
 /obj/item/reagent_containers/food/snacks/breadslice
+	item_weight = 80 GRAMS
 	name = "sliced bread"
 	desc = "A bit of comfort to start your dae."
 	icon_state = "loaf_slice"
@@ -296,6 +306,7 @@
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/breadslice/toast
+	item_weight = 80 GRAMS
 	name = "toasted bread"
 	icon_state = "toast"
 	tastes = list("crispy bread" = 1)
@@ -305,6 +316,7 @@
 	tastes = list("bread" = 1)
 
 /obj/item/reagent_containers/food/snacks/stale_bread
+	item_weight = 500 GRAMS
 	name = "stale bread"
 	desc = "Old. Is that mold? Not fit for slicing, just eating in sullen silence."
 	icon_state = "loaf"
@@ -331,6 +343,7 @@
 
 /*	.................   Raisin bread   ................... */
 /obj/item/reagent_containers/food/snacks/raisindough
+	item_weight = 300 GRAMS
 	name = "dough of raisins"
 	icon_state = "dough_raisin"
 	slices_num = 0
@@ -379,6 +392,7 @@
 
 /*	.................   Bread bun   ................... */
 /obj/item/reagent_containers/food/snacks/bun
+	item_weight = 100 GRAMS
 	name = "bun"
 	desc = "Portable, quaint and entirely consumable"
 	icon_state = "bun"
@@ -393,6 +407,7 @@
 	tastes = list("bread" = 1)
 
 /obj/item/reagent_containers/food/snacks/grenzelbun
+	item_weight = 180 GRAMS
 	name = "wienerbun"
 	desc = "The classic wiener in a bun, a staple food of Darkhold cuisine."
 	icon_state = "grenzbun"
@@ -408,6 +423,7 @@
 
 /*	.................   Cheese bun   ................... */
 /obj/item/reagent_containers/food/snacks/foodbase/cheesebun_raw
+	item_weight = 130 GRAMS
 	name = "raw cheese bun"
 	desc = "Portable, quaint and entirely consumable"
 	icon_state = "cheesebun_raw"
@@ -421,6 +437,7 @@
 
 
 /obj/item/reagent_containers/food/snacks/cheesebun
+	item_weight = 130 GRAMS
 	name = "cheese bun"
 	desc = "A treat from the Darkhold kitchen."
 	icon_state = "cheesebun"
@@ -439,6 +456,7 @@
 \---------*/
 
 /obj/item/reagent_containers/food/snacks/frybread
+	item_weight = 100 GRAMS
 	name = "frybread"
 	desc = "Flatbread fried at high heat with butter to give it a crispy outside. Staple of the elven kitchen."
 	icon_state = "frybread"
@@ -453,6 +471,7 @@
 
 /*	.................   Pastry   ................... */
 /obj/item/reagent_containers/food/snacks/pastry
+	item_weight = 80 GRAMS
 	name = "pastry"
 	desc = "Favored among children and sweetlovers."
 	icon_state = "pastry"
@@ -467,6 +486,7 @@
 
 /*	.................   Raisin Biscuit   ................... */
 /obj/item/reagent_containers/food/snacks/foodbase/biscuit_raw
+	item_weight = 60 GRAMS
 	name = "uncooked raisin biscuit"
 	icon_state = "biscuit_raw"
 	rotprocess = SHELFLIFE_DECENT
@@ -477,6 +497,7 @@
 /obj/item/reagent_containers/food/snacks/foodbase/biscuit_raw/good
 
 /obj/item/reagent_containers/food/snacks/biscuit
+	item_weight = 60 GRAMS
 	name = "biscuit"
 	desc = "A treat made for a wretched dog like you."
 	icon_state = "biscuit"
@@ -512,6 +533,7 @@
 /obj/item/reagent_containers/food/snacks/foodbase/prezzel_raw/good
 
 /obj/item/reagent_containers/food/snacks/prezzel
+	item_weight = 80 GRAMS
 	name = "lacklustre prezzel"
 	desc = "The next best thing since sliced bread, originally a dwarven pastry, now seeing mass appeal."
 	icon_state = "prezzel"
@@ -536,6 +558,7 @@
 /*	.................   Apple Fritter   ................... */
 
 /obj/item/reagent_containers/food/snacks/foodbase/fritter_raw
+	item_weight = 100 GRAMS
 	name = "uncooked apple fritter"
 	icon_state = "applefritterraw"
 	dropshrink = 0.8
@@ -547,6 +570,7 @@
 /obj/item/reagent_containers/food/snacks/foodbase/fritter_raw/good
 
 /obj/item/reagent_containers/food/snacks/fritter
+	item_weight = 100 GRAMS
 	name = "apple fritter"
 	desc = "Having deep origins in the culture of Rivermist Hollow, the humble fritter is perhaps the most patriotic pastry out there, long may it reign!"
 	icon_state = "applefritter"
@@ -571,6 +595,7 @@
 
 /*	.................   Cake   ................... */
 /obj/item/reagent_containers/food/snacks/cake
+	item_weight = 400 GRAMS
 	name = "cake base"
 	desc = "With this sweet thing, you shall make them sing. With jacksberry filling a cheesecake can be made. More exotic cakes require different fruit fillings."
 	icon_state = "cake"
@@ -583,6 +608,7 @@
 	nutrition = CAKEBASE_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/chescake
+	item_weight = 400 GRAMS
 	name = "cheesecake base"
 	desc = "With this sweet thing, you shall make them sing. Lacking fresh cheese glazing."
 	icon_state = "cake_filled"
@@ -595,6 +621,7 @@
 	nutrition = CAKEBASE_NUTRITION + RAISIN_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/zybcake
+	item_weight = 400 GRAMS
 	name = "zakhrani cake base"
 	desc = "With this sweet thing, you shall make them sing. Lacking spider-honey glazing."
 	icon_state = "cake_filled"
@@ -607,6 +634,7 @@
 
 // -------------- SPIDER-HONEY CAKE (Zakharani) -----------------
 /obj/item/reagent_containers/food/snacks/zybcake_ready
+	item_weight = 400 GRAMS
 	name = "unbaked zakhrani cake"
 	icon_state = "honeycakeuncook"
 	dropshrink = 0.8
@@ -620,6 +648,7 @@
 	nutrition = CAKEBASE_NUTRITION + FRUIT_NUTRITION + HONEY_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/zybcake_cooked
+	item_weight = 600 GRAMS
 	name = "zakhra cake"
 	desc = "Cake glazed with honey, in the famous Zakharani fashion, a delicious sweet treat. Said to be very hard to poison, perhaps the honey counteracting such malicious concotions."
 	icon_state = "honeycake"
@@ -638,6 +667,7 @@
 	nutrition = (CAKEBASE_NUTRITION + FRUIT_NUTRITION + HONEY_NUTRITION) * COOK_MOD
 
 /obj/item/reagent_containers/food/snacks/zybcake_slice
+	item_weight = 100 GRAMS
 	name = "zakhra cake slice"
 	icon_state = "hcake_slice"
 	base_icon_state = "hcake_slice"
@@ -655,6 +685,7 @@
 
 // -------------- CHEESECAKE -----------------
 /obj/item/reagent_containers/food/snacks/chescake_ready
+	item_weight = 400 GRAMS
 	name = "unbaked cake of cheese"
 	icon_state = "cheesecakeuncook"
 	dropshrink = 0.8
@@ -671,6 +702,7 @@
 	list_reagents = list(/datum/reagent/berrypoison = 6)
 
 /obj/item/reagent_containers/food/snacks/cheesecake_cooked
+	item_weight = 600 GRAMS
 	name = "cheesecake"
 	desc = "Humanity's favored creation."
 	icon_state = "cheesecake"
@@ -691,6 +723,7 @@
 	list_reagents = list(/datum/reagent/berrypoison = 10)
 
 /obj/item/reagent_containers/food/snacks/cheesecake_slice
+	item_weight = 100 GRAMS
 	name = "cheesecake slice"
 	icon_state = "cheesecake_slice"
 	base_icon_state = "cheesecake_slice"
@@ -712,6 +745,7 @@
 /*	.................   STRAWBERRY CAKE   ................... */
 
 /obj/item/reagent_containers/food/snacks/strawbycake
+	item_weight = 400 GRAMS
 	name = "strawberry cake base"
 	desc = "With this sweet thing, you shall make them sing. Lacking sugar frosting."
 	icon_state = "cake_filled"
@@ -724,6 +758,7 @@
 	nutrition = CAKEBASE_NUTRITION + FRUIT_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/strawbycake_ready
+	item_weight = 600 GRAMS
 	name = "unbaked strawberry cake"
 	icon_state = "strawberrycakeuncooked"
 	dropshrink = 0.8
@@ -736,6 +771,7 @@
 	nutrition = CAKEBASE_NUTRITION + FRUIT_NUTRITION + SUGAR_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/strawbycake_cooked
+	item_weight = 600 GRAMS
 	name = "strawberry cake"
 	desc = "Traditionally made with sugarbeet frosting, an elvish treat as old as time. Commonly served at elf weddings."
 	icon_state = "strawberrycake"
@@ -753,6 +789,7 @@
 	nutrition = (CAKEBASE_NUTRITION + FRUIT_NUTRITION + SUGAR_NUTRITION) * COOK_MOD
 
 /obj/item/reagent_containers/food/snacks/strawbycake_slice
+	item_weight = 100 GRAMS
 	name = "strawberry cake slice"
 	icon_state = "strawberrycakeslice"
 	dropshrink = 0.8
@@ -769,6 +806,7 @@
 /*	.................   CRIMSON PINE CAKE   ................... */
 
 /obj/item/reagent_containers/food/snacks/crimsoncake
+	item_weight = 400 GRAMS
 	name = "crimson pine cake base"
 	desc = "With this sweet thing, you shall make them sing. Lacking chocolate bits."
 	icon_state = "cake_filled"
@@ -781,6 +819,7 @@
 	nutrition = CAKEBASE_NUTRITION + FRUIT_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/crimsoncake_ready
+	item_weight = 600 GRAMS
 	name = "unbaked crimson pine cake"
 	icon_state = "crimsonpinecakeraw"
 	slices_num = 0
@@ -792,6 +831,7 @@
 	nutrition = CAKEBASE_NUTRITION + FRUIT_NUTRITION + CHOCCY_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/crimsoncake_cooked
+	item_weight = 600 GRAMS
 	name = "crimson pine cake"
 	desc = "A fusion of the nothern, the cake originates from Luskan. Rumor has it that one of the major conflicts in the city was based upon a disagreement on the cakes exact recipe."
 	icon_state = "crimsonpinecake"
@@ -808,6 +848,7 @@
 	nutrition = (CAKEBASE_NUTRITION + FRUIT_NUTRITION + CHOCCY_NUTRITION) * COOK_MOD
 
 /obj/item/reagent_containers/food/snacks/crimsoncake_slice
+	item_weight = 100 GRAMS
 	name = "crimson pine cake slice"
 	icon_state = "crimsonpinecakeslice"
 	dropshrink = 0.8
@@ -824,6 +865,7 @@
 /*	.................   TANGERINE CAKE   ................... */
 
 /obj/item/reagent_containers/food/snacks/tangerinecake
+	item_weight = 400 GRAMS
 	name = "scarletharp cake base"
 	desc = "With this sweet thing, you shall make them sing. Lacking sugar frosting."
 	icon_state = "cake_filled"
@@ -836,6 +878,7 @@
 	nutrition = CAKEBASE_NUTRITION + FRUIT_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/tangerinecake_ready
+	item_weight = 600 GRAMS
 	name = "unbaked scarletharp cake"
 	icon_state = "tangerinecakeraw"
 	dropshrink = 0.9
@@ -848,6 +891,7 @@
 	nutrition = CAKEBASE_NUTRITION + FRUIT_NUTRITION + SUGAR_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/tangerinecake_cooked
+	item_weight = 600 GRAMS
 	name = "scarletharp cake"
 	desc = "The Scarletharp cake, named not so aptly for its town of origin, is a twist on the traditional lunch cake substituting the dried fruit bits for a center filling of tangerine jam."
 	icon_state = "tangerinecake"
@@ -865,6 +909,7 @@
 	nutrition = (CAKEBASE_NUTRITION + FRUIT_NUTRITION + SUGAR_NUTRITION) * COOK_MOD
 
 /obj/item/reagent_containers/food/snacks/tangerinecake_slice
+	item_weight = 100 GRAMS
 	name = "scarletharp cake slice"
 	icon_state = "tangerinecakeslice"
 	dropshrink = 0.8
@@ -885,6 +930,7 @@
 /*	.................   Plain Scone   ................... */
 
 /obj/item/reagent_containers/food/snacks/foodbase/scone_raw
+	item_weight = 70 GRAMS
 	name = "unbaked scone"
 	icon_state = "uncookedsconebase"
 	eat_effect = /datum/status_effect/debuff/uncookedfood
@@ -894,6 +940,7 @@
 	nutrition = BUTTERDOUGHSLICE_NUTRITION + SUGAR_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/scone
+	item_weight = 70 GRAMS
 	name = "plain scone"
 	desc = "A delightfully fancy treat adored by the upper echelons of Neverwinter."
 	icon_state = "cookedscone"
@@ -907,6 +954,7 @@
 /*	.................   Tangerine Scone   ................... */
 
 /obj/item/reagent_containers/food/snacks/foodbase/scone_raw_tangerine
+	item_weight = 70 GRAMS
 	name = "unbaked tangerine scone"
 	icon_state = "uncookedtangerinescone"
 	eat_effect = /datum/status_effect/debuff/uncookedfood
@@ -916,6 +964,7 @@
 	nutrition = BUTTERDOUGHSLICE_NUTRITION + SUGAR_NUTRITION + FRUIT_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/scone_tangerine
+	item_weight = 70 GRAMS
 	name = "tangerine scone"
 	desc = "A delightfully fancy treat adored by the upper echelons of Neverwinter, complete with tangerine frosting."
 	icon_state = "cookedtangerinescone"
@@ -928,6 +977,7 @@
 /*	.................   Plum Scone   ................... */
 
 /obj/item/reagent_containers/food/snacks/foodbase/scone_raw_plum
+	item_weight = 70 GRAMS
 	name = "unbaked plum scone"
 	icon_state = "uncookedplumscone"
 	eat_effect = /datum/status_effect/debuff/uncookedfood
@@ -937,6 +987,7 @@
 	nutrition = BUTTERDOUGHSLICE_NUTRITION + SUGAR_NUTRITION + FRUIT_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/scone_plum
+	item_weight = 70 GRAMS
 	name = "plum scone"
 	desc = "A delightfully fancy treat adored by the upper echelons of Neverwinter, complete with plum filling."
 	icon_state = "cookedplumscone"
@@ -953,6 +1004,7 @@
 /*	.................   Plain Griddlecake   ................... */
 
 /obj/item/reagent_containers/food/snacks/foodbase/griddlecake_raw
+	item_weight = 120 GRAMS
 	name = "raw griddlecake"
 	icon_state = "rawgriddlecake"
 	eat_effect = /datum/status_effect/debuff/uncookedfood
@@ -962,6 +1014,7 @@
 	nutrition = BUTTERDOUGHSLICE_NUTRITION + EGG_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/griddlecake
+	item_weight = 120 GRAMS
 	name = "griddlecake"
 	desc = "Enjoyed by mercenaries throughout Faerun, though despite its prevalence no one quite knows its origin." //RMH
 	bitesize = 6
@@ -975,6 +1028,7 @@
 /*	.................   Lemon Griddlecake   ................... */
 
 /obj/item/reagent_containers/food/snacks/foodbase/lemongriddlecake_raw
+	item_weight = 120 GRAMS
 	name = "raw lemon griddlecake"
 	icon_state = "rawgriddlecakelemon"
 	eat_effect = /datum/status_effect/debuff/uncookedfood
@@ -984,6 +1038,7 @@
 	nutrition = BUTTERDOUGHSLICE_NUTRITION + EGG_NUTRITION + FRUIT_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/griddlecake/lemon
+	item_weight = 120 GRAMS
 	name = "lemon griddlecake"
 	desc = "Enjoyed by mercenaries throughout Faerun, though despite its prevalence no one quite knows its origin." //RMH
 	bitesize = 6
@@ -998,6 +1053,7 @@
 /*	.................   Apple Griddlecake   ................... */
 
 /obj/item/reagent_containers/food/snacks/foodbase/applegriddlecake_raw
+	item_weight = 120 GRAMS
 	name = "raw apple griddlecake"
 	icon_state = "rawgriddlecakeapple"
 	eat_effect = /datum/status_effect/debuff/uncookedfood
@@ -1007,6 +1063,7 @@
 	nutrition = BUTTERDOUGHSLICE_NUTRITION + EGG_NUTRITION + FRUIT_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/griddlecake/apple
+	item_weight = 120 GRAMS
 	name = "apple griddlecake"
 	desc = "Enjoyed by mercenaries throughout Faerun, though despite its prevalence no one quite knows its origin." //RMH
 	bitesize = 6
@@ -1021,6 +1078,7 @@
 /*	.................   Berry Griddlecake   ................... */
 
 /obj/item/reagent_containers/food/snacks/foodbase/berrygriddlecake_raw
+	item_weight = 120 GRAMS
 	name = "raw jacksberry griddlecake"
 	icon_state = "rawgriddlecakeberry"
 	eat_effect = /datum/status_effect/debuff/uncookedfood
@@ -1030,6 +1088,7 @@
 	nutrition = BUTTERDOUGHSLICE_NUTRITION + EGG_NUTRITION + RAISIN_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/griddlecake/berry
+	item_weight = 120 GRAMS
 	name = "jacksberry griddlecake"
 	desc = "Enjoyed by mercenaries throughout Faerun, though despite its prevalence no one quite knows its origin." //RMH
 	bitesize = 6

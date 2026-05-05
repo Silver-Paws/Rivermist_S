@@ -1,5 +1,6 @@
 #define CANDLE_LUMINOSITY	3
 /obj/item/candle
+	item_weight = 224 GRAMS
 	name = "candle"
 	desc = ""
 	icon = 'icons/obj/candle.dmi'

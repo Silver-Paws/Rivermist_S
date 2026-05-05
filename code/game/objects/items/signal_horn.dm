@@ -17,6 +17,7 @@
 	desc = "I cannot take another action."
 
 /obj/item/signal_horn
+	item_weight = 400 GRAMS
 	name = "signal horn"
 	desc = "Used to sound the alarm."
 	icon = 'icons/roguetown/items/misc.dmi'

@@ -14,8 +14,13 @@
 	melt_amount = 100
 	grid_width = 32
 	grid_height = 96
+	item_weight = 143 GRAMS
 	var/obj/item/held_item = null
 	var/hott = 0
+
+/obj/item/weapon/tongs/Initialize(mapload)
+	. = ..()
+	item_flags |= SURGICAL_TOOL // we lost a real one tbh
 
 /obj/item/weapon/tongs/examine(mob/user)
 	. = ..()

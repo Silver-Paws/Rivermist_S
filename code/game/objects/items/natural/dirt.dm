@@ -1,4 +1,5 @@
 /obj/item/natural/clod/dirt
+	item_weight = 1.3 KILOGRAMS
 	name = "clod"
 	desc = "A handful of sod."
 	icon_state = "clod1"

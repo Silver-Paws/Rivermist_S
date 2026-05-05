@@ -1,5 +1,6 @@
 
 /obj/item/clothing/wrists/bracers
+	item_weight = 1.2 KILOGRAMS
 	name = "plate vambraces"
 	desc = "Plate forearm guards that offer superior protection while allowing mobility."
 	body_parts_covered = ARMS
@@ -18,6 +19,7 @@
 	max_integrity = INTEGRITY_STRONG
 
 /obj/item/clothing/wrists/bracers/naledi
+	item_weight = 125 GRAMS
 	name = "sojourner's wrappings"
 	desc = "Sheared burlap and cloth, meticulously fashioned around the forearms. It provides more freedom of movement than the traditional steel thorns."
 	slot_flags = ITEM_SLOT_WRISTS
@@ -70,6 +72,7 @@
 	melt_amount = 75
 
 /obj/item/clothing/wrists/bracers/leather
+	item_weight = 650 GRAMS
 	name = "leather bracers"
 	desc = "Boiled leather bracers typically worn by archers to protect their forearms."
 	icon_state = "lbracers"
@@ -124,6 +127,7 @@
 	AddComponent(/datum/component/storage/concrete/scabbard/knife)
 
 /obj/item/clothing/wrists/bracers/psythorns
+	item_weight = 1.6 KILOGRAMS
 	name = "exotic thorns"
 	desc = "Thorns fashioned from pliable yet durable blacksteel - woven and interlinked, fashioned to be wrapped around the wrists."
 	body_parts_covered = ARMS

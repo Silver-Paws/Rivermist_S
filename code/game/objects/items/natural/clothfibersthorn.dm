@@ -1,4 +1,5 @@
 /obj/item/natural/fibers
+	item_weight = 1 GRAMS
 	name = "fiber"
 	desc = "Plant fiber. The peasants make their living sewing these into fabrics and clothing."
 	icon_state = "fibers"
@@ -16,6 +17,7 @@
 	bundletype = /obj/item/natural/bundle/fibers
 
 /obj/item/natural/silk
+	item_weight = 1 GRAMS
 	name = "silk"
 	icon_state = "fibers"
 	possible_item_intents = list(/datum/intent/use)
@@ -50,6 +52,7 @@
 #endif
 
 /obj/item/natural/thorn
+	item_weight = 3 GRAMS
 	name = "thorn"
 	desc = "This bog-grown thorn is sharp and resistant like a needle."
 	icon_state = "thorn"

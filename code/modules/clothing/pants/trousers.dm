@@ -15,9 +15,10 @@
 	prevent_crits = MINOR_CRITICALS
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
-	item_weight = 3
+	item_weight = 350 GRAMS
 
 /obj/item/clothing/pants/trou/leather
+	item_weight = 2.5 KILOGRAMS
 	name = "leather trousers"
 	desc = "Standard leather pants for hardy workers."
 	icon_state = "leathertrou"

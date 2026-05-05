@@ -388,7 +388,7 @@
 					return
 			if(!living.buckled)
 				var/drained = max(15 - (GET_MOB_SKILL_VALUE_OLD(living, /datum/attribute/skill/misc/swimming) * 5), 1)
-				drained += living.get_encumbrance() * 50
+				drained += ENCUMBRANCE_TO_SIGMOID(living.encumbrance) * 50
 				if(!(water_height == WATER_HEIGHT_FULL ? living.adjust_stamina(drained, "drown") : living.adjust_stamina(drained)))
 					living.Immobilize(30)
 					addtimer(CALLBACK(living, TYPE_PROC_REF(/mob/living, Knockdown), 30), 10)

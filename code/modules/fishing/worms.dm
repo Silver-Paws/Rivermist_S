@@ -5,6 +5,7 @@
 	var/list/fishloot = null
 
 /obj/item/natural/worms
+	item_weight = 4 GRAMS
 	name = "worm"
 	desc = ""
 	icon_state = "worm"

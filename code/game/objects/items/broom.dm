@@ -1,4 +1,5 @@
 /obj/item/broom
+	item_weight = 548 GRAMS
 	name = "broom"
 	desc = "A broom, made from a bundle of twigs."
 	icon = 'icons/roguetown/weapons/tools.dmi'

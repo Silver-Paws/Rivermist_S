@@ -1,5 +1,6 @@
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+	item_weight = 2.5 KILOGRAMS
 	name = "crossbow"
 	desc = "A mechanical ranged weapon of simple design, affixed with a stirrup and fired via trigger."
 	icon = 'icons/roguetown/weapons/32/bows.dmi'
@@ -24,6 +25,7 @@
 	fire_sound = 'sound/combat/Ranged/crossbow-small-shot-02.ogg'
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
+	item_weight = 1.5 KILOGRAMS
 	name = "slurbow"
 	desc = "A lighter weight crossbow with a distinct barrel shroud holding the bolt in place. Light enough to arm by hand. <br>They're popular among highwaymen and the patrolling lamplighters of Darkhold."
 	icon = 'icons/roguetown/weapons/32/bows.dmi'

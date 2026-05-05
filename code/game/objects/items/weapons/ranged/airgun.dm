@@ -1,4 +1,5 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher/airgun
+	item_weight = 7 KILOGRAMS
 	name = "airgun"
 	desc = "A complex masterwork of engineering that propells projectiles via pressurized steam. \
 	There are countless pipes, cogs, and other confusing gizmos, all combined with a body of brass, steel and leather."

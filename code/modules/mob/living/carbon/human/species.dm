@@ -29,6 +29,8 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 	var/donator_req = FALSE
 	/// Used for sorting the species in the species_list, check out species_order_list for the order itself
 	var/order_num = 99 // so that if there's nothing in the species_order_list, we still don't break
+	var/default_mob_weight = HUMAN_WEIGHT
+
 	/**
 	 * The list of pronouns this species allows in the character sheet.
 	 * If none are specified, it will default to the PRONOUNS_LIST.

@@ -1,4 +1,5 @@
 /obj/item/key
+	item_weight = 20 GRAMS
 	name = "old key"
 	desc = "A simple key of simple uses."
 	icon_state = "brownkey"
@@ -12,6 +13,7 @@
 	grid_width = 32
 
 /obj/item/lockpick
+	item_weight = 10 GRAMS
 	name = "lockpick"
 	desc = "A small, sharp piece of metal to aid opening locks in the absence of a key."
 	icon_state = "lockpick"

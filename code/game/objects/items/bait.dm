@@ -1,5 +1,6 @@
 
 /obj/item/bait
+	item_weight = 200 GRAMS
 	name = "bag of bait"
 	desc = "Horrid smell to me, wonderful smell to big game."
 	icon_state = "bait"
@@ -101,6 +102,7 @@
 	..()
 
 /obj/item/bait/sweet
+	item_weight = 200 GRAMS
 	name = "bag of sweetbait"
 	desc = "This bait doesn't smell as bad. I might even try a bite..."
 	icon_state = "baitp"
@@ -113,6 +115,7 @@
 
 
 /obj/item/bait/bloody
+	item_weight = 250 GRAMS
 	name = "bag of bloodbait"
 	desc = "A deployable bag of bait used by hunters to attract predators within the wilds."
 	icon_state = "baitb"
@@ -124,6 +127,7 @@
 						/mob/living/simple_animal/hostile/retaliate/troll/caerbannog = 2.5)
 
 /obj/item/bait/forestdelight
+	item_weight = 150 GRAMS
 	name = "meat wrapped in strange herbs"
 	desc = "A piece of rotten and rancid meat wrapped in several herbs. The aroma induces both vomit and a nice herbal odor."
 	icon_state = "baitbriar"

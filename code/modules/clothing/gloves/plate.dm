@@ -25,7 +25,7 @@
 
 	grid_width = 64
 	grid_height = 32
-	item_weight = 7 * IRON_MULTIPLIER
+	item_weight = 1.65 KILOGRAMS
 
 	material_category = ARMOR_MAT_PLATE
 
@@ -65,7 +65,7 @@
 	melt_amount = 100
 	armor_class = AC_MEDIUM
 	armor = ARMOR_PLATE_GOOD
-	item_weight = 7 * BLACKSTEEL_MULTIPLIER
+	item_weight = 1.65 KILOGRAMS
 	sellprice = VALUE_SILVER_ITEM * 2
 
 /obj/item/clothing/gloves/plate/silver
@@ -76,7 +76,7 @@
 	smeltresult = /obj/item/ingot/silver
 	melting_material = /datum/material/silver
 	melt_amount = 100
-	item_weight = 12 * SILVER_MULTIPLIER
+	item_weight = 2.94 KILOGRAMS
 	sellprice = VALUE_SILVER_ITEM
 
 /obj/item/clothing/gloves/plate/silver/Initialize(mapload)

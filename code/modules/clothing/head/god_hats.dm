@@ -1,4 +1,5 @@
 /obj/item/clothing/head/padded/pestra
+	item_weight = 250 GRAMS
 	name = "naga hood"
 	desc = "Worn by the faithful of Ilmater. Resembling the face of the Naga clothed in rot."
 	icon_state = "pestrahood"
@@ -20,6 +21,7 @@
 	salvage_result = /obj/item/natural/silk
 
 /obj/item/clothing/head/padded/deathface
+	item_weight = 250 GRAMS
 	name = "death shroud"
 	desc = "A veil for those in service to the Final Scribe. When inducted into the cult of Jergal, the supplicant must make a talisman to hold the memory of a loved one since passed."
 	icon_state = "deathface"
@@ -29,18 +31,21 @@
 	prevent_crits = MINOR_CRITICALS
 
 /obj/item/clothing/head/padded/deathshroud
+	item_weight = 250 GRAMS
 	name = "death shroud"
 	desc = "Worn by the faithful of Jergal, or less savory individuals."
 	icon_state = "necrahood"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
 /obj/item/clothing/head/padded/pestra
+	item_weight = 250 GRAMS
 	name = "naga hood"
 	desc = "Worn by the faithful of Ilmater. Resembling the face of the Naga clothed in rot."
 	icon_state = "pestrahood"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
 /obj/item/clothing/head/padded/abyssor
+	item_weight = 250 GRAMS
 	name = "sea hood"
 	desc = "A green hood worn by the faithful of Umberlee."
 	icon_state = "abysshood"
@@ -136,6 +141,7 @@
 		. = ..()
 
 /obj/item/clothing/head/priestmask
+	item_weight = 135 GRAMS
 	name = "solar visage"
 	desc = "The sanctified helm of the most devoted. Thieves beware."
 	icon_state = "priesthead"

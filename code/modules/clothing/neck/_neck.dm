@@ -20,7 +20,7 @@
 
 	grid_width = 64
 	grid_height = 32
-	item_weight = 0.5
+	item_weight = 75 GRAMS
 
 	sewrepair = FALSE
 	anvilrepair = /datum/attribute/skill/craft/armorsmithing

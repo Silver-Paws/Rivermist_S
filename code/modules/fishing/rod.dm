@@ -1,4 +1,5 @@
 /obj/item/fishingrod
+	item_weight = 350 GRAMS
 	force = 12
 	possible_item_intents = list(ROD_AUTO, ROD_CAST, POLEARM_BASH)
 	name = "fishing rod"

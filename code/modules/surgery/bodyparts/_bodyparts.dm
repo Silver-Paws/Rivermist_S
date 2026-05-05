@@ -33,6 +33,9 @@
 	var/burn_dam = 0
 	var/max_damage = 0
 
+	/// How efficient this limb is at performing... whatever it performs
+	var/limb_efficiency = 100
+
 	var/cremation_progress = 0 //Gradually increases while burning when at full damage, destroys the limb when at 100
 
 	var/brute_reduction = 0 //Subtracted to brute damage taken
@@ -48,6 +51,7 @@
 	var/mutation_color = ""
 	var/no_update = 0
 	var/species_icon = ""
+	var/should_render = TRUE
 
 	var/animal_origin = 0 //for nonhuman bodypart (e.g. monkey)
 	var/dismemberable = 1 //whether it can be dismembered with a weapon.
@@ -123,6 +127,7 @@
 		qdel(wound)
 	if(bandage)
 		QDEL_NULL(bandage)
+
 	embedded_objects = null
 	original_owner = null
 	return ..()
@@ -363,6 +368,23 @@
 
 	return update_bodypart_damage_state() || .
 
+/obj/item/bodypart/proc/add_pain(amount)
+	if(!amount || !owner)
+		return
+	if(owner.status_flags & GODMODE)
+		return
+	lingering_pain += amount
+	var/current_damage_percent = ((brute_dam + burn_dam) / max_damage) * 100
+	if(current_damage_percent > 60)
+		last_severe_injury_time = world.time
+	if(owner.stat < DEAD)
+		if(amount < 10)
+			owner.flash_fullscreen("redflash1")
+		else if(amount < 20)
+			owner.flash_fullscreen("redflash2")
+		else
+			owner.flash_fullscreen("redflash3")
+
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
 //Cannot remove negative damage (i.e. apply damage)
@@ -509,6 +531,21 @@
 				))
 		set_disabled(FALSE)
 
+//Updates limb efficiency based on tendons, nerves and arteries
+/obj/item/bodypart/proc/update_limb_efficiency()
+	var/divisor = 0
+	limb_efficiency = 0
+	if(divisor)
+		limb_efficiency /= divisor
+	// no tendon, nerve nor artery!
+	else
+		limb_efficiency = 100
+	// wounds decrease limb efficiency
+	for(var/datum/wound/hurty as anything in wounds)
+		limb_efficiency -= hurty.limb_efficiency_reduction
+	limb_efficiency = max(0, CEILING(limb_efficiency, 1))
+
+
 ///Called when TRAIT_PARALYSIS is added to the limb.
 /obj/item/bodypart/proc/on_paralysis_trait_gain(obj/item/bodypart/source)
 	SIGNAL_HANDLER
@@ -566,6 +603,8 @@
 //we inform the bodypart of the changes that happened to the owner, or give it the informations from a source mob.
 /obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source)
 	var/mob/living/carbon/C
+	if(!should_render)
+		return
 	if(source)
 		C = source
 		if(!original_owner)
@@ -642,6 +681,8 @@
 
 //Gives you a proper icon appearance for the dismembered limb
 /obj/item/bodypart/proc/get_limb_icon(dropped, hideaux = FALSE)
+	if(!should_render)
+		return
 	icon_state = "" //to erase the default sprite, we're building the visual aspects of the bodypart through overlays alone.
 
 	. = list()

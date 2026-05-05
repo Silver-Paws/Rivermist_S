@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(rousman_ambush_objects)
 	race = /datum/species/rousman
 	gender = MALE
 	bodyparts = list(/obj/item/bodypart/chest/rousman, /obj/item/bodypart/head/rousman, /obj/item/bodypart/l_arm/rousman,
-					/obj/item/bodypart/r_arm/rousman, /obj/item/bodypart/r_leg/rousman, /obj/item/bodypart/l_leg/rousman)
+					/obj/item/bodypart/r_arm/rousman, /obj/item/bodypart/r_leg/rousman, /obj/item/bodypart/l_leg/rousman, /obj/item/bodypart/mouth)
 	rot_type = /datum/component/rot/corpse/rousman
 	ambushable = FALSE
 	base_intents = list(INTENT_STEAL, INTENT_HELP, INTENT_DISARM, /datum/intent/unarmed/claw, /datum/intent/simple/bite, /datum/intent/jump)

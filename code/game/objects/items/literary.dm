@@ -1,5 +1,6 @@
 
 /obj/item/textbook
+	item_weight = 493 GRAMS
 	name = "blank textbook"
 	desc = "A blank textbook, ready for the knowledge it will share to be prescribed into it."
 	icon = 'icons/roguetown/items/books.dmi'

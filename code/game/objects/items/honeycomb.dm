@@ -1,5 +1,6 @@
 
 /obj/item/reagent_containers/food/snacks/spiderhoney
+	item_weight = 30 GRAMS
 	name = "honeycomb"
 	desc = ""
 	icon_state = "honey"
@@ -26,6 +27,7 @@
 		reagents.add_reagent(R.type,5)
 
 /obj/item/reagent_containers/food/snacks/spiderhoney/honey
+	item_weight = 50 GRAMS
 	name = "honey"
 	icon_state = "honeycomb"
 	tastes = list("sweetness" = 1)

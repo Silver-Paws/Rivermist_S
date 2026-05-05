@@ -13,6 +13,7 @@
 
 /*	..................   mango   ................... */
 /obj/item/reagent_containers/food/snacks/fruit/mango_half
+	item_weight = 90 GRAMS
 	name = "mangga"
 	icon_state = "mango_half"
 	dropshrink = 0.8
@@ -20,6 +21,7 @@
 
 /*	..................   mangosteen   ................... */
 /obj/item/reagent_containers/food/snacks/fruit/mangosteen_opened
+	item_weight = 75 GRAMS
 	name = "mangosteen"
 	icon_state = "mangosteen_open"
 	trash = /obj/item/trash/mangosteenshell
@@ -28,6 +30,7 @@
 
 /*	..................   avocado   ................... */
 /obj/item/reagent_containers/food/snacks/fruit/avocado_half
+	item_weight = 60 GRAMS
 	name = "avocado"
 	icon_state = "avocado_half"
 	dropshrink = 0.9
@@ -35,6 +38,7 @@
 
 /*	..................   dragonfruit   ................... */
 /obj/item/reagent_containers/food/snacks/fruit/dragonfruit_half
+	item_weight = 175 GRAMS
 	name = "piyata"
 	icon_state = "dragonfruit_half"
 	dropshrink = 0.7
@@ -42,6 +46,7 @@
 
 /*	..................   pineapple   ................... */
 /obj/item/reagent_containers/food/snacks/fruit/pineapple_slice
+	item_weight = 200 GRAMS
 	name = "ananas slice"
 	icon_state = "pineapple_slice"
 	bitesize = 1

@@ -1,4 +1,5 @@
 /obj/item/reagent_containers/glass/bottle/waterskin
+	item_weight = 732 GRAMS
 	name = "waterskin"
 	desc = "A leather waterskin."
 	icon = 'icons/roguetown/items/cooking.dmi'
@@ -39,6 +40,7 @@
 	list_reagents = list(/datum/reagent/consumable/milk = 64)
 
 /obj/item/reagent_containers/glass/bottle/waterskin/purifier
+	item_weight = 1.34 KILOGRAMS
 	name = "purifying waterskin"
 	desc = "Bronze tubes spiral about from the mouth of this waterskin in complex, dizzying patterns."
 	icon_state = "water-purifier"

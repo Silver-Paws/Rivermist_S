@@ -4,6 +4,7 @@
  * Book
  */
 /obj/item/book
+	item_weight = 493 GRAMS
 	name = "book"
 	icon = 'icons/roguetown/items/books.dmi'
 	icon_state = "basic_book_0"

@@ -1,4 +1,5 @@
 /obj/item/storage/magebag
+	item_weight = 150 GRAMS
 	name = "summoners pouch"
 	desc = "A pouch for carrying handfuls of summoning ingredients."
 	icon_state = "summoning"
@@ -65,6 +66,7 @@
 	)
 
 /obj/item/chalk
+	item_weight = 20 GRAMS
 	name = "stick of chalk"
 	desc = "A stark-white stick of chalk, possibly made from quicksilver. "
 	icon = 'icons/roguetown/misc/rituals.dmi'
@@ -220,6 +222,7 @@
 	return FALSE
 
 /obj/item/gem/amethyst
+	item_weight = 8 GRAMS
 	name = "amythortz"
 	icon_state = "amethyst"
 	sellprice = 18
@@ -228,6 +231,7 @@
 	attuned = /datum/attunement/arcyne
 
 /obj/item/mimictrinket
+	item_weight = 30 GRAMS
 	name = "mimic trinket"
 	desc = "A small mimic, imbued with the arcyne to make it docile. It can transform into most things it touches."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -275,6 +279,7 @@
 		timing_id = addtimer(CALLBACK(src, PROC_REF(revert), user), duration,TIMER_STOPPABLE) // Minus two so we play the sound and decap faster
 
 /obj/item/hourglass/temporal
+	item_weight = 300 GRAMS
 	name = "temporal hourglass"
 	desc = "An arcyne infused hourglass that glows with magick."
 	icon = 'icons/obj/hourglass.dmi'
@@ -304,6 +309,7 @@
 	desc = "A fluffy feather."
 
 /obj/item/flashlight/flare/torch/lantern/voidlamptern
+	item_weight = 500 GRAMS
 	name = "void lamptern"
 	icon_state = "voidlamp"
 	item_state = "voidlamp"
@@ -314,6 +320,7 @@
 	on = FALSE
 
 /obj/item/clothing/ring/arcanesigil
+	item_weight = 30 GRAMS
 	name = "arcyne sigil"
 	desc = "A radiantly shimmering sigil within an amulet, It seems to pulse with intense arcynic flows."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -335,6 +342,7 @@
 	ready = TRUE
 
 /obj/item/clothing/ring/shimmeringlens
+	item_weight = 80 GRAMS
 	name = "shimmering lens"
 	desc = "A radiantly shimmering glass of lens that shimmers with magick. Looking through it gives you a bit of a headache."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -388,6 +396,7 @@
 	qdel(src)
 
 /obj/item/natural/stone/sending
+	item_weight = 50 GRAMS
 	name = "sending stone"
 	desc = "One of a pair of sending stones."
 	var/obj/item/natural/stone/sending/paired_with
@@ -398,6 +407,7 @@
 		paired_with.say(input_text)
 
 /obj/item/clothing/gloves/nomagic
+	item_weight = 100 GRAMS
 	icon = 'icons/roguetown/clothing/gloves.dmi'
 	bloody_icon_state = "bloodyhands"
 	icon_state = "angle"
@@ -419,6 +429,7 @@
 	. = ..()
 
 /obj/item/rope/chain/bindingshackles
+	item_weight = 400 GRAMS
 	name = "planar binding shackles"
 	desc = "arcyne shackles imbued to bind other-planar creatures intelligence to this plane. They will not be under your thrall and a deal will need to be made."
 	var/mob/living/fam
@@ -575,6 +586,7 @@
 
 //mapfetchable items
 /obj/item/natural/obsidian
+	item_weight = 80 GRAMS
 	name = "obsidian fragment"
 	icon = 'icons/obj/shards.dmi'
 	icon_state = "obsidian"
@@ -583,6 +595,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/natural/leyline
+	item_weight = 30 GRAMS
 	name = "leyline shards"
 	icon = 'icons/roguetown/items/natural.dmi'
 	icon_state = "leyline"
@@ -591,6 +604,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/reagent_containers/food/snacks/produce/manabloom
+	item_weight = 20 GRAMS
 	name = "mana bloom"
 	icon_state = "manabloom"
 	icon = 'icons/roguetown/items/natural.dmi'
@@ -606,6 +620,7 @@
 
 
 /obj/item/natural/artifact
+	item_weight = 100 GRAMS
 	name = "runed artifact"
 	icon_state = "runedartifact"
 	desc = "An old stone from age long ago, marked with glowing sigils."
@@ -613,6 +628,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/natural/voidstone
+	item_weight = 60 GRAMS
 	name = "Voidstone"
 	icon_state = "wessence"
 	desc = "A piece of blackstone, it feels off to stare at it for long."
@@ -621,6 +637,7 @@
 
 //combined items
 /obj/item/natural/melded
+	item_weight = 40 GRAMS
 	name = "arcyne meld"
 	icon_state = "wessence"
 	desc = "You should not be seeing this"
@@ -635,24 +652,28 @@
 	desc = "A melding of infernal ash, fairy dust and elemental mote."
 
 /obj/item/natural/melded/t2
+	item_weight = 50 GRAMS
 	name = "dense arcanic meld"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "dmeld"
 	desc = "A melding of hellhound fang, iridescent scales and elemental shard."
 
 /obj/item/natural/melded/t3
+	item_weight = 60 GRAMS
 	name = "sorcerous weave"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "wessence"
 	desc = "A melding of molten core, heartwood core and elemental fragment."
 
 /obj/item/natural/melded/t4
+	item_weight = 70 GRAMS
 	name = "magical confluence"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "wessence"
 	desc = "A melding of abyssal flame, sylvan essence and elemental relic."
 
 /obj/item/natural/melded/t5
+	item_weight = 80 GRAMS
 	name = "arcanic aberation"
 	icon_state = "wessence"
 	desc = "A melding of arcyne fusion and voidstone. It pulses erratically, power coiled tightly within and dangerous. Many would be afraid of going near this, let alone holding it."

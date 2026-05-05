@@ -1,4 +1,5 @@
 /obj/item/servant_bell
+	item_weight = 245 GRAMS
 	name = "servant bell"
 	desc = "An enchanted bell whose chime resonates in the minds of those bound to it."
 	icon = 'icons/roguetown/items/misc.dmi'

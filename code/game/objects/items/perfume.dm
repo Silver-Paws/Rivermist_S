@@ -1,4 +1,5 @@
 /obj/item/perfume
+	item_weight = 275 GRAMS
 	name = "perfume bottle"
 	desc = "A bottle of pleasantly smelling fragrance."
 	icon = 'icons/roguetown/items/perfume.dmi'

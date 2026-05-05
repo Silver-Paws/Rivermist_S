@@ -1,5 +1,6 @@
 
 /obj/item/natural/feather
+	item_weight = 1 GRAMS
 	name = "feather"
 	desc = "The plume from some avian."
 	icon_state = "feather"

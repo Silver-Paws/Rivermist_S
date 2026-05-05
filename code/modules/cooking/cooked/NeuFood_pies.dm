@@ -9,6 +9,7 @@
 
 /*	........   Pie making   ................ */
 /obj/item/reagent_containers/food/snacks/foodbase/piebottom
+	item_weight = 300 GRAMS
 	name = "pie bottom"
 	desc = "The foundation of the fantastical."
 	icon_state = "piebottom"
@@ -19,6 +20,7 @@
 	foodtype = GRAIN | RAW
 
 /obj/item/reagent_containers/food/snacks/raw_pie
+	item_weight = 400 GRAMS
 	name = "uncooked pie"
 	desc = "The foundation of the fantastical."
 	icon_state = "pieuncooked"
@@ -98,6 +100,7 @@
 	var/stunning = FALSE
 
 /obj/item/reagent_containers/food/snacks/pie/cooked
+	item_weight = 500 GRAMS
 	icon_state = "pie"
 	nutrition = PIEDOUGH_NUTRITION*COOK_MOD
 	slice_path = /obj/item/reagent_containers/food/snacks/pieslice
@@ -143,6 +146,7 @@
 		qdel(M)
 
 /obj/item/reagent_containers/food/snacks/pieslice
+	item_weight = 80 GRAMS
 	nutrition = PIEDOUGH_NUTRITION*COOK_MOD*SLICED_MOD
 	tastes = list("pie" = 1)
 	name = "pie slice"
@@ -321,6 +325,7 @@
 \--------*/		// dwarven pie on the go, good shelflife until bitten, made from pie dough and mince, truffles or jacksberries
 
 /obj/item/reagent_containers/food/snacks/foodbase/handpieraw
+	item_weight = 150 GRAMS
 	name = "raw handpie"
 	desc = "The dwarven take on pies, called pierogi in their dialect. A fistful of food to stand the test of time."
 	icon_state = "handpie_raw"
@@ -361,6 +366,7 @@
 	tastes = list("sweet berry" = 1)
 
 /obj/item/reagent_containers/food/snacks/handpie
+	item_weight = 150 GRAMS
 	name = "handpie"
 	desc = "The dwarven take on pies, called pierogi in their dialect. A fistful of food to stand the test of time. This is pretty dry."
 	icon_state = "handpie"
@@ -393,6 +399,7 @@
 /*	........   Tart making   ................ */
 
 /obj/item/reagent_containers/food/snacks/foodbase/tartcrust
+	item_weight = 200 GRAMS
 	name = "tart crust"
 	desc = "The delicate foundation of a tart."
 	icon_state = "tartcrust"
@@ -403,6 +410,7 @@
 	foodtype = GRAIN | DAIRY | FRUIT | RAW
 
 /obj/item/reagent_containers/food/snacks/raw_tart
+	item_weight = 300 GRAMS
 	name = "uncooked tart"
 	desc = "A tart ready for the oven."
 	icon_state = "tartuncooked"
@@ -458,6 +466,7 @@
 	desc = "A sweet and delicate pastry."
 
 /obj/item/reagent_containers/food/snacks/tart/cooked
+	item_weight = 350 GRAMS
 	faretype = FARE_LAVISH
 	portable = FALSE
 	slices_num = 4
@@ -505,6 +514,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/tartslice/dragonfruit
 
 /obj/item/reagent_containers/food/snacks/tartslice
+	item_weight = 90 GRAMS
 	name = "tart slice"
 	desc = "A small slice of tart."
 	icon_state = ""

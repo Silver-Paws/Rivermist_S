@@ -3,6 +3,7 @@
 \----*/
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow
+	item_weight = 1 KILOGRAMS
 	name = "bow"
 	desc = "The bow is your life; to hold it high and pull the string is to know the path of destiny."
 	icon = 'icons/roguetown/weapons/32/bows.dmi'
@@ -205,6 +206,7 @@
 \--------*/
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/long
+	item_weight = 1.5 KILOGRAMS
 	name = "longbow"
 	desc = "The bow is the instrument of good; the arrow is the intention. Therefore, aim with the heart."
 	icon_state = "longbow"
@@ -247,6 +249,7 @@
 \------------*/
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/short
+	item_weight = 700 GRAMS
 	name = "short bow"
 	desc = "As the eagle was killed by the arrow winged with his own feather, so the hand of the world is wounded by its own skill."
 	icon_state = "recurve" // sprite should be changed eventually

@@ -26,6 +26,7 @@
 
 
 /obj/item/toy
+	item_weight = 125 GRAMS
 	throwforce = 0
 	throw_speed = 1
 	throw_range = 7

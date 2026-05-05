@@ -123,7 +123,7 @@
 	var/movespeed_slowdown = 0.9
 
 /datum/species/automaton/proc/add_synthetic_components(mob/living/carbon/C)
-	C.AddComponent(/datum/component/abberant_eater, list(/obj/item/ore/coal, /obj/item/grown/log/tree))
+	C.AddComponent(/datum/component/abberant_eater, list(/obj/item/ore/coal, /obj/item/grown/log/tree), _keeps_items = FALSE)
 	C.AddComponent(/datum/component/steam_life)
 	C.AddComponent(/datum/component/command_follower)
 	C.AddComponent(/datum/component/augmentable)

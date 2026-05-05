@@ -1,4 +1,5 @@
 /obj/item/essence_connector
+	item_weight = 340 GRAMS
 	name = "pestran connector"
 	desc = "A oddly shaped object used to create connections between alchemical apparatus. Can sense nearby essence nodes. Something under the metal squirms..."
 	icon = 'icons/roguetown/misc/alchemy.dmi'

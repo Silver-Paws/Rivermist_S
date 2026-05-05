@@ -20,6 +20,7 @@
 	return bullet
 
 /obj/item/harpoon_gun
+	item_weight = 6 KILOGRAMS
 	name = "harpoon gun"
 	desc = "Steam powered harpoon gun, lets you fly around, and subdue outlaws."
 

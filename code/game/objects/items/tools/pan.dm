@@ -1,4 +1,5 @@
 /obj/item/cooking/pan
+	item_weight = 2.1 KILOGRAMS
 	name = "frypan"
 	icon_state = "pan"
 	force = DAMAGE_MACE

@@ -191,6 +191,7 @@
 	to_chat(user, "<span class='notice'>You take \a [cig] out of the pack.</span>")
 
 /obj/item/storage/fancy/cigarettes/zig
+	item_weight = 32 GRAMS
 	name = "zigbox"
 	desc = ""
 	icon_state = "zig"

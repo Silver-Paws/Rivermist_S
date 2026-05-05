@@ -1,4 +1,5 @@
 /obj/item/flint
+	item_weight = 50 GRAMS
 	name = "flint"
 	desc = "A jagged piece of flint, witness to the dances of fire and stone."
 	icon_state = "flint"

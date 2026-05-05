@@ -11,28 +11,33 @@
 
 /*	..................   Onion slice   ................... */
 /obj/item/reagent_containers/food/snacks/veg/onion_sliced
+	item_weight = 70 GRAMS
 	name = "sliced onion"
 	icon_state = "onion_sliced"
 	slices_num = 0
 
 /*	..................   Cabbage   ................... */
 /obj/item/reagent_containers/food/snacks/veg/cabbage_sliced
+	item_weight = 300 GRAMS
 	name = "shredded cabbage"
 	icon_state = "cabbage_sliced"
 
 /*	..................   Potato   ................... */
 /obj/item/reagent_containers/food/snacks/veg/potato_sliced
+	item_weight = 70 GRAMS
 	name = "potato cuts"
 	icon_state = "potato_sliced"
 
 /*	..................   Turnip   ................... */
 /obj/item/reagent_containers/food/snacks/veg/turnip_sliced
+	item_weight = 70 GRAMS
 	name = "cleaned turnip"
 	icon_state = "turnip_sliced"
 
 
 /*	..................		Roasted seeds		................... */
 /obj/item/reagent_containers/food/snacks/roastseeds
+	item_weight = 5 GRAMS
 	nutrition = BERRY_NUTRITION * COOK_MOD
 	tastes = list("roasted seeds" = 1)
 	name = "roasted seeds"
@@ -46,6 +51,7 @@
 
 /*	..................		Salted seeds		................... */
 /obj/item/reagent_containers/food/snacks/saltseeds
+	item_weight = 5 GRAMS
 	nutrition =  (BERRY_NUTRITION+1) * COOK_MOD
 	tastes = list("salted roasted seeds" = 1)
 	name = "salted roasted seeds"

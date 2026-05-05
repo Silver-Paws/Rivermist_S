@@ -1,4 +1,5 @@
 /obj/item/reagent_containers/glass/cup
+	item_weight = 150 GRAMS
 	name = "metal cup"
 	desc = "An iron cup, its rim gnawed-upon and grimey."
 	icon = 'icons/roguetown/items/cooking.dmi'
@@ -26,6 +27,7 @@
 	AddComponent(/datum/component/storage/concrete/grid/cup)
 
 /obj/item/reagent_containers/glass/cup/wooden
+	item_weight = 80 GRAMS
 	name = "wooden cup"
 	desc = "A wooden cup that has seen its fair share of use and barfights."
 	icon_state = "cup_wooden"
@@ -35,12 +37,14 @@
 	metalizer_result = /obj/item/reagent_containers/glass/cup
 
 /obj/item/reagent_containers/glass/cup/steel
+	item_weight = 180 GRAMS
 	name = "goblet"
 	desc = "A steel goblet that bears a few dents from previous scuffles."
 	icon_state = "cup_steel"
 	sellprice = 10
 
 /obj/item/reagent_containers/glass/cup/silver
+	item_weight = 160 GRAMS
 	name = "silver goblet"
 	desc = "A silver goblet, its surface adorned with intricate carvings and runes."
 	icon_state = "cup_silver"
@@ -53,6 +57,7 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/reagent_containers/glass/cup/golden
+	item_weight = 200 GRAMS
 	name = "golden goblet"
 	desc = "A golden gilded goblet which gleams pathetically despite its illustrious metal."
 	icon_state = "cup_golden"
@@ -60,12 +65,14 @@
 	sellprice = 50
 
 /obj/item/reagent_containers/glass/cup/skull
+	item_weight = 120 GRAMS
 	name = "skull goblet"
 	desc = "The hollow eye sockets tell you of forgotten, dark rituals."
 	icon_state = "cup_skull"
 	dropshrink = 0.8
 
 /obj/item/reagent_containers/glass/cup/teacup
+	item_weight = 100 GRAMS
 	name = "teacup"
 	desc = "A fancy tea cup made out of ceramic. Used to serve tea."
 	icon_state = "teacup"
@@ -81,6 +88,7 @@
 	sellprice = 20
 
 /obj/item/reagent_containers/glass/cup/jade
+	item_weight = 250 GRAMS
 	name = "joapstone cup"
 	desc = "A simple cup carved out of joapstone."
 	dropshrink = null
@@ -89,6 +97,7 @@
 	sellprice = 55
 
 /obj/item/reagent_containers/glass/cup/turq
+	item_weight = 230 GRAMS
 	name = "ceruleabaster cup"
 	desc = "A simple cup carved out of ceruleabaster."
 	dropshrink = null
@@ -97,6 +106,7 @@
 	sellprice = 80
 
 /obj/item/reagent_containers/glass/cup/amber
+	item_weight = 80 GRAMS
 	name = "petriamber cup"
 	desc = "A simple cup carved out of petriamber."
 	dropshrink = null
@@ -105,6 +115,7 @@
 	sellprice = 55
 
 /obj/item/reagent_containers/glass/cup/coral
+	item_weight = 200 GRAMS
 	name = "aoetal cup"
 	desc = "A simple cup carved out of aoetal."
 	dropshrink = null
@@ -113,6 +124,7 @@
 	sellprice = 65
 
 /obj/item/reagent_containers/glass/cup/onyxa
+	item_weight = 150 GRAMS
 	name = "onyxa cup"
 	desc = "A simple cup carved out of onyxa."
 	dropshrink = null
@@ -121,6 +133,7 @@
 	sellprice = 35
 
 /obj/item/reagent_containers/glass/cup/shell
+	item_weight = 100 GRAMS
 	name = "shell cup"
 	desc = "A simple cup carved out of shell."
 	dropshrink = null
@@ -129,6 +142,7 @@
 	sellprice = 15
 
 /obj/item/reagent_containers/glass/cup/opal
+	item_weight = 180 GRAMS
 	name = "opaloise cup"
 	desc = "A simple cup carved out of opaloise."
 	dropshrink = null
@@ -137,6 +151,7 @@
 	sellprice = 85
 
 /obj/item/reagent_containers/glass/cup/rose
+	item_weight = 120 GRAMS
 	name = "rosellusk cup"
 	desc = "A simple cup carved out of rosellusk."
 	dropshrink = null
@@ -145,6 +160,7 @@
 	sellprice = 20
 
 /obj/item/reagent_containers/glass/cup/jadefancy
+	item_weight = 250 GRAMS
 	name = "fancy joapstone cup"
 	desc = "A fancy cup carved out of joapstone."
 	dropshrink = null
@@ -153,6 +169,7 @@
 	sellprice = 65
 
 /obj/item/reagent_containers/glass/cup/turqfancy
+	item_weight = 230 GRAMS
 	name = "fancy ceruleabaster cup"
 	desc = "A fancy cup carved out of ceruleabaster."
 	dropshrink = null
@@ -161,6 +178,7 @@
 	sellprice = 90
 
 /obj/item/reagent_containers/glass/cup/opalfancy
+	item_weight = 180 GRAMS
 	name = "fancy opaloise cup"
 	desc = "A fancy cup carved out of opaloise."
 	dropshrink = null
@@ -169,6 +187,7 @@
 	sellprice = 95
 
 /obj/item/reagent_containers/glass/cup/coralfancy
+	item_weight = 200 GRAMS
 	name = "fancy aoetal cup"
 	desc = "A fancy cup carved out of aoetal."
 	dropshrink = null
@@ -177,6 +196,7 @@
 	sellprice = 75
 
 /obj/item/reagent_containers/glass/cup/amberfancy
+	item_weight = 80 GRAMS
 	name = "fancy petriamber cup"
 	desc = "A fancy cup carved out of petriamber."
 	dropshrink = null
@@ -185,6 +205,7 @@
 	sellprice = 65
 
 /obj/item/reagent_containers/glass/cup/shellfancy
+	item_weight = 100 GRAMS
 	name = "fancy shell cup"
 	desc = "A fancy cup carved out of shell."
 	dropshrink = null
@@ -193,6 +214,7 @@
 	sellprice = 25
 
 /obj/item/reagent_containers/glass/cup/rosefancy
+	item_weight = 120 GRAMS
 	name = "fancy rosellusk cup"
 	desc = "A fancy cup carved out of rosellusk."
 	dropshrink = null
@@ -201,6 +223,7 @@
 	sellprice = 30
 
 /obj/item/reagent_containers/glass/cup/onyxafancy
+	item_weight = 150 GRAMS
 	name = "fancy onyxa cup"
 	desc = "A fancy cup carved out of onyxa."
 	dropshrink = null
@@ -209,6 +232,7 @@
 	sellprice = 45
 
 /obj/item/reagent_containers/glass/cup/clay
+	item_weight = 120 GRAMS
 	name = "clay cup"
 	desc = "A cup made from fired clay."
 	icon = 'icons/obj/handmade/cup.dmi'
@@ -221,6 +245,7 @@
 	name = "[lowertext(initial(main_material.name))] clay cup"
 
 /obj/item/reagent_containers/glass/cup/fancy_clay
+	item_weight = 130 GRAMS
 	name = "fancy clay cup"
 	desc = "A cup made from fired clay."
 	icon = 'icons/obj/handmade/cup_fancy.dmi'
@@ -232,6 +257,7 @@
 	name = "[lowertext(initial(main_material.name))] fancy clay cup"
 
 /obj/item/reagent_containers/glass/cup/clay_mug
+	item_weight = 150 GRAMS
 	name = "clay mug"
 	desc = "A mug made from fired clay."
 	icon = 'icons/obj/handmade/mug.dmi'
@@ -245,6 +271,7 @@
 // ----- Glassware -----
 
 /obj/item/reagent_containers/glass/cup/glassware
+	item_weight = 80 GRAMS
 	name = "glass cup"
 	desc = "A fancy glass cup; the few scratches that are upon it tell grand tales of lies and betrayal. It tends to break easily..."
 	icon = 'icons/roguetown/items/glass_reagent_container.dmi'
@@ -278,6 +305,7 @@
 	qdel(src)
 
 /obj/item/reagent_containers/glass/cup/glassware/shotglass
+	item_weight = 40 GRAMS
 	name = "shot glass"
 	desc = "A fancy shot glass; the few scratches that are upon it tell grand tales of lies and betrayal. It tends to break easily..."
 	icon_state = "clear_shotglass1"
@@ -286,6 +314,7 @@
 	grid_height = 32
 
 /obj/item/reagent_containers/glass/cup/glassware/wineglass
+	item_weight = 60 GRAMS
 	name = "wine glass"
 	desc = "A fancy wine glass; the few scratches that are upon it tell grand tales of lies and betrayal. It tends to break easily..."
 	icon_state = "clear_wineglass1"

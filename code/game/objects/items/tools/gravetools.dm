@@ -3,6 +3,7 @@
 \---------*/
 
 /obj/item/weapon/shovel
+	item_weight = 1.54 KILOGRAMS
 	name = "shovel"
 	desc = ""
 	icon_state = "shovel"
@@ -225,6 +226,7 @@
 // --------- SPADE -----------
 
 /obj/item/weapon/shovel/small
+	item_weight = 792 GRAMS
 	name = "spade"
 	icon_state = "spade"
 	item_state = "spade"
@@ -256,6 +258,7 @@
 // --------- BURIAL SHROUD -----------
 
 /obj/item/burial_shroud
+	item_weight = 125 GRAMS
 	name = "winding sheet"
 	desc = "A sheet used to drag bodies easier and shield them from the elements."
 	icon = 'icons/obj/bodybag.dmi'
@@ -334,6 +337,7 @@
 		qdel(src)
 
 /obj/item/bodybag
+	item_weight = 184 GRAMS
 	name = "body bag"
 	desc = ""
 	icon = 'icons/obj/bodybag.dmi'

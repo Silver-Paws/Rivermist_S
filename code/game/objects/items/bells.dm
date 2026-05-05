@@ -1,6 +1,7 @@
 //////////////Church stuff
 
 /obj/item/handheld_bell
+	item_weight = 600 GRAMS
 	name = "church bell"
 	desc = "A small bell that can draw a crowd if needed."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -141,6 +142,7 @@
 //////////Jingle Bells
 
 /obj/item/jingle_bells
+	item_weight = 100 GRAMS
 	name = "jingling bells"
 	desc = "A set of small bells that jingle when shaken."
 	icon = 'icons/roguetown/items/misc.dmi'

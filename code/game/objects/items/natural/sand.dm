@@ -1,4 +1,5 @@
 /obj/item/natural/clod/sand
+	item_weight = 1.12 KILOGRAMS
 	name = "pile of sand"
 	desc = "A handful of sand."
 	icon_state = "sand1"

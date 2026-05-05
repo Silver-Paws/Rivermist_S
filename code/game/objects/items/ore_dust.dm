@@ -1,4 +1,5 @@
 /obj/item/ore/dust
+	item_weight = 300 GRAMS
 	name = "ore dust"
 	icon_state = "dust"
 	w_class = WEIGHT_CLASS_SMALL
@@ -15,11 +16,13 @@
 	mill_yield_bonus = (recipe_quality - 1) * 0.3
 
 /obj/item/ore/dust/gold
+	item_weight = 500 GRAMS
 	name = "gold dust"
 	desc = "Fine particles of gold ore."
 	melting_material = /datum/material/gold
 
 /obj/item/ore/dust/silver
+	item_weight = 400 GRAMS
 	name = "silver dust"
 	desc = "Fine particles of silver ore."
 	melting_material = /datum/material/silver
@@ -29,16 +32,19 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/ore/dust/iron
+	item_weight = 350 GRAMS
 	name = "iron dust"
 	desc = "Fine particles of iron ore."
 	melting_material = /datum/material/iron
 
 /obj/item/ore/dust/copper
+	item_weight = 350 GRAMS
 	name = "copper dust"
 	desc = "Fine particles of copper ore."
 	melting_material = /datum/material/copper
 
 /obj/item/ore/dust/tin
+	item_weight = 300 GRAMS
 	name = "tin dust"
 	desc = "Fine particles of tin ore."
 	melting_material = /datum/material/tin

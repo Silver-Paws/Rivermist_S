@@ -1,4 +1,5 @@
 /obj/item/storage/crucible
+	item_weight = 2 KILOGRAMS
 	name = "crucible"
 	desc = "A crucible in which metal items can be molten down."
 	layer = ABOVE_ALL_MOB_LAYER

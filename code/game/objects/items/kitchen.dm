@@ -10,6 +10,7 @@
  */
 
 /obj/item/kitchen/fork
+	item_weight = 30 GRAMS
 	name = "fork"
 	desc = ""
 	icon_state = "fork"
@@ -59,6 +60,7 @@
 		return ..()
 
 /obj/item/kitchen/rollingpin
+	item_weight = 500 GRAMS
 	name = "rolling pin"
 	desc = ""
 	icon_state = "rolling_pin"

@@ -1,4 +1,5 @@
 /obj/item/caparison
+	item_weight = 500 GRAMS
 	name = "caparison"
 	desc = "A decorative piece of cloth meant to be used as a saddle decoration. This one fits on a Saiga."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -123,6 +124,7 @@
 /////////////////////////
 
 /obj/item/caparison/honse
+	item_weight = 700 GRAMS
 	name = "caparison"
 	desc = "A decorative piece of cloth meant to be used as a saddle decoration. This one fits on a Honse."
 	caparison_icon = 'icons/mob/monster/fogbeast.dmi'

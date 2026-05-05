@@ -15,10 +15,11 @@
 	body_parts_covered = COVERAGE_TORSO
 	prevent_crits = ALL_EXCEPT_BLUNT
 	max_integrity = INTEGRITY_STRONG
-	item_weight = 7 * STEEL_MULTIPLIER
+	item_weight = 7 KILOGRAMS
 
 //................ Grenzelhoft Cuirass ............... //
 /obj/item/clothing/armor/cuirass/grenzelhoft
+	item_weight = 13.45 KILOGRAMS
 	name = "darkhold cuirass"
 	desc = "Simple armor, but made from Darkholdian black-steel, famed afar for its strength."
 	icon_state = "grenzelcuirass"
@@ -55,7 +56,7 @@
 	armor = ARMOR_PLATE_BAD
 	body_parts_covered = COVERAGE_VEST
 	max_integrity = INTEGRITY_STRONG
-	item_weight = 7 * IRON_MULTIPLIER
+	item_weight = 7 KILOGRAMS
 
 //................ Rusted Breastplate ............... //
 /obj/item/clothing/armor/cuirass/iron/rust
@@ -92,7 +93,7 @@
 	body_parts_covered = CHEST
 	prevent_crits = ONLY_VITAL_ORGANS
 	max_integrity = INTEGRITY_POOR
-	item_weight = 5.5 * COPPER_MULTIPLIER
+	item_weight = 6.4 KILOGRAMS
 
 /obj/item/clothing/armor/cuirass/vampire
 	name = "ancient plate"
@@ -103,7 +104,7 @@
 	armor = ARMOR_PLATE_GOOD
 	body_parts_covered = COVERAGE_TORSO
 	prevent_crits = ALL_CRITICAL_HITS_VAMP
-	item_weight = 5.5 * IRON_MULTIPLIER
+	item_weight = 7 KILOGRAMS
 
 /obj/item/clothing/armor/cuirass/fencer
 	name = "fencer's cuirass"

@@ -20,7 +20,7 @@
 	sellprice = 0
 	static_price = TRUE
 	simpleton_price = TRUE
-	item_weight = 0.001
+	item_weight = 23 GRAMS
 
 	COOLDOWN_DECLARE(flip_cd)
 	var/heads_tails = TRUE
@@ -30,9 +30,17 @@
 	var/plural_name
 	var/rigged_outcome = 0 //1 for heads, 2 for tails
 
+/obj/item/coin/get_carry_weight(atom/carrier)
+	. = item_weight * quantity
+
 /obj/item/coin/on_consume(mob/living/eater)
 	. = ..()
+	eater.extra_mob_weight += get_carry_weight(eater)
 	eater.sellprice += quantity * sellprice
+
+/obj/item/coin/on_anti_consume(mob/living/eater)
+	eater.extra_mob_weight -= get_carry_weight(eater)
+	eater.sellprice -= quantity * sellprice
 
 /obj/item/coin/Initialize(mapload, coin_amount)
 	. = ..()
@@ -429,6 +437,7 @@
 	sellprice = 100
 	base_type = CTYPE_GOLD
 	plural_name = "dantere"
+	item_weight = 9 GRAMS
 
 //ELECTRUM
 /obj/item/coin/electrum
@@ -447,6 +456,7 @@
 	sellprice = 10
 	base_type = CTYPE_SILV
 	plural_name = "tarane"
+	item_weight = 11 GRAMS
 
 
 // COPPER

@@ -1,4 +1,5 @@
 /obj/item/essence_node_jar
+	item_weight = 1.2 KILOGRAMS
 	name = "essence node containment jar"
 	desc = "A specially crafted container designed to safely extract and transport essence nodes. The jar neutralizes most of the node's burden while carried."
 	icon = 'icons/roguetown/misc/alchemy.dmi'

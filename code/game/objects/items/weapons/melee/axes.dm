@@ -2,6 +2,7 @@
 ==========================================================*/
 
 /obj/item/weapon/axe
+	item_weight = 1.5 KILOGRAMS
 	icon = 'icons/roguetown/weapons/32/axes_picks.dmi'
 	item_state = "axe"
 	parrysound = "parrywood"
@@ -27,6 +28,7 @@
 
 //................ Stone Axe ............... //
 /obj/item/weapon/axe/stone
+	item_weight = 800 GRAMS
 	name = "stone axe"
 	desc = "Hewn wood, steadfast thread, a chipped stone. A recipe to bend nature to your will."
 	icon_state = "stoneaxe"
@@ -58,6 +60,7 @@
 
 //................ Battle Axe ............... //
 /obj/item/weapon/axe/battle
+	item_weight = 2.5 KILOGRAMS
 	name = "battle axe"
 	desc = "A masterfully constructed ax, with additional weights in the form of ornate spikes and practical edges."
 	icon_state = "battleaxe"
@@ -86,6 +89,7 @@
 
 //................ Iron Axe ............... //
 /obj/item/weapon/axe/iron
+	item_weight = 2 KILOGRAMS
 	name = "iron axe"
 	desc = "Tool, weapon, loyal iron companion."
 	icon_state = "axe"
@@ -113,6 +117,7 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0)
 
 /obj/item/weapon/axe/iron/nsapo
+	item_weight = 2 KILOGRAMS
 	name = "iron kasuyu"
 	desc = "An iron axe hailing from the fallen east. Great for felling trees and foes alike."
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
@@ -131,6 +136,7 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0)
 
 /obj/item/weapon/axe/iron/troll
+	item_weight = 2.2 KILOGRAMS
 	name = "splitter axe"
 	desc = "A crudely made axe, more reminiscent to one used for splitting logs if it was made with tree trunk and a shiny sharpened rock; which does make you think, what use does a troll have for wood?"
 	icon_state = "troll_axe"
@@ -142,6 +148,7 @@
 
 //................ Bronze ............... //
 /obj/item/weapon/axe/bronze
+	item_weight = 1.8 KILOGRAMS
 	name = "bronze axe"
 	desc = "Tool, weapon, loyal bronze companion."
 	icon_state = "axe_bronze"
@@ -170,6 +177,7 @@
 
 //................ Aonic Axe ............... //
 /obj/item/weapon/axe/psydon
+	item_weight = 1.7 KILOGRAMS
 	name = "aonic axe"
 	desc = "An axe forged of silver with a small holy symbol attached, Silvanus and his foul beastmen be damned."
 	icon = 'icons/roguetown/weapons/32/psydonite.dmi'
@@ -205,6 +213,7 @@
 // Pickaxe-axe ; Technically both a tool and weapon, but it goes here due to weapon function.
 // Same stats as steel axe, but refactored for pickaxe quality purposes.
 /obj/item/weapon/pick/paxe
+	item_weight = 2.5 KILOGRAMS
 	name = "pickaxe"
 	desc = "An odd mix of a pickaxe front and a hatchet blade back, capable of being switched between."
 	icon = 'icons/roguetown/weapons/32/axes_picks.dmi'
@@ -238,6 +247,7 @@
 
 //................ Steel Axe ............... //
 /obj/item/weapon/axe/steel
+	item_weight = 1.9 KILOGRAMS
 	name = "steel axe"
 	desc = "A bearded steel axe revered by dwarf, human  and elf alike. Performs much better than its iron counterpart."
 	icon_state = "saxe"
@@ -264,6 +274,7 @@
 
 //.................. Bearded Axe ...............//
 /obj/item/weapon/axe/steel/atgervi
+	item_weight = 2.2 KILOGRAMS
 	name = "bearded axe"
 	desc = "A large axe easily wielded in one hand or two, With a large hooked axe head to tearing into flesh and armor and ripping it away brutally."
 	icon_state = "atgervi_axe"
@@ -286,6 +297,7 @@
 
 
 /obj/item/weapon/axe/steel/nsapo
+	item_weight = 1.9 KILOGRAMS
 	name = "steel kasuyu"
 	desc = "A steel axe hailing from the fallen east. Great for felling trees and foes alike."
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
@@ -308,6 +320,7 @@
 
 //................ Copper Hatchet ............... //
 /obj/item/weapon/axe/copper
+	item_weight = 700 GRAMS
 	name = "copper hatchet"
 	desc = "A simple designed handaxe, an outdated weaponry from simpler times."
 	icon_state = "chatchet"
@@ -338,6 +351,7 @@
 
 //................ Bone Axe ............... //
 /obj/item/weapon/axe/boneaxe
+	item_weight = 900 GRAMS
 	name = "bone axe"
 	desc = "A rough axe made of bones"
 	icon_state = "boneaxe"
@@ -365,6 +379,7 @@
 
 //................ Great Axe ............... //
 /obj/item/weapon/greataxe
+	item_weight = 4 KILOGRAMS
 	name = "greataxe"
 	desc = "An iron great axe, a long-handled axe with a single blade made for ruining someone's day beyond any measure.."
 	icon = 'icons/roguetown/weapons/64/axes.dmi'
@@ -412,6 +427,7 @@
 
 
 /obj/item/weapon/greataxe/psy
+	item_weight = 3.8 KILOGRAMS
 	name = "aonic poleaxe"
 	desc = "A poleaxe fitted with a reinforced shaft and a beaked axe head of alloyed silver. As the fragility of swords has become more apparent, the Aonic orders have shifted toward arming their paladins with longer-lasting greatweapons."
 	icon = 'icons/roguetown/weapons/64/axes.dmi'
@@ -428,6 +444,7 @@
 	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /obj/item/weapon/greataxe/steel
+	item_weight = 5.5 KILOGRAMS
 	name = "steel greataxe"
 	desc = "A steel great axe, a long-handled axe with a single blade made for ruining someone's day beyond any measure."
 	icon_state = "sgreataxe"
@@ -439,6 +456,7 @@
 	sellprice = 90
 
 /obj/item/weapon/greataxe/steel/doublehead // Trades more damage for being worse to parry with and easier to dodge of.
+	item_weight = 5.5 KILOGRAMS
 	name = "double-headed steel greataxe"
 	desc = "A steel great axe with a wicked double-bladed head. Perfect for cutting either men or trees into stumps."
 	icon_state = "doublegreataxe"
@@ -452,6 +470,7 @@
 	sellprice = 100
 
 /obj/item/weapon/greataxe/steel/doublehead/graggar
+	item_weight = 5 KILOGRAMS
 	name = "vicious greataxe"
 	desc = "A greataxe who's edge thrums with the motive force, violence, oh, sweet violence!"
 	icon = 'icons/roguetown/weapons/64/patron.dmi'
@@ -461,6 +480,7 @@
 	sellprice = 0 // Graggarite axe, nobody wants this
 
 /obj/item/weapon/greataxe/dreamscape
+	item_weight = 5 KILOGRAMS
 	name = "otherworldly axe"
 	desc = "A strange axe, who knows where it came from. It feels cold and unusually heavy."
 	icon_state = "dreamaxe"

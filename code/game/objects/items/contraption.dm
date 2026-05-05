@@ -1,4 +1,5 @@
 /obj/item/contraption
+	item_weight = 500 GRAMS
 	name = "random piece of machinery"
 	desc = "A cog with teeth meticulously crafted for tight interlocking."
 	icon_state = "gear"
@@ -166,6 +167,7 @@
 	. = ..()
 
 /obj/item/contraption/wood_metalizer
+	item_weight = 1.5 KILOGRAMS
 	name = "wood metalizer"
 	desc = "A creation of genius or insanity. This cursed contraption is somehow able to turn wood into metal."
 	icon_state = "metalizer"
@@ -234,6 +236,7 @@
 	qdel(src)
 
 /obj/item/contraption/smelter
+	item_weight = 2 KILOGRAMS
 	name = "portable smelter"
 	desc = "Furnaces are a thing of the past. The future is here!"
 	icon_state = "smelter"
@@ -311,6 +314,7 @@
 	return
 
 /obj/item/contraption/shears
+	item_weight = 1.8 KILOGRAMS
 	name = "amputation shears"
 	desc = "A powered shear used for achieving a clean separation between limb and patient. Keeping the patient still is imperative to aligning the blades."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -369,6 +373,7 @@
 
 //Shamelessly stolen multitool code
 /obj/item/contraption/linker
+	item_weight = 800 GRAMS
 	name = "engineering wrench"
 	desc = "This strange contraption is able to connect machinery through an unknown calibration method, allowing them to communicate over long distances."
 	icon = 'icons/obj/wrenches.dmi'
@@ -426,6 +431,7 @@
 	buffer = null
 
 /obj/item/folding_table_stored
+	item_weight = 3 KILOGRAMS
 	name = "folding table"
 	desc = "A folding table, useful for setting up a temporary workspace."
 	icon = 'icons/roguetown/items/gadgets.dmi'
@@ -523,6 +529,7 @@
 	qdel(src)
 
 /obj/item/mobilestove
+	item_weight = 4 KILOGRAMS
 	name = "packed stove"
 	desc = "A portable bronze stovetop. The underside is covered in an esoteric pattern of small tubes. Whatever heats the hob is hidden inside the body of the device"
 	icon = 'icons/roguetown/misc/lighting.dmi'

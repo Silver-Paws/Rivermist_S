@@ -1,6 +1,7 @@
 #define HOURGLASS_STATES 7 //Remember to update if you change the sprite
 
 /obj/item/hourglass
+	item_weight = 300 GRAMS
 	name = "hourglass"
 	desc = ""
 	var/obj/effect/countdown/hourglass/countdown

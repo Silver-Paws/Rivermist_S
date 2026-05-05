@@ -1,4 +1,5 @@
 /obj/item/natural/chaff
+	item_weight = 200 GRAMS
 	name = "chaff"
 	desc = "Grain that has not yet been made suitable for grinding and baking."
 	icon = 'icons/roguetown/items/produce.dmi'
@@ -66,12 +67,14 @@
 	..()
 
 /obj/item/natural/chaff/wheat
+	item_weight = 180 GRAMS
 	icon_state = "wheatchaff"
 	name = "wheat stalks"
 	foodextracted = /obj/item/reagent_containers/food/snacks/produce/grain/wheat
 	dropshrink = 0.8
 
 /obj/item/natural/chaff/oat
+	item_weight = 200 GRAMS
 	name = "oat stalks"
 	icon_state = "oatchaff"
 	foodextracted = /obj/item/reagent_containers/food/snacks/produce/grain/oat

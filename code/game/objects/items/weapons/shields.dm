@@ -1,6 +1,7 @@
 #define SHIELD_BANG_COOLDOWN (3 SECONDS)
 
 /obj/item/weapon/shield
+	item_weight = 2 KILOGRAMS
 	name = ""
 	desc = ""
 	icon_state = ""
@@ -98,6 +99,7 @@
 	hitsound = list('sound/combat/shieldbash_metal.ogg')
 
 /obj/item/weapon/shield/wood
+	item_weight = 3 KILOGRAMS
 	name = "wooden shield"
 	desc = "A simple, emblazoned round wooden shield with leather padding. \nCan exceptionally block attacks, but is more brittle than metal ones."
 	icon_state = "woodsh"
@@ -153,6 +155,7 @@
 	. += M
 
 /obj/item/weapon/shield/tower
+	item_weight = 7 KILOGRAMS
 	name = "tower shield"
 	desc = "A gigantic, iron reinforced shield that covers the entire body, a design-copy of the Aasimar shields of an era gone by."
 	icon_state = "shield_tower"
@@ -183,6 +186,7 @@
 				return list("shrink" = 0.6,"sx" = 1,"sy" = 4,"nx" = 1,"ny" = 2,"wx" = 3,"wy" = 3,"ex" = 0,"ey" = 2,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 
 /obj/item/weapon/shield/tower/hoplite
+	item_weight = 6 KILOGRAMS
 	name = "ancient shield"
 	desc = "A gigantic, bronze reinforced shield that covers the entire body. An Aasimar relic from an era long past."
 	icon_state = "boeotian"
@@ -208,6 +212,7 @@
 				return list("shrink" = 0.6,"sx" = 1,"sy" = 4,"nx" = 1,"ny" = 2,"wx" = 3,"wy" = 3,"ex" = 0,"ey" = 2,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 
 /obj/item/weapon/shield/tower/metal
+	item_weight = 6 KILOGRAMS
 	name = "kite shield"
 	desc = "A knightly, kite shaped steel shield, emblazoned with heraldry. \nBoasts superior coverage and durability, owed to its exquisite craftsmanship."
 	icon_state = "ironsh"
@@ -268,6 +273,7 @@
 	icon_state = "ancientsh"
 
 /obj/item/weapon/shield/tower/metal/psy
+	item_weight = 5 KILOGRAMS
 	name = "Covenant"
 	desc = "The Ordo Benetarus holds a mantra: A servant of Ao endures. A servant of Ao preserves themselves. A servant of Ao preserves His flock. Protect them."
 	icon = 'icons/roguetown/weapons/32/psydonite.dmi'
@@ -281,6 +287,7 @@
 	AddComponent(/datum/component/psyblessed, TRUE, 0, FALSE, 100, 1, TRUE)
 
 /obj/item/weapon/shield/tower/buckleriron
+	item_weight = 1 KILOGRAMS
 	name = "iron buckler"
 	desc = "A small sized iron shield, popular among mercenaries due to its light weight and ease of mobility."
 	icon_state = "ironbuckler"
@@ -308,6 +315,7 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/shield/heater
+	item_weight = 4 KILOGRAMS
 	name = "heater shield"
 	desc = "A sturdy wood and leather shield. Made to not be too encumbering while still providing good protection."
 	icon_state = "heatershield"

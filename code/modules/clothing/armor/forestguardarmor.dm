@@ -46,6 +46,7 @@
 	AddComponent(/datum/component/storage/concrete/grid/cloak)
 
 /obj/item/clothing/head/helmet/visored/warden
+	item_weight = 3.25 KILOGRAMS
 	name = "wardens's helmet"
 	desc = "A strange helmet adorned with antlers worn by the warden of the forest."
 	icon = 'icons/roguetown/clothing/special/forest_guard.dmi'
@@ -72,6 +73,7 @@
 	abstract_type = /obj/item/clothing/head/helmet/medium/decorated
 
 /obj/item/clothing/head/helmet/medium/decorated/skullmet
+	item_weight = 1.45 KILOGRAMS
 	name = "skullmet"
 	desc = "A crude helmet constructed with the skull of various beasts of Silvanus."
 	icon = 'icons/roguetown/clothing/special/forest_guard.dmi'
@@ -95,6 +97,7 @@
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/clothing/head/helmet/medium/decorated/rousskullmet
+	item_weight = 1.45 KILOGRAMS
 	name = "rous skullmet"
 	desc = "A crude helmet constructed with the skull of a rous, typically used by the problem children sent to the Foresters."
 	icon = 'icons/roguetown/clothing/special/forest_guard.dmi'

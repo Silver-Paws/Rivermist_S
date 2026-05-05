@@ -1,5 +1,6 @@
 
 /obj/item/breach_charge // TODO: make an actual explosive instead of an item.
+	item_weight = 1.5 KILOGRAMS
 	name = "breaching charge"
 	desc = "A sack of foul-smelling explosive powder designed to rip through walls."
 	icon_state = "breach_charge"

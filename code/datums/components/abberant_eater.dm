@@ -5,8 +5,14 @@
 	var/list/edible_turfs = list()
 	var/reagent_bite_size = 5
 	var/reagent_nutrition = 10
+	var/list/eaten_shit = list()
+	var/keeps_items = TRUE
 
-/datum/component/abberant_eater/Initialize(list/food_list, exclude_subtypes = FALSE, list/turf_list, list/reagent_list, reagent_sip_size = 5, nutrition_from_reagents = 10)
+/datum/component/abberant_eater/Destroy(force)
+	QDEL_LIST(eaten_shit)
+	return ..()
+
+/datum/component/abberant_eater/Initialize(list/food_list, exclude_subtypes = FALSE, list/turf_list, list/reagent_list, reagent_sip_size = 5, nutrition_from_reagents = 10, _keeps_items = TRUE)
 	if(!length(food_list) && !length(turf_list) && !length(reagent_list))
 		return COMPONENT_INCOMPATIBLE
 
@@ -19,13 +25,15 @@
 	edible_turfs = turf_list || list()
 	reagent_bite_size = max(reagent_sip_size, 1)
 	reagent_nutrition = max(nutrition_from_reagents, 1)
+	keeps_items = _keeps_items
 
 /datum/component/abberant_eater/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOB_ITEM_ATTACK, PROC_REF(try_eat))
 	RegisterSignal(parent, COMSIG_LIVING_POSTBITE_SELF, PROC_REF(eat_turf))
+	RegisterSignal(parent, COMSIG_LIVING_DISEMBOWELED, PROC_REF(drop_eaten_shit))
 
 /datum/component/abberant_eater/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_MOB_ITEM_ATTACK, COMSIG_LIVING_POSTBITE_SELF))
+	UnregisterSignal(parent, list(COMSIG_MOB_ITEM_ATTACK, COMSIG_LIVING_POSTBITE_SELF, COMSIG_LIVING_DISEMBOWELED))
 
 /datum/component/abberant_eater/proc/try_eat(mob/living/user, mob/living/M, obj/item/source)
 	if(user.cmode)
@@ -55,7 +63,12 @@
 	SEND_SIGNAL(source, COMSIG_FOOD_EATEN, M, user)
 	SEND_SIGNAL(user, COMSIG_MOB_FOOD_EAT, source)
 	source.on_consume(user)
-	qdel(source)
+	if(keeps_items)
+		source.forceMove(user)
+		eaten_shit |= source
+	else
+		qdel(source)
+
 	return TRUE
 
 /datum/component/abberant_eater/proc/try_drink_reagents(mob/living/consumer, obj/item/source)
@@ -96,6 +109,12 @@
 		if(found_reagent)
 			return found_reagent
 	return FALSE
+
+/datum/component/abberant_eater/proc/drop_eaten_shit(mob/living/user)
+	for(var/obj/item/item as anything in eaten_shit)
+		item.forceMove(get_turf(user))
+		eaten_shit -= item
+		item.on_anti_consume(user)
 
 /datum/component/abberant_eater/proc/eat_turf(mob/living/user, turf/T, finished_attack_chain)
 	if(!length(edible_turfs))

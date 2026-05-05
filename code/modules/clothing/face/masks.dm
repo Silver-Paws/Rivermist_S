@@ -1,4 +1,5 @@
 /obj/item/clothing/face/lordmask
+	item_weight = 450 GRAMS
 	name = "golden halfmask"
 	desc = "Half of your face turned gold."
 	icon_state = "lmask"
@@ -23,6 +24,7 @@
 	qdel(src)
 
 /obj/item/clothing/face/facemask
+	item_weight = 1.2 KILOGRAMS
 	name = "iron mask"
 	icon_state = "imask"
 	desc = "A heavy iron mask that both conceals and protects the face."
@@ -47,6 +49,7 @@
 	material_category = ARMOR_MAT_PLATE
 
 /obj/item/clothing/face/facemask/goldnosechain
+	item_weight = 65 GRAMS
 	name = "gold nosechain"
 	icon_state = "nosechain_g"
 	desc = "A fashionable nose chain with two rings. Its design originated from the Savannah Elf tribes."
@@ -64,6 +67,7 @@
 	sellprice = VALUE_GOLD_ITEM
 
 /obj/item/clothing/face/facemask/silvernosechain
+	item_weight = 45 GRAMS
 	name = "silver nosechain"
 	icon_state = "nosechain_s"
 	desc = "A fashionable nose chain with two rings. Its design originated from the Savannah Elf tribes."
@@ -85,6 +89,7 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/clothing/face/facemask/goldveil
+	item_weight = 1.2 KILOGRAMS
 	name = "golden face veil"
 	icon_state = "veil_g"
 	desc = "A veil made out of golden chains."
@@ -102,6 +107,7 @@
 	sellprice = VALUE_GOLD_ITEM
 
 /obj/item/clothing/face/facemask/silverveil
+	item_weight = 1.05 KILOGRAMS
 	name = "silver face veil"
 	icon_state = "veil_s"
 	desc = "A veil made out of silver chains."
@@ -123,6 +129,7 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/clothing/face/jademask
+	item_weight = 2.2 KILOGRAMS
 	name = "joapstone mask "
 	icon_state = "mask_jade"
 	desc = "A joapstone mask that both conceals and protects the face."
@@ -143,6 +150,7 @@
 	sellprice = 70
 
 /obj/item/clothing/face/turqmask
+	item_weight = 2.2 KILOGRAMS
 	name = "ceruleabaster mask "
 	icon_state = "mask_turq"
 	desc = "A ceruleabaster mask that both conceals and protects the face."
@@ -163,6 +171,7 @@
 	sellprice = 95
 
 /obj/item/clothing/face/rosemask
+	item_weight = 1.9 KILOGRAMS
 	name = "rosellusk mask "
 	icon_state = "mask_rose"
 	desc = "A rosellusk mask that both conceals and protects the face."
@@ -183,6 +192,7 @@
 	sellprice = 35
 
 /obj/item/clothing/face/shellmask
+	item_weight = 1.1 KILOGRAMS
 	name = "shell mask "
 	icon_state = "mask_shell"
 	desc = "A shell mask that both conceals and protects the face."
@@ -203,6 +213,7 @@
 	sellprice = 30
 
 /obj/item/clothing/face/coralmask
+	item_weight = 1.1 KILOGRAMS
 	name = "aoetal mask "
 	icon_state = "mask_coral"
 	desc = "An aoetal mask that both conceals and protects the face."
@@ -223,6 +234,7 @@
 	sellprice = 80
 
 /obj/item/clothing/face/ambermask
+	item_weight = 1.5 KILOGRAMS
 	name = "petriamber mask "
 	icon_state = "mask_amber"
 	desc = "A petriamber mask that both conceals and protects the face."
@@ -243,6 +255,7 @@
 	sellprice = 70
 
 /obj/item/clothing/face/onyxamask
+	item_weight = 1.7 KILOGRAMS
 	name = "onyxa mask "
 	icon_state = "mask_onyxa"
 	desc = "An onyxa mask that both conceals and protects the face."
@@ -263,6 +276,7 @@
 	sellprice = 50
 
 /obj/item/clothing/face/opalmask
+	item_weight = 1.8 KILOGRAMS
 	name = "opaloise mask "
 	icon_state = "mask_opal"
 	desc = "An opaloise mask that both conceals and protects the face."
@@ -283,6 +297,7 @@
 	sellprice = 100
 
 /obj/item/clothing/face/jademask
+	item_weight = 2.2 KILOGRAMS
 	name = "joapstone mask "
 	icon_state = "mask_jade"
 	desc = "A joapstone mask that both conceals and protects the face."
@@ -303,6 +318,7 @@
 	sellprice = 70
 
 /obj/item/clothing/face/turqmask
+	item_weight = 2.2 KILOGRAMS
 	name = "ceruleabaster mask "
 	icon_state = "mask_turq"
 	desc = "A ceruleabaster mask that both conceals and protects the face."
@@ -323,6 +339,7 @@
 	sellprice = 95
 
 /obj/item/clothing/face/rosemask
+	item_weight = 1.9 KILOGRAMS
 	name = "rosellusk mask "
 	icon_state = "mask_rose"
 	desc = "A rosellusk mask that both conceals and protects the face."
@@ -343,6 +360,7 @@
 	sellprice = 35
 
 /obj/item/clothing/face/shellmask
+	item_weight = 1.1 KILOGRAMS
 	name = "shell mask "
 	icon_state = "mask_shell"
 	desc = "A shell mask that both conceals and protects the face."
@@ -363,6 +381,7 @@
 	sellprice = 30
 
 /obj/item/clothing/face/coralmask
+	item_weight = 1.1 KILOGRAMS
 	name = "aoetal mask "
 	icon_state = "mask_coral"
 	desc = "An aoetal mask that both conceals and protects the face."
@@ -383,6 +402,7 @@
 	sellprice = 80
 
 /obj/item/clothing/face/ambermask
+	item_weight = 1.5 KILOGRAMS
 	name = "petriamber mask "
 	icon_state = "mask_amber"
 	desc = "A petriamber mask that both conceals and protects the face."
@@ -403,6 +423,7 @@
 	sellprice = 70
 
 /obj/item/clothing/face/onyxamask
+	item_weight = 1.7 KILOGRAMS
 	name = "onyxa mask "
 	icon_state = "mask_onyxa"
 	desc = "An onyxa mask that both conceals and protects the face."
@@ -423,6 +444,7 @@
 	sellprice = 50
 
 /obj/item/clothing/face/opalmask
+	item_weight = 1.8 KILOGRAMS
 	name = "opaloise mask "
 	icon_state = "mask_opal"
 	desc = "An opaloise mask that both conceals and protects the face."
@@ -443,6 +465,7 @@
 	sellprice = 100
 
 /obj/item/clothing/face/shepherd/clothmask
+	item_weight = 25 GRAMS
 	name = "cloth mask"
 	icon_state = "clothm"
 	desc = "A simple cloth mask that suppresses bad odors, or offers minor protection when doing dirty work such as mining or gravedigging."
@@ -491,6 +514,7 @@
 	desc = "A steel mask shaped like a beast's face, worn by steppe riders to intimidate their enemies."
 
 /obj/item/clothing/face/facemask/silver
+	item_weight = 1.4 KILOGRAMS
 	name = "silver mask"
 	icon = 'icons/roguetown/clothing/special/adept.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/adept.dmi'
@@ -526,6 +550,7 @@
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/clothing/face/facemask/shadowfacemask
+	item_weight = 290 GRAMS
 	name = "anthraxi war mask"
 	desc = "A metal mask resembling a spider's face. Such a visage haunts many an older dark elf's nitemares - while the younger generation simply scoffs at such relics."
 	icon_state = "shadowfacemask"
@@ -533,6 +558,7 @@
 	melting_material = null
 
 /obj/item/clothing/face/shepherd
+	item_weight = 25 GRAMS
 	name = "halfmask"
 	icon_state = "shepherd"
 	flags_inv = HIDEFACE|HIDEFACIALHAIR
@@ -576,6 +602,7 @@
 	desc = "Tiny drops of white dye mark its front, not unlike teeth. A smile that leers from shadow."
 
 /obj/item/clothing/face/feld
+	item_weight = 356 GRAMS
 	name = "feldsher's mask"
 	desc = "Three times the beaks means three times the doctor."
 	icon_state = "feldmask"
@@ -588,6 +615,7 @@
 	gas_transfer_coefficient = 0.3
 
 /obj/item/clothing/face/phys
+	item_weight = 356 GRAMS
 	name = "physicker's mask"
 	desc = "Packed with herbs to conceal the rot."
 	icon_state = "surgmask"
@@ -600,6 +628,7 @@
 	gas_transfer_coefficient = 0.3
 
 /obj/item/clothing/face/courtphysician
+	item_weight = 275 GRAMS
 	name = "court physican's mask"
 	desc = "Similar to a feldsher's mask, this one is made with actual bone! Don't ask whose."
 	icon_state = "docmask"
@@ -619,6 +648,7 @@
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT
 
 /obj/item/clothing/face/facemask/copper
+	item_weight = 945 GRAMS
 	name = "copper mask"
 	icon_state = "cmask"
 	desc = "A heavy copper mask that conceals and protects the face, though not very effectively."
@@ -639,6 +669,7 @@
 
 //................ Druids Mask ............... //
 /obj/item/clothing/face/druid
+	item_weight = 356 GRAMS
 	name = "druids mask"
 	desc = "Roots from an old oak-tree, shaped according to the wishes of Tree-father."
 	icon = 'icons/roguetown/clothing/head.dmi'
@@ -655,6 +686,7 @@
 	prevent_crits = CUT_AND_MINOR_CRITS
 
 /obj/item/clothing/face/skullmask
+	item_weight = 240 GRAMS
 	name = "skull mask"
 	icon_state = "skullmask"
 	max_integrity = 100
@@ -672,6 +704,7 @@
 	smeltresult = /obj/item/alch/bone
 
 /obj/item/clothing/face/facemask/goldmask
+	item_weight = 2.8 KILOGRAMS
 	name = "gold mask"
 	icon_state = "goldmask"
 	max_integrity = 150
@@ -680,6 +713,7 @@
 	melting_material = /datum/material/gold
 
 /obj/item/clothing/face/operavisage
+	item_weight = 356 GRAMS
 	name = "opera visage"
 	desc = "A painted wooden opera mask worn by the faithful of Sune, usually during their rituals."
 	icon_state = "eoramask"

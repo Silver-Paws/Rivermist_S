@@ -6,6 +6,7 @@
 	. = ..()
 
 /obj/item/neuFarm/seed
+	item_weight = 3 GRAMS
 	name = "seeds"
 	icon = 'icons/roguetown/items/produce.dmi'
 	icon_state = "seeds"

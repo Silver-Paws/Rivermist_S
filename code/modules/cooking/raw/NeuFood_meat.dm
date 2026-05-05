@@ -12,6 +12,7 @@
 
 // Template
 /obj/item/reagent_containers/food/snacks/meat
+	item_weight = 200 GRAMS
 	eat_effect = /datum/status_effect/debuff/uncookedfood
 	name = "bugged meat"
 	icon_state = "bad_mapper"
@@ -45,6 +46,7 @@
 
 /*	.............   Raw meat   ................ */
 /obj/item/reagent_containers/food/snacks/meat/steak
+	item_weight = 400 GRAMS
 	ingredient_size = 2
 	name = "raw meat"
 	icon_state = "meat"
@@ -54,6 +56,7 @@
 
 /*	.............   Pigflesh, strange meat, birdmeat   ................ */
 /obj/item/reagent_containers/food/snacks/meat/fatty
+	item_weight = 150 GRAMS
 	name = "raw pigflesh"
 	icon_state = "pigflesh"
 	slices_num = 2
@@ -62,12 +65,14 @@
 	tastes = list("meat" = 1, "fat" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/strange // Low-nutrient, kind of gross. Survival food.
+	item_weight = 150 GRAMS
 	name = "strange meat"
 	icon_state = "strange_meat"
 	slice_path = null
 	slices_num = 0
 
 /obj/item/reagent_containers/food/snacks/meat/poultry
+	item_weight = 800 GRAMS
 	name = "plucked bird"
 	icon_state = "poultry"
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/poultry/cutlet
@@ -78,6 +83,7 @@
 	become_rot_type = /obj/item/reagent_containers/food/snacks/rotten/poultry
 
 /obj/item/reagent_containers/food/snacks/meat/poultry/cutlet
+	item_weight = 200 GRAMS
 	name = "bird meat"
 	icon_state = "chickencutlet"
 	ingredient_size = 2
@@ -89,6 +95,7 @@
 
 /*	........   Fish sounds   ................ */
 /obj/item/reagent_containers/food/snacks/fish
+	item_weight = 300 GRAMS
 	chopping_sound = TRUE
 	slices_num = 2
 	faretype = FARE_POOR
@@ -103,6 +110,7 @@
 
 /*	.............   Cannibalism  / Organs ................ */
 /obj/item/reagent_containers/food/snacks/meat/steak/human
+	item_weight = 250 GRAMS
 	name = "raw manflesh"
 	gender = PLURAL
 	foodtype = RAW | MEAT | GROSS
@@ -113,6 +121,7 @@
 	cannibalism_for = SPECIES_CANNIBAL_MEN
 
 /obj/item/reagent_containers/food/snacks/meat/fatty/dwarf
+	item_weight = 300 GRAMS
 	name = "fatty manflesh" // porky
 	list_reagents = list(/datum/reagent/organpoison/human = 1)
 	grind_results = list(/datum/reagent/organpoison/human = 2)
@@ -122,6 +131,7 @@
 	cannibalism_for = SPECIES_CANNIBAL_MEN
 
 /obj/item/reagent_containers/food/snacks/meat/fatty/kobold
+	item_weight = 200 GRAMS
 	name = "raw wyrmflesh"
 	foodtype = RAW | MEAT | GROSS
 	list_reagents = list(/datum/reagent/organpoison/kobold = 1)
@@ -132,6 +142,7 @@
 	transfers_tastes = TRUE
 
 /obj/item/reagent_containers/food/snacks/meat/poultry/cutlet/harpy
+	item_weight = 200 GRAMS
 	name = "harpy cutlet"
 	list_reagents = list(/datum/reagent/organpoison/human = 1)
 	grind_results = list(/datum/reagent/organpoison/human = 2)
@@ -139,6 +150,7 @@
 	cannibalism_for = SPECIES_CANNIBAL_MEN
 
 /obj/item/reagent_containers/food/snacks/meat/triton
+	item_weight = 200 GRAMS
 	name = "deepflesh"
 	icon_state = "fishfillet"
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/mince/fish
@@ -150,6 +162,7 @@
 	cannibalism_for = SPECIES_CANNIBAL_MEN
 
 /obj/item/reagent_containers/food/snacks/meat/strange/inhumen
+	item_weight = 150 GRAMS
 	name = "foul manflesh"
 	cannibalism = TRUE
 	cannibalism_for = SPECIES_CANNIBAL_MEN
@@ -158,6 +171,7 @@
 
 
 /obj/item/reagent_containers/food/snacks/meat/organ
+	item_weight = 150 GRAMS
 	name = "organ"
 	icon_state = "guts"
 	icon = 'icons/obj/surgery.dmi'
@@ -181,6 +195,7 @@
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/meat/organ/heart
+	item_weight = 250 GRAMS
 	name = "heart"
 	icon_state = "heart"
 	list_reagents = list(/datum/reagent/organpoison = 1)
@@ -188,6 +203,7 @@
 	nutrition = RAWMEAT_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/meat/organ/lungs
+	item_weight = 400 GRAMS
 	name = "lungs"
 	icon_state = "lungs"
 	list_reagents = list(/datum/reagent/organpoison = 1)
@@ -195,6 +211,7 @@
 	nutrition = RAWMEAT_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/meat/organ/liver
+	item_weight = 300 GRAMS
 	name = "liver"
 	icon_state = "liver"
 	list_reagents = list(/datum/reagent/organpoison = 1)
@@ -203,6 +220,7 @@
 
 /*	........   Cooked food template   ................ */ // No choppping double cooking etc prefixed
 /obj/item/reagent_containers/food/snacks/cooked
+	item_weight = 200 GRAMS
 	name = "cooked meat"
 	desc = ""
 	icon_state = "frysteak"
@@ -218,6 +236,7 @@
 
 /*	.............   Minced meat & stuffing sausages   ................ */
 /obj/item/reagent_containers/food/snacks/meat/mince
+	item_weight = 100 GRAMS
 	name = "mince template. BUGREPORT"
 	icon_state = "meatmince"
 	ingredient_size = 2
@@ -273,6 +292,7 @@
 
 /*	..................   METT   ................... */
 /obj/item/reagent_containers/food/snacks/meat/mince/beef/mett
+	item_weight = 150 GRAMS
 	name = "darkhold mett"
 	desc = "A popular topping for bread in the north, while simply bizarre to people from Rivermist Hollow."
 	icon_state = "mett_minced"
@@ -287,6 +307,7 @@
 	faretype = FARE_POOR
 
 /obj/item/reagent_containers/food/snacks/meat/mince/beef/mett/slice
+	item_weight = 50 GRAMS
 	name = "darkhold mett"
 	icon_state = "mett_slice"
 	bitesize = 1
@@ -296,6 +317,7 @@
 
 /*	..................   Sausage & Wiener   ................... */
 /obj/item/reagent_containers/food/snacks/meat/sausage
+	item_weight = 100 GRAMS
 	name = "raw sausage"
 	icon_state = "raw_wiener"
 	ingredient_size = 1
@@ -303,6 +325,7 @@
 	nutrition = RAWMEAT_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/meat/sausage/wiener
+	item_weight = 120 GRAMS
 	name = "raw wiener"
 	nutrition = FATTYMEAT_NUTRITION
 

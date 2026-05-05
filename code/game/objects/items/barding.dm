@@ -1,4 +1,5 @@
 /obj/item/clothing/barding
+	item_weight = 3 KILOGRAMS
 	name = "padded barding"
 	desc = "A set of padded body armor for a Saiga, designed to protect your mount's vital organs."
 	slot_flags = null
@@ -58,6 +59,7 @@
 	. = ..()
 
 /obj/item/clothing/barding/chain
+	item_weight = 8 KILOGRAMS
 	name = "chainmail barding"
 	desc = "A set of chainmail body armor for a Saiga, designed to protect your mount's vital organs."
 	icon_state = "armorkit"
@@ -77,6 +79,7 @@
 	fiber_salvage = FALSE
 
 /obj/item/clothing/barding/honse
+	item_weight = 4 KILOGRAMS
 	name = "padded barding"
 	desc = "A set of padded body armor for a Honse, designed to protect your mount's vital organs."
 	icon_state = "sewingkit"
@@ -88,6 +91,7 @@
 	)
 
 /obj/item/clothing/barding/honse/chain
+	item_weight = 10 KILOGRAMS
 	name = "chainmail barding"
 	desc = "A set of chainmail body armor for a Honse, designed to protect your mount's vital organs."
 	icon_state = "armorkit"

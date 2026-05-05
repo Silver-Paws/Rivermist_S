@@ -23,6 +23,7 @@
 	grid_width = 32
 
 /obj/item/explosive/canister_bomb
+	item_weight = 1.7 KILOGRAMS
 	name = "Canister Bomb"
 	desc = "A professional Darkholdian explosive, filled with lead shrapnel and sticky blastpowder."
 	icon_state = "canbomb"

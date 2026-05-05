@@ -1,4 +1,5 @@
 /obj/item/recipe_book
+	item_weight = 493 GRAMS
 
 	icon = 'icons/roguetown/items/books.dmi'
 	w_class = WEIGHT_CLASS_SMALL

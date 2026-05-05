@@ -1,4 +1,5 @@
 /obj/item/weapon/pick
+	item_weight = 1.74 KILOGRAMS
 	force = DAMAGE_PICK
 	possible_item_intents = list(PICK_INTENT)
 	name = "pick"
@@ -27,6 +28,7 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/pick/copper
+	item_weight = 1.35 KILOGRAMS
 	name = "copper pick"
 	desc = ""
 	icon_state = "cpick"
@@ -50,6 +52,7 @@
 	pickmult = 1.2
 
 /obj/item/weapon/pick/stone
+	item_weight = 1.2 KILOGRAMS
 	name = "stone pick"
 	desc = "Stone versus sharp stone, who wins?"
 	icon_state = "stonepick"
@@ -61,6 +64,7 @@
 	pickmult = 0.7 // Worse pick
 
 /obj/item/weapon/pick/drill
+	item_weight = 3.29 KILOGRAMS
 	name = "clockwork drill"
 	desc = "A wonderfully complex work of engineering capable of shredding walls in seconds as opposed to hours."
 	force_wielded = DAMAGE_HEAVYCLUB_WIELD

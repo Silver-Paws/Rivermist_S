@@ -5,6 +5,7 @@ LINEN BINS
 */
 
 /obj/item/bedsheet
+	item_weight = 540 GRAMS
 	name = "bedsheet"
 	desc = ""
 	icon = 'icons/obj/bedsheets.dmi'

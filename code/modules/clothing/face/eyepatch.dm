@@ -1,4 +1,5 @@
 /obj/item/clothing/face/eyepatch
+	item_weight = 20 GRAMS
 	name = "eyepatch"
 	desc = "An eyepatch, fitted for the right eye."
 	icon_state = "eyepatch"

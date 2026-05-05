@@ -62,6 +62,7 @@
 
 // Soul Churner - Music box which applies magic resistance to Inquisition members, greatly mood debuffs everyone not a Psydon worshipper.
 /obj/item/psydonmusicbox
+	item_weight = 4 KILOGRAMS
 	name = "melancholic crankbox"
 	desc = ""
 	icon_state = "psydonmusicbox"
@@ -235,6 +236,7 @@
 	hitsound = list('sound/items/beartrap2.ogg')
 
 /obj/item/flashlight/flare/torch/lantern/psycenser
+	item_weight = 800 GRAMS
 	name = "Censer of Penitence"
 	desc = "A device filled with bubbling silver. Its unstable state is dangerous to those who do not know its true nature, but to wield it is great honour for Ao."
 	icon = 'icons/roguetown/weapons/32/psydonite.dmi'
@@ -413,6 +415,7 @@
 	item_flags = ITEM_ONLY_BREAK
 
 /obj/item/inqarticles/indexer
+	item_weight = 80 GRAMS
 	name = "\improper INDEXER"
 	desc = "A blessed ampoule with a retractable bladetip, intended to further information gathering through hematology. Siphon blood from an individual until the INDEXER clicks shut, then mail it back to the Oratorium for cataloguing."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -623,6 +626,7 @@
 		takeblood(M, user)
 
 /obj/item/inqarticles/tallowpot
+	item_weight = 150 GRAMS
 	name = "tallowpot"
 	desc = "A small metal pot meant for holding waxes or melted redtallow. Convenient for coating signet rings and making an imprint. The warmth of a torch or lamptern should be enough to melt the redtallow for stamping writs."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -706,6 +710,7 @@
 		icon_state = "[initial(icon_state)]"
 
 /obj/item/rope/inqarticles/inquirycord
+	item_weight = 100 GRAMS
 	name = "inquiry cordage"
 	desc = "A length of thick leather inquiry cordage that has been dipped in both holy water and dye before being consecrated and spell-laced. Intended for apprehending foes and rethreading tools at the worst of times."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -727,6 +732,7 @@
 	sellprice = 0
 
 /obj/item/rope/inqarticles/inquirycord/getonmobprop(tag)
+	item_weight = 150 GRAMS
 	. = ..()
 	if(tag)
 		switch(tag)
@@ -739,6 +745,7 @@
 
 
 /obj/item/inqarticles/garrote // Do not give this item out freely to other classes. Do not subtype this item for other classes. This is intended purely as the Confessor's identifying sidegrade, and as a bonus for the Inspector INQ. I will be very sad if you disregard this comment. Thank you. - Yische.
+	item_weight = 150 GRAMS
 	name = "\proper seizing garrote" // It's nonlethal. It's so silly and fun.
 	desc = "A macabre instrument favored by the more clandestine of the Aonic Silver Order; A length of thick leather inquiry cordage that has been dipped in both holy water and dye before being consecrated and spell-laced, held and threaded between two iron links. Perfect for apprehension."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -965,8 +972,10 @@
 	resistance_flags = INDESTRUCTIBLE
 	choke_damage = 16
 	sellprice = 100
+	item_weight = 100 GRAMS
 
 /obj/item/clothing/head/inqarticles/blackbag
+	item_weight = 300 GRAMS
 	name = "black bag"
 	desc = "A heavily spell-weaved padded sack intended to muffle the cries made within it. Due to the heaviness of the materials involved, application and removal of these is usually difficult for the untrained."
 	icon_state = "blackbag"
@@ -1104,6 +1113,7 @@
 
 
 /obj/item/inqarticles/bmirror
+	item_weight = 400 GRAMS
 	name = "black mirror"
 	desc = ""
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -1405,6 +1415,7 @@
 
 // FINISH THIS AT YOUR LEISURE. I'M JUST LEAVING IT HERE UNIMPLEMENTED. IT'S INTENDED TO WORK AS A COMBINATION OF THE NOC FAR-SIGHT AND THE NOCSHADES. HAVE FUN! - YISCHE
 /obj/item/inqarticles/spyglass
+	item_weight = 200 GRAMS
 	name = "otavan weaveshade eyepiece"
 	desc = ""
 	icon = 'icons/roguetown/items/misc.dmi'

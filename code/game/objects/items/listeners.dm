@@ -1,4 +1,5 @@
 /obj/item/speakerinq
+	item_weight = 50 GRAMS
 	name = "secret whisperer"
 	desc = "Sweet secrets whispered so freely."
 	sellprice = 20
@@ -83,6 +84,7 @@
 	mob_overlay_icon = null
 
 /obj/item/listeningdevice
+	item_weight = 80 GRAMS
 	name = "listener"
 	desc = "An ever-attentive ear..."
 	icon = 'icons/roguetown/items/misc.dmi'

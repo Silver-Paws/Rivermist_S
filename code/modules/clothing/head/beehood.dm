@@ -1,4 +1,5 @@
 /obj/item/clothing/head/beekeeper
+	item_weight = 900 GRAMS
 	name = "beekeeper's hood"
 	desc = ""
 	flags_inv = HIDEEARS|HIDEHAIR

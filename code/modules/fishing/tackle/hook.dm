@@ -1,4 +1,5 @@
 /obj/item/fishing/hook
+	item_weight = 45 GRAMS
 	attachtype = "hook"
 	/// A bitfield of traits that this fishing hook has, checked by fish traits and the minigame
 	var/fishing_hook_traits

@@ -1,4 +1,5 @@
 /obj/item/natural/cloth/bandage
+	item_weight = 18 GRAMS
 	name = "bandage"
 	icon = 'icons/roguetown/items/surgery.dmi'
 	icon_state = "bandageroll"

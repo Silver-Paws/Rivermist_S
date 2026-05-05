@@ -1,5 +1,6 @@
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/blowgun
+	item_weight = 200 GRAMS
 	name = "blowgun"
 	desc = "A primitive tool used for hunting. To use most accurately, hold your breath for a moment before releasing."
 	icon = 'icons/roguetown/weapons/32/bows.dmi'

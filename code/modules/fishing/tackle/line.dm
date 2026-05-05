@@ -1,5 +1,6 @@
 
 /obj/item/fishing/line //short for line attachment
+	item_weight = 66 GRAMS
 	attachtype = "line"
 	var/bobber = FALSE
 	///A bitfield of traits that this fishing line has, checked by fish traits and the minigame.

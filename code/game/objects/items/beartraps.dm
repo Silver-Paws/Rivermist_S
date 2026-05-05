@@ -1,6 +1,7 @@
 //Legcuffs
 
 /obj/item/restraints/legcuffs
+	item_weight = 400 GRAMS
 	name = "leg cuffs"
 	desc = ""
 	gender = PLURAL
@@ -13,6 +14,7 @@
 	breakouttime = 10 SECONDS
 
 /obj/item/restraints/legcuffs/beartrap
+	item_weight = 3 KILOGRAMS
 	icon = 'icons/roguetown/items/misc.dmi'
 	name = "mantrap"
 	gender = NEUTER
@@ -196,6 +198,7 @@
 	melt_amount = 75
 
 /obj/item/restraints/legcuffs/beartrap/crafted/makeshift
+	item_weight = 1.5 KILOGRAMS
 	makeshift_prob = 15 //50 - 15 = 35% chance to set up instead of flat 50%
 	trap_damage = 80 //10 less damage than the actual metal beartrap
 	name = "makeshift mantrap"

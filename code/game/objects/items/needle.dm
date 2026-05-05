@@ -1,4 +1,5 @@
 /obj/item/needle
+	item_weight = 5 GRAMS
 	name = "needle"
 	desc = "A firm needle affixed with a simple thread, a tool favored both by tailors and surgeons."
 	icon_state = "needle"
@@ -166,6 +167,7 @@
 	return TRUE
 
 /obj/item/needle/thorn
+	item_weight = 3 GRAMS
 	name = "needle"
 	icon_state = "thornneedle"
 	desc = "This rough needle can be used to sew cloth and wounds."
@@ -175,6 +177,7 @@
 	melting_material = null
 
 /obj/item/needle/blessed
+	item_weight = 5 GRAMS
 	name = "blessed needle"
 	desc = span_hierophant("A needle blessed by the ordained faithful of Ilmater. A coveted item, for its thread will never end. \n This thread however can only be used to sew wounds.")
 	infinite = TRUE

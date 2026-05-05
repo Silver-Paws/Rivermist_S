@@ -1,4 +1,5 @@
 /obj/item/phantom_ear
+	item_weight = 5 GRAMS
 	name = "Phantom Ear"
 	desc = "A spectral facsimile of an ear."
 	var/chat_icon = 'icons/Phantom_Ear_Icon.dmi'

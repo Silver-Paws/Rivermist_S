@@ -2,6 +2,7 @@
 ==========================================================*/
 
 /obj/item/weapon/whip
+	item_weight = 500 GRAMS
 	name = "whip"
 	desc = "A leather whip, intertwining rope, leather and a fanged tip to inflict enormous pain. Favored by slavers and beast-tamers."
 	icon_state = "whip"
@@ -39,6 +40,7 @@
 
 //................ Repenta En ............... //
 /obj/item/weapon/whip/antique
+	item_weight = 600 GRAMS
 	name = "Repenta En"
 	desc = "An extremely well maintained whip, with a polished steel tip and gilded handle"
 	icon_state = "gwhip"
@@ -52,6 +54,7 @@
 
 //................ Silver Whip ............... //
 /obj/item/weapon/whip/silver
+	item_weight = 550 GRAMS
 	name = "silver whip"
 	desc = "A whip with a silver handle, core and tip. It has been modified for inflicting burning pain on Nitebeasts."
 	icon = 'icons/roguetown/weapons/32/psydonite.dmi'
@@ -69,6 +72,7 @@
 
 //................ Psydon Whip ............... //
 /obj/item/weapon/whip/psydon
+	item_weight = 550 GRAMS
 	name = "exotic whip"
 	desc = "A whip fashioned with the iconography of Psydon, and crafted entirely out of silver."
 	icon = 'icons/roguetown/weapons/32/psydonite.dmi'
@@ -85,6 +89,7 @@
 	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /obj/item/weapon/whip/psydon/relic
+	item_weight = 550 GRAMS
 	name = "Daybreak"
 	desc = "Holding this blessed silver evokes memories of the grand cathedrals, testaments to humanity’s faith. There, upon the ceiling, was painted a scene-most-beautiful: of Psydon, robed, in battle against the archdevils. Bring daelight to the faithful."
 
@@ -94,6 +99,7 @@
 
 //................ Caning Stick.................//
 /obj/item/weapon/whip/cane
+	item_weight = 100 GRAMS
 	name = "caning stick"
 	desc = "A thin cane meant for striking others as punishment."
 	icon = 'icons/roguetown/weapons/32/special.dmi'
@@ -137,6 +143,7 @@
 
 //................ Lashkiss Whip ............... //
 /obj/item/weapon/whip/spiderwhip
+	item_weight = 500 GRAMS
 	name = "lashkiss whip"
 	desc = "A dark whip with segmented, ashen spines for a base. Claimed to be hewn from dendrified prisoners of terror."
 	icon = 'icons/roguetown/weapons/32/elven.dmi'
@@ -146,6 +153,7 @@
 
 //................ Chain Whip ............... //
 /obj/item/weapon/whip/chain
+	item_weight = 1.5 KILOGRAMS
 	name = "chain whip"
 	desc = "An iron chain, fixed to a leather grip. Its incredibly heavy, and unwieldy. You'll likely hurt yourself more than anyone else with this."
 	icon_state = "whip_chain"
@@ -161,6 +169,7 @@
 
 //................ Xylix Whip ............... //
 /obj/item/weapon/whip/xylix
+	item_weight = 700 GRAMS
 	name = "cackle lash"
 	desc = "The chimes of this whip are said to sound as the trickster's laughter itself."
 	icon = 'icons/roguetown/weapons/32/patron.dmi'
@@ -169,6 +178,7 @@
 	anvilrepair = /datum/attribute/skill/craft/weaponsmithing
 
 /obj/item/weapon/whip/nagaika //Import only
+	item_weight = 700 GRAMS
 	name = "nagaika whip"
 	desc = "A short but heavy leather whip, sporting a blunt reinforced tip and a longer handle."
 	icon_state = "nagaika"
@@ -178,6 +188,7 @@
 //................ Urumi ............... //
 
 /obj/item/weapon/whip/urumi
+	item_weight = 800 GRAMS
 	name = "steel urumi"
 	desc = "A long, flexible whip-like sword originally developed by the Savannah Elves. While an effective weapon, it requires more maintenance compared to other swords."
 	icon_state = "urumi_steel"
@@ -198,6 +209,7 @@
 	melt_amount = 100
 
 /obj/item/weapon/whip/urumi/iron
+	item_weight = 850 GRAMS
 	name = "iron urumi"
 	icon_state = "urumi_iron"
 	force = DAMAGE_WHIP
@@ -206,6 +218,7 @@
 	melting_material = /datum/material/iron
 
 /obj/item/weapon/whip/urumi/bronze
+	item_weight = 800 GRAMS
 	name = "bronze urumi"
 	icon_state = "urumi_bronze"
 	force = DAMAGE_WHIP
@@ -214,6 +227,7 @@
 	melting_material = /datum/material/bronze
 
 /obj/item/weapon/whip/urumi/silver
+	item_weight = 750 GRAMS
 	name = "silver urumi"
 	icon_state = "urumi_silver"
 	force = DAMAGE_WHIP + 1

@@ -1,4 +1,5 @@
 /obj/item/teleportation_scroll
+	item_weight = 65 GRAMS
 	name = "scroll of teleportation"
 	desc = ""
 	icon = 'icons/obj/wizard.dmi'

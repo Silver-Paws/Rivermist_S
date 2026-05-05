@@ -1,4 +1,5 @@
 /obj/item/clothing/head/fisherhat
+	item_weight = 100 GRAMS
 	name = "straw hat"
 	desc = "Wenches shall lust for thee. Fishe will fear thee. \
 			Human will cast their gaze aside. As thou walk, \
@@ -8,6 +9,7 @@
 	max_heat_protection_temperature = 60
 
 /obj/item/clothing/head/stewardtophat
+	item_weight = 100 GRAMS
 	name = "top hat"
 	icon_state = "stewardtophat"
 	icon = 'icons/roguetown/clothing/special/steward.dmi'
@@ -18,12 +20,14 @@
 	bloody_icon_state = "helmetblood_big"
 
 /obj/item/clothing/head/strawhat
+	item_weight = 100 GRAMS
 	name = "crude straw hat"
 	desc = "Welcome to the grain fields, thou plowerer of the fertile."
 	icon_state = "strawhat"
 	salvage_result = /obj/item/natural/fibers
 
 /obj/item/clothing/head/articap
+	item_weight = 125 GRAMS
 	desc = "A sporting cap with a small gear adornment. Popular fashion amongst Baldurian engineers."
 	icon_state = "articap"
 
@@ -32,6 +36,7 @@
 	misc_flags = CRAFTING_TEST_EXCLUDE
 
 /obj/item/clothing/head/cookhat
+	item_weight = 100 GRAMS
 	name = "cook hat"
 	desc = "A white top hat typically worn by distinguished kitchen workers."
 	icon_state = "chef"
@@ -39,29 +44,34 @@
 	flags_inv = HIDEEARS
 
 /obj/item/clothing/head/nun
+	item_weight = 100 GRAMS
 	name = "nun's habit"
 	desc = "Habits worn by nuns of the pantheon's faith."
 	icon_state = "nun"
 	allowed_race = RACES_PLAYER_ALL
 
 /obj/item/clothing/head/fancyhat
+	item_weight = 100 GRAMS
 	name = "fancy hat"
 	icon_state = "fancyhat"
 	sellprice = VALUE_FINE_CLOTHING
 
 /obj/item/clothing/head/courtierhat
+	item_weight = 100 GRAMS
 	name = "fancy hat"
 	icon_state = "courtier"
 	flags_inv = HIDEEARS
 	sellprice = VALUE_FINE_CLOTHING
 
 /obj/item/clothing/head/bardhat
+	item_weight = 100 GRAMS
 	name = "plumed hat"
 	desc = "A simple leather hat with a fancy plume on top. A corny attempt at appearing regal \
 			despite one's status. Typically worn by travelling minstrels of all kinds."
 	icon_state = "bardhat"
 
 /obj/item/clothing/head/jester
+	item_weight = 155 GRAMS
 	name = "jester's hat"
 	desc = "Just remember that the last laugh is on you."
 	icon_state = "jester"
@@ -74,11 +84,13 @@
 	name = "chef's hat"
 
 /obj/item/clothing/head/tophat
+	item_weight = 100 GRAMS
 	name = "teller's hat"
 	icon_state = "tophat"
 	color = CLOTHING_SOOT_BLACK
 
 /obj/item/clothing/head/wizhat
+	item_weight = 125 GRAMS
 	name = "wizard hat"
 	desc = "Used to distinguish dangerous wizards from senile old men."
 	icon_state = "wizardhat"
@@ -128,6 +140,7 @@
 	name = "fancy hat"
 
 /obj/item/clothing/head/physhat
+	item_weight = 112 GRAMS
 	name = "court physician's hat"
 	desc = "A head covering for the distinguished physician."
 	icon_state = "physicianhat"
@@ -135,6 +148,7 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/courtphys.dmi'
 
 /obj/item/clothing/head/courtphysician
+	item_weight = 112 GRAMS
 	name = "court physician's beret"
 	desc = "A head covering for elegance, and to hide the bald spot."
 	icon_state = "courthat"
@@ -159,6 +173,7 @@
 	uses_lord_coloring = LORD_PRIMARY
 
 /obj/item/clothing/head/maidband
+	item_weight = 42 GRAMS
 	name = "maid headband"
 	desc = "A pleated cloth headband. It has gained widespread popularity from Luskanian nobles travelling with their servants."
 	icon_state = "maidband"

@@ -37,7 +37,7 @@
 	item_state = "surcoat"
 	detail_tag = "_metal"		// metal bits are the details so keep them uncolorer = white
 	detail_color = COLOR_WHITE
-	item_weight = 7.4
+	item_weight = 5.3 KILOGRAMS
 
 /obj/item/clothing/armor/medium/surcoat/Initialize()
 	. = ..()
@@ -62,6 +62,7 @@
 	body_parts_covered = COVERAGE_FULL
 
 /obj/item/clothing/armor/medium/scale/inqcoat
+	item_weight = 6.3 KILOGRAMS
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "inquisitorial duster"
 	desc = "Metal plates reinforce this heavy coat. Its striking silhouette is of ill omen to any mainland community - whether pious, or profane."
@@ -101,6 +102,7 @@
 		return
 
 /obj/item/clothing/armor/medium/scale/inqcoat/armored
+	item_weight = 7.2 KILOGRAMS
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "armored inquisitorial duster"
 	desc = "Metal plates reinforce this heavy coat, worn over the top of the finest Aonic plate."

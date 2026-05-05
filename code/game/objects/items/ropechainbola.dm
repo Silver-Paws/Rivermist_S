@@ -1,5 +1,6 @@
 
 /obj/item/rope
+	item_weight = 300 GRAMS
 	name = "rope"
 	desc = "A series of threads intertwined to create a firm rope for binding, hanging and other jobs."
 	gender = PLURAL
@@ -140,6 +141,7 @@
 		return TRUE
 
 /obj/item/rope/chain
+	item_weight = 1.2 KILOGRAMS
 	name = "chain"
 	desc = "Metal chains designed to interlock and apply the harshest confinement on the villainous."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -167,6 +169,7 @@
 	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
 
 /obj/item/rope/net
+	item_weight = 500 GRAMS
 	name = "rope net"
 	desc = "A rope mesh of designed to slow a person down."
 	icon = 'icons/roguetown/items/misc.dmi'

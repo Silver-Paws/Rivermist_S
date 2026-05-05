@@ -28,6 +28,7 @@
 	. = ..()
 
 /obj/item/fishing/lure
+	item_weight = 54 GRAMS
 	name = "fishing lure"
 	desc = "It's just that, a plastic piece of fishing equipment, yet fish yearn with every last molecule of their bodies to take a bite of it."
 	icon = 'icons/obj/fishing.dmi'

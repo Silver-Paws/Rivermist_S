@@ -99,6 +99,7 @@
 		qdel(src)
 
 /obj/item/natural/carpet_fibers
+	item_weight = 650 GRAMS
 	name = "carpet"
 	desc = "Singular carpet."
 	icon_state = "carpet"

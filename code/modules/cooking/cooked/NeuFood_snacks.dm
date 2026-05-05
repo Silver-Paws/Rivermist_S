@@ -8,6 +8,7 @@
 
 /*	.............   Frysteak   ................ */
 /obj/item/reagent_containers/food/snacks/cooked/frysteak
+	item_weight = 300 GRAMS
 	name = "frysteak"
 	desc = "A slab of beastflesh, fried to a perfect medium-rare."
 	icon_state = "frysteak"
@@ -22,6 +23,7 @@
 	faretype = FARE_NEUTRAL
 
 /obj/item/reagent_containers/food/snacks/cooked/frysteak_tatos
+	item_weight = 450 GRAMS
 	name = "frysteak and potato"
 	desc = "A slab of beastflesh, fried to a perfect medium-rare. Served with potatos, this will nourish even a starving wolf."
 	icon_state = "potatosteak"
@@ -40,6 +42,7 @@
 	foodtype = MEAT | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/cooked/frysteak_onion
+	item_weight = 400 GRAMS
 	name = "frysteak and onions"
 	desc = "A slab of beastflesh, fried to a perfect medium-rare. Garnished with tender fried onion, juices made into a simple sauce."
 	icon_state = "onionsteak"
@@ -92,6 +95,7 @@
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/cooked/herbsteak
+	item_weight = 300 GRAMS
 	name = "herbsteak"
 	desc = "A slab of beastflesh, fried to a perfect medium-rare. It has been seasoned with herbs."
 	icon_state = "frysteak"
@@ -115,6 +119,7 @@
 
 /*	.............   Fried egg   ................ */
 /obj/item/reagent_containers/food/snacks/cooked/egg
+	item_weight = 50 GRAMS
 	tastes = list("fried egg" = 1)
 	name = "fried egg"
 	desc = "A staple of Astratan midsummer festival eating."
@@ -125,6 +130,7 @@
 	foodtype = EGG
 
 /obj/item/reagent_containers/food/snacks/cooked/twin_egg
+	item_weight = 100 GRAMS
 	tastes = list("fried egg" = 1)
 	name = "fried egg twins"
 	desc = "A staple of Astratan midsummer festival eating. There are two of them."
@@ -135,6 +141,7 @@
 	foodtype = EGG
 
 /obj/item/reagent_containers/food/snacks/cooked/valorian_omlette
+	item_weight = 200 GRAMS
 	name = "Luskanian omelette"
 	desc = "Fried cackleberries on a bed of half-melted cheese, a dish from distant lands."
 	tastes = list("fried cackleberries" = 1, "cheese" = 1)
@@ -151,6 +158,7 @@
 
 /*	.............   Frybird   ................ */
 /obj/item/reagent_containers/food/snacks/cooked/frybird
+	item_weight = 250 GRAMS
 	name = "frybird"
 	desc = "Poultry scorched to a perfect delicious crisp."
 	icon_state = "frybird"
@@ -161,6 +169,7 @@
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/cooked/frybird_tatos
+	item_weight = 400 GRAMS
 	name = "frybird and tatos"
 	desc = "Poultry scorched to a perfect delicious crisp. Some warm tatos accompany it."
 	icon_state = "frybirdtato"
@@ -176,6 +185,7 @@
 
 
 /obj/item/reagent_containers/food/snacks/cooked/herbbird
+	item_weight = 254 GRAMS
 	name = "herbird"//yes it's meant to be herb-ird, because herbbird is a bit weird
 	desc = "Poultry scorched to a perfect delicious crisp. It has been seasoned with herbs."
 	icon_state = "frybird"
@@ -201,6 +211,7 @@
 
 /*	.............   Han   ................ */
 /obj/item/reagent_containers/food/snacks/cooked/ham
+	item_weight = 400 GRAMS
 	name = "ham"
 	desc = "A trufflepig's retirement plan."
 	icon_state = "ham"
@@ -212,6 +223,7 @@
 	nutrition = COOKED_FATTYMEAT_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/cooked/royal_truffle
+	item_weight = 500 GRAMS
 	name = "royal truffles"
 	desc = "The height of decadence, a precious truffle pig, turned into an amusing meal, served on a bed of its beloved golden truffles."
 	icon_state = "royaltruffles"
@@ -228,6 +240,7 @@
 
 /*	.............   Frything   ................ */
 /obj/item/reagent_containers/food/snacks/cooked/strange
+	item_weight = 200 GRAMS
 	name = "fried strange meat"
 	desc = "Whatever it was, it's roasted."
 	icon_state = "fried_strange"
@@ -242,6 +255,7 @@
 
 /*	.............   Sausage & Wiener   ................ */
 /obj/item/reagent_containers/food/snacks/cooked/sausage
+	item_weight = 100 GRAMS
 	name = "sausage"
 	desc = "Delicious flesh stuffed in an intestine casing."
 	icon_state = "wiener"
@@ -253,6 +267,7 @@
 	faretype = FARE_NEUTRAL
 
 /obj/item/reagent_containers/food/snacks/cooked/sausage_cabbage
+	item_weight = 200 GRAMS
 	name = "wiener on cabbage"
 	desc = "A rich and heavy meal, perfect ration for a soldier on the march."
 	icon_state = "wienercabbage"
@@ -266,6 +281,7 @@
 	bitesize = 5
 
 /obj/item/reagent_containers/food/snacks/cooked/sausage_potato
+	item_weight = 200 GRAMS
 	name = "wiener on tato"
 	desc = "Stout and nourishing."
 	icon_state = "wienerpotato"
@@ -279,6 +295,7 @@
 	bitesize = 5
 
 /obj/item/reagent_containers/food/snacks/cooked/sausage_onion
+	item_weight = 180 GRAMS
 	name = "wiener and onions"
 	desc = "Stout and flavourful."
 	icon_state = "wieneronion"
@@ -292,6 +309,7 @@
 	bitesize = 5
 
 /obj/item/reagent_containers/food/snacks/cooked/sausage_sticked
+	item_weight = 120 GRAMS
 	name = "sausage on a stick"
 	desc = "A meaty, portable snack perfect for campfires or fairs."
 	icon_state = "wienerstick"
@@ -305,11 +323,13 @@
 	bitesize = 4
 
 /obj/item/reagent_containers/food/snacks/cooked/sausage/wiener // wiener meant to be made from beef or maybe mince + bacon, luxury sausage, not implemented yet
+	item_weight = 100 GRAMS
 	name = "wiener"
 	nutrition = COOKED_FATTYMEAT_NUTRITION
 
 /*	.............   Sausages on sticks   ................ */
 /obj/item/reagent_containers/food/snacks/cooked/sausage_sticked
+	item_weight = 120 GRAMS
 	name = "sausage onna stick"
 	desc = "A sausage skewered for convenience and cleanliness, classic Darkholdian street food."
 	nutrition = COOKED_SAUSAGE_NUTRITION
@@ -321,6 +341,7 @@
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/foodbase/griddledog_raw
+	item_weight = 150 GRAMS
 	name = "uncooked griddledog"
 	desc = "A sausage covered with dough, begging to be fried."
 	nutrition = RAWMEAT_NUTRITION + BUTTERDOUGHSLICE_NUTRITION
@@ -332,6 +353,7 @@
 	foodtype = GRAIN | MEAT | RAW
 
 /obj/item/reagent_containers/food/snacks/cooked/griddledog
+	item_weight = 150 GRAMS
 	name = "griddledog"
 	desc = "A classic piece of Darkholdian street food, the fried butterdough is a Rivermistian adulteration."
 	nutrition = COOKED_SAUSAGE_NUTRITION + BUTTERDOUGHSLICE_NUTRITION * COOK_MOD
@@ -349,6 +371,7 @@
 
 /*	.............   Cooked cabbage   ................ */
 /obj/item/reagent_containers/food/snacks/cabbage_fried
+	item_weight = 200 GRAMS
 	name = "cooked cabbage"
 	desc = "A peasant's delight."
 	icon_state = "cabbage_fried"
@@ -364,6 +387,7 @@
 
 /*	.............   Baked potato   ................ */
 /obj/item/reagent_containers/food/snacks/produce/vegetable/potato/baked
+	item_weight = 150 GRAMS
 	name = "baked potatos"
 	desc = "A dwarven favorite, as a meal or a game of hot potato."
 	icon = 'icons/roguetown/items/food.dmi'
@@ -378,6 +402,7 @@
 
 /*	.............   Fried onions   ................ */
 /obj/item/reagent_containers/food/snacks/onion_fried
+	item_weight = 100 GRAMS
 	name = "fried onion"
 	desc = "Seared onions roasted to a delicious set of rings."
 	icon_state = "onion_fried"
@@ -392,6 +417,7 @@
 
 /*	.............   Fried potato   ................ */
 /obj/item/reagent_containers/food/snacks/produce/vegetable/potato/fried
+	item_weight = 150 GRAMS
 	name = "fried potato"
 	desc = "Potato bits, well roasted."
 	icon = 'icons/roguetown/items/food.dmi'
@@ -412,6 +438,7 @@
 
 /*	.................   Chicken roast   ................... */
 /obj/item/reagent_containers/food/snacks/cooked/roastchicken
+	item_weight = 600 GRAMS
 	name = "roast bird"
 	desc = "A plump bird, roasted to a perfect temperature and bears a crispy skin."
 	icon_state = "roast"

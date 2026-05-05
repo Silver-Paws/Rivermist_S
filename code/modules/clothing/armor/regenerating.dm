@@ -59,6 +59,7 @@
 // SKIN ARMOUR
 
 /obj/item/clothing/armor/regenerating/skin
+	item_weight = 0 KILOGRAMS
 	name = "regenerating skin"
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
