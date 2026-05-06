@@ -55,6 +55,13 @@
 	blend_mode = BLEND_OVERLAY
 	render_relay_plane = RENDER_PLANE_GAME
 
+/atom/movable/screen/plane_master/transparent_floor
+	name = "transparent floor plane master"
+	plane = TRANSPARENT_FLOOR_PLANE
+	appearance_flags = PLANE_MASTER
+	blend_mode = BLEND_OVERLAY
+	render_relay_plane = RENDER_PLANE_GAME
+
 /atom/movable/screen/plane_master/seethrough
 	name = "Seethrough"
 	plane = SEETHROUGH_PLANE
@@ -198,13 +205,9 @@
 /atom/movable/screen/plane_master/game_world_fov_hidden/backdrop(mob/mymob)
 	. = ..()
 	clear_filters()
-	add_filter("FOV_hidden", 1, alpha_mask_filter(render_source = FIELD_OF_VISION_BLOCKER_RENDER_TARGET, flags = MASK_INVERSE))
-	if(istype(mymob) && mymob.client && mymob.client.prefs && mymob.client.prefs.ambientocclusion)
-		add_filter("ambient_occlusion_filter", 1, drop_shadow_filter(x=0, y=-2, size=3, offset=1, color="#04080f96"))
-
-/atom/movable/screen/plane_master/game_world_fov_hidden/Initialize()
-	. = ..()
 	add_filter("vision_cone", 1, alpha_mask_filter(render_source = FIELD_OF_VISION_MASK_RENDER_TARGET, flags = MASK_INVERSE))
+	if(istype(mymob) && mymob.client && mymob.client.prefs && mymob.client.prefs.ambientocclusion)
+		add_filter("ambient_occlusion_filter", 2, drop_shadow_filter(x=0, y=-2, size=3, offset=1, color="#04080f96"))
 
 /atom/movable/screen/plane_master/game_world_above
 	name = "above game world plane master"

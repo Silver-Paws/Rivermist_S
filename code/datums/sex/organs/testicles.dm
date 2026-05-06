@@ -32,6 +32,8 @@
 	if(!virility)
 		reagent_to_make = /datum/reagent/consumable/cum/sterile
 	. = ..()
+	if(!.)
+		return FALSE
 	if(!virility)
 		reagents.clear_reagents()
 		reagents.add_reagent(reagent_to_make, reagents.maximum_volume)

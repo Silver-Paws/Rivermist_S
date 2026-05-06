@@ -7,6 +7,8 @@
 
 /obj/item/organ/genitals/pubes/Insert(mob/living/M, special, drop_if_replaced, new_zone = null)
 	. = ..()
+	if(!.)
+		return FALSE
 	add_bodystorage(M, null, /datum/component/body_storage/pubes)
 
 /obj/item/organ/genitals/pubes/Remove(mob/living/M, special, drop_if_replaced)

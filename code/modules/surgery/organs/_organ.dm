@@ -2,7 +2,7 @@
 	abstract_type = /obj/item/organ
 	name = "organ"
 	icon = 'icons/obj/surgery.dmi'
-	var/mob/living/carbon/owner = null
+	var/mob/living/owner = null
 	var/status = ORGAN_ORGANIC
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 0
@@ -75,7 +75,7 @@
 	/// What food typepath should be used when eaten
 	var/food_type = /obj/item/reagent_containers/food/snacks/meat/organ
 	/// Original owner of the organ, the one who had it inside them last
-	var/mob/living/carbon/last_owner = null
+	var/mob/living/last_owner = null
 	/// If TRUE, violent spill paths delete this organ instead of dropping it on the turf.
 	var/delete_on_drop = FALSE
 
@@ -121,6 +121,9 @@
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	current_zone = zone
+	if(slot && !length(organ_efficiency))
+		organ_efficiency = list()
+		organ_efficiency[slot] = 100
 	if(use_mob_sprite_as_obj_sprite)
 		update_appearance(UPDATE_OVERLAYS)
 
@@ -216,8 +219,11 @@
 		return TRUE
 
 /obj/item/organ/proc/handle_blood(delta_time, times_fired)
+	if(!iscarbon(owner))
+		return
+	var/mob/living/carbon/carbon_owner = owner
 	var/arterial_efficiency = get_slot_efficiency(ORGAN_SLOT_ARTERY)
-	var/in_bleedout = owner.in_bleedout()
+	var/in_bleedout = carbon_owner.in_bleedout()
 	var/failer
 	if(arterial_efficiency)
 		failer = is_failing_without_bleedout()
@@ -236,7 +242,7 @@
 	// When all blood is lost, take blood from blood vessels
 	if(!current_blood)
 		var/obj/item/organ/artery
-		var/obj/item/bodypart/parent = owner.get_bodypart(current_zone)
+		var/obj/item/bodypart/parent = carbon_owner.get_bodypart(current_zone)
 		for(var/thing in shuffle(parent?.getorganslotlist(ORGAN_SLOT_ARTERY)))
 			var/obj/item/organ/candidate = thing
 			if(candidate.current_blood && (candidate.get_slot_efficiency(ORGAN_SLOT_ARTERY) >= ORGAN_FAILING_EFFICIENCY))
@@ -292,9 +298,9 @@
 	for(var/mutable_appearance/node_overlay in organ.overlay_states)
 		. += node_overlay
 
-/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE, new_zone = null)
-	if(!iscarbon(M) || owner == M)
-		return
+/obj/item/organ/proc/Insert(mob/living/M, special = 0, drop_if_replaced = TRUE, new_zone = null)
+	if(!M || owner == M)
+		return FALSE
 
 	if(!isnull(new_zone))
 		current_zone = new_zone
@@ -318,23 +324,26 @@
 	for(var/slot in organ_efficiency)
 		LAZYADD(M.internal_organs_slot[slot], src)
 		update_organ_efficiency(slot)
-	var/checked_zone = check_zone(current_zone)
-	LAZYADD(M.organs_by_zone[checked_zone], src)
 	RegisterSignal(owner, COMSIG_PARENT_EXAMINE, PROC_REF(on_owner_examine))
 	for(var/datum/action/A as anything in actions)
 		A.Grant(M)
 	update_accessory_colors()
 	update_appearance()
-	if(visible_organ)
-		M.update_body_parts(TRUE)
 	M.update_organ_requirements()
-	if(organ_flags & ORGAN_LIMB_SUPPORTER)
-		var/obj/item/bodypart/affected = owner.get_bodypart(current_zone)
-		affected?.update_limb_efficiency()
+	if(iscarbon(M))
+		var/mob/living/carbon/carbon_owner = M
+		var/checked_zone = check_zone(current_zone)
+		LAZYADD(carbon_owner.organs_by_zone[checked_zone], src)
+		if(visible_organ)
+			carbon_owner.update_body_parts(TRUE)
+		if(organ_flags & ORGAN_LIMB_SUPPORTER)
+			var/obj/item/bodypart/affected = carbon_owner.get_bodypart(current_zone)
+			affected?.update_limb_efficiency()
 	STOP_PROCESSING(SSobj, src)
+	return TRUE
 
 //Special is for instant replacement like autosurgeons
-/obj/item/organ/proc/Remove(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
+/obj/item/organ/proc/Remove(mob/living/M, special = FALSE, drop_if_replaced = TRUE)
 	if(!M)
 		return
 	SEND_SIGNAL(src, COMSIG_ORGAN_REMOVED, M)
@@ -345,21 +354,23 @@
 	M.internal_organs -= src
 	for(var/slot in organ_efficiency)
 		LAZYREMOVE(M.internal_organs_slot[slot], src)
-	var/checked_initial_zone = check_zone(initial_zone)
-	LAZYREMOVE(M.organs_by_zone[checked_initial_zone], src)
-	if((organ_flags & ORGAN_VITAL) && !special && !(M.status_flags & GODMODE))
-		M.death()
 	for(var/datum/action/A as anything in actions)
 		A.Remove(M)
-	if(visible_organ)
-		M.update_body_parts(TRUE)
 	update_appearance()
 
 	START_PROCESSING(SSobj, src)
 	M.update_organ_requirements()
-	if(organ_flags & ORGAN_LIMB_SUPPORTER)
-		var/obj/item/bodypart/affected = M.get_bodypart(initial_zone)
-		affected?.update_limb_efficiency()
+	if(iscarbon(M))
+		var/mob/living/carbon/carbon_owner = M
+		var/checked_initial_zone = check_zone(initial_zone)
+		LAZYREMOVE(carbon_owner.organs_by_zone[checked_initial_zone], src)
+		if((organ_flags & ORGAN_VITAL) && !special && !(carbon_owner.status_flags & GODMODE))
+			carbon_owner.death()
+		if(visible_organ)
+			carbon_owner.update_body_parts(TRUE)
+		if(organ_flags & ORGAN_LIMB_SUPPORTER)
+			var/obj/item/bodypart/affected = carbon_owner.get_bodypart(initial_zone)
+			affected?.update_limb_efficiency()
 
 /obj/item/organ/proc/drop_onto_turf(atom/drop_target, atom/throw_target = null, throw_range = 0, throw_speed = 0)
 	if(delete_on_drop)
@@ -371,7 +382,7 @@
 		throw_at(throw_target, throw_range, throw_speed)
 	return TRUE
 
-/obj/item/organ/proc/remove_and_drop(mob/living/carbon/M, atom/drop_target, atom/throw_target = null, throw_range = 0, throw_speed = 0)
+/obj/item/organ/proc/remove_and_drop(mob/living/M, atom/drop_target, atom/throw_target = null, throw_range = 0, throw_speed = 0)
 	Remove(M)
 	return drop_onto_turf(drop_target, throw_target, throw_range, throw_speed)
 
@@ -450,8 +461,11 @@
 
 /// Malus caused by germs
 /obj/item/organ/proc/handle_germ_effects(delta_time, times_fired)
-	var/virus_immunity = owner?.virus_immunity()
-	var/antibiotics = owner?.get_antibiotics()
+	if(!iscarbon(owner))
+		return
+	var/mob/living/carbon/carbon_owner = owner
+	var/virus_immunity = carbon_owner.virus_immunity()
+	var/antibiotics = carbon_owner.get_antibiotics()
 
 	if(germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && DT_PROB(virus_immunity*0.15, delta_time))
 		adjust_germ_level(-1 * (0.5 * delta_time))
@@ -459,7 +473,7 @@
 
 	if(germ_level >= INFECTION_LEVEL_ONE/2)
 		//Aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes, when immunity is full.
-		if(antibiotics < 5 && DT_PROB(round(germ_level/6 * owner.immunity_weakness() * 0.005), delta_time))
+		if(antibiotics < 5 && DT_PROB(round(germ_level/6 * carbon_owner.immunity_weakness() * 0.005), delta_time))
 			if(virus_immunity > 0)
 				adjust_germ_level(clamp(round(1/virus_immunity), 1, 10) * (0.5 * delta_time)) // Immunity starts at 100. This doubles infection rate at 50% immunity. Rounded to nearest whole.
 			else // Will only trigger if immunity has hit zero. Once it does, 10x infection rate.
@@ -467,13 +481,13 @@
 
 	if(germ_level >= INFECTION_LEVEL_ONE && antibiotics < 20)
 		var/fever_temperature = (BODYTEMP_HEAT_DAMAGE_LIMIT - BODYTEMP_NORMAL - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + BODYTEMP_NORMAL
-		owner.adjust_bodytemperature(clamp((fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, 0, fever_temperature - owner.bodytemperature))
+		carbon_owner.adjust_bodytemperature(clamp((fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, 0, fever_temperature - carbon_owner.bodytemperature))
 
 	if(germ_level >= INFECTION_LEVEL_TWO && antibiotics < 25)
-		var/obj/item/bodypart/bodypart = owner.get_bodypart(current_zone)
+		var/obj/item/bodypart/bodypart = carbon_owner.get_bodypart(current_zone)
 		if(bodypart)
 			//Spread germs
-			if(antibiotics < 5 && bodypart.germ_level < germ_level && (bodypart.germ_level < INFECTION_LEVEL_ONE*2 || DT_PROB(owner.immunity_weakness() * 0.15, delta_time)))
+			if(antibiotics < 5 && bodypart.germ_level < germ_level && (bodypart.germ_level < INFECTION_LEVEL_ONE*2 || DT_PROB(carbon_owner.immunity_weakness() * 0.15, delta_time)))
 				bodypart.adjust_germ_level(1 * (0.5 * delta_time))
 		//Cause organ damage about once every ~30 seconds
 		//The bodypart deals with dealing raw toxin damage, let's not stack onto the problem now
@@ -482,7 +496,7 @@
 
 	// Organ is just completely dead by this point
 	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 40)
-		var/obj/item/bodypart/bodypart = owner.get_bodypart(current_zone)
+		var/obj/item/bodypart/bodypart = carbon_owner.get_bodypart(current_zone)
 		if(bodypart)
 			// Spread germs really badly
 			if(antibiotics < 10 && bodypart.germ_level < germ_level && (bodypart.germ_level < INFECTION_LEVEL_THREE))
@@ -490,10 +504,11 @@
 
 /// Antibiotics combating germs and stuff
 /obj/item/organ/proc/handle_antibiotics(delta_time, times_fired)
-	if(!owner || (germ_level <= 0))
+	if(!owner || !iscarbon(owner) || (germ_level <= 0))
 		return
 
-	var/antibiotics = owner.get_antibiotics()
+	var/mob/living/carbon/carbon_owner = owner
+	var/antibiotics = carbon_owner.get_antibiotics()
 	if(antibiotics <= 0)
 		return
 
@@ -501,7 +516,7 @@
 		set_germ_level(GERM_LEVEL_STERILE)
 	else
 		adjust_germ_level(-antibiotics * SANITIZATION_ANTIBIOTIC * (0.5 * delta_time))	//at germ_level == 500 and 50 antibiotic, this should cure the infection in 5 minutes
-		if(owner?.body_position == LYING_DOWN)
+		if(carbon_owner.body_position == LYING_DOWN)
 			adjust_germ_level(-SANITIZATION_LYING * (0.5 * delta_time))
 
 /obj/item/organ/proc/on_life(delta_time, times_fired)	//repair organ damage if the organ is not failing
@@ -553,8 +568,10 @@
 		return FALSE
 	if(current_blood <= 0)
 		return FALSE
-	if(owner.undergoing_cardiac_arrest())
-		return FALSE
+	if(iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		if(carbon_owner.undergoing_cardiac_arrest())
+			return FALSE
 	if(owner.get_chem_effect(CE_TOXIN))
 		return FALSE
 
@@ -699,7 +716,7 @@
  * description: By checking our current damage against our previous damage, we can decide whether we've passed an organ threshold.
  *  If we have, send the corresponding threshold message to the owner, if such a message exists.
  */
-/obj/item/organ/proc/check_damage_thresholds(mob/living/carbon/holder)
+/obj/item/organ/proc/check_damage_thresholds(mob/living/holder)
 	if(damage == prev_damage)
 		return
 	var/delta = damage - prev_damage

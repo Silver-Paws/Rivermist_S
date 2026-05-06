@@ -77,9 +77,12 @@
 
 
 /obj/item/organ/brain/handle_blood(delta_time, times_fired)
-	var/effective_blood_oxygenation = GET_EFFECTIVE_BLOOD_VOL(owner.get_blood_oxygenation(), owner.total_blood_req)
+	if(!iscarbon(owner))
+		return
+	var/mob/living/carbon/carbon_owner = owner
+	var/effective_blood_oxygenation = GET_EFFECTIVE_BLOOD_VOL(carbon_owner.get_blood_oxygenation(), carbon_owner.total_blood_req)
 	var/arterial_efficiency = get_slot_efficiency(ORGAN_SLOT_ARTERY)
-	var/in_bleedout = owner.in_bleedout()
+	var/in_bleedout = carbon_owner.in_bleedout()
 	if(arterial_efficiency && !is_failing())
 		// Arteries get an extra flat 5 blood regen
 		current_blood = min(current_blood + 5 * (0.5 * delta_time) * (arterial_efficiency/ORGAN_OPTIMAL_EFFICIENCY), max_blood_storage)
@@ -96,7 +99,7 @@
 	// When all blood is lost, take blood from blood vessels
 	if(!current_blood)
 		var/obj/item/organ/artery
-		var/obj/item/bodypart/parent = owner.get_bodypart(current_zone)
+		var/obj/item/bodypart/parent = carbon_owner.get_bodypart(current_zone)
 		for(var/thing in shuffle(parent?.getorganslotlist(ORGAN_SLOT_ARTERY)))
 			var/obj/item/organ/candidate = thing
 			if(candidate.current_blood && (candidate.get_slot_efficiency(ORGAN_SLOT_ARTERY) >= ORGAN_FAILING_EFFICIENCY))
@@ -342,24 +345,25 @@
 
 /obj/item/organ/brain/can_heal(delta_time, times_fired)
 	. = TRUE
-	if(!owner)
+	if(!owner || !iscarbon(owner))
 		return FALSE
+	var/mob/living/carbon/carbon_owner = owner
 	if(healing_factor <= 0)
 		return FALSE
 	if(is_dead())
 		return FALSE
 	if(current_blood <= 0)
 		return FALSE
-	if(owner.undergoing_cardiac_arrest())
+	if(carbon_owner.undergoing_cardiac_arrest())
 		return FALSE
-	var/effective_blood_oxygenation = GET_EFFECTIVE_BLOOD_VOL(owner.get_blood_oxygenation(), owner.total_blood_req)
+	var/effective_blood_oxygenation = GET_EFFECTIVE_BLOOD_VOL(carbon_owner.get_blood_oxygenation(), carbon_owner.total_blood_req)
 	if(effective_blood_oxygenation < BLOOD_VOLUME_SAFE)
 		return FALSE
 	// if stable and not too damaged we can heal
-	if(!past_damage_threshold(3) && owner.get_chem_effect(CE_STABLE))
+	if(!past_damage_threshold(3) && carbon_owner.get_chem_effect(CE_STABLE))
 		return TRUE
 	// else, we only naturally regen to basically get rounded
-	if(!(damage % damage_threshold_value) || owner.get_chem_effect(CE_BRAIN_REGEN))
+	if(!(damage % damage_threshold_value) || carbon_owner.get_chem_effect(CE_BRAIN_REGEN))
 		return FALSE
 
 /obj/item/organ/brain/proc/past_damage_threshold(threshold)

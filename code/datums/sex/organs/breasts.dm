@@ -18,6 +18,8 @@
 
 /obj/item/organ/genitals/filling_organ/breasts/Insert(mob/living/M, special, drop_if_replaced, new_zone = null)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(M.breast_milk)
 		reagent_to_make = M.breast_milk
 	if(!refilling)
@@ -30,6 +32,8 @@
 
 
 	var/obj/item/organ/genitals/filling_organ/breasts/badonkas = M.getorganslot(ORGAN_SLOT_BREASTS)
+	if(!badonkas)
+		return TRUE
 	//Making users of big BOOBA suk dikus
 	if(badonkas.organ_size >= BREAST_SIZE_ENORMOUS)
 		M.apply_status_effect(/datum/status_effect/debuff/bigboobs/permanent/lite)

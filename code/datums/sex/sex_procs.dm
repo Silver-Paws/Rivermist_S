@@ -626,6 +626,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/carbon_user = user
 		carbon_user.update_body_parts()
+	return TRUE
 
 /mob/living/proc/lose_virginity()
 	return

@@ -41,6 +41,8 @@
 
 /obj/item/organ/genitals/filling_organ/vagina/Insert(mob/living/M, special, drop_if_replaced, new_zone = null)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(M.femcum)
 		reagent_to_make = M.femcum
 	add_bodystorage(M, null, /datum/component/body_storage/vagina)

@@ -6,6 +6,8 @@
 
 /obj/item/organ/genitals/nipple/Insert(mob/living/M, special, drop_if_replaced, new_zone = null)
 	. = ..()
+	if(!.)
+		return FALSE
 	add_bodystorage(M, null, /datum/component/body_storage/nipple)
 
 /obj/item/organ/genitals/nipple/Remove(mob/living/M, special, drop_if_replaced)

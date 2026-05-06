@@ -124,7 +124,9 @@
 
 /obj/item/organ/eyes/handle_attaching_item(obj/item/tool, mob/living/user, params)
 	. = ..()
-	owner.update_eyes()
+	if(iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		carbon_owner.update_eyes()
 
 /obj/item/organ/eyes/Remove(mob/living/carbon/M, special = 0)
 	var/sight_index = (side == RIGHT_SIDE) ? 2 : 1
@@ -145,20 +147,24 @@
 
 /obj/item/organ/eyes/applyOrganDamage(amount, maximum = maxHealth, silent = FALSE)
 	. = ..()
-	if(owner)
-		owner.update_eyes()
-		owner.update_sight()
-		owner.update_tint()
+	if(iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		carbon_owner.update_eyes()
+		carbon_owner.update_sight()
+		carbon_owner.update_tint()
 
 /obj/item/organ/eyes/proc/refresh()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/HMN = owner
+	if(!iscarbon(owner))
+		return
+	var/mob/living/carbon/carbon_owner = owner
+	if(ishuman(carbon_owner))
+		var/mob/living/carbon/human/HMN = carbon_owner
 		HMN.regenerate_icons()
-	owner.update_eyes()
-	owner.update_sight()
-	owner.update_tint()
-	if(owner.has_dna() && ishuman(owner))
-		owner.dna.species.handle_body(owner)
+	carbon_owner.update_eyes()
+	carbon_owner.update_sight()
+	carbon_owner.update_tint()
+	if(carbon_owner.has_dna() && ishuman(carbon_owner))
+		carbon_owner.dna.species.handle_body(carbon_owner)
 
 /obj/item/organ/eyes/proc/get_eye_damage_level()
 	switch(get_slot_efficiency(ORGAN_SLOT_EYES))

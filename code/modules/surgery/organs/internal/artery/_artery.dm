@@ -37,16 +37,19 @@
 
 /obj/item/organ/artery/on_life(delta_time, times_fired)
 	. = ..()
+	if(!iscarbon(owner))
+		return
+	var/mob/living/carbon/carbon_owner = owner
 	// Dead, pulseless or cryosleep people do not pump blood
-	if(!(is_bruised() || is_failing()) || !owner.pulse || (owner.bodytemperature <= -15))
+	if(!(is_bruised() || is_failing()) || !carbon_owner.pulse || (carbon_owner.bodytemperature <= -15))
 		return
 	var/bleed_mod = 1 * (damage/maxHealth)
-	var/obj/item/bodypart/limb = owner.get_bodypart(current_zone)
+	var/obj/item/bodypart/limb = carbon_owner.get_bodypart(current_zone)
 	for(var/obj/item/grabbing/grab in grabbedby)
 		bleed_mod *= grab.bleed_suppressing
 	if(limb.bandage)
 		bleed_mod *= limb.bandage.bandage_effectiveness
-	switch(owner.pulse)
+	switch(carbon_owner.pulse)
 		if(PULSE_NONE)
 			bleed_mod *= 0
 		if(PULSE_SLOW)
@@ -55,8 +58,8 @@
 			bleed_mod *= 1.25
 		if(PULSE_FASTER, PULSE_THREADY)
 			bleed_mod *= 1.5
-	if(ishuman(owner))
-		var/mob/living/carbon/human/human_owner = owner
+	if(ishuman(carbon_owner))
+		var/mob/living/carbon/human/human_owner = carbon_owner
 		if(human_owner.physiology)
 			bleed_mod *= human_owner.physiology.bleed_mod
 	var/final_bleed_rate = CEILING(blood_flow * bleed_mod, 0.1)
@@ -95,7 +98,10 @@
 		mend()
 
 /obj/item/organ/artery/proc/squirt(amount = 1, force = FALSE)
-	var/obj/item/bodypart/limb = owner.get_bodypart(current_zone)
+	if(!iscarbon(owner))
+		return
+	var/mob/living/carbon/carbon_owner = owner
+	var/obj/item/bodypart/limb = carbon_owner.get_bodypart(current_zone)
 	var/open_wound = FALSE
 	for(var/datum/wound/wound as anything in limb.wounds)
 		if(wound.bleed_rate)
@@ -111,9 +117,9 @@
 	if(LAZYLEN(limb.grabbedby) || limb.bandage)
 		unrestricted_flow = FALSE
 	if(unrestricted_flow || force)
-		if(open_wound && (owner.get_blood_circulation() >= amount) || force)
-			playsound(owner, squirt_sound, 75, 0)
-			owner.bleed(amount)
+		if(open_wound && (carbon_owner.get_blood_circulation() >= amount) || force)
+			playsound(carbon_owner, squirt_sound, 75, 0)
+			carbon_owner.bleed(amount)
 			//owner.do_arterygush()
 			COOLDOWN_START(src, next_squirt, rand(squirt_delay_min_seconds, squirt_delay_max_seconds) SECONDS)
 		else

@@ -1,6 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
-	sight = 0
+	sight = SEE_SELF
 	see_in_dark = 8
 	hud_possible = list(ANTAG_HUD)
 

@@ -82,6 +82,66 @@
 /mob/proc/update_organ_requirements()
 	return
 
+/mob/living/getorgan(typepath)
+	var/list/organs = getorganlist(typepath)
+	if(length(organs))
+		return pick(organs)
+
+/mob/living/getorganlist(typepath)
+	. = list()
+	for(var/thing in internal_organs)
+		if(istype(thing, typepath))
+			. |= thing
+
+/mob/living/getorganslot(slot)
+	RETURN_TYPE(/obj/item/organ)
+	var/list/organs = internal_organs_slot[slot]
+	if(length(organs))
+		return pick(organs)
+
+/mob/living/getorganslotlist(slot)
+	. = list()
+	var/list/organs = internal_organs_slot[slot]
+	if(length(organs))
+		. |= organs
+
+/mob/living/getorganslotlistzone(slot, zone)
+	. = list()
+	var/list/organs = internal_organs_slot[slot]
+	if(!length(organs))
+		return
+	for(var/thing in organs)
+		var/obj/item/organ/organ = thing
+		if(zone == check_zone(organ.current_zone))
+			. |= organ
+
+/mob/living/getorganszone(zone, subzones = FALSE)
+	. = list()
+	var/checked_zone = check_zone(zone)
+	for(var/obj/item/organ/organ as anything in internal_organs)
+		if(check_zone(organ.current_zone) != checked_zone)
+			continue
+		. += organ
+
+/mob/living/getorganslotefficiency(slot)
+	. = 0
+	var/list/organs = internal_organs_slot[slot]
+	if(!length(organs))
+		return
+	for(var/thing in organs)
+		var/obj/item/organ/organ = thing
+		. += organ.get_slot_efficiency(slot)
+
+/mob/living/getorganslotefficiencyzone(slot, zone)
+	. = 0
+	var/list/organs = internal_organs_slot[slot]
+	if(!length(organs))
+		return
+	for(var/thing in organs)
+		var/obj/item/organ/organ = thing
+		if(zone == check_zone(organ.current_zone))
+			. += organ.get_slot_efficiency(slot)
+
 /mob/living/carbon/getorgan(typepath)
 	var/list/organs = list()
 	for(var/thing in internal_organs)

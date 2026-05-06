@@ -32,7 +32,9 @@
 
 /obj/item/organ/artery/chest/tear()
 	. = ..()
-	owner.vomit(blood = TRUE)
+	if(iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		carbon_owner.vomit(blood = TRUE)
 	var/static/list/heartaches = list(
 		"OOHHHH MY HEART!",
 		"MY HEART! IT HURTS!",

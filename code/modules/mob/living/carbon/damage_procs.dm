@@ -404,7 +404,7 @@
 		update_damage_overlays()
 
 // damage MANY bodyparts, in random order
-/mob/living/carbon/take_overall_damage(brute = 0, burn = 0, updating_health = TRUE, required_status = BODYPART_ORGANIC, damage_type, no_crit = FALSE)
+/mob/living/carbon/take_overall_damage(brute = 0, burn = 0, updating_health = TRUE, required_status = BODYPART_ORGANIC, damage_type = WOUND_INTERNAL_BRUISE, no_crit = FALSE)
 	. = FALSE
 	if(status_flags & GODMODE)
 		return	//godmode
@@ -423,10 +423,6 @@
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
 		. += picked.get_damage()
-
-		if(!burn && !damage_type)
-			stack_trace("Carbon has taken damage without a tied damage class! Defaulting to Internal Bruising.")
-			damage_type = WOUND_INTERNAL_BRUISE
 
 		if(damage_type || burn)
 			if(burn)
