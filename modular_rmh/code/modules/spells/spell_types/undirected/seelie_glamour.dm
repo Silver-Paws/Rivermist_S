@@ -45,6 +45,7 @@
 	duration = -1
 	tick_interval = SEELIE_GLAMOUR_CHECK_INTERVAL
 	alert_type = /atom/movable/screen/alert/status_effect/buff/seelie_grand_glamour
+	var/seelie_pass_flags
 
 /atom/movable/screen/alert/status_effect/buff/seelie_grand_glamour
 	name = "Grand Glamour"
@@ -73,7 +74,8 @@
 		seelie.seelie_leave_container(TRUE)
 
 	REMOVE_TRAIT(seelie, TRAIT_TINY, SPECIES_TRAIT)
-	seelie.pass_flags &= ~(PASSTABLE | PASSMOB)
+	seelie_pass_flags = seelie.pass_flags & (PASSTABLE | PASSMOB)
+	seelie.pass_flags &= ~seelie_pass_flags
 	seelie.seelie_ensure_scale()
 	seelie.visible_message(
 		span_notice("[seelie] swells to mortal size beneath a shimmering glamour."),
@@ -97,7 +99,7 @@
 		return
 
 	ADD_TRAIT(seelie, TRAIT_TINY, SPECIES_TRAIT)
-	seelie.pass_flags |= (PASSTABLE | PASSMOB)
+	seelie.pass_flags |= seelie_pass_flags
 	seelie.seelie_ensure_scale()
 	seelie.visible_message(
 		span_notice("[seelie] shrinks back to a tiny fae form."),

@@ -2,6 +2,9 @@
 #define SEELIE_WING_TRAIT "seelie_nowings"
 #define SEELIE_MOVESPEED_ID "seelie_move"
 
+/mob/living/carbon/human
+	var/seelie_scale_active = FALSE
+
 /mob/living/carbon/human/species/seelie
 	race = /datum/species/seelie
 
@@ -11,16 +14,25 @@
 /mob/living/carbon/human/proc/seelie_has_grand_glamour()
 	return !!has_status_effect(/datum/status_effect/buff/seelie_grand_glamour)
 
+/mob/living/carbon/human/proc/seelie_set_scale(active)
+	if(seelie_scale_active == active)
+		return
+
+	resize = active ? SEELIE_SCALE : (1 / SEELIE_SCALE)
+	update_transform()
+	seelie_scale_active = active
+
 /mob/living/carbon/human/proc/seelie_ensure_scale()
 	if(!is_seelie())
 		return
 
-	if(seelie_has_grand_glamour())
-		transform = matrix()
-	else
-		transform = matrix().Scale(SEELIE_SCALE, SEELIE_SCALE)
+	seelie_set_scale(!seelie_has_grand_glamour())
 
-	update_transform()
+/mob/living/carbon/human/proc/seelie_clear_scale()
+	if(!seelie_scale_active)
+		return
+
+	seelie_set_scale(FALSE)
 
 /datum/species/seelie
 	name = "Seelie"
@@ -142,13 +154,13 @@
 
 	if(human.getorganslot(ORGAN_SLOT_WINGS))
 		REMOVE_TRAIT(human, TRAIT_FLOORED, SEELIE_WING_TRAIT)
-		human.mobility_flags |= MOBILITY_STAND
-		if(human.body_position == LYING_DOWN && !human.resting)
+		ADD_TRAIT(human, TRAIT_MOVE_FLOATING, "[type]")
+		if(!HAS_TRAIT(human, TRAIT_FLOORED) && human.body_position == LYING_DOWN && !human.resting)
 			human.set_body_position(STANDING_UP)
 		return
 
 	ADD_TRAIT(human, TRAIT_FLOORED, SEELIE_WING_TRAIT)
-	human.mobility_flags &= ~MOBILITY_STAND
+	REMOVE_TRAIT(human, TRAIT_MOVE_FLOATING, "[type]")
 	if(human.body_position != LYING_DOWN)
 		human.set_body_position(LYING_DOWN)
 	human.set_resting(TRUE, silent = TRUE)
@@ -164,7 +176,6 @@
 	human.seelie_ensure_scale()
 	human.add_movespeed_modifier(SEELIE_MOVESPEED_ID, override = TRUE, multiplicative_slowdown = 0.5)
 	ADD_TRAIT(human, TRAIT_PACIFISM, "[type]")
-	ADD_TRAIT(human, TRAIT_MOVE_FLOATING, "[type]")
 	human.add_spell(/datum/action/cooldown/spell/undirected/seelie_grand_glamour)
 
 	if(!human.getorganslot(ORGAN_SLOT_WINGS))
@@ -183,10 +194,8 @@
 	var/mob/living/carbon/human/human = carbon_mob
 	human.remove_status_effect(/datum/status_effect/buff/seelie_grand_glamour)
 	human.pass_flags &= ~(PASSTABLE | PASSMOB)
-	human.transform = matrix()
-	human.update_transform()
+	human.seelie_clear_scale()
 	human.remove_movespeed_modifier(SEELIE_MOVESPEED_ID)
-	human.mobility_flags |= MOBILITY_STAND
 	REMOVE_TRAIT(human, TRAIT_FLOORED, SEELIE_WING_TRAIT)
 	REMOVE_TRAIT(human, TRAIT_MOVE_FLOATING, "[type]")
 	REMOVE_TRAIT(human, TRAIT_PACIFISM, "[type]")

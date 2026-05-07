@@ -40,7 +40,7 @@
 	name = "Strip Clothes"
 	desc = "Tug loose a random worn item."
 	button_icon_state = "bcry"
-	cooldown_time = 6 MINUTES
+	cooldown_time = 1 MINUTES
 	cast_range = 1
 	charge_required = FALSE
 	invocation_type = INVOCATION_NONE
@@ -50,17 +50,39 @@
 /datum/action/cooldown/spell/seelie_strip/is_valid_target(atom/cast_on)
 	return ishuman(cast_on)
 
+/datum/action/cooldown/spell/seelie_strip/before_cast(atom/cast_on)
+	. = ..()
+	if(. & SPELL_CANCEL_CAST)
+		return
+
+	var/mob/living/carbon/human/target = cast_on
+	if(!length(get_valid_strip_items(target)))
+		to_chat(owner, span_warning("Nothing on [target] will come loose."))
+		return . | SPELL_CANCEL_CAST
+
 /datum/action/cooldown/spell/seelie_strip/cast(mob/living/carbon/human/cast_on)
 	. = ..()
 	if(!istype(cast_on))
 		return
 
-	var/list/slots = list(ITEM_SLOT_GLOVES, ITEM_SLOT_SHOES, ITEM_SLOT_HEAD)
-	var/chosen_slot = pick(slots)
-	var/obj/item/choice = cast_on.get_item_by_slot(chosen_slot)
-	if(choice && !istype(choice, /obj/item/clothing/head/helmet))
-		cast_on.dropItemToGround(choice)
-		to_chat(cast_on, span_warning("My clothes are yanked loose!"))
+	var/list/valid_items = get_valid_strip_items(cast_on)
+	if(!length(valid_items))
+		return
+
+	var/obj/item/choice = pick(valid_items)
+	cast_on.dropItemToGround(choice)
+	to_chat(cast_on, span_warning("My clothes are yanked loose!"))
+
+/datum/action/cooldown/spell/seelie_strip/proc/get_valid_strip_items(mob/living/carbon/human/target)
+	. = list()
+	if(!istype(target))
+		return
+
+	for(var/slot in list(ITEM_SLOT_HEAD,ITEM_SLOT_SHIRT,ITEM_SLOT_PANTS,ITEM_SLOT_GLOVES,ITEM_SLOT_SHOES,ITEM_SLOT_MASK,ITEM_SLOT_WRISTS,ITEM_SLOT_CLOAK,ITEM_SLOT_ARMOR,ITEM_SLOT_BACK_L,ITEM_SLOT_BACK_R,ITEM_SLOT_BELT,ITEM_SLOT_BELT_L,ITEM_SLOT_BELT_R,ITEM_SLOT_MOUTH,ITEM_SLOT_NECK,ITEM_SLOT_RING,ITEM_SLOT_HANDS,ITEM_SLOT_UNDER_BOTTOM,ITEM_SLOT_UNDER_TOP,ITEM_SLOT_UNDERSHIRT,ITEM_SLOT_ARMSLEEVES,ITEM_SLOT_SOCKS,ITEM_SLOT_CHOKER,ITEM_SLOT_GARTER,ITEM_SLOT_EARRING_L,ITEM_SLOT_EARRING_R,))
+		var/obj/item/item = target.get_item_by_slot(slot)
+		if(!item || istype(item, /obj/item/clothing/head/helmet))
+			continue
+		. += item
 
 /datum/action/cooldown/spell/seelie_drain
 	name = "Drain"
@@ -77,6 +99,25 @@
 /datum/action/cooldown/spell/seelie_drain/is_valid_target(atom/cast_on)
 	return isliving(cast_on)
 
+/datum/action/cooldown/spell/seelie_drain/before_cast(atom/cast_on)
+	. = ..()
+	if(. & SPELL_CANCEL_CAST)
+		return
+
+	var/mob/living/target = cast_on
+	var/mob/living/caster = owner
+	if(!istype(target) || !istype(caster))
+		return . | SPELL_CANCEL_CAST
+	if(target == caster)
+		to_chat(caster, span_warning("I need another living thing to borrow from."))
+		return . | SPELL_CANCEL_CAST
+	if(target.stamina >= target.maximum_stamina)
+		to_chat(caster, span_warning("[target] is too exhausted to drain from!"))
+		return . | SPELL_CANCEL_CAST
+	if(caster.stamina <= 0)
+		to_chat(caster, span_warning("I am already fully invigorated."))
+		return . | SPELL_CANCEL_CAST
+
 /datum/action/cooldown/spell/seelie_drain/cast(mob/living/cast_on)
 	. = ..()
 	if(!isliving(owner) || !istype(cast_on))
@@ -87,13 +128,7 @@
 	var/drain_amount = 100
 	var/gain_amount = 60
 
-	if(target.stamina <= 0)
-		to_chat(caster, span_warning("[target] is too exhausted to drain from!"))
-		return
-
-	if(caster.stamina >= caster.maximum_stamina - gain_amount)
-		to_chat(caster, span_warning("I don't feel any more invigorated than I did..."))
-		target.adjust_stamina(drain_amount)
+	if(target == caster || target.stamina >= target.maximum_stamina || caster.stamina <= 0)
 		return
 
 	target.adjust_stamina(drain_amount)
