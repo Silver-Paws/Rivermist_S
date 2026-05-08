@@ -21,6 +21,12 @@
 	},
 /turf/open/floor/ruinedwood/spiralfade,
 /area/indoors/town/rmh)
+"r" = (
+/obj/item/key{
+	lockids = list("housingcellar1")
+	},
+/turf/open/floor/ruinedwood/spiralfade,
+/area/indoors/town/rmh)
 "s" = (
 /turf/closed/wall/mineral/wooddark/vertical,
 /area/indoors/town/rmh)
@@ -151,7 +157,7 @@ g
 X
 X
 a
-X
+r
 u
 L
 "}

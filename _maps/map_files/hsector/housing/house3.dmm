@@ -35,6 +35,12 @@
 "h" = (
 /turf/closed/wall/mineral/wooddark/vertical,
 /area/indoors/town/rmh)
+"j" = (
+/obj/item/key{
+	lockids = list("housingcellar1")
+	},
+/turf/open/floor/ruinedwood/spiral,
+/area/indoors/town/rmh)
 "m" = (
 /turf/closed/wall/mineral/roofwall/middle{
 	dir = 1
@@ -264,7 +270,7 @@ G
 y
 K
 J
-R
+j
 R
 B
 a
