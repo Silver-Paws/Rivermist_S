@@ -36,6 +36,8 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	if(new_limb.owner?.is_player_character())
+		return FALSE
 	if(HAS_TRAIT(new_limb.owner, TRAIT_CRITICAL_RESISTANCE))
 		return FALSE
 	var/gaping_wound = FALSE
@@ -62,6 +64,9 @@
 
 /datum/wound/slash/disembowel/on_bodypart_gain(obj/item/bodypart/affected)
 	. = ..()
+	if(affected.owner?.is_player_character())
+		qdel(src)
+		return
 	var/mob/living/carbon/gutted = affected.owner
 	var/atom/drop_location = gutted.drop_location()
 	var/list/spilled_organs = list()

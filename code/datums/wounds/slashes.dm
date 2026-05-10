@@ -111,6 +111,14 @@
 		return FALSE
 	return TRUE
 
+/datum/wound/slash/disembowel/can_apply_to_bodypart(obj/item/bodypart/new_limb)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(new_limb.owner?.is_player_character())
+		return FALSE
+	return TRUE
+
 /datum/wound/slash/disembowel/on_mob_gain(mob/living/affected)
 	. = ..()
 	affected.emote("paincrit", TRUE)
@@ -119,6 +127,9 @@
 
 /datum/wound/slash/disembowel/on_bodypart_gain(obj/item/bodypart/affected)
 	. = ..()
+	if(affected.owner?.is_player_character())
+		qdel(src)
+		return
 	var/mob/living/carbon/gutted = affected.owner
 	var/atom/drop_location = gutted.drop_location()
 	var/list/spilled_organs = list()

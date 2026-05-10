@@ -627,6 +627,9 @@
 	name = "Missing Teeth"
 	desc = "Years of brawling, bad luck, or bad hygiene have cost you several teeth. You lisp noticeably."
 	point_value = 2
+	incompatible_quirks = list(
+		/datum/quirk/vice/toothless,
+	)
 
 /datum/quirk/vice/missing_teeth/on_spawn()
 	if(!ishuman(owner))
@@ -638,3 +641,35 @@
 	var/to_remove = rand(6, 8)
 	jaw.remove_teeth(to_remove)
 	to_chat(H, span_warning("You run your tongue across the gaps where your teeth used to be."))
+
+/datum/quirk/vice/no_dental
+	name = "No Dental"
+	desc = "My teeth are loose, brittle, or terribly neglected. A hard blow can send them flying."
+	point_value = 2
+	incompatible_quirks = list(
+		/datum/quirk/vice/toothless,
+	)
+
+/datum/quirk/vice/no_dental/on_spawn()
+	if(!ishuman(owner))
+		return
+	to_chat(owner, span_warning("My teeth feel worryingly loose."))
+
+/datum/quirk/vice/toothless
+	name = "Toothless"
+	desc = "I have no teeth left at all. My speech and bite suffer for it."
+	point_value = 3
+	incompatible_quirks = list(
+		/datum/quirk/vice/missing_teeth,
+		/datum/quirk/vice/no_dental,
+	)
+
+/datum/quirk/vice/toothless/on_spawn()
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/H = owner
+	var/obj/item/bodypart/mouth/jaw = H.get_bodypart(BODY_ZONE_PRECISE_MOUTH)
+	if(!jaw)
+		return
+	jaw.remove_teeth(jaw.get_teeth_amount())
+	to_chat(H, span_warning("My mouth is completely bare of teeth."))

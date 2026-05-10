@@ -1,5 +1,6 @@
 /datum/surgery_step/extract_tooth
-	name = "Extract tooth"
+	// Disabled as a standalone operation; tooth work should be restorative.
+	name = null
 	implements = list(
 		/obj/item/weapon/tongs = 90,
 	)

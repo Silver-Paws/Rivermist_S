@@ -404,13 +404,29 @@
 /obj/item/organ/adjust_germ_level(add_germs, minimum_germs = 0, maximum_germs = GERM_LEVEL_MAXIMUM)
 	. = ..()
 	if((germ_level >= INFECTION_LEVEL_THREE) && !CHECK_BITFIELD(organ_flags, ORGAN_DEAD))
-		kill_organ()
+		if(can_necrose_from_infection())
+			kill_organ()
+		else if(owner?.is_player_character())
+			germ_level = INFECTION_LEVEL_THREE - 1
 
 /obj/item/organ/proc/kill_organ()
 	. = FALSE
 	if(damage < maxHealth && !CHECK_BITFIELD(organ_flags, ORGAN_DESTROYED))
 		setOrganDamage(maxHealth)
 		return TRUE
+
+/obj/item/organ/proc/can_necrose_from_infection()
+	if(!owner?.is_player_character())
+		return TRUE
+	if(CHECK_BITFIELD(organ_flags, ORGAN_CUT_AWAY))
+		return TRUE
+	if(!iscarbon(owner) || owner.stat >= DEAD)
+		return FALSE
+	var/mob/living/carbon/carbon_owner = owner
+	var/obj/item/bodypart/bodypart = carbon_owner.get_bodypart(current_zone)
+	if(bodypart && bodypart.can_necrose_from_infection() && bodypart.germ_level >= (INFECTION_LEVEL_THREE - 1))
+		return TRUE
+	return FALSE
 
 /// Runs decay both inside and outside a person
 /obj/item/organ/proc/on_death(delta_time, times_fired)
@@ -466,18 +482,21 @@
 	var/mob/living/carbon/carbon_owner = owner
 	var/virus_immunity = carbon_owner.virus_immunity()
 	var/antibiotics = carbon_owner.get_antibiotics()
+	var/player_character = carbon_owner.is_player_character()
+	var/germ_gain_multiplier = player_character ? 0.25 : 1
+	var/recovery_multiplier = player_character ? 2 : 1
 
 	if(germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && DT_PROB(virus_immunity*0.15, delta_time))
-		adjust_germ_level(-1 * (0.5 * delta_time))
+		adjust_germ_level(-1 * (0.5 * delta_time) * recovery_multiplier)
 		return
 
 	if(germ_level >= INFECTION_LEVEL_ONE/2)
 		//Aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes, when immunity is full.
 		if(antibiotics < 5 && DT_PROB(round(germ_level/6 * carbon_owner.immunity_weakness() * 0.005), delta_time))
 			if(virus_immunity > 0)
-				adjust_germ_level(clamp(round(1/virus_immunity), 1, 10) * (0.5 * delta_time)) // Immunity starts at 100. This doubles infection rate at 50% immunity. Rounded to nearest whole.
+				adjust_germ_level(clamp(round(1/virus_immunity), 1, 10) * (0.5 * delta_time) * germ_gain_multiplier) // Immunity starts at 100. This doubles infection rate at 50% immunity. Rounded to nearest whole.
 			else // Will only trigger if immunity has hit zero. Once it does, 10x infection rate.
-				adjust_germ_level(10 * (0.5 * delta_time))
+				adjust_germ_level(10 * (0.5 * delta_time) * germ_gain_multiplier)
 
 	if(germ_level >= INFECTION_LEVEL_ONE && antibiotics < 20)
 		var/fever_temperature = (BODYTEMP_HEAT_DAMAGE_LIMIT - BODYTEMP_NORMAL - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + BODYTEMP_NORMAL
@@ -488,11 +507,11 @@
 		if(bodypart)
 			//Spread germs
 			if(antibiotics < 5 && bodypart.germ_level < germ_level && (bodypart.germ_level < INFECTION_LEVEL_ONE*2 || DT_PROB(carbon_owner.immunity_weakness() * 0.15, delta_time)))
-				bodypart.adjust_germ_level(1 * (0.5 * delta_time))
+				bodypart.adjust_germ_level(1 * (0.5 * delta_time) * germ_gain_multiplier)
 		//Cause organ damage about once every ~30 seconds
 		//The bodypart deals with dealing raw toxin damage, let's not stack onto the problem now
 		if(DT_PROB(2, delta_time))
-			applyOrganDamage(2)
+			applyOrganDamage(player_character ? 1 : 2)
 
 	// Organ is just completely dead by this point
 	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 40)
@@ -500,7 +519,7 @@
 		if(bodypart)
 			// Spread germs really badly
 			if(antibiotics < 10 && bodypart.germ_level < germ_level && (bodypart.germ_level < INFECTION_LEVEL_THREE))
-				bodypart.adjust_germ_level(1 * (0.5 * delta_time))
+				bodypart.adjust_germ_level(1 * (0.5 * delta_time) * germ_gain_multiplier)
 
 /// Antibiotics combating germs and stuff
 /obj/item/organ/proc/handle_antibiotics(delta_time, times_fired)
@@ -515,9 +534,10 @@
 	if((germ_level < INFECTION_LEVEL_ONE) && (antibiotics >= 20))
 		set_germ_level(GERM_LEVEL_STERILE)
 	else
-		adjust_germ_level(-antibiotics * SANITIZATION_ANTIBIOTIC * (0.5 * delta_time))	//at germ_level == 500 and 50 antibiotic, this should cure the infection in 5 minutes
+		var/recovery_multiplier = carbon_owner.is_player_character() ? 2 : 1
+		adjust_germ_level(-antibiotics * SANITIZATION_ANTIBIOTIC * (0.5 * delta_time) * recovery_multiplier)	//at germ_level == 500 and 50 antibiotic, this should cure the infection in 5 minutes
 		if(carbon_owner.body_position == LYING_DOWN)
-			adjust_germ_level(-SANITIZATION_LYING * (0.5 * delta_time))
+			adjust_germ_level(-SANITIZATION_LYING * (0.5 * delta_time) * recovery_multiplier)
 
 /obj/item/organ/proc/on_life(delta_time, times_fired)	//repair organ damage if the organ is not failing
 	SHOULD_CALL_PARENT(TRUE)

@@ -7,7 +7,10 @@
 	viable_zones = list(BODY_ZONE_PRECISE_MOUTH)
 
 /datum/wound/teeth/get_crit_prob(bclass, dam, damage_dividend, mob/living/user, obj/item/bodypart/affected, zone_precise, list/modifiers)
-	return ..() / 3
+	var/chance = ..()
+	if(affected.owner?.has_quirk(/datum/quirk/vice/no_dental))
+		return chance * 2
+	return chance / 10
 
 /datum/wound/teeth/can_apply_to_bodypart(obj/item/bodypart/mouth/affected)
 	. = ..()

@@ -30,6 +30,8 @@
 	// Must be vitals zone
 	if(new_limb.body_zone != BODY_ZONE_CHEST)
 		return FALSE
+	if(new_limb.owner?.is_player_character())
+		return FALSE
 	if(!new_limb.getorganslot(ORGAN_SLOT_GUTS))
 		return FALSE
 	if(new_limb.spilled)
@@ -55,6 +57,9 @@
 
 /datum/wound/spill/gut/on_bodypart_gain(obj/item/bodypart/new_limb)
 	. = ..()
+	if(new_limb.owner?.is_player_character())
+		qdel(src)
+		return
 	if(sound_effect)
 		playsound(new_limb.owner, pick(sound_effect), 100, TRUE)
 	new_limb.spilled = TRUE

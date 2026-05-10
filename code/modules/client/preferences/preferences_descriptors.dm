@@ -27,7 +27,7 @@
 
 /datum/preferences/proc/validate_descriptors()
 	descriptor_entries = SANITIZE_LIST(descriptor_entries)
-	listclearnulls(descriptor_entries)
+	list_clear_nulls(descriptor_entries)
 	if(!pref_species)
 		return
 	for(var/choice_type in pref_species.descriptor_choices)

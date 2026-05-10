@@ -362,13 +362,28 @@
 	else
 		update_icon_dropped()
 
+/obj/item/bodypart/proc/can_necrose_from_infection()
+	if(!owner?.is_player_character())
+		return TRUE
+	if(owner.stat >= DEAD)
+		return FALSE
+	if(artery_needed() && (getorganslotefficiency(ORGAN_SLOT_ARTERY) < ORGAN_FAILING_EFFICIENCY))
+		return TRUE
+	for(var/datum/injury/injury as anything in injuries)
+		if(injury.germ_level >= INFECTION_LEVEL_TWO)
+			return TRUE
+	return FALSE
+
 /// Adding/removing germs
 /obj/item/bodypart/adjust_germ_level(add_germs, minimum_germs = 0, maximum_germs = GERM_LEVEL_MAXIMUM)
 	. = ..()
 	if(germ_level >= INFECTION_LEVEL_THREE && !CHECK_BITFIELD(limb_flags, BODYPART_DEAD))
-		kill_limb()
-		if(owner && owner.stat < DEAD)
-			to_chat(owner, span_userdanger("I can't feel my [name] anymore..."))
+		if(can_necrose_from_infection())
+			kill_limb()
+			if(owner && owner.stat < DEAD)
+				to_chat(owner, span_userdanger("I can't feel my [name] anymore..."))
+		else if(owner?.is_player_character())
+			germ_level = INFECTION_LEVEL_THREE - 1
 	consider_processing()
 
 ///Called when TRAIT_ROTTEN is added to the limb.
@@ -611,6 +626,7 @@
 	if(!length(wounds) && !length(injuries) && (germ_level <= 0))
 		return
 
+	var/germ_gain_multiplier = owner.is_player_character() ? 0.25 : 1
 	var/turf/open/floor/open_turf = get_turf(owner)
 	var/owner_germ_level = 2*owner.germ_level
 	for(var/obj/item/embeddies in embedded_objects)
@@ -620,7 +636,7 @@
 	if(istype(open_turf))
 		for(var/datum/injury/injury as anything in injuries)
 			if(injury.infection_check(delta_time, times_fired) && (max(open_turf.germ_level, owner_germ_level) > injury.germ_level))
-				injury.adjust_germ_level(injury.infection_rate * (0.5 * delta_time))
+				injury.adjust_germ_level(injury.infection_rate * (0.5 * delta_time) * germ_gain_multiplier)
 
 	// If we have sufficient antibiotics, then skip over this stuff, the infection is going away
 	var/antibiotics = owner.get_antibiotics()
@@ -630,7 +646,7 @@
 	for(var/datum/injury/injury as anything in injuries)
 		//Infected injuries raise the bodypart's germ level
 		if(injury.germ_level > germ_level || DT_PROB(CEILING(min(injury.germ_level/5, 40)/2, 1), delta_time))
-			adjust_germ_level(injury.infection_rate * (0.5 * delta_time))
+			adjust_germ_level(injury.infection_rate * (0.5 * delta_time) * germ_gain_multiplier)
 			break	//limit increase to a maximum of one injury infection increase per 2 seconds
 
 
@@ -640,15 +656,18 @@
 	var/immunity_weakness = owner.immunity_weakness()
 	var/antibiotics = owner.get_antibiotics()
 	var/arterial_efficiency = getorganslotefficiency(ORGAN_SLOT_ARTERY)
+	var/player_character = owner.is_player_character()
+	var/germ_gain_multiplier = player_character ? 0.25 : 1
+	var/recovery_multiplier = player_character ? 2 : 1
 
 	// Being properly oxygenated
 	if(!artery_needed() || (arterial_efficiency >= ORGAN_FAILING_EFFICIENCY))
 		if(germ_level > 0 && (germ_level < INFECTION_LEVEL_ONE/2) && DT_PROB(immunity*0.3, delta_time))
-			adjust_germ_level(-1 * (0.5 * delta_time))
+			adjust_germ_level(-1 * (0.5 * delta_time) * recovery_multiplier)
 			return
 	// Dry gangrene
 	else
-		adjust_germ_level(1 * (0.5 * delta_time))
+		adjust_germ_level(1 * (0.5 * delta_time) * germ_gain_multiplier)
 
 	if(germ_level >= INFECTION_LEVEL_ONE/2)
 		//Warn the user that they're a bit fucked
@@ -658,10 +677,10 @@
 		if(antibiotics < 5 && DT_PROB(FLOOR(germ_level/6 * immunity_weakness * 0.005, 1), delta_time))
 			if(immunity > 0)
 				//Immunity starts at 100. This doubles infection rate at 50% immunity. Rounded to nearest whole.
-				adjust_germ_level(clamp(FLOOR(1/immunity, 1), 1, 10) * (0.5 * delta_time))
+				adjust_germ_level(clamp(FLOOR(1/immunity, 1), 1, 10) * (0.5 * delta_time) * germ_gain_multiplier)
 			else
 				//Will only trigger if immunity has hit zero. Once it does, 10x infection rate.
-				adjust_germ_level(10 * (0.5 * delta_time))
+				adjust_germ_level(10 * (0.5 * delta_time) * germ_gain_multiplier)
 
 	if(germ_level >= INFECTION_LEVEL_ONE && (antibiotics < 20))
 		if(DT_PROB(3, delta_time) && (owner.stat < DEAD) && germ_level <= INFECTION_LEVEL_TWO)
@@ -688,7 +707,7 @@
 
 		// Infect the target organ
 		if(target_organ)
-			target_organ.adjust_germ_level(1 * (0.5 * delta_time))
+			target_organ.adjust_germ_level(1 * (0.5 * delta_time) * germ_gain_multiplier)
 
 		// Spread the infection to child and parent organs
 		var/zones = list()
@@ -698,7 +717,7 @@
 				var/obj/item/bodypart/bodypart = owner.get_bodypart(zone)
 				if(bodypart && (bodypart.germ_level < germ_level))
 					if(bodypart.germ_level < INFECTION_LEVEL_TWO || DT_PROB(15, delta_time))
-						bodypart.adjust_germ_level(1 * (0.5 * delta_time))
+						bodypart.adjust_germ_level(1 * (0.5 * delta_time) * germ_gain_multiplier)
 
 /// Handle the antibiotic chem effect
 /obj/item/bodypart/proc/handle_antibiotics(delta_time, times_fired)
@@ -713,9 +732,10 @@
 		if(getorganslotefficiency(ORGAN_SLOT_ARTERY) >= ORGAN_FAILING_EFFICIENCY)
 			set_germ_level(0) //cure instantly
 	else
-		adjust_germ_level(-antibiotics * SANITIZATION_ANTIBIOTIC * (0.5 * delta_time))	//at germ_level == 500 and 50 antibiotic, this should cure the infection in 5 minutes
+		var/recovery_multiplier = owner.is_player_character() ? 2 : 1
+		adjust_germ_level(-antibiotics * SANITIZATION_ANTIBIOTIC * (0.5 * delta_time) * recovery_multiplier)	//at germ_level == 500 and 50 antibiotic, this should cure the infection in 5 minutes
 		if(owner?.body_position == LYING_DOWN)
-			adjust_germ_level(-SANITIZATION_LYING * (0.5 * delta_time))
+			adjust_germ_level(-SANITIZATION_LYING * (0.5 * delta_time) * recovery_multiplier)
 
 /obj/item/bodypart/proc/create_base_organs()
 	if(CHECK_BITFIELD(limb_flags, BODYPART_HAS_ARTERY))
