@@ -27,6 +27,69 @@
 	..()
 	set_light(3, 3, 3, l_color ="#5D3FD3")
 
+/obj/structure/flora/new_shroom
+	name = "shroom"
+	desc = "A ginormous mushroom, prized by dwarves for their shroomwood."
+	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
+	icon_state = "red"
+	base_icon_state = "red"
+	density = FALSE
+	max_integrity = 120
+	blade_dulling = DULLING_CUT
+	SET_BASE_PIXEL( 0, 0)
+	attacked_sound = 'sound/misc/woodhit.ogg'
+	destroy_sound = 'sound/misc/woodhit.ogg'
+	static_debris = list(/obj/item/grown/log/tree/small = 1)
+
+/obj/structure/flora/new_shroom/purple
+	name = "purple mushroom"
+	icon_state = "purple"
+	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
+	desc = "Mushrooms from Underdark."
+
+/obj/structure/flora/new_shroom/purplef
+	name = "purple mushrooms"
+	icon_state = "purplef"
+	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
+	desc = "Mushrooms from Underdark."
+
+/obj/structure/flora/new_shroom/purplesmall
+	name = "small purple mushroom"
+	icon_state = "purplesmall"
+	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
+	desc = "Mushrooms from Underdark."
+
+/obj/structure/flora/new_shroom/red
+	name = "red mushroom"
+	icon_state = "red"
+	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
+	desc = "Mushrooms from Underdark."
+
+/obj/structure/flora/new_shroom/cyan
+	name = "cyan mushroom"
+	icon_state = "cyan"
+	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
+	desc = "Mushrooms from Underdark."
+
+/obj/structure/flora/new_shroom/cyanf
+	name = "cyan mushrooms"
+	icon_state = "cyanf"
+	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
+	desc = "Mushrooms from Underdark."
+
+/obj/structure/flora/new_shroom/cyansmall
+	name = "small cyan mushroom"
+	icon_state = "cyansmallf"
+	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
+	desc = "Mushrooms from Underdark."
+
+/obj/structure/flora/new_shroom/redwall
+	name = "red mushroom"
+	icon_state = "redwall"
+	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
+	desc = "Mushrooms from Underdark."
+	SET_BASE_PIXEL( 0, 32)
+
 //bushes
 /obj/structure/flora/bush
 	name = "bush"

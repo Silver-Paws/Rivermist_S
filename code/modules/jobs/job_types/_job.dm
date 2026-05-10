@@ -240,6 +240,24 @@
 		return RUNE_LINK_ANTAG
 	return RUNE_LINK_CITY
 
+/datum/job/proc/try_auto_link_resurrection_rune(mob/living/spawned)
+	if(!rune_linked)
+		return FALSE
+	if(!ishuman(spawned))
+		return FALSE
+
+	var/mob/living/carbon/human/human_spawned = spawned
+	var/obj/structure/resurrection_rune/current_rune = find_resurrection_rune_by_mind(human_spawned.mind)
+	if(current_rune?.rune_tag == rune_linked)
+		GLOB.rune_roundstart_mobs |= human_spawned
+		return TRUE
+
+	if(!human_spawned.get_rune_linked(rune_linked))
+		return FALSE
+
+	GLOB.rune_roundstart_mobs |= human_spawned
+	return TRUE
+
 /datum/job/proc/requires_job_whitelist()
 	return !!job_whitelist_id
 

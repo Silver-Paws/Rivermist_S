@@ -14,12 +14,13 @@
 		return ACTION_STATE_COMPLETE
 
 	var/mob/living/pawn = controller.pawn
+	var/search_range = controller.blackboard[BB_GNOME_SEARCH_RANGE] || 7
 
 	switch(current_task)
 		if("scanning")
 			// Priority 1: Harvest ready crops
 			if(!istype(pawn, /mob/living/simple_animal/hostile/retaliate/fae/agriopylon))
-				for(var/obj/structure/soil/soil in oview(7, pawn))
+				for(var/obj/structure/soil/soil in oview(search_range, pawn))
 					if(soil.produce_ready)
 						current_target = soil
 						manager.set_movement_target(controller, soil)
@@ -27,7 +28,7 @@
 						return ACTION_STATE_CONTINUE
 
 			// Priority 2: Remove weeds
-			for(var/obj/structure/soil/soil in oview(7, pawn))
+			for(var/obj/structure/soil/soil in oview(search_range, pawn))
 				if(soil.plant && soil.weeds > 25)
 					current_target = soil
 					manager.set_movement_target(controller, soil)
@@ -37,14 +38,14 @@
 			// Priority 3: Water thirsty plants
 			var/obj/item/carried = controller.blackboard[BB_SIMPLE_CARRY_ITEM]
 			if(carried && is_water_container(carried))
-				for(var/obj/structure/soil/soil in oview(7, pawn))
+				for(var/obj/structure/soil/soil in oview(search_range, pawn))
 					if(soil.plant && !soil.plant_dead && soil.water < 150 * 0.3)
 						current_target = soil
 						manager.set_movement_target(controller, soil)
 						current_task = "watering"
 						return ACTION_STATE_CONTINUE
 			else
-				for(var/obj/structure/soil/soil in oview(7, pawn))
+				for(var/obj/structure/soil/soil in oview(search_range, pawn))
 					if(soil.plant && !soil.plant_dead && soil.water < 150 * 0.3)
 						var/obj/item/water_source = find_water_source_nearby(controller)
 						if(water_source)
@@ -55,14 +56,14 @@
 
 			// Priority 4: Plant seeds in empty soil
 			if(carried && istype(carried, /obj/item/neuFarm/seed))
-				for(var/obj/structure/soil/soil in oview(7, pawn))
+				for(var/obj/structure/soil/soil in oview(search_range, pawn))
 					if(!soil.plant)
 						current_target = soil
 						manager.set_movement_target(controller, soil)
 						current_task = "planting"
 						return ACTION_STATE_CONTINUE
 			else
-				for(var/obj/structure/soil/soil in oview(7, pawn))
+				for(var/obj/structure/soil/soil in oview(search_range, pawn))
 					if(!soil.plant)
 						var/obj/structure/closet/seed_source = find_seed_source_nearby(controller)
 						if(seed_source)
@@ -195,7 +196,8 @@
 
 /datum/action_state/farming/proc/find_water_source_nearby(datum/ai_controller/controller)
 	var/mob/living/pawn = controller.pawn
-	for(var/obj/item/reagent_containers/container in oview(7, pawn))
+	var/search_range = controller.blackboard[BB_GNOME_SEARCH_RANGE] || 7
+	for(var/obj/item/reagent_containers/container in oview(search_range, pawn))
 		if(container.anchored)
 			if(container.reagents?.has_reagent(/datum/reagent/water, 15))
 				return container
@@ -206,7 +208,8 @@
 
 /datum/action_state/farming/proc/find_seed_source_nearby(datum/ai_controller/controller)
 	var/mob/living/pawn = controller.pawn
-	for(var/obj/structure/closet/container in oview(7, pawn))
+	var/search_range = controller.blackboard[BB_GNOME_SEARCH_RANGE] || 7
+	for(var/obj/structure/closet/container in oview(search_range, pawn))
 		for(var/obj/item/neuFarm/seed/seed in container.contents)
 			return container
 	return null

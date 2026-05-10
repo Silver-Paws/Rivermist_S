@@ -25,6 +25,8 @@
 	fly.Grant(M)
 
 /obj/item/organ/wings/flight/Remove(mob/living/carbon/M, special, drop_if_replaced)
+	if(!QDELETED(fly) && fly.flying)
+		fly.fall()
 	. = ..()
 	if(QDELETED(fly))
 		return
@@ -305,7 +307,7 @@
 /datum/action/item_action/organ_action/use/flight/proc/check_damage(datum/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
 
-	if(damagetype != BRUTE || damagetype != BURN)
+	if(damagetype != BRUTE && damagetype != BURN)
 		return
 
 	if(prob(damage / 4))

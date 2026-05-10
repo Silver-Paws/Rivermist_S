@@ -36,7 +36,7 @@
 	base_intents = list(/datum/intent/simple/elementalt2_unarmed)
 	butcher_results = list()
 	faction = list("fae", FACTION_PLANTS)
-	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_FEY
 	health = 650
 	maxHealth = 650
 	melee_damage_lower = 20

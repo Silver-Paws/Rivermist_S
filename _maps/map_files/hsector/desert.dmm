@@ -12973,6 +12973,10 @@
 /obj/machinery/light/fueled/cauldron,
 /turf/open/floor/tile,
 /area/indoors/rmh_desert)
+"tbd" = (
+/obj/structure/dock_bell,
+/turf/open/floor/ruinedwood/spiral,
+/area/outdoors/rmh_desert/port)
 "tbE" = (
 /obj/item/fertilizer/ash,
 /turf/closed/wall/mineral/desert_sandstone/window,
@@ -159197,7 +159201,7 @@ wVz
 wVz
 wVz
 iGu
-lyX
+tbd
 pAp
 lyX
 pAp

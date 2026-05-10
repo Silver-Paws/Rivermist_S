@@ -537,6 +537,7 @@ SUBSYSTEM_DEF(ticker)
 			GLOB.character_ckey_list[living.real_name] = living.ckey
 		if(ishuman(living))
 			try_apply_character_post_equipment(living)
+			living.mind?.assigned_role?.try_auto_link_resurrection_rune(living)
 
 	if(livings.len)
 		addtimer(CALLBACK(src, PROC_REF(release_characters), livings), 30, TIMER_CLIENT_TIME)

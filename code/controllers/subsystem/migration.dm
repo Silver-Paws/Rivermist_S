@@ -337,9 +337,7 @@ SUBSYSTEM_DEF(migrants)
 	var/mob/living/carbon/human/human_character = character
 	//SSquirks.AssignQuirks(human_character, human_character.client, TRUE)
 
-	if(migrant_job.rune_linked)
-		if(human_character.get_rune_linked(migrant_job.rune_linked))
-			GLOB.rune_roundstart_mobs += character
+	migrant_job.try_auto_link_resurrection_rune(human_character)
 
 	var/fakekey = get_display_ckey(human_character.ckey)
 	GLOB.character_list[human_character.mobid] = "[fakekey] was [human_character.real_name] ([migrant_job.title])<BR>"

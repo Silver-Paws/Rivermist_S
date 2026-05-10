@@ -15,7 +15,7 @@
 	base_intents = list(/datum/intent/unarmed/claw)
 	butcher_results = list()
 	faction = list("fae")
-	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_FEY
 	health = 50
 	maxHealth = 50
 	ranged = FALSE

@@ -100,11 +100,7 @@
 	apply_towner_disguise(spawned, player_client)
 	. = ..()
 
-	if(!rune_linked)
-		return
-	if(!spawned.get_rune_linked(rune_linked))
-		return
-	GLOB.rune_roundstart_mobs |= spawned
+	try_auto_link_resurrection_rune(spawned)
 
 /datum/outfit/antagonist/werewolf
 	name = "Werewolf"

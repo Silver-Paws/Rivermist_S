@@ -14,7 +14,7 @@
 /datum/pet_command/agriopylon/tend_crops/execute_action(datum/ai_controller/controller)
 	var/mob/living/pylon = controller.pawn
 	controller.set_blackboard_key(BB_GNOME_CROP_MODE, TRUE)
-	pylon.visible_message(span_notice("[pylon] begins nurture the plants."))
+	pylon.visible_message(span_notice("[pylon] begins to nurture the plants."))
 	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
 	return SUBTREE_RETURN_FINISH_PLANNING
 
@@ -51,7 +51,6 @@
 		controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
 		return
 	choice = clamp(choice, 1, 15)
-	controller.set_blackboard_key(BB_GNOME_CROP_MODE, choice)
+	controller.set_blackboard_key(BB_GNOME_SEARCH_RANGE, choice)
 	pylon.visible_message(span_notice("[pylon] stretches its vines outward, sensing up to [choice] tiles away."))
 	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
-

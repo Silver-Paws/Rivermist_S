@@ -22,7 +22,7 @@
 	if(!ishuman(target) && !istype(target, /mob/living/simple_animal/hostile/retaliate/bigrat))
 		return FALSE
 
-	target.buckle_mob(src, TRUE, TRUE, FALSE, 0, 0)
+	target.buckle_mob(src, TRUE, FALSE, FALSE, 0, 0)
 	if(buckled != target)
 		return FALSE
 
@@ -66,7 +66,11 @@
 
 	if(istype(target, /obj/item/storage))
 		var/obj/item/storage/storage = target
-		forceMove(storage)
+		var/obj/item/mob_holder/holder = new(get_turf(src), src)
+		if(!SEND_SIGNAL(storage, COMSIG_TRY_STORAGE_INSERT, holder, null, TRUE, TRUE))
+			qdel(holder)
+			return FALSE
+
 		seelie_ensure_scale()
 		to_chat(src, span_notice("I tuck myself inside [storage]."))
 		return TRUE
@@ -109,6 +113,13 @@
 		return FALSE
 
 	var/atom/old_container = loc
+	var/obj/item/mob_holder/holder = old_container
+	if(istype(holder))
+		if(holder.held_mob != src || !holder.release())
+			return FALSE
+		seelie_ensure_scale()
+		return TRUE
+
 	var/turf/destination = get_turf(old_container)
 	if(!destination)
 		return FALSE

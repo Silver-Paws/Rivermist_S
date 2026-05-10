@@ -2087,9 +2087,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		to_chat(character, span_notice("*-----------------*"))
 		to_chat(character, span_notice("[CW.greeting_text]"))
 
-		if(assigned_job.rune_linked)
-			if(human_character.get_rune_linked(assigned_job.rune_linked))
-				GLOB.rune_roundstart_mobs += character
+		assigned_job.try_auto_link_resurrection_rune(human_character)
 
 	message_admins("The [CW.name] was deployed successfully with [length(CW.candidates)] participants!")
 

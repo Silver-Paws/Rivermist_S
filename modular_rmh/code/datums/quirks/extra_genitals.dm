@@ -619,7 +619,7 @@
 /datum/quirk/peculiarity/extra_genitals
 	name = "Extra Genitals"
 	desc = "I can use the full genital customizer list, mixing masculine and feminine features freely."
-	incompatible_quirks = list(/datum/quirk/peculiarity/summonable_extra_genitals)
+	incompatible_quirks = list(/datum/quirk/boon/summonable_extra_genitals)
 
 /datum/quirk/peculiarity/extra_genitals/is_available(datum/preferences/prefs)
 	. = ..()
@@ -643,31 +643,45 @@
 
 	if(human_owner.gender == MALE && has_feminine_features)
 		if(extra_genitals_visible_on_examine(human_owner, list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)))
-			LAZYADDASSOCLIST(examine_contents, EXAMINE_SECT_BODY, span_notice("[human_owner.p_they(TRUE)] [human_owner.p_have()] a second, softer set of intimate features beneath [human_owner.p_their()] form."))
+			LAZYADDASSOCLIST(examine_contents, EXAMINE_SECT_BODY, span_notice("[human_owner.p_they(TRUE)] [human_owner.p_have()] a second, womanly set of intimate features."))
 
 
-/datum/quirk/peculiarity/summonable_extra_genitals
+/datum/quirk/boon/summonable_extra_genitals
 	parent_type = /datum/quirk/peculiarity/extra_genitals_base
 	name = "Summonable Extra Genitals"
 	desc = "I can summon, customize, and dismiss an extra penis and testicles. Requires a vagina and no existing penis or testicles."
 	incompatible_quirks = list(/datum/quirk/peculiarity/extra_genitals)
+	point_value = -4
 
-/datum/quirk/peculiarity/summonable_extra_genitals/on_spawn()
+/datum/quirk/boon/summonable_extra_genitals/on_spawn()
 	. = ..()
 	if(!ishuman(owner))
 		return
 	owner.add_spell(/datum/action/cooldown/spell/undirected/summon_extra_genitals, source = src)
 
-/datum/quirk/peculiarity/summonable_extra_genitals/on_remove()
+/datum/quirk/boon/summonable_extra_genitals/on_remove()
 	if(owner)
 		owner.remove_spells(source = src)
 	return ..()
 
-/datum/quirk/peculiarity/summonable_extra_genitals/get_apply_action_label()
+/datum/quirk/boon/summonable_extra_genitals/get_apply_action_label()
 	return "Summon Set"
 
-/datum/quirk/peculiarity/summonable_extra_genitals/get_remove_action_label()
+/datum/quirk/boon/summonable_extra_genitals/get_remove_action_label()
 	return "Dismiss Set"
+
+/datum/quirk/boon/summonable_extra_genitals/on_examined(mob/user, list/P, list/examine_contents)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	if(has_active_extra_genitals())
+		if(extra_genitals_visible_on_examine(human_owner))
+			LAZYADDASSOCLIST(examine_contents, EXAMINE_SECT_BODY, span_notice("[human_owner.p_they(TRUE)] [human_owner.p_have()] summoned something extra dangling between [human_owner.p_their()] legs."))
+		else
+			LAZYADDASSOCLIST(examine_contents, EXAMINE_SECT_BODY, span_notice("[human_owner.p_they(TRUE)] [human_owner.p_have()] the telltale sign of something extra, though it is hidden beneath [human_owner.p_their()] clothing."))
+		return
+
+	LAZYADDASSOCLIST(examine_contents, EXAMINE_SECT_BODY, span_notice("[human_owner.p_they(TRUE)] [human_owner.p_have()] the faint sign of something extra waiting beneath [human_owner.p_their()] skin."))
 
 /datum/action/cooldown/spell/undirected/summon_extra_genitals
 	name = "Extra Genitals"
@@ -684,7 +698,7 @@
 	if(!ishuman(owner))
 		return FALSE
 	var/mob/living/carbon/human/human_owner = owner
-	var/datum/quirk/peculiarity/extra_genitals_base/extra_quirk = human_owner.get_quirk(/datum/quirk/peculiarity/summonable_extra_genitals)
+	var/datum/quirk/peculiarity/extra_genitals_base/extra_quirk = human_owner.get_quirk(/datum/quirk/boon/summonable_extra_genitals)
 	if(!extra_quirk)
 		to_chat(human_owner, span_warning("The extra genital quirk is missing."))
 		return FALSE
