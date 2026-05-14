@@ -1,4 +1,4 @@
-/obj/machinery/light/fueled/candle/floorcandle
+/obj/machinery/light/fueled/wallfire/floorcandle
 	name = "candles"
 	icon = 'modular_rmh/icons/obj/lighting/lighting.dmi'
 	icon_state = "floorcandle1"
@@ -7,14 +7,14 @@
 	layer = TABLE_LAYER
 	cookonme = FALSE
 
-/obj/machinery/light/fueled/candle/floorcandle/alt
+/obj/machinery/light/fueled/wallfire/floorcandle/alt
 	icon_state = "floorcandlee1"
 	base_state = "floorcandlee"
 
-/obj/machinery/light/fueled/candle/floorcandle/pink
+/obj/machinery/light/fueled/wallfire/floorcandle/pink
 	color = "#f858b5ff"
 	bulb_colour = "#ff13d8ff"
 
-/obj/machinery/light/fueled/candle/floorcandle/alt/pink
+/obj/machinery/light/fueled/wallfire/floorcandle/alt/pink
 	color = "#f858b5ff"
 	bulb_colour = "#ff13d8ff"

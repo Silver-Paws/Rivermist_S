@@ -13,12 +13,12 @@
 
 /datum/mapGeneratorModule/rmh_desert
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
-	allowed_turfs = list(/turf/open/floor/sand/dunes)
-	excluded_turfs = list(/turf/open/floor/sand/dunes/lightpath, /turf/open/floor/sand/dunes/sandbrick)
+	allowed_turfs = list(/turf/open/floor/desert/dunes)
+	excluded_turfs = list(/turf/open/floor/desert/lightpath, /turf/open/floor/desert/sandbrick)
 	spawnableAtoms = list(
 		/obj/structure/flora/grass = 6,
-		/obj/structure/flora/grass/bush/desert = 5,
-		/obj/structure/flora/grass/bush/desertshrub = 5,
+		/obj/structure/flora/roguegrass/bush/desert = 5,
+		/obj/structure/flora/roguegrass/bush/desertshrub = 5,
 		/obj/structure/sandrock/sandrock1 = 0.5,
 		/obj/structure/sandrock/sandrock2 = 0.5,
 		/obj/structure/sandrock/sandrock3 = 0.5,
@@ -29,7 +29,7 @@
 
 /datum/mapGeneratorModule/rmh_desertroad
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
-	allowed_turfs = list(/turf/open/floor/sand/dunes/lightpath)
+	allowed_turfs = list(/turf/open/floor/desert/lightpath)
 	spawnableAtoms = list(
 		/obj/item/natural/stone = 15,
 		/obj/item/natural/rock/desert = 3,
@@ -38,7 +38,7 @@
 
 /datum/mapGeneratorModule/rmh_desertgrass
 	clusterCheckFlags =  CLUSTER_CHECK_SAME_ATOMS
-	allowed_turfs = list(/turf/open/floor/sand/dunes/darkpath)
+	allowed_turfs = list(/turf/open/floor/desert/lightpath)
 	excluded_turfs = list()
 	spawnableAtoms = list(
 		/obj/structure/flora/grass = 25,

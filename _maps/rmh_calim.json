@@ -1,0 +1,22 @@
+{
+    "map_name": "Calim Desert",
+    "map_path": "map_files/rmh_calim",
+    "map_file": [
+            "rmh_calim.dmm"
+	],
+    "traits": [
+            {"Name": "Desert",
+                "Up": true},
+                {"Up": true, "Down": true},
+                {"Up": true, "Down": true,"Leylines": true},
+                {"Up": true, "Down": true,"Leylines": true},
+                {"Down": true,"Leylines": true}
+    ],
+    	"other_z": [
+		"map_files/rmh_calim/calim_island"
+	],
+    "minetype": null,
+    "space_empty_levels": 0,
+    "space_ruin_levels": 0,
+    "exclude_from_ci": true
+}

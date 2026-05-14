@@ -41,8 +41,9 @@
 	destroy_sound = 'sound/misc/woodhit.ogg'
 	static_debris = list(/obj/item/grown/log/tree/small = 1)
 
-/obj/structure/flora/new_shroom/purple
+/obj/structure/flora/shroom_tree/happy/purple
 	name = "purple mushroom"
+	base_icon_state = "purple"
 	icon_state = "purple"
 	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
 	desc = "Mushrooms from Underdark."
