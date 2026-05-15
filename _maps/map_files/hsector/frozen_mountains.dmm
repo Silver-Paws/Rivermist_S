@@ -804,8 +804,8 @@
 /turf/open/floor/herringbone,
 /area/outdoors/exposed/rmh_dwarf_keep)
 "dE" = (
-/obj/machinery/light/fueled/candle/floorcandle/alt/pink,
-/obj/machinery/light/fueled/candle/floorcandle/pink{
+/obj/machinery/light/fueled/wallfire/floorcandle/alt/pink,
+/obj/machinery/light/fueled/wallfire/floorcandle/pink{
 	pixel_y = -12
 	},
 /turf/open/floor/tile/brownbrick,
@@ -931,8 +931,8 @@
 /turf/open/floor/herringbone,
 /area/indoors/town/rmh/manor)
 "el" = (
-/obj/machinery/light/fueled/candle/floorcandle/alt,
-/obj/machinery/light/fueled/candle/floorcandle{
+/obj/machinery/light/fueled/wallfire/floorcandle/alt,
+/obj/machinery/light/fueled/wallfire/floorcandle{
 	pixel_y = -14
 	},
 /turf/open/floor/tile/harem,
@@ -951,8 +951,8 @@
 /turf/open/floor/blocks,
 /area/indoors/town/rmh/manor/basement)
 "eq" = (
-/obj/machinery/light/fueled/candle/floorcandle,
-/obj/machinery/light/fueled/candle/floorcandle{
+/obj/machinery/light/fueled/wallfire/floorcandle,
+/obj/machinery/light/fueled/wallfire/floorcandle{
 	pixel_y = -13
 	},
 /turf/open/floor/tile/brownbrick,
@@ -1497,7 +1497,7 @@
 	dir = 1;
 	icon_state = "tablewood1"
 	},
-/obj/machinery/light/fueled/candle/floorcandle/alt,
+/obj/machinery/light/fueled/wallfire/floorcandle/alt,
 /obj/item/reagent_containers/food/snacks/produce/swampweed_dried{
 	pixel_x = 4;
 	pixel_y = -5
@@ -2124,10 +2124,10 @@
 /turf/open/floor/tile/bfloorz,
 /area/indoors/town/rmh/manor)
 "jg" = (
-/obj/machinery/light/fueled/candle/floorcandle{
+/obj/machinery/light/fueled/wallfire/floorcandle{
 	pixel_y = -13
 	},
-/obj/machinery/light/fueled/candle/floorcandle/alt,
+/obj/machinery/light/fueled/wallfire/floorcandle/alt,
 /turf/open/floor/tile/brownbrick,
 /area/indoors/town/rmh/manor)
 "jh" = (
@@ -3521,7 +3521,7 @@
 /turf/open/floor/concrete,
 /area/indoors/town/rmh/manor/basement)
 "oZ" = (
-/obj/machinery/light/fueled/candle/floorcandle{
+/obj/machinery/light/fueled/wallfire/floorcandle{
 	pixel_y = -7
 	},
 /obj/effect/decal/cobbleedge{
@@ -10619,8 +10619,8 @@
 /turf/open/floor/herringbone,
 /area/indoors/cave/rmh_dwarf_keep/living)
 "Uu" = (
-/obj/machinery/light/fueled/candle/floorcandle/alt,
-/obj/machinery/light/fueled/candle/floorcandle{
+/obj/machinery/light/fueled/wallfire/floorcandle/alt,
+/obj/machinery/light/fueled/wallfire/floorcandle{
 	pixel_y = -14
 	},
 /turf/open/floor/tile/brownbrick,
@@ -11325,8 +11325,8 @@
 /turf/open/floor/tile,
 /area/indoors/town/rmh/manor/basement)
 "Xn" = (
-/obj/machinery/light/fueled/candle/floorcandle/alt,
-/obj/machinery/light/fueled/candle/floorcandle{
+/obj/machinery/light/fueled/wallfire/floorcandle/alt,
+/obj/machinery/light/fueled/wallfire/floorcandle{
 	pixel_y = -13
 	},
 /turf/open/floor/tile/brownbrick,
@@ -11502,10 +11502,10 @@
 /turf/open/floor/tile/checkeralt,
 /area/indoors/town/rmh/manor)
 "XV" = (
-/obj/machinery/light/fueled/candle/floorcandle{
+/obj/machinery/light/fueled/wallfire/floorcandle{
 	pixel_y = -13
 	},
-/obj/machinery/light/fueled/candle/floorcandle/alt,
+/obj/machinery/light/fueled/wallfire/floorcandle/alt,
 /turf/open/floor/tile/harem,
 /area/indoors/town/rmh/manor)
 "XX" = (
@@ -11569,7 +11569,7 @@
 /turf/open/floor/tile/brownbrick,
 /area/indoors/cave/rmh_dwarf_keep/smelters)
 "Yh" = (
-/obj/machinery/light/fueled/candle/floorcandle,
+/obj/machinery/light/fueled/wallfire/floorcandle,
 /turf/open/floor/tile/harem2,
 /area/indoors/town/rmh/manor/bath)
 "Yi" = (

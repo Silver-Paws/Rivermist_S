@@ -5193,7 +5193,7 @@
 	pixel_y = -2
 	},
 /obj/structure/fake_machine/atm,
-/obj/machinery/light/fueled/candle/floorcandle,
+/obj/machinery/light/fueled/wallfire/floorcandle,
 /turf/open/floor/woodturned,
 /area/indoors/town/rmh/merchant)
 "ceq" = (
@@ -6950,7 +6950,7 @@
 /turf/open/floor/concrete,
 /area/outdoors/rmh_field/rmh_mageporch)
 "cOp" = (
-/obj/machinery/light/fueled/candle/floorcandle/alt{
+/obj/machinery/light/fueled/wallfire/floorcandle/alt{
 	pixel_y = -17
 	},
 /obj/structure/fluff/statue/small,
@@ -8933,7 +8933,7 @@
 /obj/structure/water_pipe{
 	plane = -10
 	},
-/obj/machinery/light/fueled/candle/floorcandle/alt{
+/obj/machinery/light/fueled/wallfire/floorcandle/alt{
 	pixel_y = -18
 	},
 /turf/closed/wall/mineral/pipe,
@@ -9391,7 +9391,7 @@
 /area/outdoors/exposed/town/rmh/farm)
 "dFa" = (
 /obj/structure/flora/grass/thorn_bush,
-/turf/open/floor/sand/desertsand,
+/turf/open/floor/desert/darkpath,
 /area/under/town/rmh/basement/mages)
 "dFf" = (
 /obj/structure/bed/mediocre,
@@ -13548,7 +13548,7 @@
 /turf/open/floor/metal/alt,
 /area/under/town/rmh/basement/blacksmith)
 "fhZ" = (
-/obj/machinery/light/fueled/candle/floorcandle{
+/obj/machinery/light/fueled/wallfire/floorcandle{
 	pixel_y = -13
 	},
 /turf/closed/wall/mineral/craftstone,
@@ -14347,7 +14347,7 @@
 /turf/open/floor/cobblerock,
 /area/under/rmh_dungeon/catacombs_church)
 "fyT" = (
-/turf/open/floor/sand/sandbrick,
+/turf/open/floor/desert/sandbrick,
 /area/under/town/rmh/basement/mages)
 "fyY" = (
 /obj/machinery/light/fueled/wallfire/candle/l,
@@ -19099,7 +19099,7 @@
 	dir = 4;
 	pixel_y = 0
 	},
-/obj/machinery/light/fueled/candle/floorcandle,
+/obj/machinery/light/fueled/wallfire/floorcandle,
 /turf/open/floor/cobblerock,
 /area/under/rmh_dungeon/arena)
 "hji" = (
@@ -19210,7 +19210,7 @@
 /area/indoors/cave/rmh_cave/minotaur)
 "hlA" = (
 /obj/machinery/light/fueled/firebowl/stump,
-/turf/open/floor/sand/desertsand,
+/turf/open/floor/desert/darkpath,
 /area/under/town/rmh/basement/mages)
 "hlB" = (
 /obj/structure/flora/newleaf,
@@ -22479,7 +22479,7 @@
 /turf/open/water/swamp,
 /area/outdoors/rmh_field/north_mountain)
 "ivK" = (
-/obj/machinery/light/fueled/candle/floorcandle,
+/obj/machinery/light/fueled/wallfire/floorcandle,
 /turf/open/floor/cobblerock,
 /area/under/rmh_dungeon/arena)
 "ivU" = (
@@ -24052,7 +24052,7 @@
 /turf/open/floor/rooftop/green/west,
 /area/outdoors/town/rmh/roofs)
 "iXG" = (
-/obj/machinery/light/fueled/candle/floorcandle/alt{
+/obj/machinery/light/fueled/wallfire/floorcandle/alt{
 	pixel_y = -2
 	},
 /obj/structure/rack/shelf/notdense{
@@ -24442,7 +24442,7 @@
 /turf/open/floor/cobblerock,
 /area/under/cavewet)
 "jgb" = (
-/obj/machinery/light/fueled/candle/floorcandle,
+/obj/machinery/light/fueled/wallfire/floorcandle,
 /turf/open/floor/church/green,
 /area/under/rmh_dungeon/arena)
 "jgd" = (
@@ -25059,7 +25059,7 @@
 /turf/open/floor/ruinedwood/turned,
 /area/outdoors/town/rmh/roofs)
 "juh" = (
-/turf/open/floor/sand/desertsand,
+/turf/open/floor/desert/darkpath,
 /area/under/town/rmh/basement/mages)
 "juo" = (
 /obj/structure/roguerock,
@@ -25532,7 +25532,7 @@
 /turf/open/floor/tile/brownbrick,
 /area/indoors/town/rmh/magician)
 "jFp" = (
-/obj/machinery/light/fueled/candle/floorcandle/alt{
+/obj/machinery/light/fueled/wallfire/floorcandle/alt{
 	pixel_y = -18
 	},
 /turf/closed/wall/mineral/craftstone,
@@ -30497,7 +30497,7 @@
 /area/under/cavewet)
 "lsB" = (
 /obj/structure/fluff/statue/selune,
-/obj/machinery/light/fueled/candle/floorcandle{
+/obj/machinery/light/fueled/wallfire/floorcandle{
 	pixel_y = 5
 	},
 /turf/open/floor/concrete,
@@ -30702,7 +30702,7 @@
 /turf/open/floor/wood,
 /area/indoors/town/rmh)
 "lve" = (
-/obj/machinery/light/fueled/candle/floorcandle,
+/obj/machinery/light/fueled/wallfire/floorcandle,
 /turf/open/floor/cobble,
 /area/under/rmh_dungeon/arena)
 "lvf" = (
@@ -31061,7 +31061,7 @@
 /area/indoors/cave/rmh_cave/east)
 "lEb" = (
 /obj/structure/table/wood/counter/end,
-/obj/machinery/light/fueled/candle/floorcandle,
+/obj/machinery/light/fueled/wallfire/floorcandle,
 /obj/effect/decal/wood/herringbone,
 /turf/open/floor/ruinedwood/spiral,
 /area/indoors)
@@ -37377,7 +37377,7 @@
 /obj/effect/decal/cobblerockedge{
 	dir = 10
 	},
-/obj/machinery/light/fueled/candle/floorcandle,
+/obj/machinery/light/fueled/wallfire/floorcandle,
 /turf/open/floor/cobble,
 /area/under/rmh_dungeon/arena)
 "nWi" = (
@@ -41066,7 +41066,7 @@
 /turf/open/floor/cobble,
 /area/under/rmh_dungeon/catacombs_town)
 "piO" = (
-/obj/machinery/light/fueled/candle/floorcandle/alt{
+/obj/machinery/light/fueled/wallfire/floorcandle/alt{
 	pixel_x = 32
 	},
 /turf/open/floor/church/green,
@@ -47323,7 +47323,7 @@
 /turf/open/floor/herringbone,
 /area/under/rmh_dungeon/jergal)
 "rti" = (
-/obj/machinery/light/fueled/candle/floorcandle/alt{
+/obj/machinery/light/fueled/wallfire/floorcandle/alt{
 	pixel_y = 14
 	},
 /turf/open/floor/church/green,
@@ -49581,7 +49581,7 @@
 	pixel_y = 0;
 	pixel_x = -32
 	},
-/obj/machinery/light/fueled/candle/floorcandle/alt{
+/obj/machinery/light/fueled/wallfire/floorcandle/alt{
 	pixel_x = -32
 	},
 /obj/effect/decal/edge{
@@ -53637,7 +53637,7 @@
 	},
 /area/outdoors/rmh_field/west)
 "tKm" = (
-/turf/open/floor/sand/desertsand/sandpath,
+/turf/open/floor/desert/lightpath,
 /area/under/town/rmh/basement/mages)
 "tKp" = (
 /obj/effect/decal/cobbleedge/mossy{
@@ -57564,7 +57564,7 @@
 /obj/effect/decal/cobblerockedge{
 	dir = 6
 	},
-/obj/machinery/light/fueled/candle/floorcandle,
+/obj/machinery/light/fueled/wallfire/floorcandle,
 /turf/open/floor/blocks,
 /area/under/rmh_dungeon/arena)
 "vlE" = (
@@ -58294,8 +58294,8 @@
 /turf/open/floor/cobblerock,
 /area/under/town/rmh/basement/farm)
 "vzC" = (
-/obj/machinery/light/fueled/candle/floorcandle,
-/obj/machinery/light/fueled/candle/floorcandle/alt{
+/obj/machinery/light/fueled/wallfire/floorcandle,
+/obj/machinery/light/fueled/wallfire/floorcandle/alt{
 	pixel_y = 14
 	},
 /turf/open/floor/blocks,
@@ -59423,7 +59423,7 @@
 /turf/open/floor/cobble,
 /area/under/town/rmh/basement/basement)
 "vVy" = (
-/obj/machinery/light/fueled/candle/floorcandle/alt,
+/obj/machinery/light/fueled/wallfire/floorcandle/alt,
 /turf/closed/wall/mineral/stone,
 /area/under/rmh_dungeon/arena)
 "vVM" = (
@@ -65689,7 +65689,7 @@
 	},
 /area/outdoors/town/rmh/roofs)
 "yhy" = (
-/obj/machinery/light/fueled/candle/floorcandle/alt,
+/obj/machinery/light/fueled/wallfire/floorcandle/alt,
 /turf/closed/wall/mineral/stonebrick,
 /area/indoors/town/rmh/library)
 "yhz" = (
