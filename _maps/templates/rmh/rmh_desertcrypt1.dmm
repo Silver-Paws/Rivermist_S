@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "am" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /turf/open/floor/tile/brick,
@@ -25,7 +25,7 @@
 /turf/open/floor/tile/harem1,
 /area/under/rmh_desert/ziqurat)
 "bW" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /turf/open/floor/tile/brownbrick,
@@ -55,7 +55,7 @@
 	icon_state = "redchurchtable";
 	dir = 8
 	},
-/obj/machinery/light/fueled/candle/floorcandle/alt,
+/obj/machinery/light/fueled/wallfire/floorcandle/alt,
 /turf/open/floor/tile/harem1,
 /area/under/rmh_desert/ziqurat)
 "cX" = (
@@ -132,7 +132,7 @@
 /turf/open/floor/tile/harem1,
 /area/under/rmh_desert/ziqurat)
 "hE" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /obj/structure/closet/crate/chest/neu_fancy,
@@ -148,7 +148,7 @@
 /turf/open/floor/sandstone,
 /area/under/rmh_desert/ziqurat)
 "iY" = (
-/obj/item/cushion/desert3,
+/obj/item/cushion/zybantine,
 /turf/open/floor/tile/diamond,
 /area/under/rmh_desert/ziqurat)
 "jl" = (
@@ -196,7 +196,7 @@
 /turf/open/floor/tile/harem1,
 /area/under/rmh_desert/ziqurat)
 "lY" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /obj/effect/spawner/map_spawner/loot/dungeon/medical,
@@ -369,7 +369,7 @@
 /turf/open/floor/sandstone,
 /area/under/rmh_desert/ziqurat)
 "yj" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /turf/open/floor/tile/brick,
@@ -454,14 +454,14 @@
 	icon_state = "redchurchtable";
 	dir = 1
 	},
-/obj/machinery/light/fueled/candle/floorcandle{
+/obj/machinery/light/fueled/wallfire/floorcandle{
 	pixel_y = 1
 	},
 /turf/open/floor/tile/harem1,
 /area/under/rmh_desert/ziqurat)
 "Eu" = (
 /obj/structure/closet/crate/coffin/sarcophagus,
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /obj/effect/spawner/map_spawner/loot/potion_stats,
@@ -493,7 +493,7 @@
 /turf/open/floor/sandstone,
 /area/under/rmh_desert/ziqurat)
 "Gs" = (
-/obj/item/cushion/desert3,
+/obj/item/cushion/zybantine,
 /turf/open/floor/sandstone,
 /area/under/rmh_desert/ziqurat)
 "GD" = (
@@ -702,7 +702,7 @@
 /area/under/rmh_desert/ziqurat)
 "Yb" = (
 /obj/structure/closet/crate/coffin/sarcophagus,
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /obj/effect/spawner/map_spawner/loot/potion_vitals,

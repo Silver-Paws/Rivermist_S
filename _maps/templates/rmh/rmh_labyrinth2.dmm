@@ -6,7 +6,7 @@
 /turf/open/floor/sandstone,
 /area/under/rmh_desert/ziqurat)
 "aM" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /obj/effect/spawner/map_spawner/loot/dungeon/medical,
@@ -36,7 +36,7 @@
 /area/under/rmh_desert/ziqurat)
 "ic" = (
 /obj/structure/redstone/pressure_plate,
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /turf/open/floor/sandstone,
@@ -49,20 +49,20 @@
 /turf/open/floor/tile/brownbrick,
 /area/under/rmh_desert/ziqurat)
 "jF" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /obj/effect/spawner/map_spawner/loot/dungeon/tools,
 /turf/open/floor/tile/bfloorz,
 /area/under/rmh_desert/ziqurat)
 "jY" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /turf/open/floor/tile,
 /area/under/rmh_desert/ziqurat)
 "kG" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /turf/open/floor/tile,
@@ -89,14 +89,14 @@
 /turf/open/floor/tile,
 /area/under/rmh_desert/ziqurat)
 "sC" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /obj/machinery/light/fueled/torchholder/l,
 /turf/open/floor/tile,
 /area/under/rmh_desert/ziqurat)
 "to" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /obj/structure/door/desertdoorperm,
@@ -133,7 +133,7 @@
 /turf/open/floor/sandstone,
 /area/under/rmh_desert/ziqurat)
 "zL" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /turf/open/floor/sandstone,
@@ -156,7 +156,7 @@
 /turf/open/floor/sandstone_tile,
 /area/under/rmh_desert/ziqurat)
 "Dx" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /turf/open/floor/sandstone,
@@ -191,7 +191,7 @@
 /turf/closed/wall/mineral/desert_soapstone,
 /area/under/rmh_desert/ziqurat)
 "GD" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_x = -32
 	},
 /turf/open/floor/tile/brownbrick,
@@ -224,7 +224,7 @@
 /turf/open/floor/tile/brownbrick,
 /area/under/rmh_desert/ziqurat)
 "Jg" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /obj/machinery/light/fueled/torchholder/l,
@@ -237,7 +237,7 @@
 /turf/open/floor/tile/brownbrick,
 /area/under/rmh_desert/ziqurat)
 "JK" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /turf/open/floor/tile/brownbrick,
@@ -305,13 +305,13 @@
 /obj/effect/spawner/trap{
 	alpha = 0
 	},
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /turf/open/floor/sandstone,
 /area/under/rmh_desert/ziqurat)
 "WM" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /turf/open/floor/tile/brownbrick,
@@ -336,7 +336,7 @@
 /turf/closed/wall/mineral/desert_soapstone,
 /area/under/rmh_desert/ziqurat)
 "Zw" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /obj/effect/spawner/map_spawner/loot/dungeon/clothing,

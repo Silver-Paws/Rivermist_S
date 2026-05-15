@@ -1,35 +1,39 @@
 //drape
+/obj/structure/drape/
+	plane = -5
+
 /obj/structure/drape/desert
 	name = "desert drape"
 	desc = "Made from durable fabric."
-	icon = 'modular_rmh/icons/obj/structures/drapes.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/drapes.dmi'
 	icon_state = "desertdrape"
 
-/obj/structure/drape/desert2
-	name = "desert drape"
+/obj/structure/drape/zybantine
+	name = "zybantine drape"
 	desc = "Made from prestigious fabric."
-	icon = 'modular_rmh/icons/obj/structures/drapes.dmi'
-	icon_state = "desertdrape1"
+	icon = 'modular_ratwood/modular_deserttown/icons/drapes.dmi'
+	icon_state = "zybantinedrape1"
+	color = "#a3a3a3"
 
-/obj/structure/drape/desert2/Initialize()
+/obj/structure/drape/zybantine/Initialize()
 	. = ..()
-	icon_state = "desertdrape[rand(1, 2)]"
+	icon_state = "zybantinedrape[rand(1, 2)]"
 
 //cushion
 /obj/item/cushion/desert1
 	name = "desert cushion"
-	icon = 'modular_rmh/icons/obj/structures/cushions.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/cushions.dmi'
 	icon_state = "desertcushion1"
 
 /obj/item/cushion/desert2
 	name = "desert cushion"
-	icon = 'modular_rmh/icons/obj/structures/cushions.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/cushions.dmi'
 	icon_state = "desertcushion2"
 
-/obj/item/cushion/desert3
-	name = "desert cushion"
-	icon = 'modular_rmh/icons/obj/structures/cushions.dmi'
-	icon_state = "desertcushion3"
+/obj/item/cushion/zybantine
+	name = "zybantine cushion"
+	icon = 'modular_ratwood/modular_deserttown/icons/cushions.dmi'
+	icon_state = "zybantinecushion"
 
 //kegs
 
@@ -38,20 +42,23 @@
 
 /obj/structure/fermentation_keg/sandpot
 	name = "sand pot"
-	desc = "A common clay pot used for storing and sometimes fermenting fluids. Favoured over wooden barrels in the desert of Calimshan due to the relative scarcity of wood."
-	icon = 'modular_rmh/icons/obj/structures/pots.dmi'
+	desc = "A common clay pot used for storing and sometimes fermenting fluids. Favoured over wooden barrels in the desert of Zybantium due to the relative scarcity of wood."
+	icon = 'modular_ratwood/modular_deserttown/icons/pots.dmi'
 	icon_state = "sandpot1"
+
+
 
 /obj/structure/fermentation_keg/fancypot
 	name = "fancy pot"
 	desc = "Decorative and Practical!"
-	icon = 'modular_rmh/icons/obj/structures/pots.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/pots.dmi'
 	icon_state = "fancypot1"
 
 /obj/item/reagent_containers/glass/bucket/tinypot
 	name = "tiny pot"
-	icon = 'modular_rmh/icons/obj/structures/pots.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/pots.dmi'
 	icon_state = "tinypot1"
+
 
 /obj/structure/fermentation_keg/sandpot/Initialize()
 	. = ..()
@@ -60,6 +67,7 @@
 /obj/structure/fermentation_keg/fancypot/Initialize()
 	. = ..()
 	icon_state = "fancypot[rand(1, 2)]"
+
 
 // Subtypes for sandpots
 /obj/structure/fermentation_keg/sandpot/random/water/Initialize()
@@ -124,24 +132,24 @@
 	icon_state = "fancypot2"
 	reagents.add_reagent(/datum/reagent/consumable/ethanol/wine,900)
 
-
 ///
-/obj/machinery/light/fueled/wallfire/desert
+/obj/machinery/light/rogue/campfire/fireplace/desert
 	name = "desert fireplace"
-	icon = 'modular_rmh/icons/obj/lighting/fireplace.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/fireplace.dmi'
 	icon_state = "fireplace1"
 	base_state = "fireplace"
 	fueluse = 0
 	density = FALSE
 	anchored = TRUE
-	cookonme = FALSE
+//	cookonme = FALSE
+
 
 ///////////
 
 /obj/structure/pillar
 	name = "pillar"
 	desc = ""
-	icon = 'modular_rmh/icons/obj/structures/sandpillar.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/sandpillar.dmi'
 	opacity = 0
 	max_integrity = 1000
 	density = TRUE
@@ -163,35 +171,44 @@
 
 ////chairs
 
-/obj/item/chair/wood/desert
-	name = "desert chair"
-	icon = 'modular_rmh/icons/obj/structures/chairs.dmi'
-	icon_state = "desertchair"
-	origin_type = /obj/structure/chair/wood/desert
+/obj/structure/chair/wood/zybantine
+	name = "zybantine chair"
+	icon = 'modular_ratwood/modular_deserttown/icons/chairs.dmi'
+	icon_state = "zybantinechair"
 
-/obj/structure/chair/wood/desert
-	name = "desert chair"
-	icon = 'modular_rmh/icons/obj/structures/chairs.dmi'
-	icon_state = "desertchair"
-
-/obj/structure/chair/bench/throne/desert
-	name = "desert throne"
-	icon_state = "desertthrone"
-	icon = 'modular_rmh/icons/obj/structures/throne.dmi'
+/obj/structure/chair/wood/rogue/throne/zybantine
+	name = "zybantine throne"
+	icon_state = "zybantinethrone"
+	icon = 'modular_ratwood/modular_deserttown/icons/throne.dmi'
 	pixel_x = -16
 
-////sofa
-/obj/structure/chair/desert_sofa/right
-	name = "desert sofa"
-	icon_state = "desertsofa_right"
-	icon = 'modular_rmh/icons/obj/structures/chairs.dmi'
+
+/obj/structure/chair/sofa
+	name = "old ratty sofa"
 	buildstackamount = 1
 	item_chair = null
 
-/obj/structure/chair/desert_sofa/left
-	name = "desert sofa"
-	icon_state = "desertsofa_left"
-	icon = 'modular_rmh/icons/obj/structures/chairs.dmi'
+/obj/structure/chair/sofa/left
+	icon_state = "sofaend_left"
+
+/obj/structure/chair/sofa/right
+	icon_state = "sofaend_right"
+
+/obj/structure/chair/sofa/corner
+	icon_state = "sofacorner"
+
+
+/obj/structure/chair/zybantine_sofa/right
+	name = "zybantine sofa"
+	icon_state = "zybantinesofa_right"
+	icon = 'modular_ratwood/modular_deserttown/icons/chairs.dmi'
+	buildstackamount = 1
+	item_chair = null
+
+/obj/structure/chair/zybantine_sofa/left
+	name = "zybantine sofa"
+	icon_state = "zybantinesofa_left"
+	icon = 'modular_ratwood/modular_deserttown/icons/chairs.dmi'
 	buildstackamount = 1
 	item_chair = null
 
@@ -201,7 +218,7 @@
 	name = "sandrock"
 	desc = "A large desert rock protuding from the ground."
 	icon_state = "rock1"
-	icon = 'modular_rmh/icons/obj/structures/sandrock.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/sandrock.dmi'
 	opacity = 0
 	max_integrity = 1000
 	density = TRUE
@@ -232,63 +249,136 @@
 
 /obj/item/natural/rock/desert
 	name = "sand rock"
-	icon = 'modular_rmh/icons/obj/structures/small_sandrock.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/small_sandrock.dmi'
 	icon_state = "sandrock1"
 
 /obj/item/natural/rock/desert/Initialize()
 	. = ..()
 	icon_state = "sandrock[rand(1,2)]"
 
+
 //bush
 
-/obj/structure/flora/grass/bush/desert
+/obj/structure/flora/roguegrass/bush/desert
 	name = "saigahorn"
 	desc = ""
-	icon = 'modular_rmh/icons/obj/flora/desertflora.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/flora.dmi'
 	icon_state = "saigahorn1"
 
-/obj/structure/flora/grass/bush/desert/Initialize()
+/obj/structure/flora/roguegrass/bush/desert/Initialize()
 	. = ..()
 	icon_state = "saigahorn[rand(1, 3)]"
 
-/obj/structure/flora/grass/bush/desertshrub
+/obj/structure/flora/roguegrass/bush/desertshrub
 	name = "treelet"
 	desc = "A rounded bush-like tree or perhaps tree-like bush native to Zybantium. A valuable source of wood in the sparse desert."
-	icon = 'modular_rmh/icons/obj/flora/desertflora.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/flora.dmi'
 	icon_state = "bushshrub1"
 	attacked_sound = 'sound/misc/woodhit.ogg'
 	max_integrity = 100
 	debris = list(/obj/item/natural/fibers = 1, /obj/item/grown/log/tree/stick = 1, /obj/item/grown/log/tree/small = 1)
 
-/obj/structure/flora/grass/bush/desertshrub/Initialize()
+/obj/structure/flora/roguegrass/bush/desertshrub/Initialize()
 	. = ..()
 	icon_state = "bushshrub[pick(1,2)]"
 
-/obj/structure/flora/tree/palm
+/obj/structure/flora/roguetree/palm
 	name = "palm tree"
 	desc = "Scant, precious shade."
-	icon = 'modular_rmh/icons/obj/flora/bigpalm.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/bigpalm.dmi'
 	icon_state = "palm1"
-	stump_type = /obj/structure/flora/tree/stump/palm
+//	stump_type = /obj/structure/flora/roguetree/stump/palm
 	pixel_x = -32
 	opacity = 0 //palm trees are skinny
+	density = 0
 
-/obj/structure/flora/tree/palm/Initialize()
+/obj/structure/flora/roguetree/palm/Initialize()
 	. = ..()
 	icon_state = "palm[rand(1,2)]"
 
-/obj/structure/flora/tree/stump/palm
+/obj/structure/flora/roguetree/stump/palm
 	name = "tree stump"
 	desc = "Shade no more."
 	icon_state = "palmstump1"
-	icon = 'modular_rmh/icons/obj/flora/bigpalm.dmi'
-	stump_type = null
+	icon = 'modular_ratwood/modular_deserttown/icons/bigpalm.dmi'
+//	stump_type = null
 	pixel_x = -32
+	density = 0
+
+/obj/structure/flora/roguetree/stump/palm/Initialize()
+	. = ..()
+	icon_state = "palmstump[rand(1,2)]"
+
+/obj/structure/flora/roguegrass/bush/wall/tall/desert
+	icon = 'modular_ratwood/modular_deserttown/icons/alt/foliagetall.dmi'
+
+// /obj/structure/flora/roguegrass/bush/wall/tall/desert/Initialize()
+// 	. = ..()
+// 	icon_state = "tallbush[pick(1,2)]"
 
 //Stairs
 
 /obj/structure/stairs/desert
 	name = "sand stairs"
-	icon = 'modular_rmh/icons/obj/structures/sandstairs.dmi'
+	icon = 'modular_ratwood/modular_deserttown/icons/sandstairs.dmi'
 	icon_state = "sandstairs"
 	max_integrity = 600
+
+//If we need to change the number of rooms
+// /obj/structure/roguemachine/vendor/inndesert
+// 	keycontrol = "tavern"
+
+// /obj/structure/roguemachine/vendor/inndesert/Initialize()
+// 	. = ..()
+
+// 	// Add room keys with a price of 20
+// 	for (var/X in list(/obj/item/roguekey/roomi, /obj/item/roguekey/roomii, /obj/item/roguekey/roomiii, /obj/item/roguekey/roomiv, /obj/item/roguekey/roomv))
+// 		var/obj/P = new X(src)
+// 		held_items[P] = list()
+// 		held_items[P]["NAME"] = P.name
+// 		held_items[P]["PRICE"] = 20
+
+// 	// Add fancy keys with a price of 100
+// 	for (var/Y in list(/obj/item/roguekey/fancyroomi, /obj/item/roguekey/fancyroomii, /obj/item/roguekey/fancyroomiii))
+// 		var/obj/Q = new Y(src)
+// 		held_items[Q] = list()
+// 		held_items[Q]["NAME"] = Q.name
+// 		held_items[Q]["PRICE"] = 100
+
+// 	update_icon()
+
+//weapons
+
+/obj/structure/fluff/walldeco/customflag/deserttown
+	name = "Al-Ashur flag"
+
+
+/obj/item/rogueweapon/shield/iron/zybantine
+	name = "brass shield"
+	desc = "A sturdy shield of Zybantium make."
+	icon = 'modular_ratwood/modular_deserttown/icons/items/desertweapons32.dmi'
+	icon_state = "zybshield"
+	max_integrity = 250
+	blade_dulling = DULLING_BASH
+//	possible_item_intents = list(SHIELD_BASH_METAL, SHIELD_BLOCK, SHIELD_SMASH_METAL)
+	sellprice = 30
+	smeltresult = /obj/item/ingot/bronze
+
+/obj/item/rogueweapon/woodstaff/riddle_of_steel/serpent
+	name = "\improper Staff of the Serpent"
+	desc = "A mysterious golden staff shaped like a snake. You could swear its staring at you"
+	icon = 'modular_ratwood/modular_deserttown/icons/items/desertweapons64.dmi'
+	icon_state = "snakestaff"
+
+
+// /obj/item/rogueweapon/sword/long/kriegmesser/zybantine
+// 	name = "heavy scimitar"
+// 	desc = "A large zybantine sword with a single-edged blade, a crossguard and a knife-like hilt. "
+// 	icon = 'modular_ratwood/modular_deserttown/icons/items/desertweapons64.dmi'
+// 	icon_state = "Kmesser"
+
+/obj/structure/fluff/traveltile/alashurentrance
+	desc = "Awake from this dream. The road to Al-Ashur awaits."
+	name = "To Al-Ashur"
+	icon = 'icons/roguetown/misc/structure.dmi'
+	icon_state = "underworldportal"

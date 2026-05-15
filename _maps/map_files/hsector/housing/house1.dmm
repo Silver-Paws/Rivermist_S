@@ -2,13 +2,30 @@
 "a" = (
 /turf/closed/wall/mineral/wooddark,
 /area/indoors/town/rmh)
+"b" = (
+/obj/structure/window/openclose/reinforced{
+	dir = 8
+	},
+/obj/structure/curtain/bounty{
+	color = "grey"
+	},
+/turf/open/floor/ruinedwood,
+/area)
 "c" = (
 /turf/closed/wall/mineral/wooddark/end{
 	dir = 1
 	},
 /area/indoors/town/rmh)
+"e" = (
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/woodturned,
+/area/indoors/town/rmh)
 "f" = (
 /turf/closed/wall/mineral/stonebrick,
+/area/indoors/town/rmh)
+"g" = (
+/obj/structure/fluff/railing/corner/north_east,
+/turf/open/floor/woodturned,
 /area/indoors/town/rmh)
 "i" = (
 /obj/structure/stairs{
@@ -40,12 +57,24 @@
 	},
 /turf/open/floor/ruinedwood,
 /area/indoors/town/rmh)
+"r" = (
+/turf/closed/wall/mineral/wooddark/vertical,
+/area)
+"s" = (
+/turf/open/openspace,
+/area)
 "t" = (
 /turf/closed/wall/mineral/decowood,
 /area/indoors/town/rmh)
+"u" = (
+/turf/closed/wall/mineral/wooddark,
+/area)
 "v" = (
 /turf/open/floor/concrete,
 /area/indoors/town/rmh)
+"x" = (
+/turf/closed/wall/mineral/wood,
+/area)
 "z" = (
 /obj/structure/window/openclose/reinforced{
 	dir = 4
@@ -55,8 +84,36 @@
 	},
 /turf/open/floor/ruinedwood,
 /area/indoors/town/rmh)
+"B" = (
+/turf/open/floor/woodturned,
+/area)
+"C" = (
+/obj/structure/fluff/railing/corner{
+	dir = 9
+	},
+/turf/open/floor/woodturned,
+/area)
+"D" = (
+/obj/structure/window/openclose/reinforced{
+	dir = 1
+	},
+/obj/structure/curtain/bounty{
+	color = "grey"
+	},
+/turf/open/floor/ruinedwood,
+/area)
 "E" = (
 /turf/open/floor/tile/brick,
+/area/indoors/town/rmh)
+"F" = (
+/obj/structure/stairs/ccwdown,
+/turf/open/floor/woodturned,
+/area)
+"G" = (
+/obj/structure/fluff/railing/corner{
+	dir = 9
+	},
+/turf/open/floor/woodturned,
 /area/indoors/town/rmh)
 "H" = (
 /obj/structure/window/openclose/reinforced{
@@ -67,6 +124,23 @@
 	},
 /turf/open/floor/ruinedwood,
 /area/indoors/town/rmh)
+"I" = (
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/woodturned,
+/area)
+"J" = (
+/obj/structure/stairs{
+	dir = 4
+	},
+/turf/open/floor/woodturned,
+/area/indoors/town/rmh)
+"L" = (
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/woodturned,
+/area)
+"M" = (
+/turf/closed/wall/mineral/decowood,
+/area)
 "O" = (
 /turf/closed/wall/mineral/wooddark/vertical,
 /area/indoors/town/rmh)
@@ -82,6 +156,14 @@
 /turf/closed/wall/mineral/wooddark/vertical,
 /area/indoors/town/rmh)
 "U" = (
+/turf/open/floor/woodturned,
+/area/indoors/town/rmh)
+"V" = (
+/obj/structure/fluff/railing/corner/north_east,
+/turf/open/floor/woodturned,
+/area)
+"W" = (
+/obj/structure/fluff/railing/border/north,
 /turf/open/floor/woodturned,
 /area/indoors/town/rmh)
 "X" = (
@@ -182,7 +264,7 @@ O
 (4,1,2) = {"
 a
 U
-U
+g
 U
 m
 i
@@ -190,8 +272,8 @@ a
 "}
 (5,1,2) = {"
 f
-U
-U
+J
+W
 U
 U
 U
@@ -199,8 +281,8 @@ O
 "}
 (6,1,2) = {"
 f
-U
-U
+e
+G
 U
 U
 U
@@ -214,4 +296,68 @@ a
 H
 t
 a
+"}
+
+(1,1,3) = {"
+u
+x
+x
+x
+x
+x
+u
+"}
+(2,1,3) = {"
+x
+B
+B
+B
+B
+B
+r
+"}
+(3,1,3) = {"
+x
+B
+B
+B
+B
+B
+D
+"}
+(4,1,3) = {"
+u
+I
+V
+B
+B
+B
+u
+"}
+(5,1,3) = {"
+x
+s
+L
+B
+B
+B
+D
+"}
+(6,1,3) = {"
+x
+F
+C
+B
+B
+B
+r
+"}
+(7,1,3) = {"
+u
+M
+b
+u
+x
+x
+u
 "}

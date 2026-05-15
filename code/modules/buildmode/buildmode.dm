@@ -70,6 +70,7 @@ GLOBAL_LIST_EMPTY(buildmode_appearance_cache)
 	holder.click_intercept = src
 	mode.enter_mode(src)
 	current_category = BM_CATEGORY_TURF
+	open_item_browser()
 	registered_mob = holder.mob
 	if(registered_mob)
 		RegisterSignal(registered_mob, COMSIG_MOUSE_ENTERED, PROC_REF(on_mouse_moved))

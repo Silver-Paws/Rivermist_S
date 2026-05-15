@@ -4,7 +4,7 @@
 /turf/open/floor/tile/brownbrick,
 /area/under/rmh_desert/ziqurat)
 "b" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /turf/open/floor/sandstone,
@@ -31,14 +31,14 @@
 /turf/open/floor/sandstone,
 /area/under/rmh_desert/ziqurat)
 "g" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /obj/machinery/light/fueled/torchholder/l,
 /turf/open/floor/tile,
 /area/under/rmh_desert/ziqurat)
 "h" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = -32
 	},
 /turf/open/floor/tile,
@@ -58,7 +58,7 @@
 /turf/open/floor/tile,
 /area/under/rmh_desert/ziqurat)
 "n" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /obj/machinery/light/fueled/torchholder/l,
@@ -109,7 +109,7 @@
 /turf/open/floor/tile,
 /area/under/rmh_desert/ziqurat)
 "z" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /turf/open/floor/tile,
@@ -124,7 +124,7 @@
 /turf/open/floor/sandstone,
 /area/under/rmh_desert/ziqurat)
 "D" = (
-/obj/structure/drape/desert2{
+/obj/structure/drape/zybantine{
 	pixel_y = 32
 	},
 /turf/open/floor/sandstone,

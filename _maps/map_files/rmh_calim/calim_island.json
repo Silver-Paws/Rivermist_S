@@ -1,0 +1,13 @@
+{
+    "map_name": "Islands",
+    "map_path": "map_files/rmh_calim",
+	"map_file": [
+	"calim_islands.dmm"
+	],
+	"traits": [
+	{"Name": "The Sea", "Up": true},
+	{"Up": true, "Down": true},
+	{"Up": true, "Down": true},
+	{"Up": true, "Down": true},
+	{"Down": true}]
+}
