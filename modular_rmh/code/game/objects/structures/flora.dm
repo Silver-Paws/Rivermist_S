@@ -41,12 +41,21 @@
 	destroy_sound = 'sound/misc/woodhit.ogg'
 	static_debris = list(/obj/item/grown/log/tree/small = 1)
 
-/obj/structure/flora/shroom_tree/happy/purple
+
+/obj/structure/flora/new_shroom/purple
 	name = "purple mushroom"
 	base_icon_state = "purple"
 	icon_state = "purple"
 	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
 	desc = "Mushrooms from Underdark."
+
+/obj/structure/flora/new_shroom/purple/New(loc)
+	..()
+	set_light(3, 3, 3, l_color ="#6b3fd3")
+
+/obj/structure/flora/new_shroom/purple/Initialize()
+	. = ..()
+	dir = pick(GLOB.cardinals)
 
 /obj/structure/flora/new_shroom/purplef
 	name = "purple mushrooms"
@@ -54,11 +63,27 @@
 	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
 	desc = "Mushrooms from Underdark."
 
+/obj/structure/flora/new_shroom/purplef/New(loc)
+	..()
+	set_light(3, 3, 3, l_color ="#6b3fd3")
+
+/obj/structure/flora/new_shroom/purplef/Initialize()
+	. = ..()
+	dir = pick(GLOB.cardinals)
+
 /obj/structure/flora/new_shroom/purplesmall
 	name = "small purple mushroom"
 	icon_state = "purplesmall"
 	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
 	desc = "Mushrooms from Underdark."
+
+/obj/structure/flora/new_shroom/purplesmall/New(loc)
+	..()
+	set_light(3, 3, 3, l_color ="#6b3fd3")
+
+/obj/structure/flora/new_shroom/purplesmall/Initialize()
+	. = ..()
+	dir = pick(GLOB.cardinals)
 
 /obj/structure/flora/new_shroom/red
 	name = "red mushroom"
@@ -72,11 +97,27 @@
 	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
 	desc = "Mushrooms from Underdark."
 
+/obj/structure/flora/new_shroom/cyan/New(loc)
+	..()
+	set_light(3, 3, 3, l_color ="#2c92a0")
+
+/obj/structure/flora/new_shroom/cyan/Initialize()
+	. = ..()
+	dir = pick(GLOB.cardinals)
+
 /obj/structure/flora/new_shroom/cyanf
 	name = "cyan mushrooms"
 	icon_state = "cyanf"
 	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
 	desc = "Mushrooms from Underdark."
+
+/obj/structure/flora/new_shroom/cyanf/New(loc)
+	..()
+	set_light(3, 3, 3, l_color ="#2c92a0")
+
+/obj/structure/flora/new_shroom/cyan/Initialize()
+	. = ..()
+	dir = pick(GLOB.cardinals)
 
 /obj/structure/flora/new_shroom/cyansmall
 	name = "small cyan mushroom"
@@ -84,12 +125,28 @@
 	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
 	desc = "Mushrooms from Underdark."
 
+/obj/structure/flora/new_shroom/cyansmall/New(loc)
+	..()
+	set_light(3, 3, 3, l_color ="#2c92a0")
+
+/obj/structure/flora/new_shroom/cyansmall/Initialize()
+	. = ..()
+	dir = pick(GLOB.cardinals)
+
 /obj/structure/flora/new_shroom/redwall
 	name = "red mushroom"
 	icon_state = "redwall"
 	icon = 'modular_rmh/icons/obj/flora/foliage.dmi'
 	desc = "Mushrooms from Underdark."
 	SET_BASE_PIXEL( 0, 32)
+
+/obj/structure/flora/new_shroom/redwall/New(loc)
+	..()
+	set_light(3, 3, 3, l_color ="#9c1f34")
+
+/obj/structure/flora/new_shroom/redwall/Initialize()
+	. = ..()
+	dir = pick(GLOB.cardinals)
 
 //bushes
 /obj/structure/flora/bush
@@ -256,3 +313,228 @@
 	destroy_sound = "plantcross"
 	max_integrity = 5
 	debris = list(/obj/item/natural/fibers = 2)
+
+//colorful light crystal
+/obj/structure/flora/crystal
+	name = "light crystal"
+	desc = "Shiny and colorful crystal."
+	icon = 'modular_rmh/icons/obj/lighting/crystal.dmi'
+	icon_state = "crystal_1"
+	density = FALSE
+	anchored = TRUE
+	max_integrity = 10
+	blade_dulling = DULLING_PICK
+	destroy_sound = 'sound/foley/smash_rock.ogg'
+	attacked_sound = 'sound/foley/hit_rock.ogg'
+	light_system = STATIC_LIGHT
+	light_outer_range = 3.5
+	light_power = 1.6
+	light_on = TRUE
+	static_debris = list(/obj/item/natural/glass = 1, /obj/effect/decal/cleanable/debris/glass = 1)
+
+/obj/structure/flora/crystal/Initialize(mapload)
+	. = ..()
+	icon_state = "crystal_[rand(1, 6)]"
+
+	if(!color)
+		color = "#" + num2text(rand(0x44, 0xFF), 2, 16) + \
+				num2text(rand(0x44, 0xFF), 2, 16) + \
+				num2text(rand(0x44, 0xFF), 2, 16)
+	//to create not to dark light-color
+	update_crystal_light()
+
+/obj/structure/flora/crystal/proc/update_crystal_light()
+	var/final_color = color || "#c4dce0"
+	set_light(l_outer_range = 3.5, l_power = 1.6, l_color = final_color)
+
+/obj/structure/flora/crystal/update_appearance(updates)
+	. = ..()
+	update_crystal_light()
+
+/obj/structure/flora/crystal/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(var_name == "color")
+		update_crystal_light()
+
+//loot crystals
+/obj/structure/flora/gemcrystals
+	name = "gem crystals"
+	desc = "A gem sprouted with crystals, like a fetus with stems."
+	icon = 'modular_rmh/icons/obj/lighting/crystal.dmi'
+	icon_state = "gem_crystal"
+	density = TRUE
+	max_integrity = 150
+	layer = BELOW_MOB_LAYER
+	blade_dulling = DULLING_PICK
+	destroy_sound = 'sound/foley/smash_rock.ogg'
+	attacked_sound = 'sound/foley/hit_rock.ogg'
+	static_debris = list(/obj/effect/decal/cleanable/debris/glass = 1)
+
+//red OR coral(big and small)
+/obj/structure/flora/gemcrystals/rube
+	name = "red crystals"
+	desc = "A huge red crystal, covered in precious gemstonenes not unlike a fruit tree."
+	icon_state = "rube_crystals"
+
+/obj/structure/flora/gemcrystals/rube/small
+	name = "red crystal"
+	desc = "A red gem sprouted with crystals, like a fetus with stems."
+	icon_state = "rube_crystal"
+
+/obj/structure/flora/gemcrystals/rube/deconstruct(disassembled = FALSE)
+	if(!disassembled)
+		var/gem_type = pick(/obj/item/gem/red, /obj/item/gem/coral)
+
+		if(icon_state == "rube_crystals")
+			new gem_type(get_turf(src))
+			new gem_type(get_turf(src))
+
+		else if(icon_state == "rube_crystal")
+			new gem_type(get_turf(src))
+
+	return ..()
+
+/obj/structure/flora/gemcrystals/rube/New(loc)
+	..()
+	set_light(2, 2, 2, l_color ="#d30d0d")
+
+//green OR jade(big and small)
+/obj/structure/flora/gemcrystals/emerald
+	name = "green crystals"
+	desc = "A huge green crystal, covered in precious gemstonenes not unlike a fruit tree."
+	icon_state = "emerald_crystals"
+
+/obj/structure/flora/gemcrystals/emerald/small
+	name = "green crystal"
+	desc = "A green gem sprouted with crystals, like a fetus with stems."
+	icon_state = "emerald_crystal"
+
+/obj/structure/flora/gemcrystals/emerald/deconstruct(disassembled = FALSE)
+	if(!disassembled)
+		var/gem_type = pick(/obj/item/gem/green, /obj/item/gem/jade)
+
+		if(icon_state == "emerald_crystals")
+			new gem_type(get_turf(src))
+			new gem_type(get_turf(src))
+
+		else if(icon_state == "emerald_crystal")
+			new gem_type(get_turf(src))
+
+	return ..()
+
+/obj/structure/flora/gemcrystals/emerald/New(loc)
+	..()
+	set_light(2, 2, 2, l_color ="#2ed30d")
+
+//blue OR opal(big and small)
+/obj/structure/flora/gemcrystals/aquamarine
+	name = "cyan crystals"
+	desc = "A huge cyan crystal, covered in precious gemstonenes not unlike a fruit tree."
+	icon_state = "aquamarine_crystals"
+
+/obj/structure/flora/gemcrystals/aquamarine/small
+	name = "cyan crystal"
+	desc = "A cyan gem sprouted with crystals, like a fetus with stems."
+	icon_state = "aquamarine_crystal"
+
+/obj/structure/flora/gemcrystals/aquamarine/deconstruct(disassembled = FALSE)
+	if(!disassembled)
+		var/gem_type = pick(/obj/item/gem/blue, /obj/item/gem/opal)
+
+		if(icon_state == "aquamarine_crystals")
+			new gem_type(get_turf(src))
+			new gem_type(get_turf(src))
+
+		else if(icon_state == "aquamarine_crystal")
+			new gem_type(get_turf(src))
+
+	return ..()
+
+/obj/structure/flora/gemcrystals/aquamarine/New(loc)
+	..()
+	set_light(2, 2, 2, l_color ="#0dd3d3")
+
+//yellow OR amber(big and small)
+/obj/structure/flora/gemcrystals/topaz
+	name = "yellow crystals"
+	desc = "A huge yellow crystal, covered in precious gemstonenes not unlike a fruit tree."
+	icon_state = "topaz_crystals"
+
+/obj/structure/flora/gemcrystals/topaz/small
+	name = "yellow crystal"
+	desc = "A yellow gem sprouted with crystals, like a fetus with stems."
+	icon_state = "topaz_crystal"
+
+/obj/structure/flora/gemcrystals/topaz/deconstruct(disassembled = FALSE)
+	if(!disassembled)
+		var/gem_type = pick(/obj/item/gem/yellow, /obj/item/gem/amber)
+
+		if(icon_state == "topaz_crystals")
+			new gem_type(get_turf(src))
+			new gem_type(get_turf(src))
+
+		else if(icon_state == "topaz_crystal")
+			new gem_type(get_turf(src))
+
+	return ..()
+
+/obj/structure/flora/gemcrystals/topaz/New(loc)
+	..()
+	set_light(2, 2, 2, l_color ="#f0ab16")
+
+//amethyst OR violet OR onyxa(small)
+/obj/structure/flora/gemcrystals/sapphiresmall
+	name = "purple crystal"
+	desc = "A purple gem sprouted with crystals, like a fetus with stems."
+	icon_state = "sapphire_crystal"
+
+/obj/structure/flora/gemcrystals/sapphiresmall/deconstruct(disassembled = FALSE)
+	if(!disassembled)
+		var/gem_type = pick(/obj/item/gem/amethyst, /obj/item/gem/violet, /obj/item/gem/onyxa,)
+
+		if(icon_state == "sapphire_crystal")
+			new gem_type(get_turf(src))
+
+	return ..()
+
+/obj/structure/flora/gemcrystals/sapphiresmall/New(loc)
+	..()
+	set_light(2, 2, 2, l_color ="#9218ca")
+
+//artifact OR elementalshard OR diamond OR leyline OR mana_crystal/standard OR /mana_crystal/small OR melded/t1(big)
+/obj/structure/flora/gemcrystals/lapiz
+	name = "blue crystal"
+	desc = "A blue gem sprouted... it's looks diffrent."
+	icon_state = "lapiz_crystals"
+
+/obj/structure/flora/gemcrystals/lapiz/deconstruct(disassembled = FALSE)
+	if(!disassembled)
+		drop_lapiz_loot()
+	return ..()
+
+	var/gem_type = pickweight(loot_table)
+/obj/structure/flora/gemcrystals/lapiz/proc/drop_lapiz_loot()
+	var/list/loot_table = list(
+		/obj/item/natural/artifact = 8,
+		/obj/item/natural/elementalshard = 13,
+		/obj/item/gem/diamond = 2,
+		/obj/item/riddleofsteel = 1,
+		/obj/item/natural/leyline = 6,
+		/obj/item/mana_battery/mana_crystal/standard = 18,
+		/obj/item/mana_battery/mana_crystal/small = 25,
+		/obj/item/natural/melded/t1 = 4
+	)
+
+	var/amount = 1
+	if(gem_type in list(/obj/item/natural/artifact,
+						/obj/item/natural/elementalshard,
+						/obj/item/mana_battery/mana_crystal/standard,
+						/obj/item/mana_battery/mana_crystal/small))
+		amount = 2
+
+	for(var/i in 1 to amount)
+		new gem_type(get_turf(src))
+
+/obj/structure/flora/gemcrystals/lapiz/New(loc)
+	..()
+	set_light(2, 2, 2, l_color ="#181bca")
