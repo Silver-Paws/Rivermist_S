@@ -512,7 +512,6 @@
 		drop_lapiz_loot()
 	return ..()
 
-	var/gem_type = pickweight(loot_table)
 /obj/structure/flora/gemcrystals/lapiz/proc/drop_lapiz_loot()
 	var/list/loot_table = list(
 		/obj/item/natural/artifact = 8,
@@ -524,6 +523,7 @@
 		/obj/item/mana_battery/mana_crystal/small = 25,
 		/obj/item/natural/melded/t1 = 4
 	)
+	var/gem_type = pickweight(loot_table)
 
 	var/amount = 1
 	if(gem_type in list(/obj/item/natural/artifact,
