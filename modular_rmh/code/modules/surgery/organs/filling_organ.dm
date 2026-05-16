@@ -529,7 +529,7 @@
 		SEND_SIGNAL(src, COMSIG_BODYSTORAGE_CHANGED)
 
 	if(conventional_pregnancy_stage < 3)
-		conventional_pregnancy_timer = addtimer(CALLBACK(src, PROC_REF(advance_conventional_pregnancy)), 3 HOURS, TIMER_STOPPABLE)
+		conventional_pregnancy_timer = addtimer(CALLBACK(src, PROC_REF(advance_conventional_pregnancy)), 6 HOURS, TIMER_STOPPABLE)
 	else
 		conventional_pregnancy_timer = null
 
