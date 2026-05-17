@@ -2,6 +2,14 @@
 	icon = 'icons/obj/questing.dmi'
 	icon_state = "marker_export"
 
+/obj/effect/decal/marker_export/Initialize()
+	. = ..()
+	GLOB.quest_turn_in_markers += src
+
+/obj/effect/decal/marker_export/Destroy()
+	GLOB.quest_turn_in_markers -= src
+	return ..()
+
 /datum/component/quest_object
 	var/datum/weakref/quest_ref
 	var/is_mob = FALSE

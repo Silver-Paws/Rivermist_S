@@ -401,6 +401,7 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 	if(isclient(C))
 		C.update_movement_keys()
 	real_name = pref_species.random_name(gender,1)
+	setup_default_erp_preferences()
 	if(!loaded_preferences_successfully)
 		save_preferences()
 	save_character()		//let's save this new random character so it doesn't keep generating new ones.

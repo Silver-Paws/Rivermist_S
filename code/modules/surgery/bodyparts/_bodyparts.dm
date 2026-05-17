@@ -127,6 +127,14 @@
 	original_owner = null
 	return ..()
 
+/obj/item/bodypart/proc/get_blood_splatter_color()
+	var/datum/blood_type/blood_type
+	if(owner)
+		blood_type = owner.get_blood_type()
+	else if(original_owner)
+		blood_type = original_owner.get_blood_type()
+	return blood_type?.color || COLOR_BLOOD
+
 /obj/item/bodypart/grabbedintents(mob/living/user, atom/grabbed, precise)
 	return list(/datum/intent/grab/move, /datum/intent/grab/twist, /datum/intent/grab/smash)
 
@@ -184,11 +192,7 @@
 	if(skeletonized || !length(food_type))
 		to_chat(user, span_warning("[src] has no meat to eat."))
 		return
-	var/bloodcolor = COLOR_BLOOD
-	if(owner)
-		bloodcolor = owner.get_blood_type().color
-	else if(original_owner)
-		bloodcolor = original_owner.get_blood_type().color
+	var/bloodcolor = get_blood_splatter_color()
 	var/obj/item/held_item = user.get_active_held_item()
 	if(isanimal(user))
 		visible_message("[user] begins to eat \the [src].")
@@ -254,11 +258,7 @@
 	pixel_x = base_pixel_x + rand(-3, 3)
 	pixel_y = base_pixel_y + rand(-3, 3)
 	if(!skeletonized)
-		var/bloodcolor = COLOR_BLOOD
-		if(owner)
-			bloodcolor = owner.get_blood_type().color
-		else if(original_owner)
-			bloodcolor = original_owner.get_blood_type().color
+		var/bloodcolor = get_blood_splatter_color()
 		new /obj/effect/decal/cleanable/blood/splatter(get_turf(src), bloodcolor)
 
 //empties the bodypart from its organs and other things inside it
@@ -657,12 +657,7 @@
 		if(dmg_overlay_type)
 			if(brutestate)
 				var/image/brute_image = image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0_[icon_gender]", -DAMAGE_LAYER, image_dir)
-				if(owner)
-					owner.get_blood_type().color
-				else if(original_owner)
-					original_owner.get_blood_type().color
-				else
-					brute_image.color = COLOR_BLOOD
+				brute_image.color = get_blood_splatter_color()
 				. += brute_image
 			if(burnstate)
 				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]_[icon_gender]", -DAMAGE_LAYER, image_dir)

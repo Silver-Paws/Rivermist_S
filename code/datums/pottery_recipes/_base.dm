@@ -18,10 +18,18 @@
 	var/difficulty = 0
 	var/skill = /datum/attribute/skill/craft/crafting
 
+/datum/pottery_recipe/proc/get_step_time(step_index = 1)
+	if(!islist(step_to_time) || step_index < 1 || step_index > length(step_to_time))
+		return 4 SECONDS
+	var/time = step_to_time[step_index]
+	if(!isnum(time))
+		return 4 SECONDS
+	return time
+
 /datum/pottery_recipe/proc/get_delay(mob/user, rotations_per_minute)
 	rotations_per_minute = max(1, rotations_per_minute)
-	var/time = step_to_time[1]
-	var/skill_level = max(1, GET_MOB_SKILL_VALUE_OLD(user, skill))
+	var/time = get_step_time()
+	var/skill_level = user ? max(1, GET_MOB_SKILL_VALUE_OLD(user, skill)) : 1
 
 	if(rotations_per_minute < speed_sweetspot)
 		time *= ((speed_sweetspot / rotations_per_minute) * 0.25)
@@ -123,7 +131,7 @@
 	for(var/atom/path as anything in recipe_steps)
 		number++
 		html += "[icon2html(new path, user)] Add [initial(path.name)] to the Lathe.<br>"
-		html += "Then spin for [step_to_time[number] / 10] Seconds.<br>"
+		html += "Then spin for [get_step_time(number) / 10] Seconds.<br>"
 
 	html += "<br>"
 	html += "icon2html(new created_item, user)] <strong class=class='scroll'>and then you get [initial(created_item.name)]. </strong><br>"

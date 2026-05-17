@@ -255,6 +255,8 @@
 
 	MOBTIMER_SET(owner, "chafing_loins")
 
+	if(!ishuman(owner))
+		return
 	var/mob/living/carbon/human/human = owner
 	if(human.underwear)
 		if(rand(5))
