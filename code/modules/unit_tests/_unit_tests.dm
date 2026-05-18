@@ -63,6 +63,7 @@
 
 // BEGIN_INCLUDE
 #include "anchored_mobs.dm"
+#include "belly_fullness.dm"
 #include "body_storage.dm"
 #include "component_tests.dm"
 #include "connect_loc.dm"

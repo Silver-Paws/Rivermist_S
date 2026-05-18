@@ -217,7 +217,7 @@
 		return FALSE
 	if(source_layer == new_layer)
 		return FALSE
-	var/obj/item/item_a = return_random_item_from_layer(source, source_layer, BODYSTORAGE_REMOVE_RANDOM)
+	var/obj/item/item_a = return_random_item_from_layer(source, source_layer, BODYSTORAGE_REMOVE_RANDOM, TRUE)
 	if(!item_a)
 		return FALSE
 	SEND_SIGNAL(parent, COMSIG_BODYSTORAGE_TRY_REMOVE, item_a, source_layer, BODYSTORAGE_REMOVE_RANDOM)
@@ -253,13 +253,15 @@
  * Returns the reference to a random irem from selected layer
  * @param target_layer - The target layer
 */
-/datum/component/body_storage/proc/return_random_item_from_layer(datum/source, target_layer, removal_reason = BODYSTORAGE_REMOVE_MANUAL)
+/datum/component/body_storage/proc/return_random_item_from_layer(datum/source, target_layer, removal_reason = BODYSTORAGE_REMOVE_MANUAL, require_random_layer_swap = FALSE)
 	var/list/t_layer = all_layers[target_layer]
 	if(!t_layer.len)
 		return null
 
 	var/list/removable_items = list()
 	for(var/obj/item/stored_item as anything in t_layer)
+		if(require_random_layer_swap && !stored_item.can_random_body_storage_layer_swap())
+			continue
 		if(stored_item.can_remove_from_body_storage(removal_reason))
 			removable_items += stored_item
 
@@ -407,6 +409,8 @@
 /obj/item/organ/proc/add_bodystorage(mob/living/the_mob, location = null, hole_type)
 	if(!GetComponent(hole_type))
 		AddComponent(hole_type, src, location, the_mob)
+		if(the_mob)
+			SEND_SIGNAL(the_mob, COMSIG_LIVING_ORGAN_CHANGED, src, location || slot, TRUE)
 
 /obj/item/organ/proc/on_body_storage_inserted(obj/item/inserted_item, target_layer)
 	return

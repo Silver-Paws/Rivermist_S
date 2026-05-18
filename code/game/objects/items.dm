@@ -385,6 +385,9 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 			return body_storage_random_removal
 	return body_storage_manual_removal
 
+/obj/item/proc/can_random_body_storage_layer_swap()
+	return TRUE
+
 /// Handles sprite changes and decals
 /obj/item/proc/update_transform()
 	transform = null

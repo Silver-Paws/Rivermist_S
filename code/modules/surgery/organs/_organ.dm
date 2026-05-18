@@ -124,6 +124,7 @@
 	last_owner = M
 	M.internal_organs |= src
 	M.internal_organs_slot[slot] = src
+	SEND_SIGNAL(M, COMSIG_LIVING_ORGAN_CHANGED, src, slot, TRUE)
 	moveToNullspace()
 	for(var/datum/action/A as anything in actions)
 		A.Grant(M)
@@ -141,6 +142,7 @@
 		M.internal_organs -= src
 		if(M.internal_organs_slot[slot] == src)
 			M.internal_organs_slot.Remove(slot)
+		SEND_SIGNAL(M, COMSIG_LIVING_ORGAN_CHANGED, src, slot, FALSE)
 		if((organ_flags & ORGAN_VITAL) && !special && !(M.status_flags & GODMODE))
 			M.death()
 	for(var/datum/action/A as anything in actions)
