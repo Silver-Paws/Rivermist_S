@@ -12,6 +12,7 @@
 	sound = 'sound/misc/explode/incendiary (1).ogg'
 	invocation = "pulls out a smoke bomb and slams it to the ground!"
 	invocation_type = INVOCATION_EMOTE
+	invocation_self_message = "I pull out a smoke bomb and slam it to the ground!"
 	associated_skill = /datum/skill/misc/sneaking
 	cooldown_reduction_per_rank = 2 SECONDS
 

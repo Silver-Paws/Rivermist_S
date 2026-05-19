@@ -1954,7 +1954,7 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 				I.take_damage(1, BRUTE, I.damage_type)
 		if(!nodmg)
 			var/datum/wound/crit_wound = affecting.bodypart_attacked_by(user.used_intent.blade_class, (Iforce * weakness) * ((100-(armor_block))/100), user, selzone, crit_message = TRUE)
-			if(crit_wound?.should_embed(I))
+			if(istype(crit_wound) && crit_wound.should_embed(I))
 				var/can_impale = TRUE
 				if(!affecting)
 					can_impale = FALSE
