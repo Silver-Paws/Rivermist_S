@@ -1928,6 +1928,11 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 	var/pen = I.armor_penetration
 	if(user.used_intent?.penfactor)
 		pen = I.armor_penetration + user.used_intent.penfactor
+	var/sneak_attack_armor_penetration = FALSE
+	if(user != H && user.mind && !HAS_TRAIT(H, TRAIT_BLINDFIGHTING) && !user.has_status_effect(/datum/status_effect/debuff/stealthcd))
+		if(!H.can_see_cone(user) || user.alpha <= 15)
+			sneak_attack_armor_penetration = TRUE
+			pen += 100
 
 //	var/armor_block = H.run_armor_check(affecting, "melee", "<span class='notice'>My armor has protected my [hit_area]!</span>", "<span class='warning'>My armor has softened a hit to my [hit_area]!</span>",pen)
 
@@ -1973,6 +1978,9 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 //		if(H.used_intent.blade_class == BCLASS_BLUNT && I.force >= 15 && affecting.body_zone == "chest")
 //			var/turf/target_shove_turf = get_step(H.loc, get_dir(user.loc,H.loc))
 //			H.throw_at(target_shove_turf, 1, 1, H, spin = FALSE)
+
+	if(sneak_attack_armor_penetration && !user.has_status_effect(/datum/status_effect/debuff/stealthcd))
+		user.apply_status_effect(/datum/status_effect/debuff/stealthcd)
 
 	I.funny_attack_effects(H, user, nodmg)
 	knockback(I, H, user, nodmg, actual_damage)

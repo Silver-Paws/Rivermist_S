@@ -225,7 +225,6 @@
 		if(!can_see_cone(user) || user.alpha < 15)//Dreamkeep change
 			if(user.mind && !HAS_TRAIT(src, TRAIT_BLINDFIGHTING) && !user.has_status_effect(/datum/status_effect/debuff/stealthcd))
 				var/sneakmult = user.get_skill_level(/datum/skill/misc/sneaking)
-				user.used_intent.penfactor = 100
 				statforce *= max(1,sneakmult)
 				user.apply_status_effect(/datum/status_effect/debuff/stealthcd)
 				to_chat(src, span_userdanger("SNEAK ATTACK!!! MY ARMOR IS BYPASSED!"))

@@ -346,7 +346,7 @@
 		if(target.client && target.stat < UNCONSCIOUS)
 			// Add faction/ally checks here as appropriate
 			ADD_TRAIT(target, TRAIT_SILENT_FOOTSTEPS, VAMPIRE_TRAIT)
-			ADD_TRAIT(owner, TRAIT_IMPERCEPTIBLE, "[type]")
+			ADD_TRAIT(target, TRAIT_IMPERCEPTIBLE, "[type]")
 			target.alpha = 10
 			cloaked_mobs += target
 			to_chat(target, span_notice("You feel a supernatural veil fall over you..."))
@@ -362,7 +362,7 @@
 	// Restore visibility to all cloaked mobs
 	for(var/mob/living/target in cloaked_mobs)
 		REMOVE_TRAIT(target, TRAIT_SILENT_FOOTSTEPS, VAMPIRE_TRAIT)
-		REMOVE_TRAIT(owner, TRAIT_IMPERCEPTIBLE, "[type]")
+		REMOVE_TRAIT(target, TRAIT_IMPERCEPTIBLE, "[type]")
 		target.alpha = 255
 		UnregisterSignal(target, aggressive_signals)
 		if(target != owner)
@@ -386,7 +386,8 @@
 	to_chat(ally, span_danger("Your actions break the supernatural veil!"))
 
 	// Remove this ally from the cloak
-	REMOVE_TRAIT(owner, TRAIT_IMPERCEPTIBLE, "[type]")
+	REMOVE_TRAIT(ally, TRAIT_SILENT_FOOTSTEPS, VAMPIRE_TRAIT)
+	REMOVE_TRAIT(ally, TRAIT_IMPERCEPTIBLE, "[type]")
 	ally.alpha = 255
 	UnregisterSignal(ally, aggressive_signals)
 	cloaked_mobs -= ally

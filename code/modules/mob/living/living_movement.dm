@@ -247,7 +247,7 @@
 				if(!wallpressed)
 					animate(src, alpha = target_alpha, time = used_time)
 					spawn(used_time + 5) regenerate_icons()
-			if(world.time < has_status_effect(/datum/status_effect/debuff/stealthcd)) // recently discovered or broke stealth, can't re-sneak yet
+			if(has_status_effect(/datum/status_effect/debuff/stealthcd)) // recently discovered or broke stealth, can't re-sneak yet
 				return
 			light_amount = T.get_lumcount()  // as above, this is moderately expensive, so only check it if we need to.
 			if(light_amount < light_threshold)
