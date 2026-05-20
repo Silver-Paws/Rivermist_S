@@ -5033,12 +5033,6 @@
 	},
 /turf/open/floor/tile/diamond,
 /area)
-"Ud" = (
-/obj/structure/door/red{
-	name = "Stable"
-	},
-/turf/open/floor/tile/brownbrick,
-/area)
 "Ul" = (
 /obj/effect/decal/edge{
 	dir = 1;
@@ -64516,8 +64510,8 @@ NZ
 OY
 OY
 OF
-OF
-Ud
+bv
+rV
 ys
 cc
 cc
@@ -64718,8 +64712,8 @@ nB
 OY
 OF
 OF
-OF
-Ud
+bv
+rV
 Ga
 cc
 hR
