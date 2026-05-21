@@ -31,6 +31,7 @@
 #define INSERT_FEEDBACK_ALMOST_FULL "feedback_almost"
 #define INSERT_FEEDBACK_STUFFED "feedback_stuffed"
 #define INSERT_FEEDBACK_TRY_FORCE "feedback_try_force"
+#define INSERT_FEEDBACK_BLOCKED "feedback_blocked"
 
 // Body storage default capacity tuning.
 #define OUTER_LAYER_DEFAULT_BULK 1

@@ -320,6 +320,12 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 	var/body_storage_manual_removal = TRUE
 	/// Can random storage effects pick and remove this item?
 	var/body_storage_random_removal = TRUE
+	/// If this item blocks new body storage insertions into the layer it occupies.
+	var/body_storage_blocks_insertions = FALSE
+	/// Extra body storage layers blocked by this item while it is inserted.
+	var/list/body_storage_additional_blocked_layers = null
+	/// Organ slots this item blocks while equipped, such as ORGAN_SLOT_VAGINA or ORGAN_SLOT_ANUS.
+	var/list/body_storage_blocked_slots = null
 	/// If this item has visual overlay when inserted into a body_storage
 	var/loadout_blacklisted = FALSE
 
@@ -387,6 +393,16 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 
 /obj/item/proc/can_random_body_storage_layer_swap()
 	return TRUE
+
+/obj/item/proc/blocks_body_storage_insertion(datum/component/body_storage/storage, obj/item/incoming_item, target_layer, blocker_layer)
+	if(!body_storage_blocks_insertions)
+		return FALSE
+	if(target_layer == blocker_layer)
+		return TRUE
+	return body_storage_additional_blocked_layers && (target_layer in body_storage_additional_blocked_layers)
+
+/obj/item/proc/blocks_body_storage_slot(hole_slot)
+	return hole_slot && body_storage_blocked_slots && (hole_slot in body_storage_blocked_slots)
 
 /// Handles sprite changes and decals
 /obj/item/proc/update_transform()

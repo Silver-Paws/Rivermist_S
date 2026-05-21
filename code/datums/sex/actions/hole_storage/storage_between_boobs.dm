@@ -79,6 +79,13 @@
 				user.visible_message(sex_session.spanify_force("[target]'s boobs have too much between them to stuff \the [dildo] in."))
 			sex_session.stop_current_action(src)
 			return
+		if(INSERT_FEEDBACK_BLOCKED)
+			if(self)
+				to_chat(user, sex_session.spanify_force("My boobs are blocked."))
+			else
+				user.visible_message(sex_session.spanify_force("[target]'s boobs are blocked."))
+			sex_session.stop_current_action(src)
+			return
 		if(FALSE)
 			if(self)
 				to_chat(user, sex_session.spanify_force("I fail to stuff \the [dildo] between my boobs."))

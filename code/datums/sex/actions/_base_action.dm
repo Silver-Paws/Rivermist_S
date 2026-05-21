@@ -318,6 +318,10 @@
 			SEND_SIGNAL(target_o, COMSIG_BODYSTORAGE_FORCE_REMOVE, item_to_store, STORAGE_LAYER_INNER)
 			addtimer(CALLBACK(src, PROC_REF(qdel), item_to_store), 2)
 			return FALSE
+		if(INSERT_FEEDBACK_BLOCKED)
+			to_chat(user, span_warning("[target == user ? "My" : "[target]'s"] [hole_id] is blocked."))
+			addtimer(CALLBACK(src, PROC_REF(qdel), item_to_store), 2)
+			return FALSE
 		if(FALSE)
 			to_chat(user, span_warning("[target]'s [hole_id] can't accommodate [item_to_store.name]!"))
 			SEND_SIGNAL(target_o, COMSIG_BODYSTORAGE_FORCE_REMOVE, item_to_store, STORAGE_LAYER_INNER)
@@ -488,7 +492,7 @@
 
 
 /datum/sex_action/proc/can_show_action_message(mob/living/user, mob/living/target)
-	if(user.rogue_sneaking || user.m_intent == MOVE_INTENT_SNEAK || user.alpha <= 100) //stealth sex les go
+	if(user && (user.rogue_sneaking || user.m_intent == MOVE_INTENT_SNEAK || user.alpha <= 100)) //stealth sex les go
 		return FALSE
 	if(world.time >= next_message_time)
 		var/datum/sex_session/sex_session = get_sex_session(user, target)

@@ -113,6 +113,13 @@
 				to_chat(user, sex_session.spanify_force("I feel like \the [dildo] might fit if I just use more force."))
 			else
 				user.visible_message(sex_session.spanify_force("I feel like \the [dildo] might fit in [target]'s ass if I just use more force."))
+		if(INSERT_FEEDBACK_BLOCKED)
+			if(self)
+				to_chat(user, sex_session.spanify_force("My ass is blocked."))
+			else
+				user.visible_message(sex_session.spanify_force("[target]'s ass is blocked."))
+			sex_session.stop_current_action(src)
+			return
 		if(FALSE)
 			if(self)
 				to_chat(user, sex_session.spanify_force("I fail to stuff \the [dildo] in my ass."))

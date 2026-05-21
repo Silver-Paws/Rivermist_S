@@ -11,6 +11,8 @@
 	w_class = WEIGHT_CLASS_TINY
 	storage_overlay_icon = 'modular_rmh/icons/obj/lewd/plugs_overlay.dmi'
 	bstorage_visible_hole = ORGAN_SLOT_ANUS
+	body_storage_blocks_insertions = TRUE
+	body_storage_additional_blocked_layers = list(STORAGE_LAYER_INNER, STORAGE_LAYER_DEEP)
 
 /obj/item/dildo/plug/New()
 	. = ..()

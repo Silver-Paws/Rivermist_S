@@ -150,10 +150,16 @@
 	if(!available_layers[target_layer])
 		return FALSE
 
+	if(!incoming_item)
+		return FALSE
+
 	if(incoming_item.body_storage_bulk > max_insert_size)
 		return FALSE
 
 	var/list/t_layer = all_layers[target_layer]
+
+	if(!override && is_body_storage_insertion_blocked(incoming_item, target_layer))
+		return INSERT_FEEDBACK_BLOCKED
 
 	if(LAZYLEN(t_layer) >= layer_storage_max_num[target_layer]) //hard cap
 		return FALSE
@@ -173,6 +179,27 @@
 		if((layer_storage_max_bulk[target_layer] - layer_storage_cur_bulk[target_layer]) / layer_storage_max_bulk[target_layer] < 0.2)
 			return INSERT_FEEDBACK_ALMOST_FULL
 		return INSERT_FEEDBACK_OK
+
+/datum/component/body_storage/proc/is_body_storage_insertion_blocked(obj/item/incoming_item, target_layer)
+	return has_layer_insertion_blocker(incoming_item, target_layer) || has_equipped_insertion_blocker()
+
+/datum/component/body_storage/proc/has_layer_insertion_blocker(obj/item/incoming_item, target_layer)
+	for(var/blocker_layer in all_layers)
+		var/list/blocker_layer_contents = all_layers[blocker_layer]
+		for(var/obj/item/stored_item as anything in blocker_layer_contents)
+			if(stored_item == incoming_item)
+				continue
+			if(stored_item.blocks_body_storage_insertion(src, incoming_item, target_layer, blocker_layer))
+				return TRUE
+	return FALSE
+
+/datum/component/body_storage/proc/has_equipped_insertion_blocker()
+	if(!owner || !applied_slot)
+		return FALSE
+	for(var/obj/item/equipped_item as anything in owner.get_equipped_items())
+		if(equipped_item.blocks_body_storage_slot(applied_slot))
+			return TRUE
+	return FALSE
 
 /**
  * Tries to remove an item from a hole
