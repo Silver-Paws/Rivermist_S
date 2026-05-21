@@ -407,7 +407,6 @@
 	return TRUE
 
 /datum/sex_action/proc/on_perform(mob/living/user, mob/living/target)
-	. = ..()
 	sex_volume = initial(sex_volume)
 	if(user.rogue_sneaking || user.m_intent == MOVE_INTENT_SNEAK || user.alpha <= 100)
 		sex_volume *= 0.5
