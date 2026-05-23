@@ -137,13 +137,13 @@
 			//blood magic
 			user.show_message("<span class='warning'>[src] needs more mana to recharge, but you start using your blood instead.</span>")
 			while(charges < max_charges)
-				cuser.blood_volume -= max(5, (mana_per_charge - GET_MOB_SKILL_VALUE(/datum/attribute/skill/magic/blood)))
+				cuser.blood_volume -= max(5, (mana_per_charge - GET_MOB_SKILL_VALUE(cuser, /datum/attribute/skill/magic/blood)))
 				playsound(src, recharging_sound, 20)
 				if(!do_after(user, recharge_time, src))
 					break
 				charges++
 				update_icon()
-				if(user.blood_volume <= BLOOD_VOLUME_BAD)
+				if(cuser.blood_volume <= BLOOD_VOLUME_BAD)
 					user.show_message("<span class='notice'>[src] is recharged, but not completely, you feel horrible so you stop.</span>")
 					return
 			if(charges == max_charges)
@@ -241,7 +241,7 @@
 			playsound(src, 'sound/magic/diagnose.ogg', 10)
 			if(!do_after(user, 20 SECONDS, src))
 				return
-			cuser.blood_volume -= max(5, (TONE_TRANSFORMATION_MANA_COST -GET_MOB_SKILL_VALUE(/datum/attribute/skill/magic/blood)))
+			cuser.blood_volume -= max(5, (STONE_TRANSFORMATION_MANA_COST -GET_MOB_SKILL_VALUE(cuser, /datum/attribute/skill/magic/blood)))
 			user.dropItemToGround(src, TRUE, TRUE)
 			var/obj/item/rmh_waystone_chunk/empty/waystone_chunk = new(get_turf(src))
 			user.put_in_active_hand(waystone_chunk, TRUE, TRUE)
