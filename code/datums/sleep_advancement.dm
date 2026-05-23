@@ -15,6 +15,7 @@
 
 	var/list/available_modes = list("one_truth", "one_lie", "two_truths", "two_lies", "truth_lie")
 	var/list/remaining_modes = list()
+	var/list/daily_skill_xp = list()
 /datum/sleep_adv/New(datum/mind/passed_mind)
 	. = ..()
 	mind = passed_mind
@@ -50,15 +51,15 @@
 	return nulltozero(mind.current.attributes?.raw_attribute_list[translated_skill])
 
 /datum/sleep_adv/proc/get_skill_tier_from_raw_level(raw_level)
-	if(raw_level >= SKILL_LEVEL_LEGENDARY * 10)
-		return SKILL_LEVEL_LEGENDARY
-	return max(SKILL_LEVEL_NONE, floor(raw_level / 10))
+	if(raw_level >= SKILL_LEVEL_LEGENDARY)
+		return SKILL_RANK_LEGENDARY
+	return max(SKILL_RANK_NONE, floor(raw_level / 10))
 
 /datum/sleep_adv/proc/get_skill_tier(skill_type)
 	return get_skill_tier_from_raw_level(get_skill_raw_level(skill_type))
 
 /datum/sleep_adv/proc/get_raw_level_for_skill_tier(skill_tier)
-	skill_tier = clamp(skill_tier, SKILL_LEVEL_NONE, SKILL_LEVEL_LEGENDARY)
+	skill_tier = clamp(skill_tier, SKILL_RANK_NONE, SKILL_RANK_LEGENDARY)
 	return skill_tier * 10
 
 /datum/sleep_adv/proc/get_skill_tier_name(skill_type, skill_tier)
@@ -69,23 +70,23 @@
 
 /datum/sleep_adv/proc/needed_xp_for_level(skill_level)
 	switch(skill_level)
-		if(SKILL_LEVEL_NOVICE)
+		if(SKILL_RANK_NOVICE)
 			return SLEEP_EXP_NOVICE
-		if(SKILL_LEVEL_APPRENTICE)
+		if(SKILL_RANK_APPRENTICE)
 			return SLEEP_EXP_APPRENTICE
-		if(SKILL_LEVEL_JOURNEYMAN)
+		if(SKILL_RANK_JOURNEYMAN)
 			return SLEEP_EXP_JOURNEYMAN
-		if(SKILL_LEVEL_EXPERT)
+		if(SKILL_RANK_EXPERT)
 			return SLEEP_EXP_EXPERT
-		if(SKILL_LEVEL_MASTER)
+		if(SKILL_RANK_MASTER)
 			return SLEEP_EXP_MASTER
-		if(SKILL_LEVEL_LEGENDARY)
+		if(SKILL_RANK_LEGENDARY)
 			return SLEEP_EXP_LEGENDARY
 
 /datum/sleep_adv/proc/enough_sleep_xp_to_advance(skill_type, level_amount)
 	if(level_amount <= 0)
 		return FALSE
-	if(get_skill_tier(skill_type) >= SKILL_LEVEL_LEGENDARY)
+	if(get_skill_tier(skill_type) >= SKILL_RANK_LEGENDARY)
 		return FALSE
 	var/needed_xp = get_requried_sleep_xp_for_skill(skill_type, level_amount)
 	if(get_sleep_xp(skill_type) < needed_xp)
@@ -97,7 +98,7 @@
 		return 0
 	var/current_tier = get_skill_tier(skill_type)
 	var/tiers_to_advance = CEILING(level_amount, 1)
-	var/max_tiers_to_advance = max(SKILL_LEVEL_NONE, SKILL_LEVEL_LEGENDARY - current_tier)
+	var/max_tiers_to_advance = max(SKILL_RANK_NONE, SKILL_RANK_LEGENDARY - current_tier)
 	tiers_to_advance = min(tiers_to_advance, max_tiers_to_advance)
 	if(tiers_to_advance <= 0)
 		return 0
@@ -225,6 +226,7 @@
 	sleep_adv_cycle++
 	if(mind.current.client)
 		show_ui(mind.current)
+	daily_skill_xp = list()
 
 /datum/sleep_adv/proc/show_ui(mob/living/user)
 	var/list/dat = list()
@@ -316,10 +318,10 @@
 
 /datum/sleep_adv/proc/get_next_level_for_skill(skill_type)
 	if(!mind.current)
-		return SKILL_LEVEL_NONE
+		return SKILL_RANK_NONE
 	var/current_tier = get_skill_tier(skill_type)
-	if(current_tier >= SKILL_LEVEL_LEGENDARY)
-		return SKILL_LEVEL_LEGENDARY
+	if(current_tier >= SKILL_RANK_LEGENDARY)
+		return SKILL_RANK_LEGENDARY
 	var/next_level = current_tier + 1
 	return next_level
 
@@ -344,7 +346,7 @@
 	if(!skill || !translated_skill || !attributes)
 		return
 	var/current_raw_level = get_skill_raw_level(skill_type)
-	var/target_raw_level = min(current_raw_level + 10, SKILL_LEVEL_LEGENDARY * 10)
+	var/target_raw_level = min(current_raw_level + 10, SKILL_LEVEL_LEGENDARY)
 	if(current_raw_level >= target_raw_level)
 		return
 	var/dream_text = skill.get_random_dream()
@@ -376,11 +378,24 @@
 		if(get_sleep_xp(skill_type) >= req_exp)
 			continue
 		viable_skills += skill_type
-	viable_skills = shuffle(viable_skills)
+	var/list/reinforcement_candidates = list()
+	for(var/skill_type in viable_skills)
+		var/daily_xp = nulltozero(daily_skill_xp[skill_type])
+		if(daily_xp > 0)
+			reinforcement_candidates[skill_type] = daily_xp
+
+	var/reinforcement_slots = min(skill_amt, max(1, FLOOR(skill_amt / 2, 1)))
 	for(var/i in 1 to skill_amt)
 		if(!length(viable_skills))
 			break
-		var/skill_type = pick_n_take(viable_skills)
+		var/skill_type
+		if(reinforcement_slots > 0 && length(reinforcement_candidates))
+			skill_type = pickweight(reinforcement_candidates)
+			reinforcement_candidates -= skill_type
+			viable_skills -= skill_type
+			reinforcement_slots--
+		else
+			skill_type = pick_n_take(viable_skills)
 		var/req_exp = get_requried_sleep_xp_for_skill(skill_type, 1)
 		var/datum/skill/skill = GetSkillRef(skill_type)
 		if(req_exp <= 0 || !skill)

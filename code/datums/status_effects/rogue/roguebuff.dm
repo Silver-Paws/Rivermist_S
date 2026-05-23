@@ -443,7 +443,7 @@
 		C.emote("pain", forced = TRUE)
 		playsound(C, 'sound/gore/flesh_eat_03.ogg', 100, TRUE)
 		to_chat(C, span_warning("Dendor's transformation fades, flesh shrinking back. My body aches..."))
-		C.adjustBruteLoss(10)
+		C.adjustBruteLoss(10, damage_type = BCLASS_BLUNT)
 		C.apply_status_effect(/datum/status_effect/debuff/barbfalter)
 		C.resize = (1/1.2)
 		C.update_transform()
@@ -551,7 +551,7 @@
 /datum/status_effect/buff/bloodrage/on_creation(mob/living/carbon/new_owner, duration_override, ...)
 	var/holyskill = GET_MOB_SKILL_VALUE_OLD(new_owner, /datum/attribute/skill/magic/holy)
 	duration = ((15 SECONDS) * holyskill)
-	if(holyskill >= SKILL_LEVEL_APPRENTICE)
+	if(holyskill >= SKILL_RANK_APPRENTICE)
 		effectedstats = list(STAT_STRENGTH = 2)
 	else
 		effectedstats = list(STAT_STRENGTH = 1)

@@ -7,7 +7,7 @@
 	item_state = "rucksack"
 	component_type = /datum/component/storage/concrete/grid/sack
 	max_integrity = 100
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 	var/tied = FALSE
 
 /obj/item/storage/backpack/backpack/bagpack/attack_hand_secondary(mob/user)

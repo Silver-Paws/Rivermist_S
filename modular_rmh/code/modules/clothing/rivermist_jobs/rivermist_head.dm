@@ -40,7 +40,7 @@
 	body_parts_covered = FULL_HEAD
 	max_integrity = INTEGRITY_STRONG
 	prevent_crits = ALL_CRITICAL_HITS
-	item_weight = 6 * STEEL_MULTIPLIER
+	item_weight = 6 KILOGRAMS
 	misc_flags = CRAFTING_TEST_EXCLUDE
 
 /obj/item/clothing/head/crown/circlet/silverdiadem/moon_priest

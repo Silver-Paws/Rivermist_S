@@ -14,6 +14,14 @@
 
 	var/disgust = 0
 
+	/// Speech modifiers
+	var/list/datum/speech_modifier/speech_modifiers
+
+	/// List of carry_weight modifiers applying to this mob
+	var/list/carry_weight_modification //Lazy list, see carry_weight_modifier.dm
+	/// List of carry_weight modifiers ignored by this mob. List -> List (id) -> List (sources)
+	var/list/carry_weight_mod_immunities //Lazy list, see carry_weight_modifier.dm
+
 //inventory slots
 	var/obj/item/backr = null
 	var/obj/item/backl = null
@@ -57,7 +65,7 @@
 	var/tinttotal = 0	// Total level of visualy impairing items
 
 	var/list/bodyparts = list(/obj/item/bodypart/chest, /obj/item/bodypart/head, /obj/item/bodypart/l_arm,
-					/obj/item/bodypart/r_arm, /obj/item/bodypart/r_leg, /obj/item/bodypart/l_leg)
+					/obj/item/bodypart/r_arm, /obj/item/bodypart/r_leg, /obj/item/bodypart/l_leg, /obj/item/bodypart/mouth)
 	//Gets filled up in create_bodyparts()
 
 	var/list/hand_bodyparts = list() //a collection of arms (or actually whatever the fug /bodyparts you monsters use to wreck my systems)
@@ -80,9 +88,51 @@
 	var/next_smell = 0
 
 	var/advsetup = 0
+	/// Pulse is shared across all hearts and circulation effects.
+	var/pulse = PULSE_NORM
+	/// Used to handle heartbeat sounds.
+	var/heartbeat_sound = BEAT_NONE
+	/// How long an external heart pump counts for circulation.
+	var/heart_pump_duration = 5 SECONDS
+	/// CPR/blood circulation pump record: time key mapped to effectiveness.
+	var/list/recent_heart_pump
+	/// Current immune system strength.
+	var/immunity = 100
+	var/default_immunity = 100
 
 	var/datum/party/current_party
 	var/list/party_hud_elements = list()
+
+	/// To reduce processing, this list is used to associate body zone with all organs inside that zone
+	var/list/organs_by_zone = list()
+
+	/// A collection of organs (eyes) used to see
+	var/list/eye_organs = list()
+
+	/// Total sum of organ and bodypart blood requirement
+	var/total_blood_req = DEFAULT_TOTAL_BLOOD_REQ
+	/// Total sum of organ and bodypart oxygen requirement
+	var/total_oxygen_req = DEFAULT_TOTAL_OXYGEN_REQ
+	/// Total sum of organ and bodypart nutriment requirement
+	var/total_nutriment_req = DEFAULT_TOTAL_NUTRIMENT_REQ
+	/// Total sum of organ and bodypart hydration requirement
+	var/total_hydration_req  = DEFAULT_TOTAL_HYDRATION_REQ
+
+	// ~INJURY PENALTIES
+	/// Timer for injury penalty, should reset if we take more damage
+	var/shock_penalty_timer = null
+	/// How much our injury penalty currently affects our DX and IQ
+	var/shock_penalty = 0
+	COOLDOWN_DECLARE(adrenaline_burst)
+
+	/// All injuries we have accumulated on our body
+	var/list/datum/injury/all_injuries
+	/// Descriptive string used in combat messages
+	var/wound_message = ""
+	/// Last time we got mouth to mouthed
+	COOLDOWN_DECLARE(last_mtom)
+	/// Last time we got CPR'd
+	COOLDOWN_DECLARE(last_cpr)
 
 	/// if they get a mana pool
 	has_initial_mana_pool = TRUE

@@ -1,4 +1,5 @@
 /obj/item/natural/glass
+	item_weight = 450 GRAMS
 	name = "glass"
 	desc = "A glass pane for constructing windows."
 	icon_state = "glasspane"

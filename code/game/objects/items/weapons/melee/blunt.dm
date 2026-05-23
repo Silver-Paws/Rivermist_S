@@ -2,6 +2,7 @@
 ==========================================================*/
 //................ Mace ............... //
 /obj/item/weapon/mace
+	item_weight = 1.5 KILOGRAMS
 	name = "iron mace"
 	desc = "A heavy iron mace, preferred by those with a grudge against knightly whoresons."
 	icon_state = "mace"
@@ -45,6 +46,7 @@
 	return ..()
 
 /obj/item/weapon/mace/rungu
+	item_weight = 1.5 KILOGRAMS
 	name = "iron rungu"
 	desc = "An iron from the fallen east. Possesses a smoothed out head."
 	icon_state = "rungu_iron"
@@ -62,6 +64,7 @@
 	return ..()
 
 /obj/item/weapon/mace/shishpar
+	item_weight = 1.8 KILOGRAMS
 	name = "iron shishpar"
 	desc = "A heavy foreign mace with a sword-like handle. It's weight makes it a little hard to wield, but its capable of delivering devastating blows."
 	icon_state = "shishpar_iron"
@@ -75,6 +78,7 @@
 //................  Canes, my beloved. ............... //
 
 /obj/item/weapon/mace/cane
+	item_weight = 400 GRAMS
 	name = "wooden cane"
 	desc = "A simple wooden cane, whittled from wood. Good for supporting your weight."
 	icon = 'icons/roguetown/weapons/32/canes.dmi'
@@ -86,6 +90,7 @@
 	sellprice = 5
 
 /obj/item/weapon/mace/cane/noble
+	item_weight = 500 GRAMS
 	name = "fancy cane"
 	desc = "A polished, dark wooden cane, decorated with gold and silver. Often carried by nobility, even those without a limp, simply to flaunt their wealth to the peasantry."
 	icon_state = "noble_cane"
@@ -94,6 +99,7 @@
 	sellprice = 200
 
 /obj/item/weapon/mace/cane/courtphysician
+	item_weight = 450 GRAMS
 	name = "physician's cane"
 	desc = "A prized cane. Embellished with a golden serpent, representing the Kingsfield university. The pointy end is quite sharp."
 	icon_state = "physician_cane"
@@ -103,12 +109,14 @@
 	sellprice = 30
 
 /obj/item/weapon/mace/cane/merchant
+	item_weight = 500 GRAMS
 	name = "merchant's cane"
 	desc = "An expensive cane, decorated with gold and inlaid with a gem. A symbol of great wealth for the ownner"
 	icon_state = "merchant_cane"
 	sellprice = 300
 
 /obj/item/weapon/mace/cane/natural
+	item_weight = 350 GRAMS
 	name = "natural wooden cane"
 	desc = "A primitive cane, crudely carved from a thick tree branch. It still has a leaf on it."
 	icon_state = "natural_cane"
@@ -117,6 +125,7 @@
 	sellprice = 3
 
 /obj/item/weapon/mace/cane/bronze
+	item_weight = 600 GRAMS
 	name = "bronze cane"
 	desc = "A walking stick made from bronze and copper. The light on the top is entirely contained within, serving no functional purpose."
 	icon_state = "artificer_cane"
@@ -125,6 +134,7 @@
 	sellprice = 35
 
 /obj/item/weapon/mace/cane/necran
+	item_weight = 550 GRAMS
 	name = "dark rod"
 	desc = "Carved from dark stone, engraved with gold."
 	icon_state = "necran_cane"
@@ -194,6 +204,7 @@
 
 //................ Bell ringer ............... //
 /obj/item/weapon/mace/church
+	item_weight = 1.8 KILOGRAMS
 	name = "bell ringer"
 	desc = "Faith is sometimes best administered with steel and blood."
 	icon_state = "churchmace"
@@ -206,6 +217,7 @@
 
 //................ Steel mace ............... //	Better wbalance and wdefense
 /obj/item/weapon/mace/steel
+	item_weight = 1.6 KILOGRAMS
 	name = "steel mace"
 	desc = "A well-crafted mace with a steel head. Easier to control and hits just as hard."
 	icon_state = "smace"
@@ -219,6 +231,7 @@
 	sellprice = 60
 
 /obj/item/weapon/mace/steel/rungu
+	item_weight = 1.9 KILOGRAMS
 	name = "steel rungu"
 	desc = "A steel mace from the fallen east. Possesses a smoothed out head."
 	icon_state = "rungu_steel"
@@ -229,6 +242,7 @@
 	sellprice = 30
 
 /obj/item/weapon/mace/steel/shishpar //More damage, but less versatile with bonuses
+	item_weight = 1.9 KILOGRAMS
 	name = "steel shishpar"
 	desc = "A heavy foreign mace with a sword-like handle. Its weight makes it a little hard to wield, but it's capable of delivering devastating blows."
 	icon_state = "shishpar_steel"
@@ -240,6 +254,7 @@
 
 //................ Spiked club ............... //
 /obj/item/weapon/mace/spiked
+	item_weight = 1.7 KILOGRAMS
 	name = "spiked mace"
 	icon_state = "spikedmace"
 	force = DAMAGE_MACE + 1
@@ -249,6 +264,7 @@
 
 //................ Morningstar ............... //
 /obj/item/weapon/mace/steel/morningstar
+	item_weight = 1.8 KILOGRAMS
 	name = "morningstar"
 	icon_state = "spiked_club_old"
 	force = DAMAGE_MACE + 2
@@ -258,6 +274,7 @@
 
 //................ Iron Bludgeon ............... // Less damage, more accurate, similar to a cudgel
 /obj/item/weapon/mace/bludgeon
+	item_weight = 1.2 KILOGRAMS
 	name = "iron bludgeon"
 	desc = "An iron headed club, useful for beating the dregs back into their gutters."
 	icon_state = "ibludgeon"
@@ -281,6 +298,7 @@
 
 //................ Copper bludgeon ............... //
 /obj/item/weapon/mace/bludgeon/copper
+	item_weight = 900 GRAMS
 	name = "copper bludgeon"
 	desc = "An extremely crude weapon for cruder bastards."
 	icon_state = "cbludgeon"
@@ -296,6 +314,7 @@
 
 //................ Club ............... //
 /obj/item/weapon/mace/woodclub
+	item_weight = 700 GRAMS
 	name = "club"
 	desc = "A weapon older than recorded time itself."
 	icon_state = "club1"
@@ -320,6 +339,7 @@
 
 //................ Cudgel ............... //
 /obj/item/weapon/mace/cudgel
+	item_weight = 500 GRAMS
 	name = "cudgel"
 	icon_state = "cudgel"
 	desc = "A stubby little club favored for thwacking thieves and smart-mouthed peasant folk."
@@ -347,6 +367,7 @@
 				return list("shrink" = 0.4,"sx" = -3,"sy" = -4,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 70,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 1,"wflip" = 0,"eflip" = 0)
 
 /obj/item/weapon/mace/cudgel/psy
+	item_weight = 600 GRAMS
 	name = "aonic handmace"
 	desc = "A shorthanded mace, a convenient sleeping aid, or a means to root out heresy. It's all in the wrist."
 	icon = 'icons/roguetown/weapons/32/psydonite.dmi'
@@ -362,6 +383,7 @@
 	AddComponent(/datum/component/psyblessed, FALSE, 3, 100, 50, 1, TRUE)
 
 /obj/item/weapon/mace/cudgel/shellrungu
+	item_weight = 300 GRAMS
 	name = "shell rungu"
 	desc = "A ceremonial rungu carved out of a clam shell. Not intended for combat. It's used in various Sea and Coastal Elven rituals and ceremonies."
 	icon = 'icons/roguetown/gems/gem_shell.dmi'
@@ -371,12 +393,14 @@
 
 //................ Alt cudgel ............... //
 /obj/item/weapon/mace/cudgel/carpenter
+	item_weight = 600 GRAMS
 	name = "peasant cudgel"
 	icon_state = "carpentercudgel"
 	desc = "A stubby club reinforced with iron bits, popular among village watchmen and peasant militias. Despite being reinforced and hard-hitting, it still cannot compare to a proper mace."
 
 //................ Wooden sword ............... //
 /obj/item/weapon/mace/woodclub/train_sword
+	item_weight = 400 GRAMS
 	name = "wooden sword"
 	desc = "Crude wood assembled into the shape of a sword, a terrible weapon to be on the receiving end of during a training spat."
 	icon = 'icons/roguetown/weapons/32/swords.dmi'
@@ -403,6 +427,7 @@
 
 //................ Goedendag ............... //
 /obj/item/weapon/mace/goden
+	item_weight = 3 KILOGRAMS
 	name = "warclub"
 	desc = "A two-handed club, decorated with a spiked cap crown. A perfect way to say Good Morning to any would be noble-knight."
 	icon = 'icons/roguetown/weapons/64/maces.dmi'
@@ -432,6 +457,7 @@
 	weapon_special = /datum/special_intent/ground_smash
 
 /obj/item/weapon/mace/goden/getonmobprop(tag)
+	item_weight = 2.5 KILOGRAMS
 	. = ..()
 	if(tag)
 		switch(tag)
@@ -443,6 +469,7 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/mace/goden/deepduke //Boss loot
+	item_weight = 2.5 KILOGRAMS
 	name = "deep duke's staff"
 	desc = "A staff made of seaglass and sturdy but unusual metal, holding no power after its misled owner's death. More useful as a bashing tool than a magic focus."
 	icon = 'icons/roguetown/mob/monster/pufferboss.dmi'
@@ -455,6 +482,7 @@
 
 //................ Grand mace ............... //
 /obj/item/weapon/mace/goden/steel
+	item_weight = 3.5 KILOGRAMS
 	name = "grand mace"
 	desc = "A cast polearm, rumored to be the weapon-design used by the first inquisitors of Ao."
 	icon_state = "polemace"
@@ -480,6 +508,7 @@
 
 //................ Aonic Grand Mace ............... //
 /obj/item/weapon/mace/goden/psydon
+	item_weight = 3.8 KILOGRAMS
 	name = "aonic grand mace"
 	desc = "A mighty mace which seems to be a large holy symbol with a handle, though no less effective at crushing the spirit and bones of the dark faithful."
 	icon = 'icons/roguetown/weapons/64/psydonite.dmi'
@@ -498,6 +527,7 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/weapon/mace/goden/psydon/getonmobprop(tag)
+	item_weight = 1.5 KILOGRAMS
 	. = ..()
 	if(tag)
 		switch(tag)
@@ -511,6 +541,7 @@
 
 //................ Shillelagh ............... //
 /obj/item/weapon/mace/goden/shillelagh		// The Briar signature weapon. Sturdy oak war club.
+	item_weight = 1.5 KILOGRAMS
 	name = "shillelagh"
 	desc = "Big old oak branch, carved to a deadly weapon."
 	icon = 'icons/roguetown/weapons/32/clubs.dmi'
@@ -543,6 +574,7 @@
 
 //................ Dwarf Warhammer ............... // - Unique Langobardo weapon
 /obj/item/weapon/mace/goden/steel/warhammer
+	item_weight = 4 KILOGRAMS
 	name = "dwarven warhammer"
 	desc = "A great dwarven warhammer made of stern steel, engraved with oaths of battle and time."
 	icon_state = "warhammer"
@@ -563,6 +595,7 @@
 
 //................ Copper goden ............... //
 /obj/item/weapon/mace/goden/copper
+	item_weight = 2.5 KILOGRAMS
 	name = "copper warclub"
 	desc = "A two-handed club, decorated with a crown of spikes. A barbaric design, good enough to be used as a weapon."
 	icon_state = "cwarclub"
@@ -579,6 +612,7 @@
 
 //................ Warhammers ............... //
 /obj/item/weapon/mace/warhammer
+	item_weight = 2 KILOGRAMS
 	name = "iron warhammer"
 	desc = "Made to punch through armor and skull alike."
 	icon_state = "iwarhammer"
@@ -597,6 +631,7 @@
 	return ..()
 
 /obj/item/weapon/mace/warhammer/steel
+	item_weight = 2.2 KILOGRAMS
 	name = "steel warhammer"
 	desc = "A fine steel warhammer, makes a satisfying sound when paired with a knight's helm."
 	icon_state = "swarhammer"
@@ -609,6 +644,7 @@
 //................ Elven Club  ............... //
 
 /obj/item/weapon/mace/elvenclub
+	item_weight = 1.3 KILOGRAMS
 	name = "elven war club"
 	desc = "A one-handed war club with a sharp end."
 	icon_state = "elvenclub"
@@ -621,6 +657,7 @@
 	sharpness = IS_SHARP
 
 /obj/item/weapon/mace/elvenclub/steel
+	item_weight = 1.5 KILOGRAMS
 	name = "steel elven war club"
 	desc = "A sleek, one-handed war club, reforged from captured Grenzel steel. Its elegant bead designs channel elven grace, It is capable of delivering swift, painful blows"
 	icon_state = "elvenclubsteel"
@@ -636,6 +673,7 @@
 	sellprice = 60
 
 /obj/item/weapon/mace/elvenclub/bronze
+	item_weight = 1.4 KILOGRAMS
 	name = "bronze elven war club"
 	desc = "A bronze one-handed war club with a sharp end. It's been long favoured by the Elves of Heartfelt, despite its foreign origins."
 	icon_state = "elvenclub_bronze"
@@ -644,6 +682,7 @@
 	melt_amount = 100
 
 /obj/item/weapon/mace/elvenclub/silver
+	item_weight = 1.4 KILOGRAMS
 	name = "regal elven war club"
 	desc = "A fashionable silver war club of elvish design, beautifully decorated with golden filigree."
 	icon_state = "regalelvenclub"
@@ -665,6 +704,7 @@
 //................ Silver ............... //
 
 /obj/item/weapon/mace/rungu/silver
+	item_weight = 1.4 KILOGRAMS
 	name = "silver rungu"
 	desc = "A silver mace from the fallen east. Made to fight nite-creachers."
 	icon_state = "rungu_silver"
@@ -682,6 +722,7 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/weapon/mace/gada
+	item_weight = 1.8 KILOGRAMS
 	name = "regal gada"
 	icon_state = "gada"
 	desc = "A luxurious silver mace that's been reinforced and embellished with gold. It's considerably heavier compared to other maces."
@@ -699,6 +740,7 @@
 //................ BRONZE ............... //
 
 /obj/item/weapon/mace/bronze
+	item_weight = 1.5 KILOGRAMS
 	name = "bronze mace"
 	icon_state = "mace_bronze"
 	desc = "A spiked bronze mace. A weapon thats seen a revival in use amidst the cataclysm in Heartfelt."
@@ -709,6 +751,7 @@
 	sellprice = 25
 
 /obj/item/weapon/mace/bronze/shishpar
+	item_weight = 1.8 KILOGRAMS
 	name = "bronze shishpar"
 	desc = "A heavy foreign mace with a sword-like handle. It's weight makes it a little hard to wield, but its capable of delivering devastating blows."
 	icon_state = "shishpar_bronze"

@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(ritualslist, build_zizo_rituals())
 	if(!target.client)
 		return
 	if(is_antag_banned(target.ckey, ROLE_ZIZOIDCULTIST))
-		to_chat(span_danger("This one is unworthy of her aiding her ascension."))
+		to_chat(user, span_danger("This one is unworthy of her aiding her ascension."))
 		return
 	if(istype(target.wear_neck, /obj/item/clothing/neck/psycross/silver) || istype(target.wear_wrists, /obj/item/clothing/neck/psycross/silver) )
 		to_chat(user, span_danger("They are wearing silver, it resists the dark magick!"))
@@ -501,13 +501,13 @@ GLOBAL_LIST_INIT(ritualslist, build_zizo_rituals())
 	to_chat(cultist, span_notice("Stolen Arcane prowess floods my mind, ZIZO empowers me."))
 
 /datum/ritual/fleshcrafting/curse
-    name = "Hollow Curse"
-    center_requirement = /mob/living/carbon/human
+	name = "Hollow Curse"
+	center_requirement = /mob/living/carbon/human
 
-    w_req = /obj/item/alch/sinew
-    e_req = /obj/item/alch/sinew
-    n_req = /obj/item/natural/fur/volf
-    s_req = /obj/item/natural/fur/volf
+	w_req = /obj/item/alch/sinew
+	e_req = /obj/item/alch/sinew
+	n_req = /obj/item/natural/fur/volf
+	s_req = /obj/item/natural/fur/volf
 
 /datum/ritual/fleshcrafting/curse/invoke(mob/living/user, turf/center)
 	var/mob/living/carbon/human/target = locate() in center.contents
@@ -650,16 +650,16 @@ GLOBAL_LIST_INIT(ritualslist, build_zizo_rituals())
 		return
 	if(target.stat != DEAD)
 		return
-	target.take_overall_damage(500)
+	target.take_overall_damage(500, damage_type = BCLASS_PIERCE)
 	center.visible_message(span_danger("[target] is lifted up into the air and multiple scratches, incisions and deep cuts start etching themselves into their skin as all of their internal organs spill on the floor below!"))
 	var/atom/drop_location = target.drop_location()
 	for(var/obj/item/organ/organ as anything in target.internal_organs)
 		organ.Remove(target)
 		organ.forceMove(drop_location)
 	var/obj/item/bodypart/chest/cavity = target.get_bodypart(BODY_ZONE_CHEST)
-	if(cavity.cavity_item)
-		cavity.cavity_item.forceMove(drop_location)
-		cavity.cavity_item = null
+	for(var/atom/movable/item as anything in cavity.cavity_items)
+		item.forceMove(drop_location)
+		cavity.cavity_items -= item
 	for(var/obj/item/bodypart/part as anything in target.bodyparts)
 		part.drop_limb()
 

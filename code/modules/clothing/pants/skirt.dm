@@ -1,4 +1,5 @@
 /obj/item/clothing/pants/skirt
+	item_weight = 75 GRAMS
 	name = "skirt"
 	desc = "Long, flowing, and modest."
 	icon_state = "skirt"

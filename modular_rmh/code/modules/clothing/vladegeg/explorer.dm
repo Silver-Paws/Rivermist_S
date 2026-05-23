@@ -39,7 +39,7 @@
 	desc = "The perfect protection both from heat and things falling on your head."
 	icon_state = "hat"
 	item_state = "hat"
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 	armor = ARMOR_HEAD_LEATHER
 	color = COLOR_DARK_BROWN
 	salvage_result = /obj/item/natural/hide/cured

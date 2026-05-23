@@ -1,4 +1,5 @@
 /obj/item/paint_brush
+	item_weight = 9 GRAMS
 	name = "paint brush"
 	desc = "A tool used for painting"
 	icon = 'icons/paint_supplies/paint_items.dmi'

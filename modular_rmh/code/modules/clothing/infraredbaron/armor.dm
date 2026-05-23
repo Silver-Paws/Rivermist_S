@@ -16,18 +16,18 @@
 	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
 	pickup_sound = 'sound/foley/equip/equip_armor_chain.ogg'
 	equip_sound = 'sound/foley/equip/equip_armor_chain.ogg'
-	anvilrepair = /datum/skill/craft/armorsmithing
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
 	body_parts_covered = CHEST|GROIN|VITALS
 	armor = list("blunt" = 80, "slash" = 100, "stab" = 80,  "piercing" = 80, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	max_integrity = 250
 	armor_class = AC_MEDIUM
 	clothing_flags = CANT_SLEEP_IN
-	anvilrepair = /datum/skill/craft/blacksmithing
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
 	smeltresult = /obj/item/ingot/steel
 	melting_material = /datum/material/steel
 	melt_amount = 100
-	sewrepair = FALSE
+	sewrepair = null
 	ignore_sleeves_code = TRUE // No sleeves, otherwise arms will be over the sprite
 	nodismemsleeves = TRUE
 	sleevetype = null
@@ -63,7 +63,7 @@
 	body_parts_covered = CHEST|VITALS|ARMS
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/craft/tanning/patching
 	armor_class = AC_LIGHT
 	salvage_result = /obj/item/natural/hide/cured
 	ignore_sleeves_code = TRUE // No sleeves, otherwise arms will be over the sprite
@@ -127,7 +127,7 @@
 	blade_dulling = DULLING_BASHCHOP
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 	armor_class = AC_LIGHT
 	ignore_sleeves_code = TRUE // No sleeves, otherwise arms will be over the sprite
 	nodismemsleeves = TRUE

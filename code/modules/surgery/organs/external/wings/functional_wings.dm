@@ -12,7 +12,7 @@
 	QDEL_NULL(fly)
 	return ..()
 
-/obj/item/organ/wings/flight/Insert(mob/living/carbon/M, special, drop_if_replaced)
+/obj/item/organ/wings/flight/Insert(mob/living/carbon/M, special, drop_if_replaced, new_zone = null)
 	. = ..()
 	if(length(flight_for_species) && !(M.dna?.species.id in flight_for_species))
 		return
@@ -170,7 +170,7 @@
 
 	var/mob/living/flier = owner
 
-	if(flier.get_encumbrance() > 0.7)
+	if(flier.encumbrance >= ENCUMBRANCE_HEAVY)
 		owner.balloon_alert(owner, "too heavy!")
 		return FALSE
 
@@ -232,7 +232,7 @@
 	build_all_button_icons(update_flags = UPDATE_BUTTON_BACKGROUND)
 
 /datum/action/item_action/organ_action/use/flight/proc/init_signals()
-	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(check_damage))
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(check_damage))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(check_movement))
 	RegisterSignal(owner, COMSIG_LIVING_SET_BODY_POSITION, PROC_REF(check_laying))
 	RegisterSignals(owner, SIGNAL_ADDTRAIT(TRAIT_IMMOBILIZED), PROC_REF(fall))
@@ -274,7 +274,7 @@
 	flying = FALSE
 
 	UnregisterSignal(owner, list(
-		COMSIG_MOB_APPLY_DAMGE,
+		COMSIG_MOB_APPLY_DAMAGE,
 		COMSIG_MOVABLE_MOVED,
 		COMSIG_LIVING_SET_BODY_POSITION,
 		SIGNAL_ADDTRAIT(TRAIT_IMMOBILIZED)

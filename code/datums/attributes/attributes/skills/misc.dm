@@ -128,17 +128,3 @@
 	dreams = list(
 		"...your hands move with practiced precision, needle and thread dancing through torn flesh like a tailor at their loom... the scent of blood and old herbs clings to you as you whisper a prayer to stave off infection... the battle rages on, but your patient will not fall today..."
 	)
-
-/datum/attribute/skill/misc/sewing
-	name = "Sewing"
-	desc = "Represents your character's ability to sew. The higher your skill in Sewing, the more complex items you can create, and the faster you can sew."
-	category = SKILL_CATEGORY_DOMESTIC
-	governing_attribute = STAT_PERCEPTION
-	default_attributes = list(
-		STAT_PERCEPTION = -5,
-		STAT_INTELLIGENCE = -6,
-	)
-	difficulty = SKILL_DIFFICULTY_EASY
-	dreams = list(
-		"...the needle goes through the cloth, in-and-out... then it's hide... then it's a man's flesh... you blink, the dress is done... the queen will love it..."
-	)

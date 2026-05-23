@@ -12,6 +12,7 @@
 	crafting_sound = 'sound/foley/kneading.ogg'
 	crafting_message = "knead in more flour"
 	extra_chance = 100
+	skillcraft = /datum/attribute/skill/craft/cooking/baking
 
 /datum/repeatable_crafting_recipe/cooking/dough_alt
 	hides_from_books = TRUE
@@ -28,6 +29,7 @@
 	crafting_sound = 'sound/foley/kneading.ogg'
 	crafting_message = "knead in more flour"
 	extra_chance = 100
+	skillcraft = /datum/attribute/skill/craft/cooking/baking
 
 /datum/repeatable_crafting_recipe/cooking/butter_dough
 	name = "Butter Dough"
@@ -43,6 +45,7 @@
 	crafting_sound = 'sound/foley/kneading_alt.ogg'
 	crafting_message = "knead butter into the dough"
 	extra_chance = 100
+	skillcraft = /datum/attribute/skill/craft/cooking/baking
 
 /datum/repeatable_crafting_recipe/cooking/raisin_dough
 	name = "Raisin Dough"
@@ -59,6 +62,7 @@
 	crafting_sound = 'sound/foley/kneading.ogg'
 	crafting_message = "knead the dough and adding raisins"
 	extra_chance = 100
+	skillcraft = /datum/attribute/skill/craft/cooking/baking
 
 /datum/repeatable_crafting_recipe/cooking/reform_dough
 	name = "Reform Dough"
@@ -74,3 +78,4 @@
 	crafting_sound = 'sound/foley/kneading.ogg'
 	crafting_message = "combine dough slices"
 	extra_chance = 100
+	skillcraft = /datum/attribute/skill/craft/cooking/baking

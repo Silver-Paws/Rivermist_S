@@ -1,5 +1,6 @@
 
 /obj/item/rope
+	item_weight = 300 GRAMS
 	name = "rope"
 	desc = "A series of threads intertwined to create a firm rope for binding, hanging and other jobs."
 	gender = PLURAL
@@ -140,6 +141,7 @@
 		return TRUE
 
 /obj/item/rope/chain
+	item_weight = 1.2 KILOGRAMS
 	name = "chain"
 	desc = "Metal chains designed to interlock and apply the harshest confinement on the villainous."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -167,6 +169,7 @@
 	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
 
 /obj/item/rope/net
+	item_weight = 500 GRAMS
 	name = "rope net"
 	desc = "A rope mesh of designed to slow a person down."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -199,7 +202,7 @@
 		SSblackbox.record_feedback("tally", "handcuffs", 1, type)
 		C.apply_status_effect(/datum/status_effect/debuff/netted)
 		playsound(src, 'sound/combat/hits/nodmg (2).ogg', 100, TRUE)
-		if(MOVE_INTENT_RUN && C.body_position == STANDING_UP && C.sprinted_tiles > 0)
+		if((C.m_intent = MOVE_INTENT_RUN || HAS_TRAIT(C, TRAIT_STUMBLE)) && C.body_position == STANDING_UP && C.sprinted_tiles > 0)
 			C.Knockdown(knockdown)
 
 // Failsafe in case the item somehow ends up being destroyed
@@ -243,7 +246,7 @@
 		for(var/mob/living/buckled_mob as anything in buckled_mobs)
 			buckled_mob.visible_message("<span class='danger'>[buckled_mob] falls over and hits the ground!</span>")
 			to_chat(buckled_mob, "<span class='userdanger'>You fall over and hit the ground!</span>")
-			buckled_mob.adjustBruteLoss(10)
+			buckled_mob.adjustBruteLoss(10, damage_type = BCLASS_BLUNT)
 			buckled_mob.Knockdown(60)
 	return ..()
 

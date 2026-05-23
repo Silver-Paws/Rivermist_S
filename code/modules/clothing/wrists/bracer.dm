@@ -1,5 +1,6 @@
 
 /obj/item/clothing/wrists/bracers
+	item_weight = 1.2 KILOGRAMS
 	name = "plate vambraces"
 	desc = "Plate forearm guards that offer superior protection while allowing mobility."
 	body_parts_covered = ARMS
@@ -10,14 +11,15 @@
 	prevent_crits = list(BCLASS_LASHING, BCLASS_BITE, BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = PLATEHIT
 	resistance_flags = FIRE_PROOF
-	anvilrepair = /datum/attribute/skill/craft/armorsmithing
-	sewrepair = FALSE
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
+	sewrepair = null
 	smeltresult = /obj/item/ingot/iron //no 1 to 1 conversion
 	melting_material = /datum/material/iron
 	melt_amount = 100
 	max_integrity = INTEGRITY_STRONG
 
 /obj/item/clothing/wrists/bracers/naledi
+	item_weight = 125 GRAMS
 	name = "sojourner's wrappings"
 	desc = "Sheared burlap and cloth, meticulously fashioned around the forearms. It provides more freedom of movement than the traditional steel thorns."
 	slot_flags = ITEM_SLOT_WRISTS
@@ -31,7 +33,7 @@
 	max_integrity = ARMOR_INT_SIDE_STEEL //Heavy leather-tier protection and critical resistances, steel-tier integrity. Integrity boost encourages hand-to-hand parrying. Weaker than the Psydonic Thorns.
 	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = SOFTHIT
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 
 /obj/item/clothing/wrists/bracers/iron
 	name = "iron plate vambraces"
@@ -70,6 +72,7 @@
 	melt_amount = 75
 
 /obj/item/clothing/wrists/bracers/leather
+	item_weight = 650 GRAMS
 	name = "leather bracers"
 	desc = "Boiled leather bracers typically worn by archers to protect their forearms."
 	icon_state = "lbracers"
@@ -84,7 +87,7 @@
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
 	anvilrepair = null
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/craft/tanning/patching
 	salvage_result = null
 	max_integrity = INTEGRITY_STANDARD
 
@@ -124,6 +127,7 @@
 	AddComponent(/datum/component/storage/concrete/scabbard/knife)
 
 /obj/item/clothing/wrists/bracers/psythorns
+	item_weight = 1.6 KILOGRAMS
 	name = "exotic thorns"
 	desc = "Thorns fashioned from pliable yet durable blacksteel - woven and interlinked, fashioned to be wrapped around the wrists."
 	body_parts_covered = ARMS
@@ -135,8 +139,8 @@
 	blocksound = PLATEHIT
 	resistance_flags = FIRE_PROOF
 	max_integrity = 400
-	anvilrepair = /datum/attribute/skill/craft/armorsmithing
-	sewrepair = FALSE
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
+	sewrepair = null
 	alternate_worn_layer = WRISTS_LAYER
 
 /obj/item/clothing/wrists/bracers/psythorns/equipped(mob/user, slot)
@@ -154,7 +158,8 @@
 		if(user.is_holding(src))
 			user.dropItemToGround(src)
 			user.put_in_hands(P)
-		user.adjustBruteLoss(25)
+		var/obj/item/bodypart/arm = user.get_active_hand()
+		arm?.bodypart_attacked_by(BCLASS_CUT, 25)
 		qdel(src)
 	else
 		user.visible_message(span_warning("[user] stops reshaping [src]."))

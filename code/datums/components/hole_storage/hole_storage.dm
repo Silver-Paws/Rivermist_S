@@ -146,7 +146,9 @@
 			apply_outer_overlay(incoming_item)
 	if(diff > 0)
 		handle_stretch(source, diff)
-	owner.encumbrance_to_speed()
+	if(iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		carbon_owner.update_carry_weight()
 	notify_storage_changed()
 
 /**
@@ -240,7 +242,9 @@
 	layer_storage_cur_bulk[target_layer] -= removed_item.body_storage_bulk
 	if(removed_item.has_body_storage_overlay)
 		remove_outer_overlay(removed_item)
-	owner.encumbrance_to_speed()
+	if(iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		carbon_owner.update_carry_weight()
 	notify_storage_changed()
 
 /datum/component/body_storage/proc/extract_contents_for_organ_regeneration()

@@ -22,6 +22,7 @@
 
 //┌─────────────── GOREFEAST ───────────────┐//
 /obj/item/weapon/polearm/halberd/bardiche/woodcutter/gorefeast
+	item_weight = 3.5 KILOGRAMS
 	name = "gorefeast"
 	desc = "It is said that with this axe alone, Graggar slew a thousand men. With you, it will slay a thousand more."
 	icon = 'icons/roguetown/weapons/64/godweapons.dmi'
@@ -85,7 +86,8 @@
 			heart.forceMove(H.drop_location())
 
 			H.add_splatter_floor()
-			H.adjustBruteLoss(20)
+			var/obj/item/bodypart/chest = H.get_bodypart(BODY_ZONE_CHEST)
+			chest.bodypart_attacked_by(BCLASS_PIERCE, 50, incoming_germ = germ_level)
 			to_chat(user, span_notice("I finish pulling the heart from [H]!"))
 	. = ..()
 
@@ -94,6 +96,7 @@
 
 //┌─────────────── NEANT ───────────────┐//
 /obj/item/weapon/polearm/neant
+	item_weight = 3 KILOGRAMS
 	name = "neant"
 	desc = "A dark scythe with a long chain, used to cut the life essence from people, or whip them into shape. The blade is an ominous purple."
 	icon_state = "neant"
@@ -149,7 +152,10 @@
 			return
 		playsound(user, 'sound/surgery/scalpel2.ogg', 70)
 		if(do_after(user, 0.5 SECONDS, target))
-			C.add_wound(/datum/wound/slash/incision)
+			var/datum/injury/ouchie = C.create_injury(WOUND_SLASH, C.max_damage * 0.3, TRUE)
+			if(!ouchie)
+				return
+			ouchie.injury_flags |= INJURY_SURGICAL
 
 		playsound(user, 'sound/surgery/organ2.ogg', 70)
 		if(do_after(user, 0.5 SECONDS, target))
@@ -163,7 +169,8 @@
 		record_round_statistic(STATS_LUX_HARVESTED)
 
 		H.add_splatter_floor()
-		H.adjustBruteLoss(20)
+		var/obj/item/bodypart/chest = H.get_bodypart(BODY_ZONE_CHEST)
+		chest.bodypart_attacked_by(BCLASS_PIERCE, 50, incoming_germ = germ_level)
 		visible_message(user, span_notice("Neant's blade draws the lux from [target]!"))
 
 /obj/item/weapon/polearm/neant/proc/handle_magick(mob/living/user, atom/target)
@@ -234,6 +241,7 @@
 //┌─────────────── TURBULENTA ───────────────┐//
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/turbulenta
+	item_weight = 2 KILOGRAMS
 	name = "turbulenta"
 	desc = "Rarely does she even care about combat, but when she does... Baotha was quite the markswoman."
 	icon = 'icons/roguetown/weapons/64/godweapons.dmi'
@@ -365,6 +373,7 @@
 
 //┌─────────────── PLEONEXIA ───────────────┐//
 /obj/item/weapon/sword/long/pleonexia
+	item_weight = 1.5 KILOGRAMS
 	icon_state = "pleonexia"
 	icon = 'icons/roguetown/weapons/64/godweapons.dmi'
 	name = "pleonexia"
@@ -431,6 +440,7 @@
 //┌─────────────── TENNITE PANTHEON WEAPONS BELOW ───────────────┐
 
 /obj/item/weapon/sword/long/grandmaster
+	item_weight = 1.5 KILOGRAMS
 	name = "divine longsword"
 	desc = "The Blade of Saint Altierre. A holy sword forged of silver, said to represent her will to fight for us all, and the Justice she stood for."
 	icon = 'icons/roguetown/weapons/64/godweapons.dmi'
@@ -459,6 +469,7 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/weapon/greataxe/steel/grandmaster
+	item_weight = 4.5 KILOGRAMS
 	name = "divine greataxe"
 	desc = "The Axe of Saint Altierre. A holy great axe forged of silver, said to represent the brutal attack she struck Graggar with, mortally wounding him and nearly killing him."
 	icon = 'icons/roguetown/weapons/64/godweapons.dmi'
@@ -508,6 +519,7 @@
 		blade_class = BCLASS_SMASH
 
 /obj/item/weapon/polearm/spear/grandmaster
+	item_weight = 2.5 KILOGRAMS
 	name = "divine trident"
 	desc = "The Trident of Saint Altierre. A holy spear forged of silver in the form of a holy weapon of Abyssor, said to represent her unfathomable Rage against the inhumen gods."
 	icon = 'icons/roguetown/weapons/64/godweapons.dmi'
@@ -531,6 +543,7 @@
 		blade_class = BCLASS_SMASH
 
 /obj/item/weapon/mace/goden/steel/grandmaster
+	item_weight = 3.5 KILOGRAMS
 	name = "divine grandmace"
 	desc = "The Mace of Saint Altierre. A holy mace forged of silver, said to represent her unyielding Might that turned upon Graggar before his ascension."
 	icon = 'icons/roguetown/weapons/64/godweapons.dmi'

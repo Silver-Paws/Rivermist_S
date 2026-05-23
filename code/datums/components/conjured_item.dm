@@ -22,7 +22,7 @@
 	duration = 5 MINUTES,
 	refresh_count = 4,
 	refresh_skill = /datum/attribute/skill/magic/arcane,
-	skill_threshold = SKILL_LEVEL_JOURNEYMAN,
+	skill_threshold = SKILL_RANK_JOURNEYMAN,
 	outline_color = "#6495ED",
 	current_user,
 )
@@ -64,10 +64,10 @@
 	if(refresh_count != -1 && refresh_count <= 0)
 		clean_up(TRUE)
 		return
-	if(refresh_skill && !GET_MOB_SKILL_VALUE_OLD(holder, refresh_skill))
+	if(refresh_skill && !GET_MOB_SKILL_VALUE(holder, refresh_skill))
 		clean_up(TRUE)
 		return
-	if(skill_threshold && GET_MOB_SKILL_VALUE_OLD(holder, refresh_skill) < skill_threshold)
+	if(skill_threshold && GET_MOB_SKILL_VALUE(holder, refresh_skill) < skill_threshold)
 		clean_up(TRUE)
 		return
 

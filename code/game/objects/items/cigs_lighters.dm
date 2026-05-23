@@ -16,6 +16,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //MATCHES//
 ///////////
 /obj/item/match
+	item_weight = 2 GRAMS
 	name = "match"
 	desc = ""
 	icon = 'icons/obj/cigarettes.dmi'
@@ -119,6 +120,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //FINE SMOKABLES//
 //////////////////
 /obj/item/clothing/face/cigarette
+	item_weight = 3 GRAMS
 	name = "cigarette"
 	desc = ""
 	icon_state = "spliffoff"
@@ -130,7 +132,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	slot_flags = ITEM_SLOT_MOUTH
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/mouth_items.dmi'
 	icon = 'icons/roguetown/items/lighting.dmi'
-	heat = 1000
+	heat = 570
 	spitoutmouth = FALSE
 
 	grid_width = 32

@@ -95,6 +95,7 @@ GLOBAL_VAR_INIT(mobids, 1)
 	set_hydration(rand(HYDRATION_LEVEL_START_MIN, HYDRATION_LEVEL_START_MAX))
 	attribute_initialize()
 	. = ..()
+	initialize_actionspeed()
 	update_config_movespeed()
 	update_movespeed(TRUE)
 	become_hearing_sensitive()
@@ -239,6 +240,14 @@ GLOBAL_VAR_INIT(mobids, 1)
 			continue
 		//This entire if/else chain could be in two lines but isn't for readibilties sake.
 		var/msg = message
+		var/signal = SEND_SIGNAL(M, COMSIG_MOB_VISIBLE_MESSAGE, src, message, vision_distance, ignored_mobs)
+		if(signal & COMPONENT_NO_VISIBLE_MESSAGE)
+			msg = null
+		else if(signal & COMPONENT_VISIBLE_MESSAGE_BLIND)
+			msg = blind_message
+		if(!msg)
+			continue
+
 		if(M.see_invisible < invisibility)//if src is invisible to M
 			msg = blind_message
 		if(!msg)
@@ -447,6 +456,8 @@ GLOBAL_VAR_INIT(mobids, 1)
 			client.eye = client.mob
 			client.perspective = MOB_PERSPECTIVE
 
+	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE, new_perspective)
+
 /// Show the mob's inventory to another mob
 /mob/proc/show_inv(mob/user, extra_only = FALSE)
 	return
@@ -474,6 +485,13 @@ GLOBAL_VAR_INIT(mobids, 1)
 
 	if(is_blind())
 		to_chat(src, span_warning("Something is there but I can't see it!"))
+		return
+
+	var/flags = SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
+	if(flags & COMPONENT_NO_EXAMINATE)
+		return
+	else if(flags & COMPONENT_EXAMINATE_BLIND)
+		to_chat(src, span_warning("Something is there but i can't see it!"))
 		return
 
 	if(isturf(examinify.loc) && isliving(src) && stat == CONSCIOUS)
@@ -513,6 +531,13 @@ GLOBAL_VAR_INIT(mobids, 1)
 
 	var/list/result = examinify.examine(src)
 	if(LAZYLEN(result))
+		var/list/mechanics_result = examinify.get_mechanics_examine(src)
+		if(length(mechanics_result))
+			var/mechanics_result_str = "<details><summary>Mechanics</summary>"
+			for(var/line in mechanics_result)
+				mechanics_result_str += " - " + span_blue(line) + "\n"
+			mechanics_result_str += "</details>"
+			result += mechanics_result_str
 		for(var/i in 1 to (length(result) - 1))
 			result[i] += "\n"
 		to_chat(src, examine_block("<span class='infoplain'>[result.Join()]</span>"))
@@ -799,7 +824,7 @@ GLOBAL_VAR_INIT(mobids, 1)
 	if(client)
 		if(world.time < client.last_turn)
 			return FALSE
-	if(stat == DEAD || stat == UNCONSCIOUS)
+	if(stat == DEAD || stat == UNCONSCIOUS || stat == HARD_CRIT)
 		return FALSE
 	if(anchored)
 		return FALSE
@@ -1326,6 +1351,10 @@ GLOBAL_VAR_INIT(mobids, 1)
 		remove_movespeed_modifier(MOVESPEED_ID_MOB_EQUIPMENT, update=TRUE)
 	else
 		add_movespeed_modifier(MOVESPEED_ID_MOB_EQUIPMENT, update=TRUE, priority=100, override=TRUE, multiplicative_slowdown=speedies, blacklisted_movetypes=FLOATING)
+
+/mob/living/carbon/update_equipment_speed_mods()
+	. = ..()
+	update_carry_weight()
 
 /// Gets the combined speed modification of all worn items
 /// Except base mob type doesnt really wear items

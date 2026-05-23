@@ -1,6 +1,7 @@
 //copper tools
 
 /obj/item/weapon/hoe/copper
+	item_weight = 852 GRAMS
 	name = "copper hoe"
 	desc = ""
 	icon = 'icons/roguetown/weapons/tools.dmi'
@@ -16,6 +17,7 @@
 	time_multiplier = 0.5
 
 /obj/item/weapon/sickle/copper
+	item_weight = 354 GRAMS
 	name = "copper sickle"
 	desc = ""
 	icon = 'icons/roguetown/weapons/tools.dmi'
@@ -24,6 +26,7 @@
 	melting_material = /datum/material/copper
 
 /obj/item/weapon/pitchfork/copper
+	item_weight = 1.74 KILOGRAMS
 	name = "copper fork"
 	desc = "A simple and rustic tool for working the fields, not a very effective weapon."
 	icon_state = "cpitchfork"

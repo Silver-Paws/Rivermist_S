@@ -21,8 +21,10 @@
 	additional_blocker = "underwear"
 	stretchable = TRUE
 
-/obj/item/organ/genitals/filling_organ/anus/Insert(mob/living/M, special, drop_if_replaced)
+/obj/item/organ/genitals/filling_organ/anus/Insert(mob/living/M, special, drop_if_replaced, new_zone = null)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(!refilling)
 		reagents.clear_reagents()
 	add_bodystorage(M, null, /datum/component/body_storage/anus)

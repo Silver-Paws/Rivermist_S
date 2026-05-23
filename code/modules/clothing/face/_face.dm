@@ -15,7 +15,7 @@
 	grid_width = 64
 	grid_height = 32
 
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 	anvilrepair = null
 
 	var/modifies_speech = FALSE

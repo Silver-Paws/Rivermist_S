@@ -1,4 +1,5 @@
 /obj/item/storage/fancy/pilltin
+	item_weight = 55 GRAMS
 	name = "pill tin"
 	desc = "A tin for all your pill needs."
 	icon = 'icons/obj/medical.dmi'

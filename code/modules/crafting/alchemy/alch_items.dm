@@ -1,4 +1,5 @@
 /obj/item/reagent_containers/glass/alchemical
+	item_weight = 34 GRAMS
 	name = "alchemical vial"
 	desc = "A cute bottle, designed to hold 3 swigs of a fluid."
 	icon = 'icons/roguetown/items/glass_reagent_container.dmi'

@@ -15,7 +15,7 @@
 	var/list/egg_traits = list()
 	var/resource_dependent_yield = FALSE
 
-/obj/item/organ/genitals/penis/ovipositor/Insert(mob/living/M, special, drop_if_replaced)
+/obj/item/organ/genitals/penis/ovipositor/Insert(mob/living/M, special, drop_if_replaced, new_zone = null)
 	. = ..()
 	if(!GetComponent(/datum/component/ovipositor))
 		AddComponent(/datum/component/ovipositor)

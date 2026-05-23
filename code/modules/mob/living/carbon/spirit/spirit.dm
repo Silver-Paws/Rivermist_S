@@ -9,7 +9,7 @@
 	mob_biotypes = MOB_SPIRIT|MOB_HUMANOID
 	gib_type = /obj/effect/decal/cleanable/blood/gibs
 	bodyparts = list(/obj/item/bodypart/chest/spirit, /obj/item/bodypart/head/spirit, /obj/item/bodypart/l_arm/spirit,
-					/obj/item/bodypart/r_arm/spirit, /obj/item/bodypart/r_leg/spirit, /obj/item/bodypart/l_leg/spirit)
+					/obj/item/bodypart/r_arm/spirit, /obj/item/bodypart/r_leg/spirit, /obj/item/bodypart/l_leg/spirit, /obj/item/bodypart/mouth)
 	hud_type = /datum/hud/spirit
 	var/paid = FALSE
 	var/beingmoved = FALSE //repurposed for speak with soul
@@ -176,7 +176,7 @@
 			success = TRUE
 	for(var/mob/living/carbon/human/human_corpse in coffin)
 		if(human_corpse.funeral) /* The proc succeeds even if the corpse already received a funeral before.
-	    Coffins and graves have checks to prevent giving too much influence / devotion to Necra. */
+	Coffins and graves have checks to prevent giving too much influence / devotion to Necra. */
 			success = TRUE
 	for(var/obj/item/bodypart/head/head in coffin)
 		if(!head.brainmob)

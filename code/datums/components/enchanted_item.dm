@@ -28,7 +28,7 @@
 	duration = 15 MINUTES,
 	refresh_count = 4,
 	refresh_skill = /datum/skill/magic/arcane,
-	skill_threshold = SKILL_LEVEL_JOURNEYMAN,
+	skill_threshold = SKILL_RANK_JOURNEYMAN,
 	enchant_type = SEARING_BLADE_ENCHANT,
 	current_user,
 )

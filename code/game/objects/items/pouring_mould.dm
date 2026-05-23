@@ -1,4 +1,5 @@
 /obj/item/mould
+	item_weight = 500 GRAMS
 	name = "mould"
 	desc = "You shouldn't be seeing this one."
 
@@ -164,6 +165,7 @@
 
 
 /obj/item/mould/ingot
+	item_weight = 650 GRAMS
 	name = "ingot mould"
 	desc = "A clay mould for making metal ingots."
 

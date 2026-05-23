@@ -3,6 +3,7 @@
 
 // Sword base
 /obj/item/weapon/sword
+	item_weight = 1.2 KILOGRAMS
 	name = "sword"
 	desc = "A trustworthy blade design, the first dedicated tool of war since before the age of history."
 	icon = 'icons/roguetown/weapons/32/swords.dmi'
@@ -51,6 +52,7 @@
 \-----------------*/
 
 /obj/item/weapon/sword/short
+	item_weight = 700 GRAMS
 	name = "short sword"
 	desc = "A steel sword of shortened design and a reduced grip for single hand use."
 	icon_state = "swordshort"
@@ -66,6 +68,7 @@
 	sellprice = 30
 
 /obj/item/weapon/sword/short/iron
+	item_weight = 750 GRAMS
 	desc = "An iron sword of shortened design and a reduced grip for single hand use."
 	icon_state = "iswordshort"
 	wdefense = GOOD_PARRY
@@ -75,6 +78,7 @@
 	sellprice = 15
 
 /obj/item/weapon/sword/short/bronze
+	item_weight = 700 GRAMS
 	name = "bronze short sword"
 	desc = "A bronze sword of shortened design and a reduced grip for single hand use."
 	icon_state = "shortsword_bronze"
@@ -85,6 +89,7 @@
 	sellprice = 10
 
 /obj/item/weapon/sword/short/psy
+	item_weight = 650 GRAMS
 	name = "exotic shortsword"
 	desc = "Darkholdian smiths worked with artificers, and an esoteric blade was born: a blade with an unique design, dismissing a crossguard in favor of a hollow beak to hook and draw harm away from its user. Short in length, yet lethally light in weight."
 	icon = 'icons/roguetown/weapons/32/psydonite.dmi'
@@ -94,10 +99,12 @@
 	grid_height = 96
 
 /obj/item/weapon/sword/short/psy/Initialize(mapload)
+	item_weight = 700 GRAMS
 	. = ..()						//+2 force, +50 blade int, +50 int, +1 def, make silver
 	AddComponent(/datum/component/psyblessed, FALSE, 2, 50, 50, 1, TRUE)
 
 /obj/item/weapon/sword/short/ida //Worse thrust but more damage for cutting.
+	item_weight = 700 GRAMS
 	name = "steel ida"
 	desc = "A steel short sword with a leaf-shaped blade. Used to be a popular weapon in the east."
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
@@ -106,6 +113,7 @@
 	possible_item_intents = list(SHORT_CUT, SWORD_THRUST)
 
 /obj/item/weapon/sword/short/iron/ida
+	item_weight = 750 GRAMS
 	name = "iron ida"
 	desc = "A short sword with a leaf-shaped blade. Used to be a popular weapon in the east."
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
@@ -116,6 +124,7 @@
 
 //................ Arming Sword ............... //
 /obj/item/weapon/sword/arming
+	item_weight = 1.2 KILOGRAMS
 	name = "arming sword"
 	desc = "A trustworthy blade design, the first dedicated tool of war since before the age of history."
 	icon_state = "sword1"
@@ -129,6 +138,7 @@
 		icon_state = "sword[rand(1,3)]"
 
 /obj/item/weapon/sword/decorated
+	item_weight = 1.2 KILOGRAMS
 	icon_state = "decsword1"
 	sellprice = 140
 
@@ -138,6 +148,7 @@
 		icon_state = "decsword[rand(1,3)]"
 
 /obj/item/weapon/sword/silver
+	item_weight = 1.1 KILOGRAMS
 	name = "silver sword"
 	desc = "A simple silver sword with an edge that gleams in moonlight."
 	icon_state = "silversword"
@@ -152,6 +163,7 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/weapon/sword/iron
+	item_weight = 1.3 KILOGRAMS
 	desc = "A simple iron sword with a tested edge, sharp and true."
 	icon_state = "isword"
 	wdefense = GOOD_PARRY
@@ -160,6 +172,7 @@
 	melting_material = /datum/material/iron
 
 /obj/item/weapon/sword/bronze
+	item_weight = 1.2 KILOGRAMS
 	name = "bronze sword"
 	desc = "A simple and reliable bronze sword."
 	icon_state = "sword_bronze"
@@ -169,6 +182,7 @@
 	melting_material = /datum/material/bronze
 
 /obj/item/weapon/sword/kaskara
+	item_weight = 1.2 KILOGRAMS
 	name = "steel kaskara"
 	desc = "A steel sword with a small crossguard."
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
@@ -178,6 +192,7 @@
 	alt_intents = null
 
 /obj/item/weapon/sword/kaskara/iron
+	item_weight = 1.3 KILOGRAMS
 	name = "iron kaskara"
 	desc = "A sword of with a small crossguard."
 	icon_state = "kaskara_iron"
@@ -187,6 +202,7 @@
 	melting_material = /datum/material/iron
 
 /obj/item/weapon/sword/stone
+	item_weight = 900 GRAMS
 	name = "stone sword"
 	desc = "A crudely made sword, wielded by savages."
 	icon_state = "stone_sword"
@@ -212,6 +228,7 @@
 | Sabres |	Onehanded, slightly weaker thrust, better for parries. Think rapier but cutting focus.
 \-------*/
 /obj/item/weapon/sword/sabre
+	item_weight = 900 GRAMS
 	name = "sabre"
 	desc = "A swift sabre, favored by duelists and cut-throats alike."
 	icon_state = "saber"
@@ -226,12 +243,14 @@
 	swingsound = BLADEWOOSH_SMALL
 
 /obj/item/weapon/sword/sabre/dec
+	item_weight = 900 GRAMS
 	name = "decorated sabre"
 	desc = "A sabre decorated with fashionable gold accents without sacrificing its lethal practicality."
 	icon_state = "decsaber"
 	sellprice = 140
 
 /obj/item/weapon/sword/sabre/stalker
+	item_weight = 850 GRAMS
 	name = "stalker sabre"
 	desc = "A once elegant blade of mythril, diminishing under the suns gaze"
 	icon = 'icons/roguetown/weapons/32/elven.dmi'
@@ -239,6 +258,7 @@
 	possible_item_intents = list(SWORD_CUT, SHORT_THRUST)
 
 /obj/item/weapon/sword/sabre/noc
+	item_weight = 950 GRAMS
 	name = "moonlight khopesh"
 	icon = 'icons/roguetown/weapons/32/patron.dmi'
 	icon_state = "nockhopesh"
@@ -252,6 +272,7 @@
 
 //................ Cutlass ............... //
 /obj/item/weapon/sword/sabre/cutlass
+	item_weight = 1 KILOGRAMS
 	name = "cutlass"
 	desc = "Both tool and weapon of war, favored by Abyssor cultists and sailors for seafaring battle."
 	icon_state = "cutlass"
@@ -261,6 +282,7 @@
 	minstr = 6
 
 /obj/item/weapon/sword/sabre/dadao
+	item_weight = 1.2 KILOGRAMS
 	name = "steel dadao"
 	icon_state = "dadao_steel"
 	desc = "Sometimes also referred to as \"Saiga Choppers\". Dadaos are heavy eastern blades infamous for their ability to slice men in half."
@@ -271,6 +293,7 @@
 	gripped_intents = list(AXE_CHOP, CURVED_THRUST)
 
 /obj/item/weapon/sword/sabre/dadao/iron
+	item_weight = 1.3 KILOGRAMS
 	name = "iron dadao"
 	icon_state = "dadao_iron"
 	max_blade_int = 200
@@ -278,6 +301,7 @@
 	melting_material = /datum/material/iron
 
 /obj/item/weapon/sword/sabre/dadao/bronze
+	item_weight = 1.1 KILOGRAMS
 	name = "bronze dadao"
 	icon_state = "dadao_bronze"
 	max_blade_int = 150
@@ -286,6 +310,7 @@
 
 //................ Shalal Sabre ............... //
 /obj/item/weapon/sword/sabre/shalal
+	item_weight = 1.3 KILOGRAMS
 	name = "shalal sabre"
 	desc = "A fine weapon of Zakharani origin in the style of the Shalal tribesfolk, renowned for their defiance against magic and mastery of mounted swordsmanship."
 	icon = 'icons/roguetown/weapons/64/swords.dmi'
@@ -324,6 +349,7 @@
 
 
 /obj/item/weapon/sword/sabre/scythe
+	item_weight = 1 KILOGRAMS
 	name = "scythe sword"
 	desc = "A farming tool blade has been fastened to a shorter wooden handle to create an improvised weapon."
 	icon_state = "scytheblade"
@@ -335,6 +361,7 @@
 | Scimitars |	Normal swords with a strong cutting emphasis.
 \----------*/
 /obj/item/weapon/sword/scimitar
+	item_weight = 1.1 KILOGRAMS
 	name = "scimitar"
 	desc = "A Zakharani design for swords, these curved blades are a common sight in the lands of the Ziggurat."
 	icon_state = "scimitar"
@@ -343,6 +370,7 @@
 	swingsound = BLADEWOOSH_LARGE
 
 /obj/item/weapon/sword/scimitar/falchion
+	item_weight = 1.3 KILOGRAMS
 	name = "falchion"
 	desc = "Broad blade, excellent steel, a design inspired by Malum the dwarves claim."
 	icon_state = "falchion"
@@ -352,6 +380,7 @@
 	swingsound = BLADEWOOSH_HUGE
 
 /obj/item/weapon/sword/scimitar/messer
+	item_weight = 1.4 KILOGRAMS
 	name = "messer"
 	desc = "Straight iron blade, simple cutting edge, no nonsense and a popular northern blade."
 	icon_state = "imesser"
@@ -365,6 +394,7 @@
 	sellprice = 20
 
 /obj/item/weapon/sword/scimitar/lakkarikhopesh/iron
+	item_weight = 1.2 KILOGRAMS
 	name = "iron khopesh"
 	desc = "A crescent curved sword. It's popular among traveling Noccian scholars."
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
@@ -375,6 +405,7 @@
 	sellprice = 20
 
 /obj/item/weapon/sword/scimitar/lakkarikhopesh
+	item_weight = 1.2 KILOGRAMS
 	name = "steel khopesh"
 	desc = "A crescent curved sword. It's popular among traveling Noccian scholars."
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
@@ -385,6 +416,7 @@
 	sellprice = 45
 
 /obj/item/weapon/sword/scimitar/sengese/iron
+	item_weight = 1.1 KILOGRAMS
 	name = "iron sengese"
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
 	icon_state = "sengese_iron"
@@ -394,6 +426,7 @@
 	sellprice = 20
 
 /obj/item/weapon/sword/scimitar/sengese
+	item_weight = 1.1 KILOGRAMS
 	name = "steel sengese"
 	desc = "A curved sword made for deflecting blows. Many inexperienced swordsmen struggle to use it well due to its shape, but it's a force to be reckoned with in the hands of a master."
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
@@ -406,6 +439,7 @@
 	sellprice = 45
 
 /obj/item/weapon/sword/scimitar/sengese/bronze
+	item_weight = 1 KILOGRAMS
 	name = "bronze sengese"
 	icon = 'icons/roguetown/weapons/32/swords.dmi'
 	icon_state = "sengese_bronze"
@@ -415,6 +449,7 @@
 	sellprice = 15
 
 /obj/item/weapon/sword/scimitar/sengese/silver
+	item_weight = 1 KILOGRAMS
 	name = "silver sengese"
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
 	icon_state = "sengese_silver"
@@ -429,6 +464,7 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/weapon/sword/scimitar/wodao
+	item_weight = 900 GRAMS
 	name = "steel wo dao"
 	desc = "A slightly curved blade of eastern origin. While less durable compared to other swords, it's swift balance and unique design makes it great for unleashing precise strikes."
 	icon_state = "wodao_steel"
@@ -441,6 +477,7 @@
 	melting_material = /datum/material/steel
 
 /obj/item/weapon/sword/scimitar/wodao/iron
+	item_weight = 950 GRAMS
 	name = "iron wo dao"
 	icon_state = "wodao_iron"
 	force = DAMAGE_SWORD - 1
@@ -453,6 +490,7 @@
 | Rapiers |		Onehanded, slightly weaker cut, more AP thrust, harder to dodge.
 \--------*/
 /obj/item/weapon/sword/rapier
+	item_weight = 700 GRAMS
 	name = "rapier"
 	desc = "A duelist's weapon derived from western battlefield instruments, it features a tapered \
 	blade with a specialized stabbing tip."
@@ -549,6 +587,7 @@
 				)
 
 /obj/item/weapon/sword/rapier/psy
+	item_weight = 700 GRAMS
 	name = "exotic rapier"
 	desc = "A highly ornate silver rapier, used more as a show of status for members of the inquisition."
 	icon = 'icons/roguetown/weapons/64/psydonite.dmi'
@@ -562,16 +601,19 @@
 	AddComponent(/datum/component/psyblessed, TRUE, 5, 100, 100, 2, TRUE)
 
 /obj/item/weapon/sword/rapier/psy/relic
+	item_weight = 700 GRAMS
 	name = "retribution"
 	desc = "A rapier as swift as the inquisitors of the Ordo Venatari. Strike evil at its heart. Purge the unholy through the slightest window it offers, in Psydon’s name."
 
 /obj/item/weapon/sword/rapier/dec
+	item_weight = 700 GRAMS
 	name = "decorated rapier"
 	desc = "A rapier decorated with gold inlaid on its hilt. A regal weapon fit for nobility."
 	icon_state = "decrapier"
 	sellprice = 140
 
 /obj/item/weapon/sword/rapier/nimcha
+	item_weight = 750 GRAMS
 	name = "nimcha"
 	desc = "An embellished swift sword from the east."
 	icon = 'icons/roguetown/weapons/64/swords.dmi'
@@ -580,6 +622,7 @@
 	sellprice = 140 // its made with gold and steel, thats pretty valuable
 
 /obj/item/weapon/sword/rapier/caneblade
+	item_weight = 500 GRAMS
 	name = "cane blade"
 	desc = "A steel blade with a gold handle, intended to be concealed inside of a cane. Has a focus on stabbing"
 	icon = 'icons/roguetown/weapons/32/swords.dmi'
@@ -590,6 +633,7 @@
 
 //................ Lord's Rapier ............... //
 /obj/item/weapon/sword/rapier/dec/lord
+	item_weight = 750 GRAMS
 	name = "Lord's Rapier"
 	desc = "Passed down through the ages, a weapon that once carved a kingdom out now relegated to a decorative piece."
 	icon_state = "lord_rapier"
@@ -598,6 +642,7 @@
 	max_blade_int = 400
 
 /obj/item/weapon/sword/rapier/silver
+	item_weight = 650 GRAMS
 	name = "silver rapier"
 	desc = "An elegant silver rapier. Popular with lords and ladies in Silvermoon."
 	icon_state = "rapier_s"
@@ -614,6 +659,7 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/weapon/sword/rapier/eora
+	item_weight = 650 GRAMS
 	name = "The Heartstring"
 	desc = "For when soft words cannot be spoken more, and hearts are to be pierced."
 	icon = 'icons/roguetown/weapons/32/patron.dmi'
@@ -621,6 +667,7 @@
 
 // Hoplite Kophesh
 /obj/item/weapon/sword/khopesh
+	item_weight = 1.3 KILOGRAMS
 	name = "ancient khopesh"
 	desc = "A bronze weapon of war from the age of Psydon's reign. This blade is older than a few elven generations, but has been very well-maintained and still keeps a good edge."
 	icon = 'icons/roguetown/weapons/64/swords.dmi'
@@ -653,6 +700,7 @@
 
 //................ Long Sword ............... //
 /obj/item/weapon/sword/long
+	item_weight = 1.5 KILOGRAMS
 	name = "longsword"
 	desc = "A long hand-and-a-half blade, wielded by the virtuous and vile alike."
 	icon = 'icons/roguetown/weapons/64/swords.dmi'
@@ -681,6 +729,7 @@
 	weapon_special = /datum/special_intent/side_sweep
 
 /obj/item/weapon/sword/long/shotel
+	item_weight = 1.4 KILOGRAMS
 	name = "steel shotel"
 	icon_state = "shotel_steel"
 	icon = 'icons/roguetown/weapons/64/swords.dmi'
@@ -695,6 +744,7 @@
 	max_integrity = INTEGRITY_STRONG - 50 //this thing is long as hell, it would be more likely to break over time
 
 /obj/item/weapon/sword/long/shotel/getonmobprop(tag)
+	item_weight = 1.5 KILOGRAMS
 	. = ..()
 	if(tag)
 		switch(tag)
@@ -710,6 +760,7 @@
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/sword/long/shotel/iron //Balance-patch
+	item_weight = 1.5 KILOGRAMS
 	name = "iron shotel"
 	icon_state = "shotel_iron"
 	max_integrity = INTEGRITY_STANDARD - 50
@@ -735,6 +786,7 @@
 				return list("shrink" = 0.6,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/sword/long/aruval
+	item_weight = 1.6 KILOGRAMS
 	name = "steel aruval"
 	icon_state = "aruval_steel"
 	desc = "A long billhook machete of Savannah Elf origin. It was originally designed to cut large branches, but has since evolved into a formidable weapon."
@@ -747,6 +799,7 @@
 	sellprice = 60
 
 /obj/item/weapon/sword/long/aruval/getonmobprop(tag)
+	item_weight = 1.7 KILOGRAMS
 	. = ..()
 	if(tag)
 		switch(tag)
@@ -762,6 +815,7 @@
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/sword/long/aruval/iron //Balance-patch
+	item_weight = 1.7 KILOGRAMS
 	name = "iron aruval"
 	icon_state = "aruval_iron"
 	max_integrity = INTEGRITY_STRONG
@@ -803,6 +857,7 @@
 
 //................ Heirloom Sword ............... //
 /obj/item/weapon/sword/long/heirloom
+	item_weight = 1.4 KILOGRAMS
 	icon_state = "heirloom"
 	name = "old sword"
 	desc = "An old steel sword with a heraldic green leather grip, mouldered by years of neglect."
@@ -816,6 +871,7 @@
 
 // Repurposing this unused sword for the Paladin job as a heavy counter against vampires.
 /obj/item/weapon/sword/long/judgement// this sprite is a one handed sword, not a longsword.
+	item_weight = 1.4 KILOGRAMS
 	icon_state = "judgement"
 	name = "judgement"
 	desc = "A sword with a silvered grip, a jeweled hilt and a honed blade; a design fit for nobility."
@@ -847,11 +903,13 @@
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/sword/long/judgement/evil
+	item_weight = 1.6 KILOGRAMS
 	name = "decimator"
 	desc = "A horrid sword with a silvered grip, a jeweled hilt and a honed blade; a design unfit for a true paladin."
 	color = CLOTHING_SOOT_BLACK
 
 /obj/item/weapon/sword/long/vlord // this sprite is a one handed sword, not a longsword.
+	item_weight = 1.6 KILOGRAMS
 	icon_state = "vlord"
 	name = "\proper the Jaded Fang"
 	desc = "An ancestral long blade with an ominous glow, serrated with barbs along its edges. Stained with a strange green tint."
@@ -880,6 +938,7 @@
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/sword/long/rider
+	item_weight = 1.3 KILOGRAMS
 	icon_state = "tabi"
 	name = "kilij scimitar"
 	desc = "A curved blade of Zakharani origin meaning 'curved one'. The standard sword that saw the conquest of the Zakhara continent and peoples."
@@ -888,6 +947,7 @@
 	sellprice = 80
 
 /obj/item/weapon/sword/long/rider/steppe
+	item_weight = 1.2 KILOGRAMS
 	name = "steppe sabre"
 	desc = "A curved blade of nomadic origin, it is used by cavalrymen all across the far steppes."
 	icon_state = "steppe"
@@ -910,6 +970,7 @@
 				return list("shrink" = 0.5,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/sword/long/forgotten
+	item_weight = 1.4 KILOGRAMS
 	name = "forgotten blade"
 	desc = "A large silver-alloy sword made in a revisionist style, honoring Psydon. Best known as the preferred weapon of Inquisitorial Lodges."
 	icon = 'icons/roguetown/weapons/64/psydonite.dmi'
@@ -928,6 +989,7 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/weapon/sword/long/ravox
+	item_weight = 1.5 KILOGRAMS
 	name = "duel settler"
 	desc = "The tenets of Ravoxian duels are inscribed upon the blade of this sword."
 	icon = 'icons/roguetown/weapons/64/patron.dmi'
@@ -935,6 +997,7 @@
 	force = DAMAGE_SWORD + 2
 
 /obj/item/weapon/sword/long/psydon
+	item_weight = 1.5 KILOGRAMS
 	name = "exotic longsword"
 	desc = "A large silver longsword forged in the shape of a psycross."
 	icon = 'icons/roguetown/weapons/64/psydonite.dmi'
@@ -948,6 +1011,7 @@
 	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /obj/item/weapon/sword/long/psydon/relic
+	item_weight = 1.5 KILOGRAMS
 	name = "Rememberance"
 	desc = "A balanced silver blade, favoured by both the Ordo Benetarus and the Ordo Venetari. May it carve a path through the Unholy, in honour and rememberance of Psydon's sacrifice."
 
@@ -982,6 +1046,7 @@
 
 //................ Greatsword ............... //
 /obj/item/weapon/sword/long/greatsword
+	item_weight = 2.5 KILOGRAMS
 	name = "greatsword"
 	desc = "An oversized hunk of metal designed for putting fear into men and killing beasts."
 	icon_state = "gsw"
@@ -1012,6 +1077,7 @@
 
 //................ Psydonian Greatsword ............... //
 /obj/item/weapon/sword/long/greatsword/psydon
+	item_weight = 2.5 KILOGRAMS
 	name = "exotic greatsword"
 	desc = "A mighty silver greatsword made to strike fear into the heart of even archdevils."
 	icon = 'icons/roguetown/weapons/64/psydonite.dmi'
@@ -1041,6 +1107,7 @@
 				return list("shrink" = 0.6,"sx" = -1,"sy" = 3,"nx" = -1,"ny" = 2,"wx" = 3,"wy" = 4,"ex" = -1,"ey" = 5,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 20,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 
 /obj/item/weapon/sword/long/greatsword/psydon/relic
+	item_weight = 2.5 KILOGRAMS
 	name = "Crusade"
 	desc = "The grandest blade of the Ordo Benetarus. Its unparalleled strength commands even the greatest of foes to fall. Wade through the unholy in Psydon’s name. Let none survive."
 	icon_state = "psygsword"
@@ -1050,6 +1117,7 @@
 	minstr = 9 //So the ordinator can use his sword as old.
 
 /obj/item/weapon/sword/long/broadsword/psy
+	item_weight = 2.5 KILOGRAMS
 	name = "old exotic broadsword"
 	desc = "Even the most ignorant of zealots know that the holy silver loses its properties when not blessed by Adjudicators and Priests of the Holy See for an extended period of time. Its edge remains as lethal as ever, however."
 	icon = 'icons/roguetown/weapons/64/psydonite.dmi'
@@ -1058,6 +1126,7 @@
 	melt_amount = 150
 
 /obj/item/weapon/sword/long/broadsword/psy/relic
+	item_weight = 2.5 KILOGRAMS
 	name = "Creed"
 	desc = "Bathed in exotic prayers, this large and heavy blade exists to slay the inhumen and evil. The crossguard’s psycross is engraved with prayers of the Ordo Benetarus. You’re the light - show them the way."
 
@@ -1075,6 +1144,7 @@
 	AddComponent(/datum/component/psyblessed, TRUE, 5, 100, 100, 2, TRUE)
 
 /obj/item/weapon/sword/long/greatsword/psydon/unforgotten
+	item_weight = 2.5 KILOGRAMS
 	name = "unforgotten blade"
 	desc = "High Inquisitor Archibald once recorded an expedition of seven brave Adjudicators into eastern snow-felled wastes to root out evil. Its leader, Holy Ordinator Guillemin, was said to have held on for seven daes and seven nights against darksteel-clad heretics before Psydon acknowledged his endurance. Nothing but his blade remained - his psycross wrapped around its hilt in remembrance."
 	icon_state = "forgottenblade"
@@ -1085,6 +1155,7 @@
 
 //................ Flamberge ............... //
 /obj/item/weapon/sword/long/greatsword/flamberge
+	item_weight = 2.8 KILOGRAMS
 	name = "flamberge"
 	desc = "Commonly known as a flame-bladed sword, this weapon has an undulating blade. Its wave-like form distributes force better, and is less likely to break on impact."
 	icon_state = "flamberge"
@@ -1094,6 +1165,7 @@
 	sellprice = 120
 
 /obj/item/weapon/sword/long/greatsword/zwei
+	item_weight = 3 KILOGRAMS
 	name = "zweihander"
 	desc = "Sometimes known as a doppelhander or beidhander, this weapon's size is so impressive that its handling properties are more akin to that of a polearm than a sword."
 	icon_state = "steelzwei"
@@ -1121,6 +1193,7 @@
 
 //................ Kriegsmesser ............... //
 /obj/item/weapon/sword/long/greatsword/elfgsword
+	item_weight = 2.3 KILOGRAMS
 	name = "elven kriegsmesser"
 	desc = "A huge, curved elven blade. It's metal is of a high quality, yet still light, crafted by the greatest elven bladesmiths."
 	icon_state = "kriegsmesser"
@@ -1142,6 +1215,7 @@
 
 //................ Zizo Sword ............... //
 /obj/item/weapon/sword/long/greatsword/zizo
+	item_weight = 2.3 KILOGRAMS
 	name = "darksteel kriegsmesser"
 	desc = "A dark red curved blade. Called forth from Her will, if you wield this blade you are to be feared, if you do not, you are dead."
 	icon_state = "zizosword"
@@ -1165,6 +1239,7 @@
 //................ Claymores ............... //
 
 /obj/item/weapon/sword/long/greatsword/claymore/iron
+	item_weight = 2.8 KILOGRAMS
 	name = "iron claymore"
 	desc = "A large sword originating from the north, commonly used by ravoxians."
 	icon_state = "ironclaymore"
@@ -1189,6 +1264,7 @@
 
 
 /obj/item/weapon/sword/long/greatsword/claymore
+	item_weight = 2.7 KILOGRAMS
 	name = "steel claymore"
 	desc = "A steel variant of the standard Claymore."
 	icon_state = "steelclaymore"
@@ -1197,6 +1273,7 @@
 	sellprice = 110
 
 /obj/item/weapon/sword/long/greatsword/claymore/getonmobprop(tag)
+	item_weight = 2.8 KILOGRAMS
 	. = ..()
 	if(tag)
 		switch(tag)
@@ -1211,6 +1288,7 @@
 
 
 /obj/item/weapon/sword/long/greatsword/claymore/gold //Uncraftable
+	item_weight = 2.8 KILOGRAMS
 	name = "ravoxian claymore"
 	desc = "A huge sword constructed out of Steel and Gold, wielded by certain Templars of the Ravoxian Order."
 	icon_state = "gsclaymore"
@@ -1232,6 +1310,7 @@
 
 
 /obj/item/weapon/sword/long/greatsword/gutsclaymore
+	item_weight = 4 KILOGRAMS
 	name = "berserker sword"
 	desc = "A huge sword constructed out of a slab of Iron."
 	icon_state = "gutsclaymore"
@@ -1260,6 +1339,7 @@
 
 //................ Executioners Sword ............... //
 /obj/item/weapon/sword/long/exe
+	item_weight = 3.5 KILOGRAMS
 	icon_state = "exe"
 	name = "executioner's sword"
 	desc = "An ancient blade of ginormous stature, with a round ended tip. Does the work quick and clean."
@@ -1282,6 +1362,7 @@
 				return list("shrink" = 0.6,"sx" = -1,"sy" = 3,"nx" = -1,"ny" = 2,"wx" = 3,"wy" = 4,"ex" = -1,"ey" = 5,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 20,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 
 /obj/item/weapon/sword/long/exe/astrata
+	item_weight = 3.5 KILOGRAMS
 	name = "solar judge"
 	desc = "This wicked executioner's blade calls for order."
 	icon = 'icons/roguetown/weapons/64/patron.dmi'
@@ -1291,6 +1372,7 @@
 
 //................ Terminus Est ............... //
 /obj/item/weapon/sword/long/exe/cloth
+	item_weight = 3.5 KILOGRAMS
 	icon_state = "terminusest"
 	name = "Terminus Est"
 
@@ -1307,6 +1389,7 @@
 // Copper Messer
 
 /obj/item/weapon/sword/coppermesser
+	item_weight = 1.8 KILOGRAMS
 	name = "copper messer"
 	desc = "A weapon of war from simpler times, its copper material is unideal but still efficient for the price."
 	icon_state = "cmesser"
@@ -1348,6 +1431,7 @@
 				return list("shrink" = 0.5,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/sword/long/rider/copper
+	item_weight = 1.6 KILOGRAMS
 	name = "copper falx"
 	desc = "A special 'sword' of copper, the material isn't the best but is good enough to slash and kill."
 	icon = 'icons/roguetown/weapons/64/swords.dmi'
@@ -1367,6 +1451,7 @@
 	sellprice = 25//lets make the two bars worth it
 
 /obj/item/weapon/sword/rapier/ironestoc
+	item_weight = 1.4 KILOGRAMS
 	name = "estoc"
 	desc = "A sword possessed of a quite long and tapered blade that is intended to be thrust between the \
 	gaps in an opponent's armor. The hilt is wrapped tight in black leather."
@@ -1443,6 +1528,7 @@
 					)
 
 /obj/item/weapon/sword/gladius
+	item_weight = 700 GRAMS
 	name = "gladius"
 	desc = "A bronze short sword with a slightly wider end, and no guard. Compliments a shield."
 	icon_state = "gladius"
@@ -1491,6 +1577,7 @@
 
 //A weapon meant to be used with two hands.
 /obj/item/weapon/sword/katana
+	item_weight = 1.1 KILOGRAMS
 	name = "katana"
 	desc = "A foreign sword."
 	icon_state = "eastsword1"
@@ -1524,6 +1611,7 @@
 	wdefense = GREAT_PARRY
 
 /obj/item/weapon/sword/sabre/hook
+	item_weight = 1 KILOGRAMS
 	name = "hook sword"
 	desc = "A steel sword with a hooked design at the tip of it; perfect for disarming enemies. Its back edge is sharpened and the hilt appears to have a sharpened tip."
 	icon = 'icons/roguetown/weapons/64/swords.dmi'
@@ -1679,6 +1767,7 @@
 
 
 /obj/item/weapon/sword/long/martyr
+	item_weight = 2.2 KILOGRAMS
 	name = "martyr sword"
 	desc = "A relic from the Holy See's own vaults. It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
 	icon = 'icons/roguetown/weapons/64/swords.dmi'

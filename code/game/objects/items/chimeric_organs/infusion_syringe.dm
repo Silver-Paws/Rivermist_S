@@ -1,4 +1,5 @@
 /obj/item/reagent_containers/syringe
+	item_weight = 95 GRAMS
 	name = "infusion syringe"
 	desc = "A metal implement made for the drawing and injecting of various fluids."
 	icon = 'icons/obj/medical.dmi'

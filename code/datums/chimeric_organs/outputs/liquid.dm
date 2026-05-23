@@ -11,18 +11,18 @@
 	generated_amount = min(generated_amount, 50)
 
 	var/list/reagent_types = list(/datum/reagent/medicine,
-								  /datum/reagent/drug,
-								  /datum/reagent/toxin,
-								  /datum/reagent/poison,
-								  /datum/reagent/consumable,
-								  /datum/reagent/consumable/ethanol)
+								/datum/reagent/drug,
+								/datum/reagent/toxin,
+								/datum/reagent/poison/herbal,
+								/datum/reagent/consumable,
+								/datum/reagent/consumable/ethanol)
 	var/datum/reagent/reagent_type = pick(reagent_types)
 
 	var/list/pickers
 	if(reagent_type == /datum/reagent/consumable)
 		pickers = typesof(reagent_type) - typesof(/datum/reagent/consumable/ethanol)
 	else
-		pickers = typesof(reagent_type)
+		pickers = subtypesof(reagent_type)
 
 	var/datum/reagent/picked_reagent = pick(pickers)
 	if(!good_reagent)

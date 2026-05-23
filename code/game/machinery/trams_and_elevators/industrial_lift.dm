@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(all_radial_directions, list(
 	anchored = TRUE
 	max_integrity = 50
 	layer = LYING_MOB_LAYER //under pipes
-	plane = GAME_PLANE
+	plane = FLOOR_PLANE
 	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN
 	appearance_flags = PIXEL_SCALE|KEEP_TOGETHER //no TILE_BOUND since we're potentially multitile
 
@@ -134,8 +134,6 @@ GLOBAL_LIST_INIT(all_radial_directions, list(
 	*/
 
 	lift_load -= potential_rider
-	potential_rider.plane = initial(potential_rider.plane)
-	potential_rider.layer -= 2
 	REMOVE_TRAIT(potential_rider, TRAIT_TRAM_MOVER, REF(src))
 	changed_gliders -= potential_rider
 
@@ -158,9 +156,6 @@ GLOBAL_LIST_INIT(all_radial_directions, list(
 	*/
 
 	lift_load += new_lift_contents
-	if(!iseffect(new_lift_contents))
-		new_lift_contents.plane = 3
-		new_lift_contents.layer += 2
 	ADD_TRAIT(new_lift_contents, TRAIT_TRAM_MOVER, REF(src))
 	RegisterSignal(new_lift_contents, COMSIG_PARENT_QDELETING, PROC_REF(RemoveItemFromLift))
 	RegisterSignal(new_lift_contents, COMSIG_MOVABLE_TURF_EXITED, PROC_REF(UncrossedAtomRemoveItemFromLift))
@@ -355,12 +350,12 @@ GLOBAL_LIST_INIT(all_radial_directions, list(
 				else
 					// Less violent landing simply crushes every bone in your body.
 					crushed.Paralyze(30 SECONDS, ignore_canstun = TRUE)
-					crushed.apply_damage(30, BRUTE, BODY_ZONE_CHEST)
-					crushed.apply_damage(20, BRUTE, BODY_ZONE_HEAD)
-					crushed.apply_damage(15, BRUTE, BODY_ZONE_L_LEG)
-					crushed.apply_damage(15, BRUTE, BODY_ZONE_R_LEG)
-					crushed.apply_damage(15, BRUTE, BODY_ZONE_L_ARM)
-					crushed.apply_damage(15, BRUTE, BODY_ZONE_R_ARM)
+					crushed.apply_damage(30, BRUTE, BODY_ZONE_CHEST, damage_type = BCLASS_BLUNT)
+					crushed.apply_damage(20, BRUTE, BODY_ZONE_HEAD, damage_type = BCLASS_BLUNT)
+					crushed.apply_damage(15, BRUTE, BODY_ZONE_L_LEG, damage_type = BCLASS_BLUNT)
+					crushed.apply_damage(15, BRUTE, BODY_ZONE_R_LEG, damage_type = BCLASS_BLUNT)
+					crushed.apply_damage(15, BRUTE, BODY_ZONE_L_ARM, damage_type = BCLASS_BLUNT)
+					crushed.apply_damage(15, BRUTE, BODY_ZONE_R_ARM, damage_type = BCLASS_BLUNT)
 
 	else if(going == UP)
 		for(var/turf/dest_turf as anything in entering_locs)
@@ -422,12 +417,12 @@ GLOBAL_LIST_INIT(all_radial_directions, list(
 						damage = 29 * collision_lethality * damage_multiplier
 					else
 						damage = rand(7, 21) * collision_lethality * damage_multiplier
-					collided.apply_damage(2 * damage, BRUTE, BODY_ZONE_HEAD)
-					collided.apply_damage(3 * damage, BRUTE, BODY_ZONE_CHEST)
-					collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_L_LEG)
-					collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_R_LEG)
-					collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_L_ARM)
-					collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_R_ARM)
+					collided.apply_damage(2 * damage, BRUTE, BODY_ZONE_HEAD, damage_type = BCLASS_BLUNT)
+					collided.apply_damage(3 * damage, BRUTE, BODY_ZONE_CHEST, damage_type = BCLASS_BLUNT)
+					collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_L_LEG, damage_type = BCLASS_BLUNT)
+					collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_R_LEG, damage_type = BCLASS_BLUNT)
+					collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_L_ARM, damage_type = BCLASS_BLUNT)
+					collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_R_ARM, damage_type = BCLASS_BLUNT)
 					log_combat(src, collided, "collided with")
 
 					if(QDELETED(collided)) //in case it was a mob that dels on death

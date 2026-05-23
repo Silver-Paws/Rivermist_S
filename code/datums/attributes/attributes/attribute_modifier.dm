@@ -143,6 +143,11 @@
 	if(isliving(parent))
 		var/mob/living/living_parent = parent
 		living_parent.sync_legacy_stat_cache()
+		if(iscarbon(living_parent))
+			var/mob/living/carbon/carbon_parent = living_parent
+			carbon_parent.update_endurance_fatigue_modifier()
+			carbon_parent.update_endurance_stamina_modifier()
+			carbon_parent.update_maximum_carry_weight()
 
 /// Get the attribute modifiers list of the holder
 /datum/attribute_holder/proc/get_attribute_modification()

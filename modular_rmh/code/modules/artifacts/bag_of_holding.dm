@@ -8,7 +8,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	resistance_flags = NONE
 	max_integrity = 1500
-	sewrepair = FALSE
+	sewrepair = null
 	equip_sound = 'sound/blank.ogg'
 	bloody_icon_state = "bodyblood"
 	component_type = /datum/component/storage/concrete/grid/bag_of_holding

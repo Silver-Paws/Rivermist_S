@@ -1,4 +1,5 @@
 /obj/item/canvas
+	item_weight = 95 GRAMS
 	name = "canvas"
 	desc = "A perfect place to capture Faerun through art." // RMH
 

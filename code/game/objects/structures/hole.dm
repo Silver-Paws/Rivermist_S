@@ -173,7 +173,7 @@
 					user.visible_message("[user] starts digging out the bottom of [src]", "I start digging out the bottom of [src].")
 					if(!do_after(user, 10 SECONDS * attacking_shovel.time_multiplier, src))
 						return TRUE
-					attacking_shovel.heldclod = new(attacking_shovel)
+					attacking_shovel.heldclod = new /obj/item/natural/clod/dirt(attacking_shovel)
 					attacking_shovel.update_appearance(UPDATE_ICON_STATE)
 					playsound(our_turf,'sound/items/dig_shovel.ogg', 100, TRUE)
 					our_turf.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
@@ -247,7 +247,7 @@
 					for(var/obj/structure/gravemarker/G in loc) // remove gravemarkers
 						qdel(G)
 		stage_update()
-		attacking_shovel.heldclod = new(attacking_shovel)
+		attacking_shovel.heldclod = new /obj/item/natural/clod/dirt(attacking_shovel)
 		attacking_shovel.update_appearance(UPDATE_ICON_STATE)
 		is_consecrated = NOT_CONSECRATED // remove consecration levels
 

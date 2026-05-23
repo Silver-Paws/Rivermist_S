@@ -1,4 +1,5 @@
 /obj/item/natural/brick
+	item_weight = 1.1 KILOGRAMS
 	name = "brick"
 	desc = "A cooked red brick."
 	icon = 'icons/roguetown/items/cooking.dmi'	//It's because these are cooked via clay. Don't ask questions.

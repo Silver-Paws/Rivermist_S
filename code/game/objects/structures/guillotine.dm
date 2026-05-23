@@ -154,7 +154,7 @@
 			for(var/mob/M in viewers(src, 7))
 				M.add_stress(/datum/stress_event/viewexecution)
 		else
-			H.apply_damage(30 * blade_sharpness, BRUTE, head)
+			H.apply_damage(30 * blade_sharpness, BRUTE, head, damage_type = BCLASS_CUT)
 			log_combat(user, H, "dropped the blade on", src, " non-fatally")
 			H.emote("scream")
 			// Executor has failed and was ashamed
@@ -181,7 +181,7 @@
 				if(do_after(user, 7 DECISECONDS, src))
 					blade_status = GUILLOTINE_BLADE_RAISED
 					user.visible_message(span_notice("[user] sharpens the large blade of the guillotine."),
-						              span_notice("I sharpen the large blade of the guillotine."))
+						span_notice("I sharpen the large blade of the guillotine."))
 					blade_sharpness += 1
 					playsound(src, 'sound/items/sharpen_long1.ogg', 100, TRUE)
 					return

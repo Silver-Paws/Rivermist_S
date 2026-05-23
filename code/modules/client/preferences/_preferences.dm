@@ -633,8 +633,8 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 
 		.v-color-box { top: 136px; left: 34px; width: 48px; height: 15px; background-image: url('voice_colour.png'); }
 		.v-blob      { top: 4px;   left: 35px; width: 8px;  height: 7px;
-					   background-image: url('voice_colour_blob.png');
-					   background-blend-mode: multiply; }
+					background-image: url('voice_colour_blob.png');
+					background-blend-mode: multiply; }
 
 		.menu-keybinds {
 			top: 280px;
@@ -914,15 +914,15 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 	<div class="sprite headshot-bg" style="padding: 14px 3px 3px; box-sizing: border-box;">
 		<a href='?_src_=prefs;preference=headshot;task=input' style="display: block; width: 100%; height: 100%;">
 			<img id="headshot-img" src="[headshot_link || ""]"
-				 style="width: 100%; height: 100%; object-fit: cover; cursor: pointer; image-rendering: auto;"
-				 onerror="this.style.display='none';">
+				style="width: 100%; height: 100%; object-fit: cover; cursor: pointer; image-rendering: auto;"
+				onerror="this.style.display='none';">
 		</a>
 	</div>
 	<div class="sprite nsfw-headshot-bg" style="padding: 14px 3px 3px; box-sizing: border-box;">
 		<a href='?_src_=prefs;preference=nsfw_headshot;task=input' style="display: block; width: 100%; height: 100%;">
 			<img id="nsfw-headshot-img" src="[nsfw_headshot_link || ""]"
-				 style="width: 100%; height: 100%; object-fit: cover; cursor: pointer; image-rendering: auto;"
-				 onerror="this.style.display='none';">
+				style="width: 100%; height: 100%; object-fit: cover; cursor: pointer; image-rendering: auto;"
+				onerror="this.style.display='none';">
 		</a>
 	</div>
 	<div class="sprite ooc-bg"></div>
@@ -2211,27 +2211,27 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 					popup.set_content(dat.Join())
 					popup.open(FALSE)
 				if("loadout1hex")
-					var/choice = tgui_input_list(user, "Choose a color.", "Loadout Item One Colour", colorlist)
-					if (choice && colorlist[choice])
-						loadout_1_hex = colorlist[choice]
+					var/choice = tgui_input_list(user, "Choose a color.", "Loadout Item One Colour", GLOB.colorlist)
+					if (choice && GLOB.colorlist[choice])
+						loadout_1_hex = GLOB.colorlist[choice]
 						if (loadout1)
 							to_chat(user, "The colour for your [loadout1::name] has been set to <b>[choice]</b>.")
 					else
 						loadout_1_hex = null
 						to_chat(user, "The colour for your <b>first</b> loadout item has been cleared.")
 				if("loadout2hex")
-					var/choice = tgui_input_list(user, "Choose a color.", "Loadout Item Two Colour", colorlist)
-					if (choice && colorlist[choice])
-						loadout_2_hex = colorlist[choice]
+					var/choice = tgui_input_list(user, "Choose a color.", "Loadout Item Two Colour", GLOB.colorlist)
+					if (choice && GLOB.colorlist[choice])
+						loadout_2_hex = GLOB.colorlist[choice]
 						if (loadout2)
 							to_chat(user, "The colour for your [loadout2::name] has been set to <b>[choice]</b>.")
 					else
 						loadout_2_hex = null
 						to_chat(user, "The colour for your <b>second</b> loadout item has been cleared.")
 				if("loadout3hex")
-					var/choice = tgui_input_list(user, "Choose a color.", "Loadout Item Three Colour", colorlist)
-					if (choice && colorlist[choice])
-						loadout_3_hex = colorlist[choice]
+					var/choice = tgui_input_list(user, "Choose a color.", "Loadout Item Three Colour", GLOB.colorlist)
+					if (choice && GLOB.colorlist[choice])
+						loadout_3_hex = GLOB.colorlist[choice]
 						if (loadout3)
 							to_chat(user, "The colour for your [loadout3::name] has been set to <b>[choice]</b>.")
 					else
@@ -3369,7 +3369,7 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 	dat += "<a class='option-row' href='?_src_=prefs;preference=customizers;task=menu'>Features<small>Adjust available body accessories and feature colors.</small></a>"
 
 	if(pref_species?.use_skintones)
-		var/skin_color_value = length(skin_tone) == 6 ? skin_tone : "000000"
+		var/skin_color_value = pref_species.normalize_body_color(skin_tone) || "000000"
 		dat += "<div class='section-title'>Skin</div>"
 		dat += "<a class='option-row' href='?_src_=prefs;preference=s_tone;task=input;return=body_customize'><span class='swatch' style='background-color: #[skin_color_value];'></span>[pref_species.skin_tone_wording]<small>Pick a predefined skin or scale color.</small></a>"
 		dat += "<a class='option-row' href='?_src_=prefs;preference=skin_color_ref_list;task=input'>Color Reference<small>Open the available skin color reference list.</small></a>"
@@ -3380,9 +3380,7 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			var/feature_key = get_mutant_color_feature_key(color_slot)
 			if(!feature_key)
 				continue
-			var/color_value = features[feature_key]
-			if(length(color_value) != 6)
-				color_value = "000000"
+			var/color_value = pref_species.normalize_body_color(features[feature_key]) || "000000"
 			dat += "<a class='option-row' href='?_src_=prefs;preference=mutant_color[color_slot == 1 ? "" : color_slot];task=input;return=body_customize'><span class='swatch' style='background-color: #[color_value];'></span>Mutant Color #[color_slot]<small>Change this character color slot.</small></a>"
 	else
 		dat += "<div class='section-title'>Mutant Colors</div>"
@@ -3776,12 +3774,22 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 	if(!feature_key)
 		return
 
-	if(length(features[feature_key]) == 6)
-		skin_tone = features[feature_key]
+	var/feature_color = pref_species.normalize_body_color(features[feature_key])
+	if(feature_color)
+		features[feature_key] = feature_color
+		skin_tone = feature_color
 		return
 
-	if(length(skin_tone) == 6)
-		features[feature_key] = skin_tone
+	var/skin_color = pref_species.normalize_body_color(skin_tone)
+	if(skin_color)
+		skin_tone = skin_color
+		features[feature_key] = skin_color
+		return
+
+	var/default_color = pref_species.normalize_body_color(pref_species.default_color)
+	if(default_color)
+		skin_tone = default_color
+		features[feature_key] = default_color
 
 /datum/preferences/proc/pick_mutant_color(mob/user, color_slot, prompt)
 	if(!has_mutant_color_preferences())
@@ -3829,24 +3837,24 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			. = {"
 			<html>
 			<head>
-			  <style>
+			<style>
 				body {
-				  background-color: #ffffff;
-				  color: #000000;
+				background-color: #ffffff;
+				color: #000000;
 				}
 
 				a {
-				  color: #1a0dab;
+				color: #1a0dab;
 				}
 
 				a:visited {
-				  color: #660099;
+				color: #660099;
 				}
 
 				hr {
-				  border-top: 1px solid #ccc;
+				border-top: 1px solid #ccc;
 				}
-			  </style>
+			</style>
 			</head>
 			</html>
 			"}
@@ -3856,21 +3864,21 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			. = {"
 			<html>
 			<head>
-			  <style>
+			<style>
 				body {
-				  background-color: #121212;
-				  color: #e0e0e0;
+				background-color: #121212;
+				color: #e0e0e0;
 				}
 				a {
-				  color: #90caf9;
+				color: #90caf9;
 				}
 				a:visited {
-				  color: #ce93d8;
+				color: #ce93d8;
 				}
 				hr {
-				  border-top: 1px solid #444;
+				border-top: 1px solid #444;
 				}
-			  </style>
+			</style>
 			</head>
 			</html>
 			"}

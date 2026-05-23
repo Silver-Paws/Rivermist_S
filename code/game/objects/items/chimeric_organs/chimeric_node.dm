@@ -1,6 +1,7 @@
 GLOBAL_LIST_EMPTY(active_chimeric_surgeries)
 
 /obj/item/chimeric_node
+	item_weight = 125 GRAMS
 	name = "humors"
 	desc = "A preserved piece of flesh containing a humor. It pulses with unnatural life."
 	icon = 'icons/obj/chimeric_nodes.dmi'

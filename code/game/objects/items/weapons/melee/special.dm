@@ -1,4 +1,5 @@
 /obj/item/weapon/lordscepter
+	item_weight = 800 GRAMS
 	name = "master's rod"
 	desc = "Bend the knee."
 	icon_state = "scepter"
@@ -120,6 +121,7 @@
 				return
 
 /obj/item/weapon/mace/stunmace
+	item_weight = 1.2 KILOGRAMS
 	name = "stunmace"
 	icon = 'icons/roguetown/weapons/32/special.dmi'
 	icon_state = "stunmace0"
@@ -253,6 +255,7 @@
 	item_damage_type = "stab"
 
 /obj/item/weapon/katar
+	item_weight = 400 GRAMS
 	name = "katar"
 	desc = "A blade that sits above the users fist. Commonly used by those proficient at unarmed fighting"
 	icon = 'icons/roguetown/weapons/32/fists_claws.dmi'
@@ -277,6 +280,7 @@
 	melt_amount = 75
 
 /obj/item/weapon/katar/psydon
+	item_weight = 400 GRAMS
 	name = "exotic katar"
 	desc = "An exotic weapon taken from the hands of wandering monks, an esoteric design to the Darkhold. Special care was taken into account towards the user's knuckles: silver-tipped steel from tip to edges, and His holy cross reinforcing the heart of the weapon, with curved shoulders to allow its user to deflect incoming blows - provided they lead it in with the blade."
 	icon = 'icons/roguetown/weapons/32/psydonite.dmi'
@@ -287,6 +291,7 @@
 	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /obj/item/weapon/katar/abyssor
+	item_weight = 350 GRAMS
 	name = "barotrauma"
 	desc = "A gift from a creature of the sea. The claw is sharpened to a wicked edge."
 	icon = 'icons/roguetown/weapons/32/patron.dmi'
@@ -316,6 +321,7 @@
 	item_damage_type = "blunt"
 
 /obj/item/weapon/knuckles
+	item_weight = 200 GRAMS
 	name = "steel knuckles"
 	desc = "A mean looking pair of steel knuckles."
 	icon = 'icons/roguetown/weapons/32/fists_claws.dmi'
@@ -334,7 +340,7 @@
 	sharpness = IS_BLUNT
 	swingsound = list('sound/combat/wooshes/punch/punchwoosh (1).ogg','sound/combat/wooshes/punch/punchwoosh (2).ogg','sound/combat/wooshes/punch/punchwoosh (3).ogg')
 	associated_skill = /datum/attribute/skill/combat/unarmed
-	anvilrepair = /datum/attribute/skill/craft/weaponsmithing
+	anvilrepair = /datum/attribute/skill/craft/weapon_repair
 	melting_material = /datum/material/steel
 	melt_amount = 75
 	grid_width = 64
@@ -352,6 +358,7 @@
 				return list("shrink" = 0.1,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/knuckles/psydon
+	item_weight = 200 GRAMS
 	name = "exotic knuckles"
 	desc = "A simple piece of harm molded in a holy mixture of steel and silver, finished with three stumps - Psydon's crown - to crush the heretics' garments and armor into smithereens."
 	icon = 'icons/roguetown/weapons/32/psydonite.dmi'
@@ -362,6 +369,7 @@
 	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /obj/item/weapon/knuckles/eora
+	item_weight = 200 GRAMS
 	name = "close caress"
 	desc = "Some times call for a more intimate approach."
 	icon = 'icons/roguetown/weapons/32/patron.dmi'

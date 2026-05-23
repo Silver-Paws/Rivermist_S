@@ -25,6 +25,13 @@
 	var/datum/mind/mind
 	var/static/next_mob_id = 0
 
+	/// List of action speed modifiers applying to this mob
+	var/list/actionspeed_modification //Lazy list, see mob_movespeed.dm
+	/// List of action speed modifiers ignored by this mob. List -> List (id) -> List (sources)
+	var/list/actionspeed_mod_immunities //Lazy list, see mob_movespeed.dm
+	/// The calculated mob action speed slowdown based on the modifiers list
+	var/cached_multiplicative_actions_slowdown
+
 	///Cursor icon used when holding shift over things
 	var/examine_cursor_icon = 'icons/effects/mousemice/human_looking.dmi'
 
@@ -71,12 +78,12 @@
 	var/spacewalk = FALSE
 
 	/**
-	 * back up of the real name during admin possession
-	 *
-	 * If an admin possesses an object it's real name is set to the admin name and this
-	 * stores whatever the real name was previously. When possession ends, the real name
-	 * is reset to this value
-	 */
+	* back up of the real name during admin possession
+	*
+	* If an admin possesses an object it's real name is set to the admin name and this
+	* stores whatever the real name was previously. When possession ends, the real name
+	* is reset to this value
+	*/
 	var/name_archive //For admin things like possession
 
 	/// Default body temperature
@@ -130,16 +137,16 @@
 	///What hand is the active hand
 	var/active_hand_index = 2
 	/**
-	 * list of items held in hands
-	 *
-	 * len = number of hands, eg: 2 nulls is 2 empty hands, 1 item and 1 null is 1 full hand
-	 * and 1 empty hand.
-	 *
-	 * NB: contains nulls!
-	 *
-	 * held_items[active_hand_index] is the actively held item, but please use
-	 * get_active_held_item() instead, because OOP
-	 */
+	* list of items held in hands
+	*
+	* len = number of hands, eg: 2 nulls is 2 empty hands, 1 item and 1 null is 1 full hand
+	* and 1 empty hand.
+	*
+	* NB: contains nulls!
+	*
+	* held_items[active_hand_index] is the actively held item, but please use
+	* get_active_held_item() instead, because OOP
+	*/
 	var/list/held_items = list()
 
 	//HUD things
@@ -177,10 +184,10 @@
 	var/atom/movable/remote_control
 
 	/**
-	 * The sound made on death
-	 *
-	 * leave null for no sound. used for *deathgasp
-	 */
+	* The sound made on death
+	*
+	* leave null for no sound. used for *deathgasp
+	*/
 	var/deathsound
 
 	///the current turf being examined in the stat panel
@@ -296,6 +303,8 @@
 	var/admin_title = null
 	/// Visual job title override applied to this mob, useful for disguises.
 	var/disguise_title_override = null
+	/// If true, this mob is indexed for recipe-book source data.
+	var/indexed = FALSE
 
 	VAR_PROTECTED/base_strength = 10
 	VAR_PROTECTED/base_perception = 10

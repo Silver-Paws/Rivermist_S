@@ -6,17 +6,17 @@
 		STAT_CONSTITUTION = 2,
 		STAT_INTELLIGENCE = 2,
 		STAT_PERCEPTION = 2,
-		/datum/attribute/skill/misc/sneaking = SKILL_LEVEL_LEGENDARY * 10,
-		/datum/attribute/skill/misc/stealing = SKILL_LEVEL_LEGENDARY * 10,
-		/datum/attribute/skill/misc/lockpicking = SKILL_LEVEL_MASTER * 10,
-		/datum/attribute/skill/misc/athletics = SKILL_LEVEL_EXPERT * 10,
-		/datum/attribute/skill/misc/climbing = SKILL_LEVEL_MASTER * 10,
-		/datum/attribute/skill/combat/unarmed = SKILL_LEVEL_EXPERT * 10,
-		/datum/attribute/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN * 10,
-		/datum/attribute/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN * 10,
-		/datum/attribute/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN * 10,
-		/datum/attribute/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN * 10,
-		/datum/attribute/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN * 10
+		/datum/attribute/skill/misc/sneaking = SKILL_LEVEL_LEGENDARY,
+		/datum/attribute/skill/misc/stealing = SKILL_LEVEL_LEGENDARY,
+		/datum/attribute/skill/misc/lockpicking = SKILL_LEVEL_MASTER,
+		/datum/attribute/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/attribute/skill/misc/climbing = SKILL_LEVEL_MASTER,
+		/datum/attribute/skill/combat/unarmed = SKILL_LEVEL_EXPERT,
+		/datum/attribute/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/attribute/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/attribute/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/attribute/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
+		/datum/attribute/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN
 	)
 
 /datum/job/advclass/combat/adventurer_rogue/bloodsucker

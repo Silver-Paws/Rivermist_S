@@ -1,4 +1,5 @@
 /obj/item/weapon/hammer
+	item_weight = 1.24 KILOGRAMS
 	name = "hammer"
 	desc = ""
 	icon_state = "hammer"
@@ -84,30 +85,52 @@
 	if(isitem(O))
 		. = TRUE
 		var/obj/item/attacked_item = O
-		if(!attacked_item.anvilrepair || !attacked_item.max_integrity || attacked_item.obj_broken || (attacked_item.get_integrity() >= attacked_item.max_integrity) || !isturf(attacked_item.loc))
-			to_chat(user, span_warning("[attacked_item] cannot be repaired any further."))
+		if(!attacked_item.anvilrepair || !attacked_item.max_integrity || !isturf(attacked_item.loc))
+			to_chat(user, span_warning("[attacked_item] cannot be repaired."))
 			return
 
-		if(GET_MOB_SKILL_VALUE_OLD(user, attacked_item.anvilrepair) <= 0)
+		var/skill_value = GET_MOB_SKILL_VALUE(user, attacked_item.anvilrepair)
+		var/was_broken = attacked_item.obj_broken
+
+		if(!was_broken && attacked_item.get_integrity() >= attacked_item.max_integrity)
+			to_chat(user, span_warning("There is nothing to further repair on [attacked_item]."))
+			return
+
+		if(skill_value <= 0)
 			if(prob(30))
 				repair_percent = 0.01
+				to_chat(user, span_warning("You are just barely able to repair this..."))
 			else
 				repair_percent = 0
+				if(!was_broken)
+					attacked_item.take_damage(attacked_item.max_integrity * 0.1, BRUTE, "blunt")
+					user.visible_message(span_warning("[user] damages [attacked_item] further!"))
 		else
 			repair_percent *= GET_MOB_SKILL_VALUE_OLD(user, attacked_item.anvilrepair)
 
-		playsound(src,'sound/items/bsmithfail.ogg', 40, FALSE)
-		if(repair_percent)
-			var/amt2raise = floor(GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE) * 0.25)
-			attacked_item.repair_damage( attacked_item.max_integrity * repair_percent)
-			if(repair_percent == 0.01) // If an inexperienced repair attempt has been successful
-				to_chat(user, span_warning("You fumble your way into slightly repairing [attacked_item]."))
-			else
-				user.visible_message(span_info("[user] repairs [attacked_item]!"))
-			blacksmith_mind.add_sleep_experience(attacked_item.anvilrepair, amt2raise)
+		if(locate(/obj/machinery/anvil) in O.loc)
+			repair_percent *= 2
+
+		if(was_broken)
+			var/integrity_penalty = 0.65 - ((skill_value / SKILL_MASTER) * 0.60)
+			integrity_penalty = clamp(integrity_penalty, 0.05, 0.99)
+			var/integrity_loss = round(attacked_item.max_integrity * integrity_penalty)
+			attacked_item.max_integrity = max(1, attacked_item.max_integrity - integrity_loss)
+			attacked_item.obj_broken = FALSE
+			attacked_item.repair_damage(max(attacked_item.max_integrity * repair_percent, 10))
+			to_chat(user, span_warning("You manage to repair [attacked_item], but the damage has left its mark, it will never be quite as strong as it once was."))
+			if(skill_value < SKILL_MIDDLING)
+				to_chat(user, span_warning("Your inexperience made things worse. The repair is rough."))
 		else
-			user.visible_message("<span class='warning'>[user] damages [attacked_item]!</span>")
-			attacked_item.take_damage(attacked_item.max_integrity * 0.1, BRUTE, "blunt")
+			if(repair_percent > 0)
+				attacked_item.repair_damage(attacked_item.max_integrity * repair_percent)
+				user.visible_message(span_info("[user] repairs [attacked_item]!"))
+
+		var/amt2raise = floor(GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE) * 0.25)
+		if(repair_percent <= 0)
+			amt2raise *= 0.25
+		blacksmith_mind.add_sleep_experience(attacked_item.anvilrepair, amt2raise)
+		playsound(src,'sound/items/bsmithfail.ogg', 40, FALSE)
 		return
 
 	if(isstructure(O))
@@ -156,6 +179,7 @@
 
 // --------- MALLET -----------
 /obj/item/weapon/hammer/wood
+	item_weight = 654 GRAMS
 	name = "wooden mallet"
 	desc = "A wooden mallet is an artificer's second-best friend! But it may also come in handy to a smith..."
 	icon_state = "hammer_w"
@@ -178,6 +202,7 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/hammer/copper
+	item_weight = 1.12 KILOGRAMS
 	name = "copper hammer"
 	desc = "A simple and rough copper hammer."
 	icon_state = "chammer"
@@ -189,6 +214,7 @@
 	no_spark = TRUE
 
 /obj/item/weapon/hammer/sledgehammer
+	item_weight = 7.4 KILOGRAMS
 	name = "sledgehammer"
 	desc = "It's almost asking to be put to work."
 	icon = 'icons/roguetown/weapons/32/clubs.dmi'
@@ -216,6 +242,7 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/hammer/sledgehammer/war
+	item_weight = 8.4 KILOGRAMS
 	name = "steel sledgehammer"
 	desc = "A heavy steel sledgehammer, a weapon designed to make knights run in fear, the best option for a common soldier against a knight."
 	icon = 'icons/roguetown/weapons/32/clubs.dmi'

@@ -28268,7 +28268,7 @@
 /turf/open/floor/ruinedwood/herringbone_clear,
 /area/indoors/town/rmh/magician)
 "jRE" = (
-/obj/structure/fluff/clodpile,
+/obj/structure/fluff/clodpile/dirt,
 /turf/open/floor/dirt,
 /area/outdoors/rmh_field/north)
 "jRU" = (
@@ -51809,7 +51809,7 @@
 /turf/open/openspace,
 /area/outdoors/rmh_field/north)
 "rIM" = (
-/obj/structure/fluff/clodpile,
+/obj/structure/fluff/clodpile/dirt,
 /turf/open/floor/dirt,
 /area/outdoors/rmh_field/west)
 "rIU" = (

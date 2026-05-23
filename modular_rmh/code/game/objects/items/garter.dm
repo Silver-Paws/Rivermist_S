@@ -13,7 +13,7 @@
 	max_integrity = 200
 	integrity_failure = 0.1
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 	salvage_result = /obj/item/natural/cloth
 	slot_flags = ITEM_SLOT_GARTER
 

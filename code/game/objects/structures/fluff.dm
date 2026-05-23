@@ -424,13 +424,13 @@
 
 /obj/structure/fluff/clock/attack_hand_secondary(mob/user, list/modifiers)
 
-    . = ..()
-    if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
-        return
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 
-    handle_special_items_retrieval(user, src)
+	handle_special_items_retrieval(user, src)
 
-    return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/fluff/clock/examine(mob/user)
 	. = ..()
@@ -672,13 +672,13 @@
 
 /obj/structure/fluff/statue/attack_hand_secondary(mob/user, list/modifiers)
 
-    . = ..()
-    if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
-        return
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 
-    handle_special_items_retrieval(user, src)
+	handle_special_items_retrieval(user, src)
 
-    return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/fluff/statue/CanPass(atom/movable/mover, turf/target)
 	. = ..()
@@ -948,12 +948,12 @@
 						user.visible_message("<span class='info'>[user] trains on [src]!</span>")
 						var/boon = user.get_learning_boon(W.associated_skill)
 						var/amt2raise = GET_MOB_ATTRIBUTE_VALUE(L, STAT_INTELLIGENCE)/2
-						if(GET_MOB_SKILL_VALUE(user, W.associated_skill) >= 15)
+						if(GET_MOB_SKILL_VALUE_RAW(user, W.associated_skill) >= 15)
 							if(!HAS_TRAIT(user, TRAIT_INTRAINING))
 								to_chat(user, "<span class='warning'>I've learned all I can from doing this, it's time for the real thing.</span>")
 								amt2raise = 0
 							else
-								if(GET_MOB_SKILL_VALUE(user, W.associated_skill) >= 20)
+								if(GET_MOB_SKILL_VALUE_RAW(user, W.associated_skill) >= 20)
 									to_chat(user, "<span class='warning'>I've learned all I can from doing this, it's time for the real thing.</span>")
 									amt2raise = 0
 						if(amt2raise > 0)

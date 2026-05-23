@@ -43,7 +43,7 @@
 		return . | SPELL_CANCEL_CAST
 
 	for(var/obj/item/bodypart/bodypart as anything in cast_on.bodyparts)
-		if(bodypart.skeletonized || bodypart.rotted)
+		if(bodypart.skeletonized || HAS_TRAIT(bodypart, TRAIT_ROTTEN))
 			to_chat(owner, span_warning("The rotten are unsuitable."))
 			reset_spell_cooldown()
 			return . | SPELL_CANCEL_CAST
@@ -86,10 +86,13 @@
 		return
 	if(cast_on.health > HALFWAYCRITDEATH)
 		cast_on.adjustOxyLoss(cast_on.health - HALFWAYCRITDEATH)
+	ADJUSTBRAINLOSS(cast_on, -100)
+	cast_on.reagents.add_reagent(/datum/reagent/medicine/atropine, 20)
 	cast_on.grab_ghost(force = TRUE, grab_spirit = TRUE) // even suicides
 	record_round_statistic(STATS_ASTRATA_REVIVALS)
 	cast_on.emote("breathgasp")
 	cast_on.adjust_jitter(100 SECONDS)
+	cast_on.adjust_bloodvolume(BLOOD_VOLUME_OKAY, BLOOD_VOLUME_OKAY)
 	cast_on.visible_message(span_notice("[cast_on] is revived by holy light!"), span_green("I awake from the void."))
 	cast_on.apply_status_effect(/datum/status_effect/debuff/revive)
 	cast_on.remove_client_colour(/datum/client_colour/monochrome/death)

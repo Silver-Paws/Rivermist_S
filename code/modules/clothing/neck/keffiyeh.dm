@@ -16,7 +16,7 @@
 	body_parts_covered = NECK|HAIR|EARS|HEAD
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 	anvilrepair = null
 	resistance_flags = FLAMMABLE // Made of leather
 	color = CLOTHING_LINEN

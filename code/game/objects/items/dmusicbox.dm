@@ -17,6 +17,7 @@
 			L.add_stress(stress2give)
 
 /obj/item/dmusicbox
+	item_weight = 5 KILOGRAMS
 	name = "dwarven music box"
 	desc = "A personal device heralding the new era of machine and steam. Dwarven artificers both prize and fear this device for its broad musical range."
 	icon = 'icons/roguetown/misc/machines.dmi'

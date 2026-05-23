@@ -60,6 +60,7 @@
 
 	ai_controller = /datum/ai_controller/gote
 	happy_funtime_mob = TRUE
+	indexed = TRUE
 
 	var/can_breed = TRUE
 
@@ -193,6 +194,7 @@
 	ai_controller = /datum/ai_controller/gote
 	happy_funtime_mob = TRUE
 	generate_genetics = TRUE
+	indexed = TRUE
 
 /mob/living/simple_animal/hostile/retaliate/goatmale/Initialize()
 	. = ..()

@@ -22,6 +22,7 @@
 	. = ..()
 
 /obj/item/fishing/reel
+	item_weight = 234 GRAMS
 	attachtype = "reel"
 
 /obj/item/fishing/reel/twine

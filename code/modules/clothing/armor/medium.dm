@@ -2,7 +2,7 @@
 	name = "Medium armor template"
 	equip_delay_self = 4 SECONDS
 	unequip_delay_self = 3 SECONDS
-	anvilrepair = /datum/attribute/skill/craft/armorsmithing
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
 	melt_amount = 75
 	melting_material = /datum/material/steel
 	armor_class = AC_MEDIUM
@@ -37,7 +37,7 @@
 	item_state = "surcoat"
 	detail_tag = "_metal"		// metal bits are the details so keep them uncolorer = white
 	detail_color = COLOR_WHITE
-	item_weight = 7.4
+	item_weight = 5.3 KILOGRAMS
 
 /obj/item/clothing/armor/medium/surcoat/Initialize()
 	. = ..()
@@ -62,6 +62,7 @@
 	body_parts_covered = COVERAGE_FULL
 
 /obj/item/clothing/armor/medium/scale/inqcoat
+	item_weight = 6.3 KILOGRAMS
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "inquisitorial duster"
 	desc = "Metal plates reinforce this heavy coat. Its striking silhouette is of ill omen to any mainland community - whether pious, or profane."
@@ -74,7 +75,7 @@
 	item_state = "inqcoat"
 	sleevetype = "shirt"
 	max_integrity = INTEGRITY_STRONG
-	anvilrepair = /datum/attribute/skill/craft/armorsmithing
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
 	melt_amount = 75
 	melting_material = /datum/material/steel
 	equip_delay_self = 4 SECONDS
@@ -101,6 +102,7 @@
 		return
 
 /obj/item/clothing/armor/medium/scale/inqcoat/armored
+	item_weight = 7.2 KILOGRAMS
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "armored inquisitorial duster"
 	desc = "Metal plates reinforce this heavy coat, worn over the top of the finest Aonic plate."

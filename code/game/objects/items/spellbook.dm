@@ -5,6 +5,7 @@
  */
 
 /obj/item/book/granter/spellbook
+	item_weight = 547 GRAMS
 	icon = 'icons/roguetown/items/books.dmi'
 	icon_state = "spellbookbrown_0"
 	slot_flags = ITEM_SLOT_HIP
@@ -521,26 +522,32 @@
 // qualityoflearn buff shit
 
 /obj/item/gem
+	item_weight = 15 GRAMS
 	var/arcyne_potency = 20
 	var/datum/attunement/attuned
 
 /obj/item/gem/yellow
+	item_weight = 21 GRAMS
 	arcyne_potency = 5
 	attuned = /datum/attunement/light
 
 /obj/item/gem/green
+	item_weight = 24 GRAMS
 	arcyne_potency = 7
 	attuned = /datum/attunement/earth
 
 /obj/item/gem/violet
+	item_weight = 21 GRAMS
 	arcyne_potency = 10
 	attuned = /datum/attunement/electric
 
 /obj/item/gem/blue
+	item_weight = 18 GRAMS
 	arcyne_potency = 25
 	attuned = /datum/attunement/blood
 
 /obj/item/gem/diamond
+	item_weight = 15 GRAMS
 	arcyne_potency = 15
 	attuned = /datum/attunement/aeromancy
 

@@ -105,7 +105,7 @@
 	required_materials = list(
 		/obj/item/natural/stone = 1,
 		/obj/item/natural/fibers = 1,
-		/obj/item/natural/dirtclod = 1
+		/obj/item/natural/clod/dirt = 1
 	)
 
 /datum/blueprint_recipe/floor/stonefloor_blocks
@@ -227,7 +227,7 @@
 	result_type = /turf/open/floor/dirt/road
 	required_materials = list(
 		/obj/item/natural/fibers = 1,
-		/obj/item/natural/dirtclod = 3
+		/obj/item/natural/clod/dirt = 3
 	)
 	construct_tool = /obj/item/weapon/shovel
 	category = "Floors"
@@ -239,7 +239,7 @@
 	result_type = /turf/open/floor/dirt
 	required_materials = list(
 		/obj/item/natural/fibers = 1,
-		/obj/item/natural/dirtclod = 3
+		/obj/item/natural/clod/dirt = 3
 	)
 	construct_tool = /obj/item/weapon/shovel
 	category = "Floors"
@@ -251,7 +251,8 @@
 	result_type = /turf/open/floor/dirt/desert
 	required_materials = list(
 		/obj/item/natural/fibers = 1,
-		/obj/item/natural/dirtclod = 3
+		/obj/item/natural/clod/sand = 1,
+		/obj/item/natural/clod/dirt = 2
 	)
 	construct_tool = /obj/item/weapon/shovel
 	category = "Floors"
@@ -268,7 +269,7 @@
 	result_type = /turf/open/floor/dirt/road/desert
 	required_materials = list(
 		/obj/item/natural/fibers = 2,
-		/obj/item/natural/dirtclod = 3
+		/obj/item/natural/clod/sand = 3
 	)
 	construct_tool = /obj/item/weapon/shovel
 	category = "Floors"
@@ -567,7 +568,7 @@
 	required_materials = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/neuFarm/seed = 1,
-		/obj/item/natural/dirtclod = 2
+		/obj/item/natural/clod/dirt = 2
 	)
 	construct_tool = /obj/item/weapon/shovel
 	category = "Floors"
@@ -580,7 +581,7 @@
 	required_materials = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/neuFarm/seed = 1,
-		/obj/item/natural/dirtclod = 2
+		/obj/item/natural/clod/dirt = 2
 	)
 	construct_tool = /obj/item/weapon/shovel
 	category = "Floors"
@@ -593,7 +594,7 @@
 	required_materials = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/neuFarm/seed = 1,
-		/obj/item/natural/dirtclod = 2
+		/obj/item/natural/clod/dirt = 2
 	)
 	construct_tool = /obj/item/weapon/shovel
 	category = "Floors"
@@ -606,7 +607,7 @@
 	required_materials = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/neuFarm/seed = 1,
-		/obj/item/natural/dirtclod = 2
+		/obj/item/natural/clod/dirt = 2
 	)
 	construct_tool = /obj/item/weapon/shovel
 	category = "Floors"
@@ -619,7 +620,7 @@
 	required_materials = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/neuFarm/seed = 1,
-		/obj/item/natural/dirtclod = 2
+		/obj/item/natural/clod/dirt = 2
 	)
 	construct_tool = /obj/item/weapon/shovel
 	category = "Floors"
@@ -632,7 +633,7 @@
 	required_materials = list(
 		/obj/item/natural/fibers = 3,
 		/obj/item/neuFarm/seed = 1,
-		/obj/item/natural/dirtclod = 3
+		/obj/item/natural/clod/dirt = 3
 	)
 	construct_tool = /obj/item/weapon/shovel
 	category = "Floors"
@@ -645,7 +646,8 @@
 	required_materials = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/neuFarm/seed = 1,
-		/obj/item/natural/dirtclod = 2
+		/obj/item/natural/clod/sand = 1,
+		/obj/item/natural/clod/dirt = 1
 	)
 	construct_tool = /obj/item/weapon/shovel
 	category = "Floors"
@@ -656,7 +658,7 @@
 	desc = "Loose sand and gravel raked into place."
 	result_type = /turf/open/floor/desert/dunes
 	required_materials = list(
-		/obj/item/natural/dirtclod = 3,
+		/obj/item/natural/clod/sand = 3,
 		/obj/item/natural/stone = 1
 	)
 	construct_tool = /obj/item/weapon/shovel
@@ -732,7 +734,7 @@
 	desc = "Pale sand and stone packed into a footpath."
 	result_type = /turf/open/floor/desert/lightpath
 	required_materials = list(
-		/obj/item/natural/dirtclod = 2,
+		/obj/item/natural/clod/sand = 2,
 		/obj/item/natural/stone = 1
 	)
 	construct_tool = /obj/item/weapon/shovel
@@ -744,7 +746,7 @@
 	desc = "Dark grit and stone packed into a footpath."
 	result_type = /turf/open/floor/desert/darkpath
 	required_materials = list(
-		/obj/item/natural/dirtclod = 2,
+		/obj/item/natural/clod/sand = 2,
 		/obj/item/natural/stone = 1
 	)
 	construct_tool = /obj/item/weapon/shovel
@@ -758,7 +760,8 @@
 	required_materials = list(
 		/obj/item/natural/fibers = 2,
 		/obj/item/neuFarm/seed = 1,
-		/obj/item/natural/dirtclod = 2
+		/obj/item/natural/clod/sand = 1,
+		/obj/item/natural/clod/dirt = 1
 	)
 	construct_tool = /obj/item/weapon/shovel
 	category = "Floors"
@@ -784,7 +787,7 @@
 	required_materials = list(
 		/obj/item/natural/fibers = 3,
 		/obj/item/natural/chaff = 2,
-		/obj/item/natural/dirtclod = 1
+		/obj/item/natural/clod/dirt = 1
 	)
 	construct_tool = /obj/item/weapon/pitchfork
 	category = "Floors"

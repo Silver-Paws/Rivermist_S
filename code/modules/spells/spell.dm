@@ -132,11 +132,11 @@
 	/// Whether we're currently charging the spell.
 	var/currently_charging = FALSE
 	/**
-	 * Cost to charge.
-	 *
-	 * Total drain is: ([charge_time] / [process_time]) * charge_drain
-	 * process_time is currently 4 from SSaction_charge.
-	 */
+	* Cost to charge.
+	*
+	* Total drain is: ([charge_time] / [process_time]) * charge_drain
+	* process_time is currently 4 from SSaction_charge.
+	*/
 	var/charge_drain = 0
 	/// Time to charge.
 	var/charge_time = 0
@@ -417,10 +417,6 @@
 		new_cost -= spell_cost * (owner_stat - 10) * 0.02
 	else
 		new_cost += spell_cost * (10 - owner_stat) * 0.02
-
-	var/owner_encumbrance = living_owner.get_encumbrance()
-	if(owner_encumbrance > 0.4)
-		new_cost += spell_cost * owner_encumbrance * 0.5
 
 	return max(new_cost, 0)
 
@@ -1031,9 +1027,9 @@
 		return
 
 	if(!experience_max_skill)
-		experience_max_skill = SKILL_LEVEL_LEGENDARY * 10
+		experience_max_skill = SKILL_LEVEL_LEGENDARY
 
-	var/skill_level = GET_MOB_SKILL_VALUE_RAW_OLD(owner, associated_skill)
+	var/skill_level = GET_MOB_SKILL_VALUE_RAW(owner, associated_skill)
 	if(skill_level >= experience_max_skill)
 		return
 

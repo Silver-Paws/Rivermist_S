@@ -1,4 +1,5 @@
 /obj/item/plate
+	item_weight = 300 GRAMS
 	name = "platter"
 	desc = "A wood plate that holds food. A powerful tool for morale when you're not eating your meal off a table."
 	icon = 'icons/roguetown/items/cooking.dmi'
@@ -163,6 +164,7 @@
 		desc += "\nThis platter looks properly stored and clean enough."
 
 /obj/item/plate/clay
+	item_weight = 400 GRAMS
 	name = "clay platter"
 	desc = "A fragile platter made from fired clay. Probably shouldn't throw it."
 	icon_state = "platter_clay"
@@ -180,6 +182,7 @@
 	qdel(src)
 
 /obj/item/plate/copper
+	item_weight = 600 GRAMS
 	name = "copper platter"
 	desc = "A platter made from a sheet of copper. Known to impart a metallic taste when eating certain foods."
 	icon_state = "platter_copper"
@@ -188,6 +191,7 @@
 	max_fork_usages = 7
 
 /obj/item/plate/pewter
+	item_weight = 500 GRAMS
 	name = "pewter platter"
 	desc = "A tin plate that contains just a tinge of lead."
 	icon_state = "platter_tin"
@@ -196,6 +200,7 @@
 	max_fork_usages = 7
 
 /obj/item/plate/silver
+	item_weight = 700 GRAMS
 	name = "silver platter"
 	desc = "A fancy silver plate often used by the nobility as a symbol of class."
 	icon_state = "platter_silver"
@@ -212,6 +217,7 @@
 	enchant(/datum/enchantment/silver)
 
 /obj/item/plate/gold
+	item_weight = 900 GRAMS
 	name = "gold platter"
 	desc = "A fancy gold plate often used by the nobility as a symbol of class."
 	icon_state = "platter_gold"
@@ -224,6 +230,7 @@
 	max_fork_usages = 11
 
 /obj/item/plate/jade
+	item_weight = 800 GRAMS
 	name = "joapstone platter"
 	desc = "A fancy platter carved out of joapstone."
 	icon_state = "platter_jade"
@@ -233,6 +240,7 @@
 	max_fork_usages = 11
 
 /obj/item/plate/onyxa
+	item_weight = 600 GRAMS
 	name = "onyxa platter"
 	desc = "A fancy platter carved out of onyxa."
 	icon_state = "platter_onyxa"
@@ -242,6 +250,7 @@
 	max_fork_usages = 11
 
 /obj/item/plate/shell
+	item_weight = 400 GRAMS
 	name = "shell platter"
 	desc = "A fancy platter carved out of shell."
 	icon_state = "platter_shell"
@@ -251,6 +260,7 @@
 	max_fork_usages = 11
 
 /obj/item/plate/rose
+	item_weight = 450 GRAMS
 	name = "rosellusk platter"
 	desc = "A fancy platter carved out of rosellusk."
 	icon_state = "platter_rose"
@@ -260,6 +270,7 @@
 	max_fork_usages = 11
 
 /obj/item/plate/amber
+	item_weight = 350 GRAMS
 	name = "petriamber platter"
 	desc = "A fancy platter carved out of petriamber."
 	icon_state = "platter_amber"
@@ -269,6 +280,7 @@
 	max_fork_usages = 11
 
 /obj/item/plate/opal
+	item_weight = 700 GRAMS
 	name = "opaloise platter"
 	desc = "A fancy platter carved out of opaloise."
 	icon_state = "platter_opal"
@@ -278,6 +290,7 @@
 	max_fork_usages = 11
 
 /obj/item/plate/coral
+	item_weight = 750 GRAMS
 	name = "aoetal platter"
 	desc = "A fancy platter carved out of aoetal."
 	icon_state = "platter_coral"
@@ -287,6 +300,7 @@
 	max_fork_usages = 11
 
 /obj/item/plate/turq
+	item_weight = 850 GRAMS
 	name = "ceruleabaster platter"
 	desc = "A fancy platter carved out of ceruleabaster."
 	icon_state = "platter_turq"
@@ -296,6 +310,7 @@
 	max_fork_usages = 11
 
 /obj/item/tray
+	item_weight = 500 GRAMS
 	name = "tray"
 	desc = "Best used when hosting for banquets or drunken taverns."
 	icon = 'icons/obj/food/containers.dmi'

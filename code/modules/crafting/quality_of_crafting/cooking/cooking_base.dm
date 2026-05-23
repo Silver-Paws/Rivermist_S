@@ -90,7 +90,7 @@
 	var/average_freshness = (ingredient_count > 0) ? (total_freshness / ingredient_count) : 0
 
 	// Get the user's cooking skill
-	var/cooking_skill = GET_MOB_SKILL_VALUE_OLD(user, /datum/attribute/skill/craft/cooking) + user.get_inspirational_bonus()
+	var/cooking_skill = GET_MOB_SKILL_VALUE_OLD(user, skillcraft) + user.get_inspirational_bonus()
 
 	// Create output items
 	for(var/spawn_count = 1 to output_amount)

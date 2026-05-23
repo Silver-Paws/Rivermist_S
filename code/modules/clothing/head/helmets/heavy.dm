@@ -1,4 +1,5 @@
 /obj/item/clothing/head/helmet/heavy
+	item_weight = 3.7 KILOGRAMS
 	name = "helmet template"
 	icon_state = "barbute"
 	flags_inv = HIDEEARS|HIDEFACE
@@ -55,7 +56,7 @@
 
 	armor = ARMOR_PLATE_BAD
 	max_integrity = INTEGRITY_STRONG //isn't the same as a steel helmet but is better than a skullcap, costs 2 bars and protects the mouth
-	item_weight = 6 * IRON_MULTIPLIER
+	item_weight = 3.5 KILOGRAMS
 
 //............... Rusted Barbute ............... //
 /obj/item/clothing/head/helmet/heavy/rust
@@ -71,7 +72,7 @@
 	sellprice = VALUE_IRON_ARMOR/2
 	armor = ARMOR_PLATE_BAD
 	max_integrity = INTEGRITY_STANDARD
-	item_weight = 6 * IRON_MULTIPLIER
+	item_weight = 2.4 KILOGRAMS
 
 //............... Great Helm ............... //
 /obj/item/clothing/head/helmet/heavy/bucket
@@ -82,11 +83,11 @@
 
 	armor = ARMOR_PLATE
 	prevent_crits = ALL_CRITICAL_HITS
-	item_weight = 9 * IRON_MULTIPLIER
+	item_weight = 4.3 KILOGRAMS
 
 /obj/item/clothing/head/helmet/heavy/bucket/gold
 	icon_state = "topfhelm_gold"
-	item_weight = 9 * GOLD_MULITPLIER
+	item_weight = 8.6 KILOGRAMS
 
 // Vampire Lord is no longer as OP, but the armor should protect against dreaded stabs or it makes the vitae spent on it pointless.
 /obj/item/clothing/head/helmet/heavy/vampire
@@ -112,7 +113,7 @@
 
 	armor = ARMOR_PLATE_GOOD
 	prevent_crits = ALL_CRITICAL_HITS
-	item_weight = 9 * IRON_MULTIPLIER
+	item_weight = 4.5 KILOGRAMS
 
 //............... Black Knight Helmet ............... //
 /obj/item/clothing/head/helmet/heavy/blkknight
@@ -124,7 +125,7 @@
 	armor_class = AC_MEDIUM
 	armor = ARMOR_PLATE_GOOD
 	prevent_crits = ALL_CRITICAL_HITS
-	item_weight = 9 * BLACKSTEEL_MULTIPLIER
+	item_weight = 7.2 KILOGRAMS
 	sellprice = VALUE_SILVER_ITEM * 2
 
 //............... Zizo Frog Helmet ............... //
@@ -138,7 +139,7 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/evilarmor.dmi'
 	armor = ARMOR_PLATE
 	prevent_crits = ALL_CRITICAL_HITS
-	item_weight = 5 * STEEL_MULTIPLIER
+	item_weight = 4.5 KILOGRAMS
 	block2add = FOV_BEHIND
 	sellprice = 0 // Incredibly evil Zizoid armor, this should be burnt, nobody wants this
 
@@ -153,7 +154,7 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/evilarmor64x64.dmi'
 	armor = ARMOR_PLATE
 	prevent_crits = ALL_CRITICAL_HITS
-	item_weight = 5 * STEEL_MULTIPLIER
+	item_weight = 3.2 KILOGRAMS
 	block2add = FOV_BEHIND
 	sellprice = 0 // See above comment
 	bloody_icon = 'icons/effects/blood64x64.dmi'
@@ -172,7 +173,7 @@
 	armor = ARMOR_PLATE
 	flags_cover = HEADCOVERSEYES
 	prevent_crits = ALL_CRITICAL_HITS
-	item_weight = 5 * STEEL_MULTIPLIER
+	item_weight = 4.5 KILOGRAMS
 	block2add = FOV_BEHIND
 	sellprice = 0 // See above comment
 
@@ -194,7 +195,7 @@
 	bloody_icon_state = "helmetblood_big"
 	armor = ARMOR_PLATE
 	prevent_crits = ALL_CRITICAL_HITS
-	item_weight = 5 * STEEL_MULTIPLIER
+	item_weight = 4.5 KILOGRAMS
 	block2add = FOV_BEHIND
 	sellprice = 0 // See above comment
 
@@ -213,7 +214,7 @@
 	resistance_flags = FIRE_PROOF
 	blocksound = PLATEHIT
 	prevent_crits = ALL_CRITICAL_HITS
-	item_weight = 9 * IRON_MULTIPLIER
+	item_weight = 2.6 KILOGRAMS
 	clothing_flags = CANT_SLEEP_IN
 	max_integrity = INTEGRITY_STRONGEST
 	block2add = FOV_BEHIND
@@ -224,14 +225,14 @@
 	name = "sun helmet"
 	desc = "A great helmet decorated with a golden sigil of the solar order and a maille neck cover.."
 	icon_state = "astratahelm"
-	item_weight = 6 * GOLD_MULITPLIER
+	item_weight = 5.5 KILOGRAMS
 
 //............... Noc Helmet ............... //
 /obj/item/clothing/head/helmet/heavy/necked/noc
 	name = "night helmet"
 	desc = "A sleek and rounded heavy helmet with a maille neck cover. Its unique craft is said to allow holy warriors of Mystra additional insight before battle."
 	icon_state = "nochelm"
-	item_weight = 6 * SILVER_MULTIPLIER
+	item_weight = 6 KILOGRAMS
 	flags_inv = HIDEEARS
 
 /obj/item/clothing/head/helmet/heavy/necked/noc/Initialize(mapload)
@@ -243,7 +244,7 @@
 	name = "dark helmet"
 	desc = "A reinforced helmet shaped into the visage of a skull with a maille neck cover under the cloth.."
 	icon_state = "necrahelm"
-	item_weight = 6 * IRON_MULTIPLIER
+	item_weight = 4.5 KILOGRAMS
 
 //............... Dendor Helmet ............... //	This one seems a bit out of place
 /obj/item/clothing/head/helmet/heavy/necked/dendorhelm
@@ -251,7 +252,7 @@
 	desc = "A great helmet with twisted metalwork that imitates the twisting of bark, or the horns of a beast."
 	icon_state = "dendorhelm"
 	prevent_crits = ALL_EXCEPT_BLUNT
-	item_weight = 6 * IRON_MULTIPLIER
+	item_weight = 4.5 KILOGRAMS
 
 //............... Eora Helmet ............... //
 /obj/item/clothing/head/helmet/sallet/eoran
@@ -259,7 +260,7 @@
 	desc = "A simple yet practical protective piece of equipment. Upon it lays several laurels of flowers and other colorful ornaments, followed by several symbols and standards of the user's chapter, accomplishments or even punishment"
 	icon_state = "eorahelm"
 	item_state = "eorahelm"
-	item_weight = 5 * IRON_MULTIPLIER
+	item_weight = 3.2 KILOGRAMS
 
 
 //............... Pestra Helmet ............... //
@@ -268,7 +269,7 @@
 	desc = "A great helmet made of coarse, tainted steel."
 	icon_state = "pestrahelm"
 	item_state = "pestrahelm"
-	item_weight = 6 * IRON_MULTIPLIER
+	item_weight = 4.5 KILOGRAMS
 
 //................ Malum Helmet ............. //
 /obj/item/clothing/head/helmet/heavy/necked/malumhelm
@@ -276,14 +277,14 @@
 	desc = "A great helmet of sturdy dark steel."
 	icon_state = "malumhelm"
 	item_state = "malumhelm"
-	item_weight = 6 * IRON_MULTIPLIER
+	item_weight = 4.5 KILOGRAMS
 
 /obj/item/clothing/head/helmet/heavy/necked/ravox
 	name = "sallet"
 	desc = "Resembles a heavily-adorned visored sallet."
 	icon_state = "ravoxhelm"
 	item_state = "ravoxhelm"
-	item_weight = 6 * IRON_MULTIPLIER
+	item_weight = 4.5 KILOGRAMS
 
 //................ Xylix Helmet ............. //
 /obj/item/clothing/head/helmet/heavy/necked/xylix
@@ -291,7 +292,7 @@
 	desc = "A great helmet forged from steel, and fashioned in the visage of a jester, jingling bells and all."
 	icon_state = "xylixhelm"
 	item_state = "xylixhelm"
-	item_weight = 6 * IRON_MULTIPLIER
+	item_weight = 4.5 KILOGRAMS
 
 /obj/item/clothing/head/helmet/heavy/necked/xylix/Initialize()
 	. = ..()
@@ -303,7 +304,7 @@
 	desc = "A great helmet crafted from bronze. The visor is slitted and ridged, evoking the gills of a great sea-beast."
 	icon_state = "abyssorhelm"
 	item_state = "abyssorhelm"
-	item_weight = 6 * IRON_MULTIPLIER
+	item_weight = 5.5 KILOGRAMS
 
 //............... Sinistar (Graggar) Helmet ............... //
 /obj/item/clothing/head/helmet/heavy/sinistar
@@ -319,7 +320,7 @@
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR
 	melt_amount = 75
 	melting_material = /datum/material/steel
-	item_weight = 7 * IRON_MULTIPLIER
+	item_weight = 4.45 KILOGRAMS
 
 /obj/item/clothing/head/helmet/heavy/decorated	// template
 	name = "a template"
@@ -350,7 +351,7 @@
 	name = "knights helmet"
 	desc = "A lavish knights helmet which allows a crest to be mounted on top."
 	icon_state = "decorated_knight"
-	item_weight = 9 * IRON_MULTIPLIER
+	item_weight = 4.45 KILOGRAMS
 
 /obj/item/clothing/head/helmet/heavy/decorated/knight/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -377,7 +378,7 @@
 	armor = ARMOR_PLATE_GOOD
 	max_integrity = INTEGRITY_STRONG
 	prevent_crits = ALL_CRITICAL_HITS
-	item_weight = 9 * IRON_MULTIPLIER
+	item_weight = 4.45 KILOGRAMS
 
 
 /obj/item/clothing/head/helmet/heavy/decorated/hounskull/attack_hand_secondary(mob/user, list/modifiers)
@@ -403,7 +404,7 @@
 	desc = "A lavish great helm which allows a crest to be mounted on top."
 	icon_state = "decorated_bucket"
 	prevent_crits = ALL_CRITICAL_HITS
-	item_weight = 9 * IRON_MULTIPLIER
+	item_weight = 3.5 KILOGRAMS
 
 /obj/item/clothing/head/helmet/heavy/decorated/bucket/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -428,7 +429,7 @@
 	desc = "A lavish gold-trimmed greathelm which allows a crest to be mounted on top."
 	icon_state = "decorated_gbucket"
 	prevent_crits = ALL_CRITICAL_HITS
-	item_weight = 7 * GOLD_MULITPLIER
+	item_weight = 4 KILOGRAMS
 
 /obj/item/clothing/head/helmet/heavy/decorated/golden/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -458,7 +459,7 @@
 	block2add = null
 
 	body_parts_covered = HEAD|HAIR|EARS
-	item_weight = 9 * STEEL_MULTIPLIER
+	item_weight = 3.25 KILOGRAMS
 
 /obj/item/clothing/head/helmet/heavy/decorated/bascinet/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()

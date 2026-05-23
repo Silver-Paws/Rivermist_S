@@ -1,4 +1,5 @@
 /obj/item/augment_kit
+	item_weight = 372 GRAMS
 	name = "augmentation kit"
 	desc = "A kit containing components for automaton augmentation. Examine to see details."
 	icon = 'icons/roguetown/items/new_gears.dmi'

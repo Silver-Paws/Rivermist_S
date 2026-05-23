@@ -16,7 +16,7 @@
 	. = ..()
 	resting_size = CLAMP(organ_size, MIN_BELLY_SIZE, MAX_BELLY_SIZE)
 
-/obj/item/organ/genitals/belly/Insert(mob/living/M, special, drop_if_replaced)
+/obj/item/organ/genitals/belly/Insert(mob/living/M, special, drop_if_replaced, new_zone = null)
 	. = ..()
 	resting_size = CLAMP(resting_size, MIN_BELLY_SIZE, MAX_BELLY_SIZE)
 	organ_size = resting_size

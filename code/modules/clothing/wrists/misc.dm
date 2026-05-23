@@ -128,8 +128,8 @@
 	melt_amount = 100
 	blocksound = PLATEHIT
 	resistance_flags = FIRE_PROOF
-	anvilrepair = /datum/attribute/skill/craft/armorsmithing
-	sewrepair = FALSE
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
+	sewrepair = null
 
 //Queensleeves
 /obj/item/clothing/wrists/royalsleeves

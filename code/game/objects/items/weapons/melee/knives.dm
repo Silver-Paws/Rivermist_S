@@ -2,6 +2,7 @@
 ==========================================================*/
 
 /obj/item/weapon/knife
+	item_weight = 200 GRAMS
 	name = "knife"
 	icon = 'icons/roguetown/weapons/32/knives.dmi'
 	icon_state = "huntingknife"
@@ -49,6 +50,7 @@
 
 //................ Hunting Knife ............... //
 /obj/item/weapon/knife/hunting
+	item_weight = 150 GRAMS
 	name = "hunting knife"
 	desc = "Loyal companion to hunters and poachers, from humble bone to truest steel, disembowel your prey with glee."
 	icon_state = "huntingknife"
@@ -59,6 +61,7 @@
 	sellprice = 6
 
 /obj/item/weapon/knife/dagger/navaja
+	item_weight = 100 GRAMS
 	name = "navaja"
 	desc = "A folding knife used by the Mercator's guild. It possesses a long hilt, allowing for a sizable blade with good reach."
 	icon_state = "navaja_c"
@@ -91,6 +94,7 @@
 		wdefense = TERRIBLE_PARRY
 
 /obj/item/weapon/knife/scissors
+	item_weight = 250 GRAMS
 	name = "iron scissors"
 	desc = "Scissors made of iron that may be used to salvage usable materials from clothing."
 	icon = 'icons/roguetown/weapons/tools.dmi'
@@ -116,7 +120,7 @@
 		var/obj/item/item = A
 		if(item.sewrepair && item.salvage_result) // We can only salvage objects which can be sewn!
 			. = TRUE
-			var/skill_level = GET_MOB_SKILL_VALUE_OLD(user, /datum/attribute/skill/misc/sewing)
+			var/skill_level = GET_MOB_SKILL_VALUE_OLD(user, item.sewrepair)
 			var/salvage_time = (7 SECONDS - (skill_level * 10))
 			if(!do_after(user, salvage_time, A))
 				return
@@ -130,7 +134,7 @@
 				to_chat(user, span_warning("I ruined some of the materials due to my lack of skill..."))
 				playsound(item, 'sound/foley/cloth_rip.ogg', 50, TRUE)
 				qdel(item)
-				user.mind.add_sleep_experience(/datum/attribute/skill/misc/sewing, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE))) //Getting exp for failing
+				user.mind.add_sleep_experience(item.sewrepair, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE))) //Getting exp for failing
 				return //We are returning early if the skill check fails!
 			item.salvage_amount -= item.torn_sleeve_number
 			for(var/i = 1; i <= item.salvage_amount; i++) // We are spawning salvage result for the salvage amount minus the torn sleves!
@@ -139,11 +143,12 @@
 			user.visible_message(span_notice("[user] salvages [item] into usable materials."))
 			playsound(item, 'sound/items/flint.ogg', 100, TRUE) //In my mind this sound was more fitting for a scissor
 			qdel(item)
-			user.mind.add_sleep_experience(/datum/attribute/skill/misc/sewing, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE))) //We're getting experience for salvaging!
+			user.mind.add_sleep_experience(item.sewrepair, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE))) //We're getting experience for salvaging!
 			return
 	return ..()
 
 /obj/item/weapon/knife/scissors/steel
+	item_weight = 280 GRAMS
 	name = "steel scissors"
 	desc = "Scissors made of solid steel that may be used to salvage usable materials from clothing, more durable and a tad more deadly than their iron counterpart."
 	icon_state = "sscissors"
@@ -153,6 +158,7 @@
 
 //................ Cleaver ............... //
 /obj/item/weapon/knife/cleaver
+	item_weight = 350 GRAMS
 	name = "cleaver"
 	desc = "A chef's tool turned armament, cleave off cumbersome flesh with rudimentary ease."
 	lefthand_file = 'icons/roguetown/onmob/lefthand.dmi'
@@ -177,6 +183,7 @@
 
 //................ Hack-Knife ............... //
 /obj/item/weapon/knife/cleaver/combat
+	item_weight = 250 GRAMS
 	name = "hack-knife"
 	desc = "A short blade that even the weakest of hands can aspire to do harm with."
 	icon_state = "combatknife"
@@ -198,6 +205,7 @@
 
 //................ Bronze Dagger ............... //s
 /obj/item/weapon/knife/dagger/bronze
+	item_weight = 180 GRAMS
 	name = "bronze dagger"
 	desc = "A dagger made out of bronze."
 	icon_state = "dagger_bronze"
@@ -208,6 +216,7 @@
 
 //................ Iron Dagger ............... //
 /obj/item/weapon/knife/dagger
+	item_weight = 200 GRAMS
 	name = "iron dagger"
 	desc = "Thin, sharp, pointed death."
 	icon_state = "idagger"
@@ -219,6 +228,7 @@
 	weapon_special = /datum/special_intent/triple_stab
 
 /obj/item/weapon/knife/dagger/jile
+	item_weight = 200 GRAMS
 	name = "iron jile"
 	desc = "A curved iron dagger from the fallen east."
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
@@ -226,6 +236,7 @@
 	dropshrink = 1.0
 
 /obj/item/weapon/knife/hunting/kukri/iron
+	item_weight = 250 GRAMS
 	name = "iron kukri"
 	icon_state = "kukri_iron"
 	desc = "A hefty knife that originated in the Southeastern reaches of Faience. Its design makes it great for chopping through vegetation and other obstacles."
@@ -235,6 +246,7 @@
 	melting_material = /datum/material/iron
 
 /obj/item/weapon/knife/dagger/njora
+	item_weight = 220 GRAMS
 	name = "iron seme"
 	desc = "A broad iron dagger from the fallen east. Popular amongst the elves."
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
@@ -245,6 +257,7 @@
 
 //................ Steel Dagger ............... //
 /obj/item/weapon/knife/dagger/steel
+	item_weight = 220 GRAMS
 	name = "steel dagger"
 	desc = "A dagger made of refined steel."
 	icon_state = "sdagger"
@@ -255,6 +268,7 @@
 	melting_material = /datum/material/steel
 
 /obj/item/weapon/knife/dagger/steel/jile
+	item_weight = 220 GRAMS
 	name = "steel jile"
 	desc = "A curved steel dagger from the fallen east."
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
@@ -263,6 +277,7 @@
 	dropshrink = 1.0
 
 /obj/item/weapon/knife/dagger/steel/njora
+	item_weight = 240 GRAMS
 	name = "steel seme"
 	desc = "A broad steel dagger from the fallen east. Popular amongst elves."
 	icon = 'icons/roguetown/weapons/32/lakkari.dmi'
@@ -277,11 +292,13 @@
 	desc = "A dagger of refined steel, and even more refined appearance."
 
 /obj/item/weapon/knife/dagger/steel/royal
+	item_weight = 230 GRAMS
 	name = "decorated dagger"
 	icon_state = "gsdagger"
 	desc = "A dagger of refined steel with lavish gold decoration, even in the hands of most nobles it is considered overly decadent."
 
 /obj/item/weapon/knife/dagger/steel/stiletto
+	item_weight = 150 GRAMS
 	name = "stiletto"
 	desc = "A needle thin dagger made of refined steel, the favored weapon of assassins and angry nobles."
 	icon_state = "stiletto"
@@ -289,6 +306,7 @@
 	melt_amount = 45
 
 /obj/item/weapon/knife/hunting/kukri
+	item_weight = 270 GRAMS
 	name = "steel kukri"
 	icon_state = "kukri_steel"
 	desc = "A hefty knife that originated in the Southeastern reaches of Faience. Its design makes it great for chopping through vegetation and other obstacles."
@@ -297,6 +315,7 @@
 	melt_amount = 75
 
 /obj/item/weapon/knife/dagger/steel/pestrasickle
+	item_weight = 200 GRAMS
 	name ="plaguebringer sickle"
 	desc = "A wicked edge brings feculent delights."
 	icon = 'icons/roguetown/weapons/32/patron.dmi'
@@ -304,12 +323,14 @@
 	wdefense = GOOD_PARRY //They use a dagger, but it should be fine for them to also parry with it.
 
 /obj/item/weapon/knife/dagger/steel/hand
+	item_weight = 220 GRAMS
 	name = "Fervor"
 	desc = "A greatly forged length of steel. Strike with Fervor into the heart of those who dont even know where you lurk."
 	icon_state = "sdaggerhand"
 	sellprice = 200
 
 /obj/item/weapon/knife/dagger/steel/hand/parry
+	item_weight = 220 GRAMS
 	name = "Apathy"
 	desc = "A greatly forged length of steel made to be able to parry. Defend with Apathy for any strike that approaches you, for you know they will not make contact"
 	wdefense = GOOD_PARRY
@@ -317,12 +338,14 @@
 
 //................ Fanged dagger ............... //
 /obj/item/weapon/knife/dagger/steel/dirk
+	item_weight = 200 GRAMS
 	name = "fanged dagger"
 	desc = "A dagger modeled after the fang of an anthrax spider."
 	icon = 'icons/roguetown/weapons/32/elven.dmi'
 	icon_state = "spiderdagger"
 
 /obj/item/weapon/knife/dagger/steel/dirk/baotha //this is a placeholder weapon until they actually receive a proper baothan weapon
+	item_weight = 200 GRAMS
 	name = "laced dagger"
 	desc = "Whispers of bliss seep deeper than the blade."
 	color = "#f78ccc"
@@ -335,6 +358,7 @@
 
 //................ Silver Dagger ............... //
 /obj/item/weapon/knife/dagger/silver
+	item_weight = 210 GRAMS
 	name = "silver dagger"
 	desc = "A dagger made of fine silver, the bane of the undead."
 	icon_state = "sildagger"
@@ -350,6 +374,7 @@
 
 //................ Psydonian Dagger ............... //
 /obj/item/weapon/knife/dagger/silver/psydon
+	item_weight = 210 GRAMS
 	name = "exotic dagger"
 	desc = "A silver dagger favored by close range fighters of the inquisition."
 	icon = 'icons/roguetown/weapons/32/psydonite.dmi'
@@ -358,6 +383,7 @@
 
 //................ Profane Dagger ............... //
 /obj/item/weapon/knife/dagger/steel/profane
+	item_weight = 200 GRAMS
 	// name = "profane dagger"
 	// desc = "A profane dagger made of cursed black steel. Whispers emanate from the gem on its hilt."
 	possible_item_intents = list(DAGGER_CUT, DAGGER_THRUST, FACE_STEAL)
@@ -545,6 +571,7 @@
 
 //................ Stone Knife ............... //
 /obj/item/weapon/knife/stone
+	item_weight = 150 GRAMS
 	name = "stone knife"
 	desc = "A tool favored by the wood-elves, easy to make, useful for skinning the flesh of beast and man alike."
 	icon_state = "stone_knife"
@@ -558,6 +585,7 @@
 	sellprice = 5
 
 /obj/item/weapon/knife/stone/kukri
+	item_weight = 220 GRAMS
 	name = "joapstone kukri"
 	desc = "A kukri made out of joapstone. It's more of a ceremonial piece than it is an implement of war, it's somewhat fragile. Be gentle with it."
 	icon = 'icons/roguetown/gems/gem_jade.dmi'
@@ -569,6 +597,7 @@
 	sellprice = 75
 
 /obj/item/weapon/knife/stone/opal
+	item_weight = 180 GRAMS
 	name = "opaloise knife"
 	desc = "A beautiful knife carved out of opaloise. It's not intended for combat. Its presence is vital in some Crimson Elven ceremonies."
 	icon = 'icons/roguetown/gems/gem_opal.dmi'
@@ -580,12 +609,14 @@
 	sellprice = 105
 //................ Villager Knife ............... //
 /obj/item/weapon/knife/villager
+	item_weight = 120 GRAMS
 	name = "villager knife"
 	desc = "The loyal companion of simple peasants, able to cut hard bread and carve wood. A versatile kitchen utensil and tool."
 	icon_state = "villagernife"
 	melt_amount = 25
 
 /obj/item/weapon/knife/copper
+	item_weight = 180 GRAMS
 	name = "copper knife"
 	desc = "A knife of an older design, the copper serves decent enough."
 	icon_state = "cdagger"
@@ -597,6 +628,7 @@
 	sellprice = 10
 
 /obj/item/weapon/knife/throwingknife
+	item_weight = 80 GRAMS
 	name = "iron tossblade"
 	desc = ""
 	item_state = "bone_dagger"
@@ -612,6 +644,7 @@
 	flags_ai_inventory = AI_ITEM_THROWING
 
 /obj/item/weapon/knife/throwingknife/bronze
+	item_weight = 75 GRAMS
 	name = "bronze tossblade"
 	desc = "A tossblade forged from bronze. It's not as reliable compared to other tossblades, but it's much cheaper to make."
 	item_state = "bone_dagger"
@@ -624,6 +657,7 @@
 	sellprice = 2
 
 /obj/item/weapon/knife/throwingknife/steel
+	item_weight = 85 GRAMS
 	name = "steel tossblade"
 	desc = ""
 	icon_state = "throw_knifes"
@@ -635,6 +669,7 @@
 	sellprice = 4
 
 /obj/item/weapon/knife/throwingknife/psydon
+	item_weight = 80 GRAMS
 	name = "exotic tossblade"
 	desc = "An unconventional method of delivering silver to a heretic; but one PSYDON smiles at, all the same. Doubles as an 'actual' knife in a pinch."
 	icon_state = "throw_knifes"
@@ -647,10 +682,12 @@
 	melting_material = /datum/material/silver
 
 /obj/item/weapon/knife/throwingknife/psydon/Initialize(mapload)
+	item_weight = 80 GRAMS
 	. = ..()
 	enchant(/datum/enchantment/silver)
 
 /obj/item/weapon/knife/throwingknife/rous //Rousman exclusive item, can stay a bit better
+	item_weight = 80 GRAMS
 	name = "rous kunai"
 	desc = "A typical knife used by rous assassins. Quite effective when thrown."
 	icon_state = "rouskunai"
@@ -661,6 +698,7 @@
 	sellprice = 5
 
 /obj/item/weapon/knife/throwingknife/throwcard
+	item_weight = 30 GRAMS
 	name = "Calling Card"
 	desc = "A thin sheet of pig-iron stamped into a calling card, too thin and useless to be smelted. You've been had. From Heartfelt with love."
 	icon_state = "throwcard"

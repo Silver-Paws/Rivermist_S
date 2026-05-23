@@ -388,7 +388,7 @@
 					return
 			if(!living.buckled)
 				var/drained = max(15 - (GET_MOB_SKILL_VALUE_OLD(living, /datum/attribute/skill/misc/swimming) * 5), 1)
-				drained += living.get_encumbrance() * 50
+				drained += ENCUMBRANCE_TO_SIGMOID(living.encumbrance) * 50
 				if(!(water_height == WATER_HEIGHT_FULL ? living.adjust_stamina(drained, "drown") : living.adjust_stamina(drained)))
 					living.Immobilize(30)
 					addtimer(CALLBACK(living, TYPE_PROC_REF(/mob/living, Knockdown), 30), 10)
@@ -999,10 +999,10 @@
 	if(method & INGEST) // Make sure you DRANK the salty water before losing hydration
 		..()
 
-/datum/reagent/water/salty/on_mob_life(mob/living/carbon/M)
+/datum/reagent/water/salty/on_mob_life(mob/living/carbon/M, efficiency)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.adjust_hydration(-hydration)  //saltwater dehydrates more than it hydrates
-		M.adjustToxLoss(0.25) // Slightly toxic
-		M.add_nausea(2)
+		H.adjust_hydration(-hydration * efficiency)  //saltwater dehydrates more than it hydrates
+		M.adjustToxLoss(0.25 * efficiency) // Slightly toxic
+		M.add_nausea(2 * efficiency)
 	..()

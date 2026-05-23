@@ -680,11 +680,11 @@
 		to_chat(carrier, span_warning(message))
 
 	if(auto_birth && birth_delay > 0 && world.time >= hatch_time + birth_delay)
-		birth_hatchling()
+		INVOKE_ASYNC(src, PROC_REF(birth_hatchling))
 
 /datum/component/internal_womb_hatchling/proc/handle_death(datum/source)
 	SIGNAL_HANDLER
-	release_hatchling(TRUE)
+	INVOKE_ASYNC(src, PROC_REF(release_hatchling), TRUE)
 
 /datum/component/internal_womb_hatchling/proc/birth_hatchling()
 	return release_hatchling(FALSE)

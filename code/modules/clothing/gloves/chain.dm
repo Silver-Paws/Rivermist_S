@@ -10,16 +10,16 @@
 	pickup_sound = "rustle"
 	break_sound = 'sound/foley/breaksound.ogg'
 	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
-	anvilrepair = /datum/attribute/skill/craft/armorsmithing
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
 	smeltresult = null
-	sewrepair = FALSE
+	sewrepair = null
 
 	armor_class = AC_MEDIUM
 	armor = ARMOR_MAILLE
 	prevent_crits = ALL_EXCEPT_BLUNT
 	max_integrity = INTEGRITY_STRONGEST
-	sewrepair = FALSE
-	item_weight = 7 * IRON_MULTIPLIER
+	sewrepair = null
+	item_weight = 1.35 KILOGRAMS
 	smeltresult = null
 	melting_material = /datum/material/steel
 	melt_amount = 50
@@ -39,7 +39,7 @@
 	desc = "Gauntlets made out of interwoven iron chains. Decent melee protection, but are better suited to stop arrows than blades."
 	armor = ARMOR_MAILLE_IRON
 	max_integrity = INTEGRITY_STRONG
-	item_weight = 7 * IRON_MULTIPLIER
+	item_weight = 1.35 KILOGRAMS
 	smeltresult = null
 	melting_material = /datum/material/iron
 	melt_amount = 50
@@ -49,4 +49,4 @@
 	desc = "Gauntlets with gilded fingers fashioned into talons. The tips are all too dull to be of harm."
 	icon_state = "shadowgauntlets"
 	allowed_race = RACES_PLAYER_ELF_ALL
-	item_weight = 6 * STEEL_MULTIPLIER
+	item_weight = 1.55 KILOGRAMS

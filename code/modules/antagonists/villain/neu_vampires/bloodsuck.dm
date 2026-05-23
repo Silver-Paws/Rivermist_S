@@ -9,24 +9,25 @@
 	remove_overlay(BITE_LAYER)
 
 
-/mob/living/proc/drinksomeblood(mob/living/carbon/victim, sublimb_grabbed)
+/mob/living/proc/drinksomeblood(mob/living/carbon/victim, sublimb_grabbed, drink_amt = 10, ingest = TRUE, force = FALSE)
 	if(world.time <= next_move)
-		return
-	if(world.time < last_drinkblood_use + 2 SECONDS)
-		return
-	if(victim.dna?.species && (NOBLOOD in victim.dna.species.species_traits))
+		return 0
+	if(!force && (world.time < last_drinkblood_use + 2 SECONDS))
+		return 0
+	if(HAS_TRAIT(victim, TRAIT_HUSK) || (NOBLOOD in victim.dna?.species?.species_traits) || (victim.blood_volume <= 0))
 		to_chat(src, span_warning("Sigh. No blood."))
-		return
-	if(victim.blood_volume <= 0)
-		to_chat(src, span_warning("Sigh. No blood."))
-		return
+		return 0
+	if(ingest && reagents && (reagents.total_volume >= reagents.maximum_volume))
+		to_chat(src, span_warning("Can't drink any more..."))
+		return 0
+
 	if(ishuman(victim))
 		var/mob/living/carbon/human/human_victim = victim
-		for(var/I in victim.contents)
+		for(var/obj/item/I as anything in victim.get_equipped_items())
 			if(SSenchantment.has_enchantment(I, /datum/enchantment/silver))
 				to_chat(src, span_userdanger("THEY ARE WEARING MY BANE! HISSS!!!"))
 				Paralyze(1)
-				return
+				return 0
 
 		human_victim.add_bite_animation()
 
@@ -44,7 +45,7 @@
 		if(victim.blood_volume <= BLOOD_VOLUME_BAD && !cmode)
 			to_chat(src, "<span class='warning'>You don't want to kill your plaything, do you?</span>")
 			to_chat(src, "<span class='info'; font-size: 5px;>turn on the cmode t odrain them dry.</span>")
-			return
+			return 0
 		if(VVictim)
 			to_chat(src, span_userdanger("<b>YOU TRY TO COMMIT DIABLERIE ON [victim].</b>"))
 		var/zomwerewolf = victim.mind.has_antag_datum(/datum/antagonist/werewolf)
@@ -55,6 +56,7 @@
 			if(zomwerewolf)
 				to_chat(src, span_danger("I'm going to puke..."))
 				addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
+				return 0
 			else
 				var/blood_handle
 				if(victim.stat == DEAD)
@@ -73,7 +75,6 @@
 					blood_handle |= BLOOD_PREFERENCE_EUPHORIC
 
 				if(victim.bloodpool > 0)
-					victim.blood_volume = max(victim.blood_volume-45, 0)
 					if(ishuman(victim))
 						used_vitae = 150
 						if(victim.bloodpool < used_vitae)
@@ -100,7 +101,7 @@
 							victim.death()
 							victim.adjustBruteLoss(-50, TRUE)
 							victim.adjustFireLoss(-50, TRUE)
-							return
+							return 0
 					if(ishuman(victim) && !victim.clan)
 						to_chat(src, span_warning("[victim]'s blood is warm, but spiritually spent."))
 						if(victim.stat != DEAD)
@@ -112,17 +113,21 @@
 		else // Don't larp as a vampire, kids.
 			to_chat(src, span_warning("I'm going to puke..."))
 			addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
+			return 0
 	else
 		if(mind) // We're drinking from a mob or a person who disconnected from the game
 			if(mind.has_antag_datum(/datum/antagonist/vampire))
-				victim.blood_volume = max(victim.blood_volume-45, 0)
 				if(victim.bloodpool >= 250)
 					src.adjust_bloodpool(250, 250)
 				else
 					to_chat(src, span_warning("And yet, not enough vitae can be extracted from them... Tsk."))
 
-	victim.blood_volume = max(victim.blood_volume-5, 0)
-	victim.handle_blood()
+	drink_amt = min(victim.blood_volume, drink_amt)
+	if(drink_amt <= 0)
+		return 0
+	if(ingest && reagents)
+		drink_amt = victim.transfer_blood_impurities(reagents, drink_amt, 1.5, src)
+	victim.adjust_bloodvolume(-drink_amt)
 
 	playsound(src, 'sound/misc/drink_blood.ogg', 100, FALSE, -4)
 
@@ -130,6 +135,7 @@
 					span_userdanger("[src] drinks from my [parse_zone(sublimb_grabbed)]!"), span_hear("..."), COMBAT_MESSAGE_RANGE, src)
 	to_chat(src, span_warning("I drink from [victim]'s [parse_zone(sublimb_grabbed)]."))
 	log_combat(src, victim, "drank blood from ")
+	return drink_amt
 
 /mob/living/carbon/human/proc/vampire_conversion_prompt(mob/living/carbon/sire)
 	if(HAS_TRAIT(src, "offered_vampirism"))
@@ -163,7 +169,7 @@
 			to_chat(sire, span_warning("[src] has refused your blessing."))
 		return
 	grab_ghost(TRUE, TRUE)
-	revive((HEAL_DAMAGE|HEAL_AFFLICTIONS|HEAL_LIMBS|HEAL_WOUNDS), 500, TRUE)
+	revive((HEAL_DAMAGE|HEAL_AFFLICTIONS|HEAL_LIMBS|HEAL_WOUNDS|HEAL_ORGANS), 500, TRUE)
 	mind.add_antag_datum(new /datum/antagonist/vampire(C, TRUE))
 	set_bloodpool(500)
 	visible_message(span_danger("Some dark energy begins to flow into [src]..."))

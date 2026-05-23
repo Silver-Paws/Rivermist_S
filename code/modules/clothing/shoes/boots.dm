@@ -25,14 +25,14 @@
 	max_integrity = INTEGRITY_STRONGEST
 	armor_class = AC_HEAVY
 	clothing_flags = CANT_SLEEP_IN
-	anvilrepair = /datum/attribute/skill/craft/armorsmithing
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
 	resistance_flags = FIRE_PROOF
 	pickup_sound = "rustle"
 	equip_sound = 'sound/foley/equip/equip_armor_plate.ogg'
 	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
 	break_sound = 'sound/foley/breaksound.ogg'
 	sellprice = 25
-	item_weight = 7 * STEEL_MULTIPLIER
+	item_weight = 2.1 KILOGRAMS
 
 	material_category = ARMOR_MAT_PLATE
 
@@ -45,7 +45,7 @@
 	max_integrity = INTEGRITY_STRONG + 50
 	armor_class = AC_MEDIUM
 	sellprice = 20
-	item_weight = 7 * IRON_MULTIPLIER
+	item_weight = 1.4 KILOGRAMS
 
 /obj/item/clothing/shoes/boots/armor/ironmaille
 	name = "chainmail boots"
@@ -56,7 +56,7 @@
 	max_integrity = 200 //meant to be weaker than iron plated boots, better options are out there waiting at the smith
 	armor_class = AC_LIGHT
 	sellprice = VALUE_IRON_ARMOR
-	item_weight = 6 * IRON_MULTIPLIER
+	item_weight = 2.7 KILOGRAMS
 	smeltresult = /obj/item/fertilizer/ash //we avoid melting one piece for one bar
 	melting_material = /datum/material/iron // we get one bar per two pieces of the item recovered and smelted
 	melt_amount = 75
@@ -88,7 +88,7 @@
 	melt_amount = 100
 	armor_class = AC_MEDIUM
 	armor = ARMOR_PLATE_GOOD
-	item_weight = 7 * BLACKSTEEL_MULTIPLIER
+	item_weight = 2.1 KILOGRAMS
 	sellprice = VALUE_SILVER_ITEM * 2
 
 /obj/item/clothing/shoes/boots/leather
@@ -104,7 +104,7 @@
 	sellprice = 10
 	salvage_result = /obj/item/natural/hide/cured
 	salvage_amount = 1
-	item_weight = 3
+	item_weight = 1.4 KILOGRAMS
 	max_integrity = INTEGRITY_STANDARD
 	wetable = FALSE
 
@@ -146,11 +146,11 @@
 	gender = PLURAL
 	icon_state = "furlinedboots"
 	item_state = "furlinedboots"
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/craft/tanning/patching
 	armor = list("blunt" = 30, "slash" = 10, "stab" = 20,  "piercing" = 0, "fire" = 0, "acid" = 0)
 	salvage_result = /obj/item/natural/fur
 	salvage_amount = 1
-	item_weight = 3
+	item_weight = 0.9 KILOGRAMS
 	min_cold_protection_temperature = -20
 	wetable = FALSE
 
@@ -160,7 +160,7 @@
 	gender = PLURAL
 	icon_state = "furlinedanklets"
 	item_state = "furlinedanklets"
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/craft/tanning/patching
 	armor = list("blunt" = 30, "slash" = 10, "stab" = 20,  "piercing" = 0, "fire" = 0, "acid" = 0)
 	is_barefoot = TRUE
 	salvage_amount = 1
@@ -174,11 +174,11 @@
 	icon_state = "clothlinedanklets"
 	item_state = "furlinedanklets"
 	is_barefoot = TRUE
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 	armor = list("blunt" = 5, "slash" = 5, "stab" = 5,  "piercing" = 0, "fire" = 0, "acid" = 0) //Thinks its fair for a piece of cloth and fiber.
 	salvage_result = /obj/item/natural/cloth
 	salvage_amount = 1
-	item_weight = 2
+	item_weight = 125 GRAMS
 
 /obj/item/clothing/shoes/boots/armor/silver
 	name = "silver boots"
@@ -188,7 +188,7 @@
 	smeltresult = /obj/item/ingot/silver
 	melting_material = /datum/material/silver
 	melt_amount = 100
-	item_weight = 12 * SILVER_MULTIPLIER
+	item_weight = 3.4 KILOGRAMS
 	sellprice = VALUE_SILVER_ITEM
 
 /obj/item/clothing/shoes/boots/armor/silver/Initialize(mapload)

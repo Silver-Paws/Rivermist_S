@@ -1,4 +1,5 @@
 /obj/item/grown/log/tree
+	item_weight = 2.4 KILOGRAMS
 	icon = 'icons/roguetown/items/natural.dmi'
 	seed = null
 	name = "log"
@@ -117,6 +118,7 @@
 	return TRUE
 
 /obj/item/grown/log/tree/small
+	item_weight = 1.4 KILOGRAMS
 	name = "small log"
 	desc = "A smaller log that came from a larger log. Suitable for building."
 	icon_state = "logsmall"
@@ -140,6 +142,7 @@
 	return
 
 /obj/item/grown/log/tree/stick
+	item_weight = 121 GRAMS
 	seed = null
 	name = "stick"
 	desc = "A wooden stick, a mighty weapon to the imaginative."
@@ -211,6 +214,7 @@
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/grown/log/tree/stake
+	item_weight = 95 GRAMS
 	name = "stake"
 	desc = "A sharpened piece of wood, fantastic for piercing"
 	icon_state = "stake"
@@ -236,6 +240,7 @@
 	return
 
 /obj/item/natural/wood/plank
+	item_weight = 850 GRAMS
 	name = "wood plank"
 	desc = "A wooden plank ready to be worked."
 	icon_state = "wplank"
@@ -273,6 +278,7 @@
 	smeltresult = /obj/item/fertilizer/ash
 
 /obj/item/grown/log/tree/essence
+	item_weight = 100 GRAMS
 	name = "essence of lumber"
 	desc = "A mystical essence imbued with the power of Silvanus. Very good source of fuel."
 	icon_state = "lessence"

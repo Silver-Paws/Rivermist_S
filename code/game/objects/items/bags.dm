@@ -1,4 +1,5 @@
 /obj/item/storage/sack
+	item_weight = 150 GRAMS
 	name = "sack"
 	desc = "A simple canvas sack."
 	icon_state = "cbag"
@@ -98,6 +99,7 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/storage/meatbag
+	item_weight = 200 GRAMS
 	name = "game satchel"
 	desc = "A cloth and leather satchel for storing the fruit of one's hunt."
 	icon_state = "gamesatchel"
@@ -148,6 +150,7 @@
 "eflip" = 8)
 
 /obj/item/storage/handbasket
+	item_weight = 300 GRAMS
 	name = "handbasket"
 	desc = "Fibers interwoven to make a cheap, handheld storage item."
 	icon_state = "handbasket"

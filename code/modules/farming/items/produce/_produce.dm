@@ -76,6 +76,7 @@
 	..()
 
 /obj/item/reagent_containers/food/snacks/produce/grain/wheat
+	item_weight = 30 GRAMS
 	seed = /obj/item/neuFarm/seed/wheat
 	name = "wheat grain"
 	desc = "A staple grain. Bread is made from this, and from bread, springs forth life."
@@ -87,6 +88,8 @@
 	grind_results = list(/datum/reagent/flour = 10)
 	dropshrink = 0.9
 	mill_result = /obj/item/reagent_containers/powder/flour
+	item_flags = OBTAINED_DATA
+	obtained_from = list(list("Threshing wheat stalks", /obj/item/natural/chaff/wheat))
 
 /obj/item/reagent_containers/food/snacks/produce/grain/wheat/examine(mob/user)
 	var/farminglvl = GET_MOB_SKILL_VALUE_OLD(user, /datum/attribute/skill/labor/farming)
@@ -95,6 +98,7 @@
 		. += "I can easily tell that these are wheat grains."
 
 /obj/item/reagent_containers/food/snacks/produce/grain/oat
+	item_weight = 25 GRAMS
 	seed = /obj/item/neuFarm/seed/oat
 	name = "oat grain"
 	desc = "A staple grain. Used to create oatmeal, and to feed saigas and horses."
@@ -104,6 +108,8 @@
 	bitesize_mod = 2
 	tastes = list("oat" = 1)
 	grind_results = list(/datum/reagent/flour = 10)
+	item_flags = OBTAINED_DATA
+	obtained_from = list(list("Threshing oat stalks", /obj/item/natural/chaff/oat))
 
 /obj/item/reagent_containers/food/snacks/produce/grain/oat/examine(mob/user)
 	var/farminglvl = GET_MOB_SKILL_VALUE_OLD(user, /datum/attribute/skill/labor/farming)
@@ -113,6 +119,7 @@
 
 // ^ PSA: next time you want to do this, make and run an updatepaths migration in tools/UpdatePaths
 /obj/item/reagent_containers/food/snacks/produce/fruit/apple
+	item_weight = 182 GRAMS
 	seed = /obj/item/neuFarm/seed/apple
 	name = "apple"
 	desc = "The humble apple. A sweet and nutritious fruit."
@@ -162,6 +169,7 @@
 				H.dropItemToGround(H.head)
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/strawberry
+	item_weight = 12 GRAMS
 	seed = /obj/item/neuFarm/seed/strawberry
 	name = "strawberry"
 	desc = "A delectable strawberry."
@@ -175,6 +183,7 @@
 
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/raspberry
+	item_weight = 4 GRAMS
 	seed = /obj/item/neuFarm/seed/raspberry
 	name = "raspberry"
 	desc = "A delectable raspberry."
@@ -189,6 +198,7 @@
 
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/blackberry
+	item_weight = 5 GRAMS
 	seed = /obj/item/neuFarm/seed/blackberry
 	name = "blackberry"
 	desc = "A delectable blackberry."
@@ -202,6 +212,7 @@
 	nutrition = BERRY_NUTRITION
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/jacksberry
+	item_weight = 10 GRAMS
 	name = "jacksberries"
 	desc = "Common berries found throughout most of Faerun. A traveler's repast, or Silvanus's wrath."
 	icon_state = "berriesc0"
@@ -271,6 +282,7 @@
 
 /*	..................   Swamp weed   ................... */
 /obj/item/reagent_containers/food/snacks/produce/swampweed
+	item_weight = 15 GRAMS
 	seed = /obj/item/neuFarm/seed/swampleaf
 	name = "swampweed"
 	desc = "A weed that can be dried and smoked to induce a relaxed state."
@@ -286,6 +298,7 @@
 	sellprice = 0 // only dried has value
 
 /obj/item/reagent_containers/food/snacks/produce/swampweed_dried
+	item_weight = 5 GRAMS
 	seed = null
 	name = "swampweed"
 	desc = "A dried weed that can be smoked to induce a relaxed state."
@@ -302,6 +315,7 @@
 
 /*	..................   Westleach leaf   ................... */
 /obj/item/reagent_containers/food/snacks/produce/westleach
+	item_weight = 10 GRAMS
 	seed = /obj/item/neuFarm/seed/westleach
 	name = "westleach leaf"
 	desc = "A common, strong-smelling leaf that is often dried and smoked. Also known as pipeweed."
@@ -318,6 +332,7 @@
 	sellprice = 0 // only dried has value
 
 /obj/item/reagent_containers/food/snacks/produce/dry_westleach
+	item_weight = 5 GRAMS
 	seed = null
 	name = "dried westleach leaf"
 	desc = "A common, strong-smelling leaf dried for smoking."
@@ -334,6 +349,7 @@
 
 /*	..................   Cabbage   ................... */
 /obj/item/reagent_containers/food/snacks/produce/vegetable/cabbage
+	item_weight = 900 GRAMS
 	name = "cabbage"
 	desc = "A vegetable with thick leaves, seen as a symbol of prosperity by some elves."
 	seed = /obj/item/neuFarm/seed/cabbage
@@ -348,6 +364,7 @@
 
 /*	..................   Onions   ................... */
 /obj/item/reagent_containers/food/snacks/produce/vegetable/onion
+	item_weight = 110 GRAMS
 	name = "onion"
 	desc = "A wonderful vegetable with many layers and a broad flavor profile."
 	seed = /obj/item/neuFarm/seed/onion
@@ -362,6 +379,7 @@
 	rotprocess = SHELFLIFE_LONG
 
 /obj/item/reagent_containers/food/snacks/produce/vegetable/onion/slice(accuracy, obj/item/W, mob/living/user) // ROGTODO watering eyes
+	item_weight = 1 KILOGRAMS
 	var/datum/effect_system/smoke_spread/chem/transparent/S = new	//Since the onion is destroyed when it's sliced,
 	var/splat_location = get_turf(src)	//we need to set up the smoke beforehand
 	S.attach(splat_location)
@@ -374,6 +392,7 @@
 
 /*	..................   Potato   ................... */
 /obj/item/reagent_containers/food/snacks/produce/vegetable/potato
+	item_weight = 150 GRAMS
 	name = "potato"
 	desc = "A spud, dwarven icon of growth."
 	seed = /obj/item/neuFarm/seed/potato
@@ -389,6 +408,7 @@
 
 /*	..................  Pear   ................... */ // for cider or eating raw
 /obj/item/reagent_containers/food/snacks/produce/fruit/pear
+	item_weight = 178 GRAMS
 	name = "pear"
 	seed = /obj/item/neuFarm/seed/pear
 	desc = "Too sweet for many, a favored treat for little ones. Dwarves do love them."
@@ -398,6 +418,7 @@
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/lemon
+	item_weight = 84 GRAMS
 	name = "lemon"
 	seed = /obj/item/neuFarm/seed/lemon
 	desc = "A sleep alternative for those determined enough."
@@ -407,6 +428,7 @@
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/lime
+	item_weight = 67 GRAMS
 	name = "lime"
 	seed = /obj/item/neuFarm/seed/lime
 	desc = "Along with its other citrus cousins, limes are well-loved by sailors and seafolk for their ability to keep and stave off scurvy."
@@ -416,6 +438,7 @@
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/tangerine
+	item_weight = 88 GRAMS
 	name = "tangerine"
 	seed = /obj/item/neuFarm/seed/tangerine
 	desc = "A citrus fruit loved by kids for its peelablity and more mild sweetness compared to limes and lemons."
@@ -425,6 +448,7 @@
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/plum
+	item_weight = 66 GRAMS
 	name = "plum"
 	seed = /obj/item/neuFarm/seed/plum
 	desc = "A fruit with a large seed in the middle. Its blossoms are enjoyed in the spring, and its fruits in the summer."
@@ -434,6 +458,7 @@
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/mango
+	item_weight = 200 GRAMS
 	name = "mangga"
 	seed = /obj/item/neuFarm/seed/mango
 	desc = "A golden tropical fruit bursting with sweet, juicy flesh."
@@ -447,6 +472,7 @@
 	rotprocess = SHELFLIFE_SHORT
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/mangosteen
+	item_weight = 80 GRAMS
 	name = "mangosteen"
 	seed = /obj/item/neuFarm/seed/mangosteen
 	desc = "A tropical fruit with a thick purple rind and white segments within."
@@ -460,6 +486,7 @@
 	rotprocess = SHELFLIFE_SHORT
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/avocado
+	item_weight = 150 GRAMS
 	name = "avocado"
 	seed = /obj/item/neuFarm/seed/avocado
 	desc = "A verdant tropical fruit known for its smooth and creamy flesh."
@@ -473,6 +500,7 @@
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/dragonfruit
+	item_weight = 400 GRAMS
 	name = "piyata"
 	seed = /obj/item/neuFarm/seed/dragonfruit
 	desc = "A spiky fruit with a pink skin and white flesh, Its taste is mild yet refreshing."
@@ -486,6 +514,7 @@
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/produce/fruit/pineapple
+	item_weight = 900 GRAMS
 	name = "ananas"
 	seed = /obj/item/neuFarm/seed/pineapple
 	desc = "A spiky fruit with golden skin, Its taste is tangy yet sweet and refreshing."
@@ -501,6 +530,7 @@
 
 /*	..................   Turnip   ................... */ // only for veggie soup
 /obj/item/reagent_containers/food/snacks/produce/vegetable/turnip
+	item_weight = 150 GRAMS
 	name = "turnip"
 	desc = "A shield against hunger, naught else."
 	seed = /obj/item/neuFarm/seed/turnip
@@ -516,6 +546,7 @@
 
 /*	..................   Sunflower   ................... */
 /obj/item/reagent_containers/food/snacks/produce/sunflower
+	item_weight = 50 GRAMS
 	seed = /obj/item/neuFarm/seed/sunflower
 	name = "sunflower"
 	desc = "Astratas favoured flower, said to carry some of her warmth and radiance. Astratan acolytes hold them in high regard."
@@ -532,6 +563,7 @@
 
 /*	..................   Sugarcane   ................... */
 /obj/item/reagent_containers/food/snacks/produce/sugarcane
+	item_weight = 270 GRAMS
 	seed = /obj/item/neuFarm/seed/sugarcane
 	name = "sugarcane"
 	desc = "A crop best suited for a warmer climate, raw sugar cane is considered a sweet snack by some sea elves."
@@ -549,6 +581,7 @@
 	mill_result = /obj/item/reagent_containers/food/snacks/sugar
 
 /obj/item/reagent_containers/food/snacks/sugar
+	item_weight = 150 GRAMS
 	name = "sugar"
 	desc ="Milled sugarcane, sweet as can be."
 	icon = 'icons/roguetown/items/produce.dmi'
@@ -560,6 +593,7 @@
 
 /*	..................   Fyritius Flower   ................... */ // some sort of funni fire flowers. Dunno just moving them here for consistency.
 /obj/item/reagent_containers/food/snacks/produce/fyritius
+	item_weight = 10 GRAMS
 	name = "fyritius flower"
 	seed = /obj/item/neuFarm/seed/fyritius // if mass producing these breaks shit just comment it out
 	desc = "A flower that's colored like flickering flames. Said to contain a bit of the power of fire as well."
@@ -607,6 +641,7 @@
 
 /* .......... Poppies ........ */
 /obj/item/reagent_containers/food/snacks/produce/poppy
+	item_weight = 5 GRAMS
 	name = "poppy"
 	desc = "For their crimson beauty and the sedating effect of their crushed seeds, these flowers are considered a symbol of Sune."
 	icon_state = "poppy"
@@ -625,6 +660,7 @@
 
 /* .......... Mushrooms ........ */
 /obj/item/reagent_containers/food/snacks/produce/mushroom/capillus
+	item_weight = 8 GRAMS
 	name = "capillus mort"
 	desc = "Also called Corpse Caps or Necra’s Nightcaps, this toxic fungus was first discovered by Necran gravetenders, growing amongst tombs. It has long since been harvested and dried to make use of its fibrous gills in the weaving of winding sheets."
 	icon_state = "capillus"
@@ -641,6 +677,7 @@
 	eat_effect = /datum/status_effect/debuff/badmeal
 
 /obj/item/reagent_containers/food/snacks/produce/mushroom/waddle
+	item_weight = 20 GRAMS
 	name = "waddle"
 	desc = "A staple to all those that wander the forests of Faerun. Its bright color and unique shape have lent it its name. Some even say it tastes like roast bird."
 	icon_state = "waddle"
@@ -654,6 +691,7 @@
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/produce/mushroom/merkel
+	item_weight = 15 GRAMS
 	name = "merkel"
 	desc = "A rare fungus popularized by the ruling class of Darkhold. It has been said that these mushrooms smell SO divine when prepared correctly, it could raise a man from the dead."
 	icon_state = "merkel"
@@ -667,6 +705,7 @@
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/produce/mushroom/caveweep
+	item_weight = 12 GRAMS
 	name = "caveweep"
 	desc = "Once believed to be the shed tears of Umberlee, the Bitch Queen herself, this rare fungus grows deep within the damp sea caves along the Sword Coast and the shores of the Sea of Fallen Stars. It is known only to those bold enough to brave the treacherous tides and lightless depths where it thrives, prized for its sharp, brine-soaked flavor reminiscent of the deep ocean." //RMH
 	icon_state = "caveweep"
@@ -680,6 +719,7 @@
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/produce/mushroom/borowiki
+	item_weight = 25 GRAMS
 	name = "borowiki"
 	desc = "Also known among the drow as Cépes, this hardy fungus was cultivated over many generations into a reliable crop by the shield dwarves of the great mountain passes, particularly those of the Spine of the World and the North. It is unknown which folk first discovered it—drow or dwarf—but its use among the surface peoples of Faerûn has grown steadily over the past few centuries, valued for both its sustenance and rich, earthy flavor."
 	icon_state = "borowiki"

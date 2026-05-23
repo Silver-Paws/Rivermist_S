@@ -56,12 +56,12 @@
 		return wound
 
 /// Loops through our list of wounds healing them until we run out of healing or all wounds are healed
-/mob/living/proc/heal_wounds(heal_amount)
+/mob/living/proc/heal_wounds(heal_amount, datum/source)
 	var/healed_any = FALSE
 	for(var/datum/wound/wound as anything in get_wounds())
 		if(heal_amount <= 0)
 			continue
-		var/amount_healed = wound.heal_wound(heal_amount)
+		var/amount_healed = wound.heal_wound(heal_amount, source)
 		if(amount_healed)
 			heal_amount -= amount_healed
 			healed_any = TRUE
@@ -178,9 +178,9 @@
 			dam += 10
 
 	var/list/crit_classes
-	if(bclass in GLOB.fracture_bclasses)
+	if(bclass in FRACTURE_BCLASSES)
 		LAZYADD(crit_classes, "fracture")
-	if(bclass in GLOB.artery_bclasses)
+	if(bclass in ARTERY_BCLASSES)
 		LAZYADD(crit_classes, "artery")
 
 	if(!LAZYLEN(crit_classes))
@@ -199,7 +199,7 @@
 				LAZYADD(attempted_wounds, fracture_type)
 		if("artery")
 			if(user)
-				if((bclass in GLOB.artery_strong_bclasses) && istype(user.rmb_intent, /datum/rmb_intent/strong))
+				if((bclass in ARTERY_STRONG_BCLASSES) && istype(user.rmb_intent, /datum/rmb_intent/strong))
 					dam += 30
 				else if(istype(user.rmb_intent, /datum/rmb_intent/aimed))
 					dam += 30

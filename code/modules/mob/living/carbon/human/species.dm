@@ -29,10 +29,12 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 	var/donator_req = FALSE
 	/// Used for sorting the species in the species_list, check out species_order_list for the order itself
 	var/order_num = 99 // so that if there's nothing in the species_order_list, we still don't break
+	var/default_mob_weight = HUMAN_WEIGHT
+
 	/**
-	 * The list of pronouns this species allows in the character sheet.
-	 * If none are specified, it will default to the PRONOUNS_LIST.
-	 */
+	* The list of pronouns this species allows in the character sheet.
+	* If none are specified, it will default to the PRONOUNS_LIST.
+	*/
 	var/list/allowed_pronouns = PRONOUNS_LIST_NO_IT
 
 	/// The list of voice types this species allows in the character sheet for feminine bodies
@@ -119,31 +121,31 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 	/// Custom race title list
 	var/list/race_titles = list()
 	/**
-	 * Males use female clothes, offsets and damage icons.
-	 * Importantly males still use male limb icons.
-	 * This does not effect stats or inherent traits/skills.
-	 * Males will not get boob overlays from this.
-	 */
+	* Males use female clothes, offsets and damage icons.
+	* Importantly males still use male limb icons.
+	* This does not effect stats or inherent traits/skills.
+	* Males will not get boob overlays from this.
+	*/
 	var/swap_male_clothes = FALSE
 	/**
-	 * Females use male clothes, offsets and damage icons.
-	 * Importantly females still use female limb icons.
-	 * This does not effect stats or inherent traits/skills.
-	 * Females will lose their boob overlays.
-	 */
+	* Females use male clothes, offsets and damage icons.
+	* Importantly females still use female limb icons.
+	* This does not effect stats or inherent traits/skills.
+	* Females will lose their boob overlays.
+	*/
 	var/swap_female_clothes = FALSE
 /**
-	 * Males use female clothes and damage icons, but not offsets
-	 * Importantly males still use male limb icons.
-	 * This does not effect stats or inherent traits/skills.
-	 * Males will not get boob overlays from this.
-	 */
+	* Males use female clothes and damage icons, but not offsets
+	* Importantly males still use male limb icons.
+	* This does not effect stats or inherent traits/skills.
+	* Males will not get boob overlays from this.
+	*/
 	var/swap_male_clothes_but_not_offsets = FALSE
 	var/no_boobs = FALSE
 	/**
-	 * For species that don't have mammaries, like Rakshari.
-	 * Removes boob overlay
-	 */
+	* For species that don't have mammaries, like Rakshari.
+	* Removes boob overlay
+	*/
 
 	/// Sounds for males
 	var/datum/voicepack/soundpack_m = /datum/voicepack/male
@@ -240,6 +242,7 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 	/// List of organs this species has.
 	var/list/organs = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain,
+		ORGAN_SLOT_SPLEEN = /obj/item/organ/spleen,
 		ORGAN_SLOT_HEART = /obj/item/organ/heart,
 		ORGAN_SLOT_LUNGS = /obj/item/organ/lungs,
 		ORGAN_SLOT_EYES = /obj/item/organ/eyes,
@@ -252,6 +255,8 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 		ORGAN_SLOT_PUBIC = /obj/item/organ/genitals/pubes,
 		ORGAN_SLOT_ANUS = /obj/item/organ/genitals/filling_organ/anus,
 	)
+	///this is basically a list of organs we might not have IE hollowkin horns or tails
+	var/list/optional_organ_slots = list()
 
 	/// List of descriptor choices this species gets in preferences customization
 	var/list/descriptor_choices = list(
@@ -279,6 +284,47 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 
 	var/datum/attribute_holder/sheet/statsheet_male
 	var/datum/attribute_holder/sheet/statsheet_female
+
+	/// Can we be a youngling?
+	var/can_be_youngling = TRUE
+	/// Icon override for children male and female is the same
+	var/child_icon = 'icons/roguetown/mob/bodies/c/child.dmi'
+	/// Child damage icons
+	var/child_dam_icon = 'icons/roguetown/mob/bodies/dam/dam_child.dmi'
+
+	/// Child feature offset lists
+	var/list/offset_features_child = list(
+		OFFSET_RING = list(0,0),\
+		OFFSET_GLOVES = list(0,0),\
+		OFFSET_WRISTS = list(0,0),\
+		OFFSET_HANDS = list(0,-3),\
+		OFFSET_CLOAK = list(0,-4),\
+		OFFSET_FACEMASK = list(0,-4),\
+		OFFSET_HEAD = list(0,-4),\
+		OFFSET_FACE = list(0,-4),\
+		OFFSET_BELT = list(0,0),\
+		OFFSET_BACK = list(0,0),\
+		OFFSET_NECK = list(0,-4),\
+		OFFSET_MOUTH = list(0,-4),\
+		OFFSET_PANTS = list(0,0),\
+		OFFSET_SHIRT = list(0,0),\
+		OFFSET_ARMOR = list(0,0),\
+		OFFSET_UNDIES = list(0,0),\
+	)
+
+	/// List of emotes caused by pain, indexed by pain amount
+	var/list/pain_emote_by_power = list(
+		"100" = "agonyscream",
+		"90" = "whimper",
+		"80" = "moan",
+		"70" = "cry",
+		"60" = "gargle",
+		"50" = "moan",
+		"40" = "moan",
+		"30" = "groan",
+		"20" = "groan",
+		"10" = "grunt",
+	) //Below 10 pain, we shouldn't emote
 
 	/// Amount of times we got autocorrected?? why is this a thing?
 	var/amtfail = 0
@@ -329,6 +375,14 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 		if("Undead Chant")
 			return
 	return
+
+/datum/species/proc/get_pain_emote(power)
+	if(power < PAIN_EMOTE_MINIMUM)
+		return
+	power = FLOOR(min(100, power), 10)
+	var/emote_string
+	emote_string = LAZYACCESS(pain_emote_by_power, "[power]")
+	return emote_string
 
 /datum/species/proc/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
@@ -543,6 +597,38 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 /datum/species/proc/get_hexcolor(list/L)
 	return L
 
+/datum/species/proc/normalize_body_color(color)
+	var/list/rgb_values = ReadRGB(color)
+	if(!rgb_values)
+		return null
+	return copytext(rgb(rgb_values[1], rgb_values[2], rgb_values[3]), 2)
+
+/datum/species/proc/get_body_color(mob/living/carbon/human/H)
+	if(use_skintones)
+		if(H)
+			. = normalize_body_color(H.skin_tone)
+			if(.)
+				return
+			if(H.dna?.features && ((MUTCOLORS in species_traits) || (MUTCOLORS_PARTSONLY in species_traits)))
+				. = normalize_body_color(H.dna.features["mcolor"])
+				if(.)
+					return
+		return normalize_body_color(default_color)
+
+	if(fixed_mut_color)
+		. = normalize_body_color(fixed_mut_color)
+		if(.)
+			return
+		return normalize_body_color(default_color)
+
+	if(H?.dna?.features && ((MUTCOLORS in species_traits) || (MUTCOLORS_PARTSONLY in species_traits)))
+		. = normalize_body_color(H.dna.features["mcolor"])
+		if(.)
+			return
+		return normalize_body_color(default_color)
+
+	return null
+
 /datum/species/proc/get_skin_list() as /list
 	RETURN_TYPE(/list)
 	return GLOB.skin_tones
@@ -590,10 +676,8 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 		var/list/organ_dna_list = pref_load.get_organ_dna_list()
 		for(var/organ_slot in organ_dna_list)
 			C.dna.organ_dna[organ_slot] = organ_dna_list[organ_slot]
-
 	//what should be put in if there is no mutantorgan (brains handled seperately)
 	var/list/slot_mutantorgans = organs
-
 	var/list/slots_to_iterate = list()
 	for(var/slot in C.dna.organ_dna)
 		slots_to_iterate |= slot
@@ -601,10 +685,11 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 		if(!is_organ_slot_allowed(C, slot))
 			continue
 		slots_to_iterate |= slot
-
 	// Remove the organs from the slots they should have nothing in
 	for(var/obj/item/organ/organ in C.internal_organs)
 		if(organ.slot in slots_to_iterate)
+			continue
+		if(istype(organ, /obj/item/organ/artery)) ///these are children of the limbs not to be messed with
 			continue
 		var/list/transfer_items = organ.extract_body_storage_contents_for_regeneration()
 		organ.Remove(C, TRUE)
@@ -615,9 +700,10 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 		var/obj/item/organ/oldorgan = C.getorganslot(slot) //used in removing
 		var/obj/item/organ/neworgan
 		var/has_saved_organ_dna = !!C.dna.organ_dna[slot]
+		var/datum/organ_dna/organ_dna
 
 		if(has_saved_organ_dna)
-			var/datum/organ_dna/organ_dna = C.dna.organ_dna[slot]
+			organ_dna = C.dna.organ_dna[slot]
 			if(organ_dna.can_create_organ())
 				neworgan = organ_dna.create_organ(species = src)
 				if(slot_mutantorgans[slot])
@@ -632,7 +718,6 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 			if(new_type)
 				neworgan = new new_type()
 				neworgan.build_colors_for_accessory(source_key_list)
-
 		var/used_neworgan = FALSE
 		var/should_have
 		if(neworgan)
@@ -642,6 +727,9 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 				should_have = TRUE
 		else
 			should_have = TRUE
+
+		if((slot in optional_organ_slots) && !C.dna.organ_dna[slot])
+			should_have = FALSE
 
 		var/list/transfer_items
 		if(oldorgan && (!should_have || replace_current) && !(oldorgan.zone in excluded_zones))
@@ -654,21 +742,33 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 					oldorgan = null //now deleted
 			else
 				transfer_items = oldorgan.extract_body_storage_contents_for_regeneration()
-				oldorgan.Remove(C,TRUE)
-				QDEL_NULL(oldorgan) //we cannot just tab this out because we need to skip the deleting if it is a decoy brain.
-
-
+				for(var/obj/item/organ/old_paired in C.getorganslotlist(slot))
+					old_paired.Remove(C, TRUE)
+					QDEL_NULL(old_paired)
+				oldorgan = null
 		if(oldorgan)
 			oldorgan.setOrganDamage(0)
 		else if(should_have && !(initial(neworgan.zone) in excluded_zones))
 			used_neworgan = TRUE
 			if(neworgan)
 				neworgan.Insert(C, TRUE, FALSE)
-
+				if(slot in PAIRED_ORGAN_SLOTS)
+					var/obj/item/organ/paired_organ = new neworgan.type()
+					paired_organ.switch_side(neworgan.side == RIGHT_SIDE ? LEFT_SIDE : RIGHT_SIDE)
+					if(organ_dna)
+						organ_dna.imprint_organ(paired_organ, species = src)
+					else
+						paired_organ.build_colors_for_accessory(source_key_list)
+					if(pref_load)
+						pref_load.customize_organ(paired_organ)
+					if(!(initial(paired_organ.zone) in excluded_zones))
+						paired_organ.Insert(C, TRUE, FALSE)
+					else
+						qdel(paired_organ)
 		if(!used_neworgan)
 			if(neworgan)
 				qdel(neworgan)
-		else if (!C.dna.organ_dna[slot] && neworgan)
+		else if(!C.dna.organ_dna[slot] && neworgan)
 			var/datum/organ_dna/new_dna = neworgan.create_organ_dna()
 			C.dna.organ_dna[slot] = new_dna
 
@@ -743,7 +843,7 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 
 /datum/species/proc/validate_customizer_entries(mob/living/carbon/human/human)
 	customizer_entries = SANITIZE_LIST(customizer_entries)
-	listclearnulls(customizer_entries)
+	list_clear_nulls(customizer_entries)
 	/// Check if we have any customizer entries that don't match.
 	for(var/datum/customizer_entry/entry as anything in customizer_entries)
 		var/validated = FALSE
@@ -864,6 +964,7 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 		apply_customizers_to_character(C)
 
 	on_gender_update(C)
+	C.update_organ_requirements() //post species trait gains
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
 
 /datum/species/proc/get_inherent_attribute_sheet()
@@ -1336,61 +1437,7 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 ////////
 
 /datum/species/proc/handle_digestion(mob/living/carbon/human/H)
-	if(HAS_TRAIT(H, TRAIT_NOHUNGER))
-		return //hunger is for BABIES
-	if(!H.mind)
-		return //brainless hunger
-	// nutrition decrease and satiety
-	if(H.nutrition > 0 && H.stat != DEAD)
-		var/hunger_rate = (HUNGER_FACTOR * nutrition_mod)
-		H.adjust_nutrition(-hunger_rate)
-
-	if(H.hydration > 0 && H.stat != DEAD)
-		var/hunger_rate = HUNGER_FACTOR
-		H.adjust_hydration(-hunger_rate)
-
-	if(H.nutrition > NUTRITION_LEVEL_FULL && H.overeatduration < 600)
-		H.overeatduration++ //capped so people don't take forever to unfat
-	else if(H.overeatduration > 1)
-		H.overeatduration -= 2 //doubled the unfat rate
-
-	switch(H.nutrition)
-		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
-			H.apply_status_effect(/datum/status_effect/debuff/hungryt1)
-			H.remove_status_effect(/datum/status_effect/debuff/hungryt2)
-			H.remove_status_effect(/datum/status_effect/debuff/hungryt3)
-			H.remove_status_effect(/datum/status_effect/debuff/hungryt4)
-		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-			H.apply_status_effect(/datum/status_effect/debuff/hungryt2)
-			H.remove_status_effect(/datum/status_effect/debuff/hungryt1)
-			H.remove_status_effect(/datum/status_effect/debuff/hungryt3)
-			H.remove_status_effect(/datum/status_effect/debuff/hungryt4)
-		if(0 to NUTRITION_LEVEL_STARVING)
-			H.apply_status_effect(/datum/status_effect/debuff/hungryt3)
-			H.remove_status_effect(/datum/status_effect/debuff/hungryt1)
-			H.remove_status_effect(/datum/status_effect/debuff/hungryt2)
-			if(CONFIG_GET(flag/starvation_death))
-				H.apply_status_effect(/datum/status_effect/debuff/hungryt4)
-			if(prob(3))
-				playsound(H, pick('sound/vo/hungry1.ogg','sound/vo/hungry2.ogg','sound/vo/hungry3.ogg'), 100, TRUE, -1)
-
-	switch(H.hydration)
-		if(HYDRATION_LEVEL_THIRSTY to HYDRATION_LEVEL_SMALLTHIRST)
-			H.apply_status_effect(/datum/status_effect/debuff/thirstyt1)
-			H.remove_status_effect(/datum/status_effect/debuff/thirstyt2)
-			H.remove_status_effect(/datum/status_effect/debuff/thirstyt3)
-			H.remove_status_effect(/datum/status_effect/debuff/thirstyt4)
-		if(HYDRATION_LEVEL_DEHYDRATED to HYDRATION_LEVEL_THIRSTY)
-			H.apply_status_effect(/datum/status_effect/debuff/thirstyt2)
-			H.remove_status_effect(/datum/status_effect/debuff/thirstyt1)
-			H.remove_status_effect(/datum/status_effect/debuff/thirstyt3)
-			H.remove_status_effect(/datum/status_effect/debuff/thirstyt4)
-		if(0 to HYDRATION_LEVEL_DEHYDRATED)
-			H.apply_status_effect(/datum/status_effect/debuff/thirstyt3)
-			H.remove_status_effect(/datum/status_effect/debuff/thirstyt1)
-			H.remove_status_effect(/datum/status_effect/debuff/thirstyt2)
-			if(CONFIG_GET(flag/dehydration_death))
-				H.apply_status_effect(/datum/status_effect/debuff/thirstyt4)
+	return
 
 /datum/species/proc/update_health_hud(mob/living/carbon/human/H)
 	return 0
@@ -1436,21 +1483,14 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 //	if(!((target.health < 0 || HAS_TRAIT(target, TRAIT_FAKEDEATH)) && !(target.mobility_flags & MOBILITY_STAND)))
-	if(target.body_position == LYING_DOWN)
+	if(!(istype(user.rmb_intent, /datum/rmb_intent/weak)) && target.body_position == LYING_DOWN)
 		target.help_shake_act(user)
 		if(target != user)
 			log_combat(user, target, "shaken")
 		return TRUE
-/*	else
-		var/we_breathe = !HAS_TRAIT(user, TRAIT_NOBREATH)
-		var/we_lung = user.getorganslot(ORGAN_SLOT_LUNGS)
-
-		if(we_breathe && we_lung)
-			user.do_cpr(target)
-		else if(we_breathe && !we_lung)
-			to_chat(user, "<span class='warning'>I have no lungs to breathe with, so you cannot perform CPR!</span>")
-		else
-			to_chat(user, "<span class='warning'>I do not breathe, so you cannot perform CPR!</span>")*/
+	else if(istype(user.rmb_intent, /datum/rmb_intent/weak) && (target.body_position == LYING_DOWN) && (user.zone_selected in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_MOUTH)))
+		user.do_cpr(target, user.zone_selected == BODY_ZONE_CHEST ? CPR_CHEST : CPR_MOUTH)
+		return TRUE
 
 /datum/species/proc/grab(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(target.check_block())
@@ -1542,13 +1582,13 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 		target.next_attack_msg.Cut()
 
 		var/nodmg = FALSE
-		var/actual_damage = target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block)
+		var/actual_damage = target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block, skip_dtype = TRUE)
 		target.clear_damage_attack_context()
 		if(!actual_damage)
 			nodmg = TRUE
 			target.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
 		else
-			affecting.bodypart_attacked_by(user.used_intent.blade_class, damage, user, selzone, crit_message = TRUE)
+			affecting.bodypart_attacked_by(user.used_intent.blade_class, actual_damage, user, selzone, crit_message = TRUE, pre_applied = TRUE)
 			if(affecting.body_zone == BODY_ZONE_HEAD)
 				SEND_SIGNAL(user, COMSIG_HEAD_PUNCHED, target)
 		log_combat(user, target, "punched")
@@ -1556,7 +1596,7 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 
 		if(!nodmg)
 			if(user.limb_destroyer)
-				var/easy_dismember = HAS_TRAIT(target, TRAIT_EASYDISMEMBER) || affecting.rotted
+				var/easy_dismember = HAS_TRAIT(target, TRAIT_EASYDISMEMBER) || HAS_TRAIT(affecting, TRAIT_ROTTEN)
 				if(prob(damage/2) || (easy_dismember && prob(damage/2))) //try twice
 					if(affecting.brute_dam > 0)
 						affecting.dismember()
@@ -1762,7 +1802,7 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 						target.visible_message("<span class='danger'>[user] puts their foot on [target]'s neck!</span>", \
 										"<span class='danger'>I get my throat stepped on by [user]! I can't breathe!</span>", "<span class='hear'>I hear a sickening sound of pugilism!</span>", COMBAT_MESSAGE_RANGE, user)
 					else
-						affecting.bodypart_attacked_by(BCLASS_BLUNT, damage, user, user.zone_selected, crit_message = TRUE)
+						affecting.bodypart_attacked_by(BCLASS_BLUNT, damage, user, user.zone_selected, crit_message = TRUE, pre_applied = TRUE)
 						target.visible_message("<span class='danger'>[user] stomps [target]![target.next_attack_msg.Join()]</span>", \
 										"<span class='danger'>I'm stomped by [user]![target.next_attack_msg.Join()]</span>", "<span class='hear'>I hear a sickening kick!</span>", COMBAT_MESSAGE_RANGE, user)
 						to_chat(user, "<span class='danger'>I stomp on [target]![target.next_attack_msg.Join()]</span>")
@@ -1947,58 +1987,58 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 
 //	var/armor_block = H.run_armor_check(affecting, "melee", "<span class='notice'>My armor has protected my [hit_area]!</span>", "<span class='warning'>My armor has softened a hit to my [hit_area]!</span>",pen)
 
-	var/Iforce = get_complex_damage(I, user) //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
-	var/armor_block = H.run_armor_check(selzone, I.damage_type, "", "",pen, damage = Iforce, blade_dulling=user.used_intent.blade_class)
-
+	var/item_force = get_complex_damage(I, user) //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
 	var/nodmg = FALSE
+	if(!item_force)
+		I.funny_attack_effects(H, user, nodmg)
+		SEND_SIGNAL(I, COMSIG_ITEM_SPEC_ATTACKEDBY, H, user, affecting, 0)
+		return
 
-	var/actual_damage = Iforce
-	var/from_behind = FALSE
-	if(user && (H.dir == turn(get_dir(H,user), 180)))
-		from_behind = TRUE
-	if(Iforce)
-		if(from_behind && user.mind && !HAS_TRAIT(H, TRAIT_BLINDFIGHTING) && !user.has_status_effect(/datum/status_effect/debuff/stealthcd))//Backstabs do increased damage; Sneak attacks have a higher crit chance. Combined, a stealthy backstab should be very damaging.
-			var/sneakmult = GET_MOB_SKILL_VALUE_OLD(user, /datum/attribute/skill/misc/sneaking)
-			Iforce *= max(1,sneakmult)
-			Iforce += 15
-			user.apply_status_effect(/datum/status_effect/debuff/stealthcd)
-			to_chat(H, span_userdanger("BACKSTAB!!! THE ATTACK DEALS GREATER DAMAGE!"))
-			to_chat(user, span_userdanger("BACKSTAB!!! MY ATTACK DOES GREATER DAMAGE!"))
-			user.adjust_experience(/datum/skill/misc/sneaking, user.STAINT * 5, TRUE)
-		var/weakness = H.check_weakness(I, user)
-		actual_damage = apply_damage(Iforce * weakness, I.damtype, def_zone, armor_block, H)
-		H.next_attack_msg.Cut()
-		if(!actual_damage)
-			nodmg = TRUE
-			H.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
-			if(!QDELETED(I))
-				I.take_damage(1, BRUTE, I.damage_type)
-		if(!nodmg)
-			var/datum/wound/crit_wound = affecting.bodypart_attacked_by(user.used_intent.blade_class, (Iforce * weakness) * ((100-(armor_block))/100), user, selzone, crit_message = TRUE)
-			if(istype(crit_wound) && crit_wound.should_embed(I))
-				var/can_impale = TRUE
-				if(!affecting)
-					can_impale = FALSE
-				else if(I.wlength > WLENGTH_SHORT && !(affecting.body_zone in list(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)))
-					can_impale = FALSE
-				if(can_impale && user.Adjacent(H))
-					affecting.add_embedded_object(I, silent = FALSE, crit_message = TRUE)
-					H.emote("embed")
-					affecting.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class)//It hurts to rip it out, get surgery you dingus.
-					user.put_in_hands(I)
-					H.emote("pain", TRUE)
-					playsound(H, 'sound/foley/flesh_rem.ogg', 100, TRUE, -2)
-			I.do_special_attack_effect(user, affecting, intent, H, selzone)
-			if(istype(user.used_intent, /datum/intent/effect) && selzone)
-				var/datum/intent/effect/effect_intent = user.used_intent
-				if(LAZYLEN(effect_intent.target_parts))
-					if(selzone in effect_intent.target_parts)
-						H.apply_status_effect(effect_intent.intent_effect)
-				else
+	var/knockout_modifier = 0
+	if(!H.cmode && !H.stat && H.body_position != LYING_DOWN && user.m_intent == MOVE_INTENT_SNEAK && (H.dir == REVERSE_DIR(get_dir(H, user))))
+		var/blunt = (user.used_intent.blade_class == BCLASS_BLUNT)
+		var/attacker_sneaking = GET_MOB_SKILL_VALUE(user, /datum/attribute/skill/misc/sneaking)
+		if((blunt || I.wbalance >= HARD_TO_DODGE) && attacker_sneaking >= 10)
+			H.next_attack_msg += " [span_userdanger("SNEAK ATTACK!")]"
+			var/percentage = attacker_sneaking / (SKILL_LEVEL_LEGENDARY)
+			if(blunt)
+				knockout_modifier = FLOOR(15 * percentage, 1)
+			item_force += (item_force * 0.5) * percentage
+			pen = 100
+
+	var/armor_block = H.run_armor_check(selzone, I.damage_type, "", "", pen, damage = item_force, blade_dulling = user.used_intent.blade_class)
+	var/weakness = H.check_weakness(I, user)
+	var/actual_damage = apply_damage(item_force * weakness, I.damtype, def_zone, armor_block, H, skip_dtype = TRUE)
+
+	if(!actual_damage)
+		nodmg = TRUE
+		H.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
+		if(!QDELETED(I))
+			I.take_damage(1, BRUTE, I.damage_type)
+	else
+		var/datum/wound/bodypart_wound = affecting.bodypart_attacked_by(user.used_intent.blade_class, actual_damage, user, selzone, crit_message = TRUE, modifiers = list(CRIT_MOD_KNOCKOUT_CHANCE = knockout_modifier), incoming_germ = I.germ_level, pre_applied = TRUE)
+		if(istype(bodypart_wound) && bodypart_wound.should_embed(I))
+			var/can_impale = TRUE
+			if(!affecting)
+				can_impale = FALSE
+			else if(I.wlength > WLENGTH_SHORT && !(affecting.body_zone in list(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)))
+				can_impale = FALSE
+			if(can_impale && user.Adjacent(H))
+				affecting.add_embedded_object(I, silent = FALSE, crit_message = TRUE)
+				H.emote("embed")
+				affecting.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier * I.w_class)//It hurts to rip it out, get surgery you dingus.
+				user.put_in_hands(I)
+				H.emote("pain", TRUE)
+				playsound(H, 'sound/foley/flesh_rem.ogg', 100, TRUE, -2)
+
+		I.do_special_attack_effect(user, affecting, intent, H, selzone)
+		if(istype(user.used_intent, /datum/intent/effect) && selzone)
+			var/datum/intent/effect/effect_intent = user.used_intent
+			if(LAZYLEN(effect_intent.target_parts))
+				if(selzone in effect_intent.target_parts)
 					H.apply_status_effect(effect_intent.intent_effect)
-//		if(H.used_intent.blade_class == BCLASS_BLUNT && I.force >= 15 && affecting.body_zone == "chest")
-//			var/turf/target_shove_turf = get_step(H.loc, get_dir(user.loc,H.loc))
-//			H.throw_at(target_shove_turf, 1, 1, H, spin = FALSE)
+			else
+				H.apply_status_effect(effect_intent.intent_effect)
 
 	if(sneak_attack_armor_penetration && !user.has_status_effect(/datum/status_effect/debuff/stealthcd))
 		user.apply_status_effect(/datum/status_effect/debuff/stealthcd)
@@ -2055,12 +2095,12 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 						H.wear_pants.add_mob_blood(H)
 						H.update_inv_pants()
 
-		if(Iforce > 10 || Iforce >= 5 && prob(Iforce))
+		if(item_force > 10 || item_force >= 5 && prob(item_force))
 			H.forcesay(GLOB.hit_appends)	//forcesay checks stat already.
 	return TRUE
 
-/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, flashes = TRUE)
-	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
+/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, flashes = TRUE, damage_type, skip_dtype, can_crit = TRUE)
+	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone)
 	var/hit_percent = 1
 	damage = max(damage - (blocked),0)
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
@@ -2079,6 +2119,9 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 				BP = H.bodyparts[1]
 
 	var/damage_amount = damage
+	var/list/mods = list()
+	if(!can_crit)
+		mods = list(CRIT_MOD_CHANCE = -100)
 	switch(damagetype)
 		if(BRUTE)
 			H.damageoverlaytemp = 20
@@ -2106,8 +2149,12 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 					else if(damage_amount >= 20)
 						H.flash_fullscreen("redflash3")
 			if(BP)
-				if(BP.receive_damage(damage_amount, 0))
+				if(damage_type)
+					BP.bodypart_attacked_by(damage_type, damage_amount, modifiers = mods)
 					H.update_damage_overlays()
+				else
+					if(BP.receive_damage(damage_amount, 0))
+						H.update_damage_overlays()
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
 		if(BURN)
@@ -2123,7 +2170,11 @@ GLOBAL_LIST_EMPTY(roundstart_species)
 				else if(damage_amount >= 20)
 					H.flash_fullscreen("redflash3")
 			if(BP)
-				if(BP.receive_damage(0, damage_amount, flashes = flashes))
+				if(skip_dtype)
+					if(BP.receive_damage(0, damage_amount, flashes = flashes))
+						H.update_damage_overlays()
+				else
+					BP.bodypart_attacked_by(BCLASS_BURN, damage_amount, modifiers = list(CRIT_MOD_CHANCE = -100)) // burns can't crit
 					H.update_damage_overlays()
 			else
 				H.adjustFireLoss(damage_amount)

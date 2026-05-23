@@ -131,7 +131,7 @@
 	},
 /area/indoors/cave/rmh_dwarf_keep/entrance)
 "bV" = (
-/obj/structure/fluff/clodpile,
+/obj/structure/fluff/clodpile/dirt,
 /turf/open/floor/dirt,
 /area/outdoors/mountains/rmh_mountains/frozen/forsaken_village)
 "cd" = (
@@ -4638,7 +4638,7 @@
 /turf/open/floor/tile,
 /area/indoors/cave/rmh_dwarf_keep/smelters)
 "Xz" = (
-/obj/structure/fluff/clodpile,
+/obj/structure/fluff/clodpile/dirt,
 /turf/open/floor/dirt/road,
 /area/outdoors/mountains/rmh_mountains/frozen/forsaken_village)
 "XA" = (

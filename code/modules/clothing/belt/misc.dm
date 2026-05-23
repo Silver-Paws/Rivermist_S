@@ -160,21 +160,21 @@
 	color = "#ff0000"
 
 /obj/item/storage/belt/potion_belt
-    name = "Belt for potion"
-    desc = "Belt with pockets and straps for potion bottles."
-    icon_state = "potion_belt"
-    item_state = "potion_belt"
-    strip_delay = 20
-    var/max_storage = 8
-    var/empty_when_dropped = FALSE
-    sewrepair = TRUE
-    component_type = /datum/component/storage/concrete/grid/potion_belt
+	name = "Belt for potion"
+	desc = "Belt with pockets and straps for potion bottles."
+	icon_state = "potion_belt"
+	item_state = "potion_belt"
+	strip_delay = 20
+	var/max_storage = 8
+	var/empty_when_dropped = FALSE
+	sewrepair = /datum/attribute/skill/craft/tanning/patching
+	component_type = /datum/component/storage/concrete/grid/potion_belt
 
 //Проверка на тип предмета, что вкладывают в пояс рукой
 /obj/item/storage/belt/potion_belt/attackby(obj/item/B, mob/living/user, params)
-    if (!istype(B, /obj/item/reagent_containers/glass/bottle))
-        to_chat(user, span_warning("This belt only holds bottles!"))
-        return FALSE
+	if (!istype(B, /obj/item/reagent_containers/glass/bottle))
+		to_chat(user, span_warning("This belt only holds bottles!"))
+		return FALSE
 
 /obj/item/storage/belt/pouch
 	name = "pouch"
@@ -360,13 +360,13 @@
 	icon_state = "artibackpack"
 	item_state = "artibackpack"
 	resistance_flags = FIRE_PROOF
-	sewrepair = FALSE
+	sewrepair = null
 	//for those curious, yes the artibackpack preserves organs and food. Check _organ.dm and snacks.dm
 
 /obj/item/storage/backpack/backpack/artibackpack/porter
 	name = "humdrum"
 	desc = "A absurdly oversized backpack with complex bronze pipework coursing through it. It hums and vibrates constantly."
-	sewrepair = TRUE //Kobold thing, trust.
+	sewrepair = /datum/attribute/skill/craft/tanning/patching //Kobold thing, trust.
 	component_type = /datum/component/storage/concrete/grid/porter
 
 /obj/item/storage/backpack/satchel/surgbag
@@ -386,6 +386,7 @@
 		/obj/item/weapon/surgery/cautery,
 		/obj/item/natural/worms/leech/parasite,
 		/obj/item/weapon/surgery/hammer,
+		/obj/item/reagent_containers/syringe,
 	)
 	component_type = /datum/component/storage/concrete/grid/surgery_bag
 
@@ -435,7 +436,7 @@
 	item_state = "knife"
 	strip_delay = 20
 	var/max_storage = 8
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/craft/tanning/patching
 	component_type = /datum/component/storage/concrete/grid/belt/knife_belt
 	empty_when_dropped = FALSE
 

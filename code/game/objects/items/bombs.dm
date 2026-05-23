@@ -1,4 +1,5 @@
 /obj/item/smokebomb
+	item_weight = 274 GRAMS
 	name = "smoke bomb"
 	desc = "A soft sphere with an alchemical mixture and a dispersion mechanism hidden inside. Will shatter on impact."
 	icon = 'icons/obj/bombs.dmi'

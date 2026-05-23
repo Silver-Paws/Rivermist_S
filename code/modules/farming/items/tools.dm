@@ -3,6 +3,7 @@
 \-----------*/
 
 /obj/item/weapon/thresher
+	item_weight = 1.4 KILOGRAMS
 	name = "thresher"
 	desc = "Crushes grain, or skulls."
 	icon_state = "thresher"
@@ -32,6 +33,7 @@
 	associated_skill = /datum/attribute/skill/combat/whipsflails
 
 /obj/item/weapon/thresher/military
+	item_weight = 2.1 KILOGRAMS
 	name = "studded flail"
 	desc = "Crushes skulls, or grain."
 	icon_state = "military"
@@ -128,6 +130,7 @@
 \---------*/
 
 /obj/item/weapon/sickle
+	item_weight = 384 GRAMS
 	name = "sickle"
 	desc = "Rusted blade, worn handle, symbol of toil."
 	icon_state = "sickle1"
@@ -173,6 +176,7 @@
 \------*/
 
 /obj/item/weapon/hoe
+	item_weight = 912 GRAMS
 	name = "hoe"
 	desc = ""
 	icon_state = "hoe"
@@ -300,6 +304,7 @@
 	misscost = 0
 
 /obj/item/weapon/hoe/stone
+	item_weight = 742 GRAMS
 	name = "stone hoe"
 	desc = "A makeshift hoe made out of stone."
 	icon_state = "stonehoe"
@@ -315,6 +320,7 @@
 \------------*/
 
 /obj/item/weapon/pitchfork
+	item_weight = 1.91 KILOGRAMS
 	name = "pitchfork"
 	desc = "Compost, chaff, hay, it matters not."
 	icon = 'icons/roguetown/weapons/tools.dmi'

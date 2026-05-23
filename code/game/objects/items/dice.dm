@@ -1,6 +1,7 @@
 /*****************************Dice Bags********************************/
 
 /obj/item/storage/pill_bottle/dice
+	item_weight = 150 GRAMS
 	name = "bag of dice"
 	desc = ""
 	icon = 'icons/obj/dice.dmi'
@@ -27,12 +28,14 @@
 	)
 
 /obj/item/storage/pill_bottle/dice/suicide_act(mob/user)
+	item_weight = 15 GRAMS
 	user.visible_message(span_suicide("[user] is gambling with death! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (OXYLOSS)
 
 /*****************************Dice********************************/
 
 /obj/item/dice //depreciated d6, use /obj/item/dice/d6 if you actually want a d6
+	item_weight = 15 GRAMS
 	name = "die"
 	desc = ""
 	icon = 'icons/obj/dice.dmi'
@@ -102,6 +105,7 @@
 	sides = 2
 
 /obj/item/dice/d4
+	item_weight = 10 GRAMS
 	name = "d4"
 	icon_state = "d4"
 	sides = 4
@@ -143,31 +147,37 @@
 	special_faces = list("minus","blank","plus")
 
 /obj/item/dice/d8
+	item_weight = 15 GRAMS
 	name = "d8"
 	icon_state = "d8"
 	sides = 8
 
 /obj/item/dice/d10
+	item_weight = 15 GRAMS
 	name = "d10"
 	icon_state = "d10"
 	sides = 10
 
 /obj/item/dice/d00
+	item_weight = 15 GRAMS
 	name = "d00"
 	icon_state = "d00"
 	sides = 10
 
 /obj/item/dice/d12
+	item_weight = 15 GRAMS
 	name = "d12"
 	icon_state = "d12"
 	sides = 12
 
 /obj/item/dice/d20
+	item_weight = 20 GRAMS
 	name = "d20"
 	icon_state = "d20"
 	sides = 20
 
 /obj/item/dice/d100
+	item_weight = 25 GRAMS
 	name = "d100"
 	icon_state = "d100"
 	w_class = WEIGHT_CLASS_SMALL
@@ -204,7 +214,7 @@
 	diceroll(thrownby, TRUE)
 	. = ..()
 
-/obj/item/dice/proc/diceroll(mob/user, var/shown)
+/obj/item/dice/proc/diceroll(mob/user, shown)
 	result = roll(sides)
 	if(rigged != DICE_NOT_RIGGED && result != rigged_value)
 		if(rigged == DICE_BASICALLY_RIGGED)

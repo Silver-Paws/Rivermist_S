@@ -18,6 +18,7 @@
 	GENERIC SCABBARDS
 */
 /obj/item/weapon/scabbard/knife
+	item_weight = 80 GRAMS
 	name = "knife sheath"
 	desc = "A slingable sheath made of leather, meant to host surprises of smaller sizes."
 	icon_state = "sheath"
@@ -29,7 +30,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_BACK|ITEM_SLOT_WRISTS|ITEM_SLOT_NECK
 	associated_skill = /datum/attribute/skill/combat/knives
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/craft/tanning/patching
 	sellprice = 10
 	experimental_onback = FALSE
 	experimental_onhip = FALSE
@@ -55,18 +56,21 @@
 				return list("shrink" = 0.5, "sx" = -2, "sy" = -5, "nx" = 4, "ny" = -5, "wx" = 0, "wy" = -5, "ex" = 2, "ey" = -5, "nturn" = 0, "sturn" = 0, "wturn" = 0, "eturn" = 0, "nflip" = 0, "sflip" = 0, "wflip" = 0, "eflip" = 0, "northabove" = 0, "southabove" = 1, "eastabove" = 1, "westabove" = 1)
 
 /obj/item/weapon/scabbard/knife/noble
+	item_weight = 100 GRAMS
 	name = "silver decorated knife sheath"
 	desc = "A slingable sheath made of leather, enamored with elaborate silver decorations, often seen on the hips of nobles"
 	icon_state = "nsheath"
 	sellprice = 50
 
 /obj/item/weapon/scabbard/knife/royal
+	item_weight = 120 GRAMS
 	name = "gold decorated knife sheath"
 	desc = "A slingable sheath made of leather, enamored with exquisite golden decorations, often seen on the hips of royalty"
 	icon_state = "rsheath"
 	sellprice = 100
 
 /obj/item/weapon/scabbard/sword
+	item_weight = 300 GRAMS
 	name = "scabbard"
 	desc = "A scabbard designed to hold a sword. The natural conclusion for those wishing to carry longblades."
 	icon_state = "scabbard"
@@ -97,18 +101,21 @@
 				return list("shrink" = 0.5, "sx" = -2, "sy" = -5, "nx" = 4, "ny" = -5, "wx" = 0, "wy" = -5, "ex" = 2, "ey" = -5, "nturn" = 0, "sturn" = 0, "wturn" = -90, "eturn" = 0, "nflip" = 0, "sflip" = 0, "wflip" = 0, "eflip" = 0, "northabove" = 0, "southabove" = 1, "eastabove" = 1, "westabove" = 1)
 
 /obj/item/weapon/scabbard/sword/noble
+	item_weight = 350 GRAMS
 	name = "silver decorated scabbard"
 	desc = "A scabbard designed to hold a sword. This one is decorated on a silver platter."
 	icon_state = "nscabbard"
 	sellprice = 50
 
 /obj/item/weapon/scabbard/sword/royal
+	item_weight = 400 GRAMS
 	name = "gold decorated scabbard"
 	desc = "A scabbard designed to hold a sword. This one is lined with golden fittings, fit for a royal."
 	icon_state = "rscabbard"
 	sellprice = 100
 
 /obj/item/weapon/scabbard/cane
+	item_weight = 500 GRAMS
 	name = "fancy cane"
 	desc = "A polished, dark wooden cane, decorated with gold and silver. Often carried by nobility, even those without a limp, simply to flaunt their wealth to the peasantry. This one contains a concealed blade!"
 	icon_state = "canesheath"
@@ -196,6 +203,7 @@
 
 
 /obj/item/weapon/scabbard/kazengun
+	item_weight = 400 GRAMS
 	name = "simple eastern scabbard"
 	desc = "A piece of steel lined with wood. Great for batting away blows."
 	icon_state = "kazscab"
@@ -216,6 +224,7 @@
 	AddComponent(/datum/component/storage/concrete/scabbard/kazengun)
 
 /obj/item/weapon/scabbard/kazengun/steel
+	item_weight = 450 GRAMS
 	name = "hwang scabbard"
 	desc = "A cloud-patterned scabbard with a cloth sash. Used for blocking."
 	icon_state = "kazscab_steel"
@@ -223,6 +232,7 @@
 	max_integrity = INTEGRITY_STRONG
 
 /obj/item/weapon/scabbard/kazengun/gold
+	item_weight = 500 GRAMS
 	name = "gold-stained Xinyi scabbard"
 	desc = "An ornate, wooden scabbard with a sash. Great for parrying."
 	icon_state = "kazscab_gold"

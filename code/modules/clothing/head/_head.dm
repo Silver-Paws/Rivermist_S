@@ -22,7 +22,7 @@
 
 	resistance_flags = FLAMMABLE
 
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 	anvilrepair = null
 	smeltresult = /obj/item/fertilizer/ash // Helmets have pre-defined smeltresults, this is for hats
 	sellprice = VALUE_CHEAP_CLOTHING

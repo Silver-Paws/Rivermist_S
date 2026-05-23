@@ -3,6 +3,7 @@
 \---------*/
 
 /obj/item/weapon/shovel
+	item_weight = 1.54 KILOGRAMS
 	name = "shovel"
 	desc = ""
 	icon_state = "shovel"
@@ -23,7 +24,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	swingsound = list('sound/combat/wooshes/blunt/shovel_swing.ogg','sound/combat/wooshes/blunt/shovel_swing2.ogg')
 	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
-	var/obj/item/natural/dirtclod/heldclod
+	var/obj/item/natural/clod/heldclod
 	melting_material = /datum/material/iron
 	melt_amount = 75
 	associated_skill = /datum/attribute/skill/combat/polearms
@@ -37,7 +38,17 @@
 	if(user.used_intent.type != /datum/intent/shovelscoop)
 		return
 	if(!istype(A, /obj/structure/snow))
-		return
+		var/obj/item/storage/sack/S = A
+		if(!istype(S))
+			return
+		if(!heldclod)
+			return
+		if(!SEND_SIGNAL(S, COMSIG_TRY_STORAGE_INSERT, src.heldclod, user, FALSE, FALSE))
+			return
+		heldclod = null
+		playsound(S,'sound/items/empty_shovel.ogg', 100, TRUE)
+		update_appearance(UPDATE_ICON_STATE)
+		return TRUE
 	var/turf/target_turf = get_turf(A)
 	playsound(A,'sound/items/dig_shovel.ogg', 100, TRUE)
 	qdel(A)
@@ -62,7 +73,7 @@
 
 /obj/item/weapon/shovel/update_icon_state()
 	. = ..()
-	icon_state = "[heldclod ? "dirt" : ""][initial(icon_state)]"
+	icon_state = "[heldclod ? "[heldclod.clod_type]" : ""][initial(icon_state)]"
 
 /datum/intent/shovelscoop
 	name = "scoop"
@@ -113,9 +124,9 @@
 
 	else if(user.used_intent.type == /datum/intent/shovelscoop)
 		. = TRUE
-		if(istype(T, /turf/open/floor/dirt))
+		if(istype(T, /turf/open/floor/dirt) || istype(T, /turf/open/floor/sand))
 			var/obj/structure/closet/dirthole/holie = locate() in T
-			if(heldclod)
+			if(heldclod && heldclod.clod_type == "dirt")
 				if(holie && holie.stage < 4)
 					holie.attackby(src, user)
 				else
@@ -129,14 +140,19 @@
 					update_appearance(UPDATE_ICON_STATE)
 					return
 			else
-				if(holie)
-					holie.attackby(src, user)
-				else
-					if(istype(T, /turf/open/floor/dirt/road))
-						new /obj/structure/closet/dirthole(T)
+				if(istype(T, /turf/open/floor/dirt/road) || istype(T, /turf/open/floor/dirt))
+					if(holie)
+						holie.attackby(src, user)
 					else
-						T.ChangeTurf(/turf/open/floor/dirt/road, flags = CHANGETURF_INHERIT_AIR)
-					heldclod = new(src)
+						if(istype(T, /turf/open/floor/dirt/road))
+							new /obj/structure/closet/dirthole(T)
+						else
+							T.ChangeTurf(/turf/open/floor/dirt/road, flags = CHANGETURF_INHERIT_AIR)
+						heldclod = new /obj/item/natural/clod/dirt(src)
+						playsound(T,'sound/items/dig_shovel.ogg', 100, TRUE)
+						update_appearance(UPDATE_ICON_STATE)
+				else
+					heldclod = new /obj/item/natural/clod/sand(src)
 					playsound(T,'sound/items/dig_shovel.ogg', 100, TRUE)
 					update_appearance(UPDATE_ICON_STATE)
 			return
@@ -210,6 +226,7 @@
 // --------- SPADE -----------
 
 /obj/item/weapon/shovel/small
+	item_weight = 792 GRAMS
 	name = "spade"
 	icon_state = "spade"
 	item_state = "spade"
@@ -241,6 +258,7 @@
 // --------- BURIAL SHROUD -----------
 
 /obj/item/burial_shroud
+	item_weight = 125 GRAMS
 	name = "winding sheet"
 	desc = "A sheet used to drag bodies easier and shield them from the elements."
 	icon = 'icons/obj/bodybag.dmi'
@@ -319,6 +337,7 @@
 		qdel(src)
 
 /obj/item/bodybag
+	item_weight = 184 GRAMS
 	name = "body bag"
 	desc = ""
 	icon = 'icons/obj/bodybag.dmi'

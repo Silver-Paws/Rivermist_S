@@ -28,15 +28,16 @@
 	. = ..()
 
 /obj/item/fishing/lure
+	item_weight = 54 GRAMS
 	name = "fishing lure"
 	desc = "It's just that, a plastic piece of fishing equipment, yet fish yearn with every last molecule of their bodies to take a bite of it."
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "minnow"
 	w_class = WEIGHT_CLASS_SMALL
 	/**
-	 * A list with two keys delimiting the spinning interval in which a mouse click has to be pressed while fishing.
-	 * This is passed down to the fishing rod, and then to the lure during the minigame.
-	 */
+	* A list with two keys delimiting the spinning interval in which a mouse click has to be pressed while fishing.
+	* This is passed down to the fishing rod, and then to the lure during the minigame.
+	*/
 	var/spin_frequency = list(2 SECONDS, 3 SECONDS)
 	var/consumable = FALSE
 

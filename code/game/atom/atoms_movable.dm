@@ -38,10 +38,10 @@
 	///Holds information about any movement loops currently running/waiting to run on the movable. Lazy, will be null if nothing's going on
 	var/datum/movement_packet/move_packet
 	/**
-	  * In case you have multiple types, you automatically use the most useful one.
-	  * IE: Skating on ice, flippers on water, flying over chasm/space, etc.
-	  * I reccomend you use the movetype_handler system and not modify this directly, especially for living mobs.
-	  */
+	* In case you have multiple types, you automatically use the most useful one.
+	* IE: Skating on ice, flippers on water, flying over chasm/space, etc.
+	* I reccomend you use the movetype_handler system and not modify this directly, especially for living mobs.
+	*/
 	var/movement_type = GROUND
 	var/atom/movable/pulling
 	var/atom_flags = NONE
@@ -53,10 +53,10 @@
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
 	var/atom/movable/emissive_blocker/em_block
 	/**
-	 * an associative lazylist of relevant nested contents by "channel", the list is of the form: list(channel = list(important nested contents of that type))
-	 * each channel has a specific purpose and is meant to replace potentially expensive nested contents iteration
-	 * do NOT add channels to this for little reason as it can add considerable memory usage.
-	 */
+	* an associative lazylist of relevant nested contents by "channel", the list is of the form: list(channel = list(important nested contents of that type))
+	* each channel has a specific purpose and is meant to replace potentially expensive nested contents iteration
+	* do NOT add channels to this for little reason as it can add considerable memory usage.
+	*/
 	var/list/important_recursive_contents
 	///contains every client mob corresponding to every client eye in this container. lazily updated by SSparallax and is sparse:
 	///only the last container of a client eye has this list assuming no movement since SSparallax's last fire
@@ -420,9 +420,6 @@
 	var/turf/post_turf = get_turf(pulling)
 	if(pre_turf.snow && !post_turf.snow)
 		SEND_SIGNAL(pre_turf.snow, COMSIG_MOB_OVERLAY_FORCE_REMOVE, pulling)
-		if(ismob(src))
-			var/mob/source = src
-			source.update_vision_cone()
 	return TRUE
 
 /atom/movable/proc/after_being_moved_by_pull(atom/movable/puller)
@@ -1065,7 +1062,7 @@
  * @param {datum} used_intent - Intent used to determine animation_type of swing animation
  * @param {bool} atom_bounce - Whether the src bounces when doing an attack animation
  */
-/atom/movable/proc/do_attack_animation(atom/attacked_atom, visual_effect_icon, obj/item/used_item, no_effect, item_animation_override = null, datum/intent/used_intent, atom_bounce)
+/atom/movable/proc/do_attack_animation(atom/attacked_atom, visual_effect_icon, obj/item/used_item, no_effect, item_animation_override = null, datum/intent/used_intent, atom_bounce, fov_effect = TRUE)
 	if(!no_effect && (visual_effect_icon || used_item))
 		var/animation_type = item_animation_override || used_intent?.get_attack_animation_type()
 		do_item_attack_animation(attacked_atom, visual_effect_icon, used_item, animation_type = animation_type)
@@ -1090,6 +1087,9 @@
 	else if(direction & WEST)
 		pixel_x_diff = -ATTACK_ANIMATION_PIXEL_DIFF
 		turn_dir = -1
+
+	if(fov_effect)
+		play_fov_effect(attacked_atom, 5, "attack")
 
 	var/matrix/initial_transform = matrix(transform)
 	var/matrix/rotated_transform = transform.Turn(15 * turn_dir)

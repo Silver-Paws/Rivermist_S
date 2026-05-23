@@ -16,7 +16,7 @@
 	var/covers_breasts = FALSE
 	var/mob_overlay_icon_base
 	boob_sized = FALSE
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 	salvage_result = /obj/item/natural/cloth
 	slot_flags = ITEM_SLOT_MOUTH | ITEM_SLOT_UNDER_BOTTOM
 	muteinmouth = TRUE

@@ -5,6 +5,7 @@
 
 //................ Simple Hats ............... //
 /obj/item/clothing/head/dungeoneer
+	item_weight = 135 GRAMS
 	name = "sack hood"
 	desc = "A crude way to conceal one's identity, these are usually worn by local brigands to not get recognised."
 	icon_state = "dungeoneer"
@@ -13,6 +14,7 @@
 	slot_flags = ITEM_SLOT_HEAD | ITEM_SLOT_MASK
 
 /obj/item/clothing/head/menacing
+	item_weight = 112 GRAMS
 	name = "sack hood"
 	desc = "A crude way to conceal one's identity, these are usually worn by local brigands to not get recognised."
 	icon_state = "menacing"
@@ -21,18 +23,21 @@
 	slot_flags = ITEM_SLOT_HEAD | ITEM_SLOT_MASK
 
 /obj/item/clothing/head/knitcap
+	item_weight = 90 GRAMS
 	name = "knit cap"
 	desc = "A crude peasant cap worn by about every serf under Lathander's radiance."
 	icon_state = "knitcap"
 	min_cold_protection_temperature = -5
 
 /obj/item/clothing/head/turban
+	item_weight = 90 GRAMS
 	name = "turban"
 	desc = "A headwrap worn throughout the southern parts of Faerun."
 	icon_state = "turban"
 	min_cold_protection_temperature = -5
 
 /obj/item/clothing/head/headband
+	item_weight = 45 GRAMS
 	name = "headband"
 	desc = "A piece of cloth worn around the temple."
 	icon_state = "headband"
@@ -47,11 +52,12 @@
 	color = CLOTHING_BLOOD_RED
 
 /obj/item/clothing/head/headband/naledi
+	item_weight = 45 GRAMS
 	name = "sojourner's headband"
 	desc = "A traditional monk's headband, for those disciples who prefer the sweat out of their eyes."
 	icon_state = "headband"
 	color = "#48443b"
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 	resistance_flags = FIRE_PROOF
 	armor = ARMOR_HEAD_PSYDON //Higher-tier protection for pugilist-centric classes. Fits the 'glass cannon' style, and prevents instant death through a glancing headshot on the intended archetype.
 	blade_dulling = DULLING_BASHCHOP
@@ -63,29 +69,34 @@
 	dynamic_hair_suffix = null
 
 /obj/item/clothing/head/shawl
+	item_weight = 62 GRAMS
 	name = "shawl"
 	desc = "Keeps the hair in check, and looks proper."
 	icon_state = "shawl"
 	flags_inv = HIDEEARS
 
 /obj/item/clothing/head/brimmed
+	item_weight = 92 GRAMS
 	name = "brimmed hat"
 	desc = "A simple brimmed hat that provides some relief from the sun."
 	icon_state = "brimmed"
 
 //................ Fur Hats ............... //
 /obj/item/clothing/head/hatfur
+	item_weight = 155 GRAMS
 	name = "fur hat"
 	desc = "A hat made of fur typically worn by guildsmen."
 	icon_state = "hatfur"
 	min_cold_protection_temperature = -20
 
 /obj/item/clothing/head/hatblu
+	item_weight = 155 GRAMS
 	name = "fur hat"
 	icon_state = "hatblu"
 	min_cold_protection_temperature = -20
 
 /obj/item/clothing/head/papakha
+	item_weight = 155 GRAMS
 	name = "papakha"
 	desc = "A fuzzy helmet of fur typically worn by frontiersmen of the far steppes."
 	icon_state = "papakha"
@@ -96,6 +107,7 @@
 //................ Fancy Hats ............... //
 
 /obj/item/clothing/head/antlerhood
+	item_weight = 1.12 KILOGRAMS
 	name = "antlerhood"
 	desc = "a hood suited for druids and shamans."
 	color = null
@@ -110,7 +122,7 @@
 	armor = list("blunt" = 16, "slash" = 19, "stab" = 15,  "piercing" = 0, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_TWIST)
 	anvilrepair = null
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/craft/tanning/patching
 	blocksound = SOFTHIT
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide
@@ -133,17 +145,20 @@
 
 //................ Briar Thorns ............... //	- Dendor Briar
 /obj/item/clothing/head/padded/briarthorns
+	item_weight = 95 GRAMS
 	name = "briar thorns"
 	desc = "The pain it causes perhaps can distract from the whispers of a mad God overpowering your sanity..."
 	icon_state = "briarthorns"
 
-/obj/item/clothing/head/padded/briarthorns/pickup(mob/living/user)
+/obj/item/clothing/head/padded/briarthorns/pickup(mob/living/carbon/user)
 	. = ..()
 	to_chat(user, span_warning ("The thorns prick me."))
-	user.adjustBruteLoss(4)
+	var/obj/item/bodypart/arm = user.get_active_hand()
+	arm?.bodypart_attacked_by(BCLASS_CUT, 7)
 
 //................ Hennin ............... //
 /obj/item/clothing/head/hennin
+	item_weight = 112 GRAMS
 	name = "hennin"
 	desc = "A fashionable conical hat typically worn by princesses."
 	icon_state = "hennin"
@@ -151,6 +166,7 @@
 
 
 //......................................................................................................
+	item_weight = 120 GRAMS
 /*------------------\
 |			 	 	|
 |  Basic Helmets	|
@@ -164,6 +180,7 @@
 
 //............... Arming Cap ............... //
 /obj/item/clothing/head/armingcap // arming caps are padded caps worn under maille coifs and such, should basically be on par with leather coif (it should BE the coif but whatever)
+	item_weight = 120 GRAMS
 	name = "arming cap"
 	desc = "A white padded cap worn by most manual laborers to protect from sunburn."
 	icon_state = "armingcap"
@@ -183,6 +200,7 @@
 
 
 //......................................................................................................
+	item_weight = 120 GRAMS
 /*----------------------\
 | Unique helmets & hats |	- Unique means no crafting them, no importing, nothing but spawn with the intended class
 \----------------------*/
@@ -206,6 +224,7 @@
 
 //............... Black bag for inquisition ............... //
 /obj/item/clothing/head/sack
+	item_weight = 55 GRAMS
 	name = "black bag"
 	desc = "An eyeless sack, used to blindfold prisoners or hostages."
 	icon_state = "sacked"
@@ -240,6 +259,7 @@
 //............... Adept's Cowl ............... //
 
 /obj/item/clothing/head/adeptcowl
+	item_weight = 77 GRAMS
 	name = "adept's cowl"
 	desc = "A black cowl worn by the Adepts of the Inquisitorial Lodge"
 	icon_state = "adeptscowl"
@@ -251,6 +271,7 @@
 \-----------*/
 
 /obj/item/clothing/head/priesthat // bishops mitre really
+	item_weight = 121 GRAMS
 	name = "priest's hat"
 	desc = "The sacred headpiece of a priest."
 	icon_state = "priest"
@@ -264,6 +285,7 @@
 	prevent_crits = MINOR_CRITICALS
 
 /obj/item/clothing/head/headdress // egyptian
+	item_weight = 77 GRAMS
 	name = "foreign headdress"
 	desc = ""
 	icon_state = "headdress"
@@ -278,6 +300,7 @@
 	color = "#cb3434"
 
 /obj/item/clothing/head/vampire
+	item_weight = 110 GRAMS
 	name = "crown of darkness"
 	icon_state = "vcrown"
 	body_parts_covered = null
@@ -289,6 +312,7 @@
 //................ Faceless Hood ............... //	- Faceless One
 
 /obj/item/clothing/head/faceless //A hood that doesn't cover the face.
+	item_weight = 110 GRAMS
 	name = "hood"
 	desc = "Conceals your face, whether against the rain, or the gazes of others."
 	icon_state = "facelesshood"
@@ -307,6 +331,7 @@
 	salvage_result = /obj/item/natural/cloth
 
 /obj/item/clothing/head/faceless/AdjustClothes(mob/living/carbon/user)
+	item_weight = 152 GRAMS
 	if(loc == user)
 		if(adjustable == CAN_CADJUST)
 			adjustable = CADJUSTED
@@ -329,12 +354,14 @@
 		user.regenerate_clothes()
 
 /obj/item/clothing/head/takuhatsugasa // egyptian
+	item_weight = 152 GRAMS
 	name = "takuhatsugasa"
 	desc = ""
 	icon_state = "takuhatsugasa"
 	item_flags = ABSTRACT
 
 /obj/item/clothing/head/helmet/pegasusknight
+	item_weight = 1.23 KILOGRAMS
 	name = "coifed helmet"
 	desc = "Many find the design of this helmet unusual, but it protects the neck well and is easy to see out of."
 	icon_state = "lakkarihelm"
@@ -343,10 +370,11 @@
 	body_parts_covered = HEAD_NECK
 	prevent_crits = ALL_EXCEPT_BLUNT
 	block2add = FOV_BEHIND
-	anvilrepair = /datum/attribute/skill/craft/armorsmithing
-	sewrepair = FALSE
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
+	sewrepair = null
 
 /obj/item/clothing/head/roguehood/psydon
+	item_weight = 90 GRAMS
 	name = "exotic hood"
 	desc = "A hood worn by Ao's disciples, oft-worn in conjunction with its matching tabard. Made with spell-laced fabric to provide some protection."
 	icon_state = "psydonhood"
@@ -392,6 +420,7 @@
 		H.update_inv_head()
 
 /obj/item/clothing/head/roguehood/psydon/confessor
+	item_weight = 145 GRAMS
 	name = "confessional hood"
 	desc = "A loose-fitting piece of leatherwear that can be tightened on the move. Keeps rain, blood, and the tears of the sullied away."
 	icon_state = "confessorhood"

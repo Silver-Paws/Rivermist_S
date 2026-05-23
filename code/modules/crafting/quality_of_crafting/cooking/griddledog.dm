@@ -30,3 +30,4 @@
 	sound_volume = 90
 	crafting_message = "cover the sausage with dough"
 	extra_chance = 100
+	skillcraft = /datum/attribute/skill/craft/cooking/baking

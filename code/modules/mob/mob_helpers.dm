@@ -7,6 +7,18 @@
 		var/mob/Buckled = buckled
 		. = Buckled.lowest_buckled_mob()
 
+/// True for bodies that belong, or recently belonged, to an actual player.
+/mob/proc/is_player_character()
+	if(ckey)
+		return TRUE
+	if(istext(mind?.key))
+		return TRUE
+	if(iscarbon(src))
+		var/mob/living/carbon/carbon_mob = src
+		if(istext(carbon_mob.last_mind?.key))
+			return TRUE
+	return FALSE
+
 ///Convert a PRECISE ZONE into the BODY_ZONE
 /proc/check_zone(zone)
 	if(!zone)
@@ -17,8 +29,6 @@
 		if(BODY_ZONE_PRECISE_L_EYE)
 			zone = BODY_ZONE_HEAD
 		if(BODY_ZONE_PRECISE_NOSE)
-			zone = BODY_ZONE_HEAD
-		if(BODY_ZONE_PRECISE_MOUTH)
 			zone = BODY_ZONE_HEAD
 		if(BODY_ZONE_PRECISE_SKULL)
 			zone = BODY_ZONE_HEAD

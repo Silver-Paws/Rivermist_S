@@ -7,6 +7,7 @@
 
 // -------------- FAT -----------------
 /obj/item/reagent_containers/food/snacks/fat
+	item_weight = 230 GRAMS
 	name = "fat"
 	desc = ""
 	icon_state = "fat"
@@ -44,7 +45,7 @@
 		playsound(user, 'sound/foley/splishy.ogg', 100, TRUE, -1)
 		if(do_after(user, long_cooktime, src))
 			new /obj/item/reagent_containers/food/snacks/jellycake_base(loc)
-			user.mind.add_sleep_experience(/datum/attribute/skill/craft/cooking, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE)*0.5))
+			user.mind.add_sleep_experience(/datum/attribute/skill/craft/cooking/confectionery, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE)*0.5))
 			qdel(src)
 			R.reagents.remove_reagent(/datum/reagent/consumable/sugar, 30)
 			user.nobles_seen_servant_work()
@@ -53,6 +54,7 @@
 
 // TALLOW is used as an intermediate crafting ingredient for other recipes.
 /obj/item/reagent_containers/food/snacks/tallow
+	item_weight = 270 GRAMS
 	name = "tallow"
 	desc = "Fatty tissue is harvested from slain creachurs and rendered of its membraneous sinew to produce a hard shelf-stable \
 	grease."
@@ -87,6 +89,7 @@
 
 // -------------- SPIDER HONEY -----------------
 /obj/item/reagent_containers/food/snacks/spiderhoney
+	item_weight = 30 GRAMS
 	name = "spider honey"
 	icon_state = "spiderhoney"
 	bitesize = 3
@@ -98,6 +101,7 @@
 
 // -------------- TIEFLING SUGAR -----------------
 /obj/item/reagent_containers/food/snacks/tiefsugar
+	item_weight = 150 GRAMS
 	name = "Tiefling Sugar"
 	desc ="Originating from underdark, Tiefling blood that has been expertly dried and mixed into a sugar base, sweetens when boiled."
 	icon = 'icons/roguetown/items/produce.dmi'
@@ -110,6 +114,7 @@
 
 // -------------- CHOCOLATE -----------------
 /obj/item/reagent_containers/food/snacks/chocolate
+	item_weight = 225 GRAMS
 	name = "chocolate bar"
 	desc = "Unbelievably fancy chocolate, imported all the way from distant Darkhold"
 	icon_state = "chocolate"
@@ -124,6 +129,7 @@
 
 // -------------- SALUMOI (dwarven smoked sausage) -----------------
 /obj/item/reagent_containers/food/snacks/meat/salami
+	item_weight = 325 GRAMS
 	name = "salumoi"
 	desc = "Traveling food invented by dwarves. Said to last for ten yils before spoiling"
 	icon_state = "salumoi5"
@@ -160,6 +166,7 @@
 				changefood(slice_path, eater)
 
 /obj/item/reagent_containers/food/snacks/meat/salami/slice
+	item_weight = 55 GRAMS
 	eat_effect = null
 	slices_num = 0
 	name = "salumoi"
@@ -172,6 +179,7 @@
 
 // -------------- COPPIETTE (dried meat) -----------------
 /obj/item/reagent_containers/food/snacks/cooked/coppiette
+	item_weight = 175 GRAMS
 	name = "coppiette"
 	desc = "Dried meat sticks."
 	icon_state = "coppiette"
@@ -187,6 +195,7 @@
 
 // -------------- SALTFISH -----------------
 /obj/item/reagent_containers/food/snacks/saltfish
+	item_weight = 175 GRAMS
 	name = "saltfish"
 	desc = "Dried fish."
 	icon = 'icons/roguetown/misc/fish.dmi'
@@ -238,6 +247,7 @@
 			changefood(slice_path, eater)
 
 /obj/item/reagent_containers/food/snacks/fat/salo/slice
+	item_weight = 30 GRAMS
 	name = "salo"
 	icon_state = "saloslice"
 	bitesize = 2
@@ -252,6 +262,7 @@
 
 // -------------- RAISINS -----------------
 /obj/item/reagent_containers/food/snacks/raisins
+	item_weight = 5 GRAMS
 	name = "raisins"
 	icon = 'icons/roguetown/items/produce.dmi'
 	icon_state = "raisins"
@@ -279,6 +290,7 @@
 // -------------- STRAWBERRY -----------------
 
 /obj/item/reagent_containers/food/snacks/strawberry_dried
+	item_weight = 6 GRAMS
 	name = "dried strawberry"
 	icon_state = "driedstrawberry"
 	dropshrink = 0.8
@@ -292,6 +304,7 @@
 // -------------- TANGERINE -----------------
 
 /obj/item/reagent_containers/food/snacks/tangerine_dried
+	item_weight = 44 GRAMS
 	name = "dried tangerine"
 	icon_state = "driedtangerine"
 	dropshrink = 0.8
@@ -305,6 +318,7 @@
 // -------------- PLUM -----------------
 
 /obj/item/reagent_containers/food/snacks/plum_dried
+	item_weight = 33 GRAMS
 	name = "dried plum"
 	icon_state = "driedplum"
 	dropshrink = 0.8
@@ -318,6 +332,7 @@
 // -------------- APPLE -----------------
 
 /obj/item/reagent_containers/food/snacks/apple_dried
+	item_weight = 91 GRAMS
 	name = "dried apple"
 	icon_state = "driedapple"
 	dropshrink = 0.8
@@ -331,6 +346,7 @@
 // -------------- PEAR -----------------
 
 /obj/item/reagent_containers/food/snacks/pear_dried
+	item_weight = 86 GRAMS
 	name = "dried pear"
 	icon_state = "driedpear"
 	dropshrink = 0.8
@@ -344,6 +360,7 @@
 /***************** Mushrooms *****************/
 
 /obj/item/reagent_containers/food/snacks/waddle_dried
+	item_weight = 7 GRAMS
 	name = "dried waddle"
 	desc = "A waddle mushroom that has been dried for use in tea. Not pleasant to eat in this state."
 	icon_state = "driedwaddle"
@@ -396,13 +413,14 @@
 			if(reagents.has_reagent(/datum/reagent/consumable/milk/salted_gote, 15))
 				reagents.remove_reagent(/datum/reagent/consumable/milk/salted_gote, 15)
 			new /obj/item/reagent_containers/food/snacks/butter(drop_location())
-			user.mind.add_sleep_experience(/datum/attribute/skill/craft/cooking, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE)))
+			user.mind.add_sleep_experience(/datum/attribute/skill/craft/cooking/cheesemaking, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE)))
 			user.nobles_seen_servant_work()
 		return
 	..()
 
 // -------------- BUTTER -----------------
 /obj/item/reagent_containers/food/snacks/butter
+	item_weight = 150 GRAMS
 	name = "stick of butter"
 	desc = ""
 	icon_state = "butter6"
@@ -440,6 +458,7 @@
 				changefood(slice_path, eater)
 
 /obj/item/reagent_containers/food/snacks/butterslice
+	item_weight = 25 GRAMS
 	icon_state = "butter_slice"
 	name = "butter"
 	foodtype = DAIRY
@@ -452,6 +471,7 @@
 /*	............   Pestran Stick   ................ */
 
 /obj/item/reagent_containers/food/snacks/pestranstick
+	item_weight = 240 GRAMS
 	name = "pestran stick"
 	desc = "An unappetizing snack adored by devout Pestrans, somehow doesn't taste half bad."
 	icon_state = "pestranstick"
@@ -488,7 +508,7 @@
 				if(do_after(user, long_cooktime, src))
 					reagents.remove_reagent(milk, 5)
 					new cheese(drop_location())
-					user.mind.add_sleep_experience(/datum/attribute/skill/craft/cooking, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE)))
+					user.mind.add_sleep_experience(/datum/attribute/skill/craft/cooking/cheesemaking, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE)))
 				user.nobles_seen_servant_work()
 			return
 	..()
@@ -502,7 +522,7 @@
 			playsound(user, 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 			if(do_after(user,3 SECONDS, src))
 				new /obj/item/reagent_containers/food/snacks/foodbase/cheesewheel_start(loc)
-				user.mind.add_sleep_experience(/datum/attribute/skill/craft/cooking, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE)*0.5))
+				user.mind.add_sleep_experience(/datum/attribute/skill/craft/cooking/cheesemaking, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE)*0.5))
 				qdel(I)
 				qdel(src)
 				user.nobles_seen_servant_work()
@@ -512,6 +532,7 @@
 	..()
 
 /obj/item/reagent_containers/food/snacks/foodbase/cheesewheel_start
+	item_weight = 2.2 KILOGRAMS
 	name = "unfinished cheese wheel"
 	icon_state = "cheesewheel_1"
 	w_class = WEIGHT_CLASS_BULKY
@@ -536,6 +557,7 @@
 		return ..()
 
 /obj/item/reagent_containers/food/snacks/foodbase/cheesewheel_two
+	item_weight = 2.5 KILOGRAMS
 	name = "unfinished cheese wheel"
 	icon_state = "cheesewheel_2"
 	w_class = WEIGHT_CLASS_BULKY
@@ -560,6 +582,7 @@
 		return ..()
 
 /obj/item/reagent_containers/food/snacks/foodbase/cheesewheel_three
+	item_weight = 2.7 KILOGRAMS
 	name = "unfinished cheese wheel"
 	icon_state = "cheesewheel_3"
 	w_class = WEIGHT_CLASS_BULKY
@@ -574,7 +597,7 @@
 	if(istype(I, /obj/item/reagent_containers/food/snacks/cheese) && icon_state != "cheesewheel_end")
 		if(isturf(loc)&& (found_table))
 			playsound(user, 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
-			user.mind.add_sleep_experience(/datum/attribute/skill/craft/cooking, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE)*0.5))
+			user.mind.add_sleep_experience(/datum/attribute/skill/craft/cooking/cheesemaking, (GET_MOB_ATTRIBUTE_VALUE(user, STAT_INTELLIGENCE)*0.5))
 			if(do_after(user, short_cooktime, src))
 				qdel(I)
 				name = "maturing cheese wheel"
@@ -596,6 +619,7 @@
 
 // -------------- CHEESE -----------------
 /obj/item/reagent_containers/food/snacks/cheese
+	item_weight = 224 GRAMS
 	name = "fresh cheese"
 	icon_state = "freshcheese"
 	bitesize = 1
@@ -613,6 +637,7 @@
 	name = "fresh gote cheese"
 
 /obj/item/reagent_containers/food/snacks/cheddar
+	item_weight = 3 KILOGRAMS
 	name = "wheel of cheese"
 	icon_state = "cheesewheel"
 	dropshrink = 0.8
@@ -632,6 +657,7 @@
 	foodtype = DAIRY
 
 /obj/item/reagent_containers/food/snacks/cheddar/aged
+	item_weight = 3 KILOGRAMS
 	name = "wheel of aged cheese"
 	icon_state = "blue_cheese"
 	slice_path = /obj/item/reagent_containers/food/snacks/cheese_wedge/aged
@@ -641,6 +667,7 @@
 	faretype = FARE_FINE
 
 /obj/item/reagent_containers/food/snacks/cheese_wedge
+	item_weight = 500 GRAMS
 	name = "wedge of cheese"
 	icon_state = "cheese_wedge"
 	dropshrink = 0.8
@@ -670,6 +697,7 @@
 	faretype = FARE_FINE
 
 /obj/item/reagent_containers/food/snacks/cheddarslice
+	item_weight = 155 GRAMS
 	name = "slice of cheese"
 	icon_state = "cheese_slice"
 	bitesize = 1
@@ -704,6 +732,7 @@
 // -------------- Gelatine Base -----------------
 
 /obj/item/reagent_containers/food/snacks/jellycake_base
+	item_weight = 950 GRAMS
 	name = "plain gelatie cake"
 	desc = "A mildly unappetising desert, fittingly considered a delicacy by orcs. Though it is traditionally made plain, chefs often mercifully flavor it with fruit."
 	icon_state = "basegelatinecake"
@@ -722,6 +751,7 @@
 	faretype = FARE_POOR
 
 /obj/item/reagent_containers/food/snacks/jellyslice_base
+	item_weight = 950 GRAMS
 	name = "plain gelatine slice"
 	icon_state = "basegelatinslice"
 	dropshrink = 0.8
@@ -739,6 +769,7 @@
 // -------------- Apple Gelatine -----------------
 
 /obj/item/reagent_containers/food/snacks/jellycake_apple
+	item_weight = 1 KILOGRAMS
 	name = "apple gelatine cake"
 	desc = "A mildly unappetising desert, fittingly considered a delicacy by orcs. This one is colored blood(apple)-red."
 	icon_state = "applegelatinecake"
@@ -757,6 +788,7 @@
 	faretype = FARE_FINE
 
 /obj/item/reagent_containers/food/snacks/jellyslice_apple
+	item_weight = 250 GRAMS
 	name = "apple gelatine slice"
 	icon_state = "applegelatineslice"
 	dropshrink = 0.8
@@ -772,6 +804,7 @@
 // -------------- Tangeringe Gelatine -----------------
 
 /obj/item/reagent_containers/food/snacks/jellycake_tangerine
+	item_weight = 1 KILOGRAMS
 	name = "tangerine gelatine cake"
 	desc = "A mildly unappetising desert, fittingly considered a delicacy by orcs. This one is bittersweet, like the triumph of battle."
 	icon_state = "tangerinegelatinecake"
@@ -790,6 +823,7 @@
 	faretype = FARE_FINE
 
 /obj/item/reagent_containers/food/snacks/jellyslice_tangerine
+	item_weight = 250 GRAMS
 	name = "tangerine gelatine slice"
 	icon_state = "tangerinegelatineslice"
 	dropshrink = 0.8
@@ -806,6 +840,7 @@
 // -------------- Plum Gelatine -----------------
 
 /obj/item/reagent_containers/food/snacks/jellycake_plum
+	item_weight = 1 KILOGRAMS
 	name = "plum gelatine cake"
 	desc = "A mildly unappetising desert, fittingly considered a delicacy by orcs. Like the plum this treat is made from, orcs persevere against all."
 	icon_state = "plumgelatinecake"
@@ -824,6 +859,7 @@
 	faretype = FARE_FINE
 
 /obj/item/reagent_containers/food/snacks/jellyslice_plum
+	item_weight = 250 GRAMS
 	name = "plum gelatine slice"
 	icon_state = "plumgelatineslice"
 	dropshrink = 0.8
@@ -839,6 +875,7 @@
 // -------------- Lime Gelatine -----------------
 
 /obj/item/reagent_containers/food/snacks/jellycake_lime
+	item_weight = 1 KILOGRAMS
 	name = "lime gelatine cake"
 	desc = "A mildly unappetising desert, fittingly considered a delicacy by orcs. This one is green, naturally."
 	icon_state = "limegelatinecake"
@@ -857,6 +894,7 @@
 	faretype = FARE_FINE
 
 /obj/item/reagent_containers/food/snacks/jellyslice_lime
+	item_weight = 250 GRAMS
 	name = "lime gelatine slice"
 	icon_state = "limegelatineslice"
 	dropshrink = 0.8
@@ -872,6 +910,7 @@
 // -------------- Pear Gelatine -----------------
 
 /obj/item/reagent_containers/food/snacks/jellycake_pear
+	item_weight = 1 KILOGRAMS
 	name = "pear gelatine cake"
 	desc = "A mildly unappetising dessert, fittingly considered a delicacy by orcs. This flavor is a strange fusion of Zakhara and Orcish cuisines."
 	icon_state = "peargelatinecake"
@@ -890,6 +929,7 @@
 	faretype = FARE_FINE
 
 /obj/item/reagent_containers/food/snacks/jellyslice_pear
+	item_weight = 250 GRAMS
 	name = "pear gelatine slice"
 	icon_state = "peargelatineslice"
 	dropshrink = 0.8

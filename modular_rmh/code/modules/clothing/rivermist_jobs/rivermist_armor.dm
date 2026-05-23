@@ -6,7 +6,7 @@
 	name = "town watch bulwark armor"
 	desc = "Steel armor with thick cloth padded coat. A bulky set of excellent armor made for the Town Watch Bulwarks."
 	icon_state = "master_coat_cuirass"
-	anvilrepair = /datum/skill/craft/armorsmithing
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
 	melt_amount = 75
 	melting_material = /datum/material/steel
 	equip_delay_self = 4 SECONDS

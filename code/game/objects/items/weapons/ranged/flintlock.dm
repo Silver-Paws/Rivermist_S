@@ -1,4 +1,5 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher/pistol
+	item_weight = 1.2 KILOGRAMS
 	name = "puffer"
 	desc = "The current zenith of Dwarven and Human cooperation on the Eastern continent. It uses alchemical blastpowder to propel metal balls for devastating effect."
 	icon = 'icons/roguetown/weapons/32/guns.dmi'
@@ -160,6 +161,7 @@
 	..()
 
 /obj/item/ramrod
+	item_weight = 150 GRAMS
 	name = "ram rod"
 	desc = ""
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -259,6 +261,7 @@
 	visible_message(span_warning("The puffer begins to crumble, the enchantment falls!"))
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/pistol/musket
+	item_weight = 4.5 KILOGRAMS
 	name = "musket"
 	icon = 'icons/roguetown/weapons/64/guns.dmi'
 	icon_state = "musket_uncocked_ramrod"
@@ -426,12 +429,14 @@
 	..()
 
 /obj/item/weapon/knife/dagger/bayonet
+	item_weight = 300 GRAMS
 	name = "bayonet"
 	force = 10
 	max_blade_int = 150
 	var/spread = 2
 
 /obj/item/ramrod/musket
+	item_weight = 300 GRAMS
 	name = "musket ram rod"
 	desc = ""
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -473,7 +478,7 @@
 	if(affecting.body_zone == BODY_ZONE_HEAD) //Decapitations are harder to pull off in general
 		probability *= 0.5
 	var/hard_dismember = HAS_TRAIT(affecting, TRAIT_HARDDISMEMBER)
-	var/easy_dismember = affecting.rotted || affecting.skeletonized || HAS_TRAIT(affecting, TRAIT_EASYDISMEMBER)
+	var/easy_dismember = HAS_TRAIT(affecting, TRAIT_ROTTEN) || affecting.skeletonized || HAS_TRAIT(affecting, TRAIT_EASYDISMEMBER)
 	if(affecting.owner)
 		if(!hard_dismember)
 			hard_dismember = HAS_TRAIT(affecting.owner, TRAIT_HARDDISMEMBER)

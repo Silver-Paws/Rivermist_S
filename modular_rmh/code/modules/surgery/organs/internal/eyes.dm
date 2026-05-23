@@ -6,7 +6,7 @@
 	..()
 	eyes_dna.eye_glowing = glows
 
-/obj/item/organ/eyes/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE, initialising)
+/obj/item/organ/eyes/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE, new_zone = null)
 	. = ..()
 	if(glows)
 		add_verb(M, /mob/living/carbon/proc/set_eyes_glowing)

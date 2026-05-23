@@ -12,11 +12,28 @@
 	plane = HUD_PLANE
 	appearance_flags = APPEARANCE_UI
 	/// A reference to the object in the slot. Grabs or items, generally, but any datum will do.
+	/// A reference to the object in the slot. Grabs or items, generally, but any datum will do.
 	var/datum/weakref/master_ref = null
 	/// A reference to the owner HUD, if any.
 	VAR_PRIVATE/datum/hud/hud = null
 	var/lastclick
+	/// Category for fullscreen shit
 	var/category
+	/**
+	* Map name assigned to this object.
+	* Automatically set by /client/proc/add_obj_to_map.
+	*/
+	var/assigned_map
+	/**
+	* Mark this object as garbage-collectible after you clean the map
+	* it was registered on.
+	*
+	* This could probably be changed to be a proc, for conditional removal.
+	* But for now, this works.
+	*/
+	var/del_on_map_removal = TRUE
+	/// If FALSE, this will not be cleared when calling /client/clear_screen()
+	var/clear_with_screen = TRUE
 
 /atom/movable/screen/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
@@ -151,8 +168,7 @@
 		var/mob/M = usr
 		for(var/datum/recipe as anything in M.mind?.learned_recipes)
 			book.types |= recipe.type
-		book.generate_categories()
-		usr << browse(book.generate_html(usr),"window=recipe;size=800x810")
+		book.ui_interact(usr)
 		return
 	if(world.time < lastclick + 3 SECONDS)
 		return
@@ -1334,7 +1350,21 @@
 	if (ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		H.check_for_injuries(H)
-		to_chat(H, "I am [H.get_encumbrance() * 100]% encumbered.")
+		to_chat(H, "Encumbrance: [H.encumbrance_text()] (<b>[CEILING(H.carry_weight, 1)]kg[CEILING(H.carry_weight, 1) == 1 ? "" : "s"]</b>)")
+
+/mob/living/carbon/proc/encumbrance_text()
+	switch(encumbrance)
+		if(ENCUMBRANCE_EXTREME)
+			return span_userdanger(span_big("EXTRA-HEAVY!!"))
+		if(ENCUMBRANCE_HEAVY)
+			return span_userdanger("Heavy!")
+		if(ENCUMBRANCE_MEDIUM)
+			return span_boldnotice("Medium.")
+		if(ENCUMBRANCE_LIGHT)
+			return span_notice("Light.")
+		if(ENCUMBRANCE_NONE)
+			return span_tinynotice("None.")
+
 
 /atom/movable/screen/party_member_health
 	name = "party_health"
@@ -1405,7 +1435,7 @@
 		var/mob/living/carbon/human/user_mob = usr
 		if(LAZYACCESS(modifiers, LEFT_CLICK))
 			user_mob.check_for_injuries(user_mob)
-			to_chat(user_mob, "I am [user_mob.get_encumbrance() * 100]% encumbered.")
+			to_chat(user_mob, "Encumbrance: [user_mob.encumbrance_text()] (<b>[CEILING(user_mob.carry_weight, 1)]kg[CEILING(user_mob.carry_weight, 1) == 1 ? "" : "s"]</b>)")
 		if(LAZYACCESS(modifiers, RIGHT_CLICK))
 			if(!user_mob.mind)
 				return

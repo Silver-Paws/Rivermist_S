@@ -1,5 +1,6 @@
 
 /obj/item/clothing/gloves/fingerless
+	item_weight = 50 GRAMS
 	name = "fingerless gloves"
 	desc = "Gloves made out of sturdy leather with the fingers cut off for extra dexterity. They offer almost no protection whatsoever."
 	icon_state = "fingerless_gloves"

@@ -193,6 +193,7 @@
 #define FIRE_PRIORITY_TGUI 110
 #define FIRE_PRIORITY_TICKER 120
 #define FIRE_PRIORITY_ATMOS_ADJACENCY 130
+
 #define FIRE_PRIORITY_STATPANEL 135
 #define FIRE_PRIORITY_CHAT 140
 #define FIRE_PRIORITY_RUNECHAT 150
@@ -242,3 +243,5 @@
 	* * flags flags for this timer, see: code\__DEFINES\subsystems.dm
 */
 #define addtimer(args...) _addtimer(args, file = __FILE__, line = __LINE__)
+
+#define SSMOBS_DT (SSmobs.wait/10)

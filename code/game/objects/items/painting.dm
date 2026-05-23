@@ -1,5 +1,6 @@
 
 /obj/item/painting
+	item_weight = 1.5 KILOGRAMS
 	name = "painting"
 	icon_state = "painting"
 	desc = ""

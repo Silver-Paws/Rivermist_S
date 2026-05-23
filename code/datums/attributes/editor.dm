@@ -93,6 +93,7 @@
 				max_value = attributes.skill_max
 			attributes.raw_attribute_list[attribute_type] = clamp(new_value, min_value, max_value)
 			attributes.update_attributes()
+			attributes.seed_skill_xp(attribute_type)
 		if("null_var")
 			var/attribute_var_name = params["var_name"]
 			if(attributes.vv_edit_var(attribute_var_name, null) == FALSE)

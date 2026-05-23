@@ -11,6 +11,7 @@
 	speed = 1
 
 /obj/item/explosive
+	item_weight = 560 GRAMS
 	name = "pipe bomb"
 	desc = "A bottle filled with an explosive concoction."
 	icon_state = "bottle"

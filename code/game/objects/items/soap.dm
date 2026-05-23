@@ -1,4 +1,5 @@
 /obj/item/soap
+	item_weight = 140 GRAMS
 	name = "soap"
 	desc = "A combination of ash and animal fats used for cleaning. Typically dissolved in water."
 	gender = PLURAL

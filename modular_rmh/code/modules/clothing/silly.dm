@@ -15,8 +15,8 @@
 	block2add = FOV_BEHIND
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
 	experimental_onhip = TRUE
-	sewrepair = FALSE
-	anvilrepair = TRUE
+	sewrepair = null
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
 	sellprice = 80
 	allowed_race = SPECIES_BASE_BODY
 	misc_flags = CRAFTING_TEST_EXCLUDE
@@ -43,7 +43,7 @@
 	armor = ARMOR_SPELLSINGER
 	max_integrity = ARMOR_INT_HELMET_LEATHER
 	blocksound = SOFTHIT
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 	flags_inv = HIDEEARS
 	body_parts_covered = HEAD|HAIR|EARS|NOSE|EYES
 	resistance_flags = FIRE_PROOF

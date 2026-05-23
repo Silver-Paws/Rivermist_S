@@ -1,4 +1,5 @@
 /obj/item/natural/cloth
+	item_weight = 12 GRAMS
 	name = "cloth"
 	desc = "A square of cloth mended from fibers."
 	icon_state = "cloth"

@@ -134,6 +134,9 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 	var/tool_behaviour = NONE
 	var/toolspeed = 1
 
+	/// Organ storage component requires this
+	var/atom/stored_in
+
 	var/block_chance = 0
 	//If you want to have something unrelated to blocking/armour piercing etc. Maybe not needed, but trying to think ahead/allow more freedom
 	var/hit_reaction_chance = 0
@@ -277,6 +280,8 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 	var/grid_width
 	/// Height we occupy on the hud - Keep null to generate based on w_class
 	var/grid_height
+	/// Number of times this item's lost max integrity has been restored with extra material.
+	var/integrity_restores = 0
 	///our melting material, basically if exists this is what we melt into in a crucible
 	var/datum/material/melting_material
 	///our metling amount
@@ -779,22 +784,34 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 	if(!(interaction_flags_item & INTERACT_ITEM_ATTACK_HAND_PICKUP))		//See if we're supposed to auto pickup.
 		return
 
-	if(SEND_SIGNAL(loc, COMSIG_STORAGE_BLOCK_USER_TAKE, src, user, TRUE))
-		return
+	if(stored_in)
+		if(SEND_SIGNAL(stored_in, COMSIG_STORAGE_BLOCK_USER_TAKE, src, user, TRUE))
+			return
+	else
+		if(SEND_SIGNAL(loc, COMSIG_STORAGE_BLOCK_USER_TAKE, src, user, TRUE))
+			return
 
 	if(!ontable() && isturf(loc))
-		if(!do_after(user, 3 DECISECONDS, src))
-			return
+		if(stored_in)
+			if(!do_after(user, 3 DECISECONDS, stored_in))
+				return
+		else
+			if(!do_after(user, 3 DECISECONDS, src))
+				return
 
 	//If the item is in a storage item, take it out
 	var/outside_storage = !(item_flags & IN_STORAGE)
 	var/turf/storage_turf
-	if(!outside_storage)
+	if(!outside_storage || stored_in)
 		//We want the pickup animation to play even if we're moving the item between movables. Unless the mob is not located on a turf.
 		if(isturf(user.loc))
 			storage_turf = get_turf(loc)
-		if(!SEND_SIGNAL(loc, COMSIG_TRY_STORAGE_TAKE, src, user, TRUE))
-			return
+		if(stored_in)
+			if(!SEND_SIGNAL(stored_in, COMSIG_TRY_STORAGE_TAKE, src, user, TRUE))
+				return
+		else
+			if(!SEND_SIGNAL(loc, COMSIG_TRY_STORAGE_TAKE, src, user, TRUE))
+				return
 	if(QDELETED(src)) //moving it out of the storage destroyed it.
 		return
 
@@ -897,9 +914,6 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 	toggle_altgrip(user, FALSE)
 	if(user)
 		user.update_equipment_speed_mods()
-	if(isliving(user))
-		var/mob/living/living_user = user
-		living_user.encumbrance_to_speed()
 	update_transform()
 	update_appearance(UPDATE_OVERLAYS)
 
@@ -917,15 +931,44 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTER_PICKUP, user)
 
-	if(isliving(user))
-		var/mob/living/L = user
-		L.encumbrance_to_speed()
-
 /obj/item/proc/afterdrop(mob/user)
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder)
 	return
+
+/obj/item/proc/get_carry_weight(atom/carrier)
+	. = item_weight
+	var/datum/component/storage/storage = GetComponent(/datum/component/storage)
+	if(storage)
+		var/modifier = 1
+		if(carrier && HAS_TRAIT(carrier, TRAIT_AMAZING_BACK))
+			modifier = 0.5
+		. += storage.get_carry_weight(carrier) * carry_multiplier * modifier
+
+/obj/item/clothing/get_carry_weight(atom/carrier)
+	switch(armor_class)
+		if(AC_HEAVY)
+			if(carrier && !HAS_TRAIT(carrier, TRAIT_HEAVYARMOR))
+				. = item_weight * 2
+			else
+				. = item_weight
+		if(AC_MEDIUM)
+			if(carrier && !HAS_TRAIT(carrier, TRAIT_MEDIUMARMOR))
+				. = item_weight * 2
+			else
+				. = item_weight
+		if(AC_LIGHT)
+			. = item_weight
+		else
+			. = item_weight
+
+	var/datum/component/storage/storage = GetComponent(/datum/component/storage)
+	if(storage)
+		var/modifier = 1
+		if(carrier && HAS_TRAIT(carrier, TRAIT_AMAZING_BACK))
+			modifier = 0.5
+		. += storage.get_carry_weight(carrier) * carry_multiplier * modifier
 
 // called after an item is placed in an equipment slot
 // user is mob that equipped it
@@ -1053,7 +1096,7 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 		)
 	if(is_human_victim)
 		var/mob/living/carbon/human/U = M
-		U.apply_damage(7, BRUTE, affecting)
+		U.apply_damage(7, BRUTE, affecting, damage_type = BCLASS_STAB)
 
 	else
 		M.take_bodypart_damage(7)
@@ -1489,6 +1532,9 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 /obj/item/proc/on_consume(mob/living/eater)
 	return
 
+/obj/item/proc/on_anti_consume(mob/living/eater)
+	return
+
 /obj/item/proc/get_displayed_price(mob/user)
 	if(QDELETED(user))
 		return
@@ -1519,6 +1565,8 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 	. = ..()
 	if(ismob(loc))
 		update_slot_icon()
+	if(clean_types & CLEAN_WASH)
+		set_germ_level(GERM_LEVEL_STERILE)
 
 /obj/item/proc/do_pickup_animation(atom/target, turf/source)
 	set waitfor = FALSE

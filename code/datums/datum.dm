@@ -10,11 +10,11 @@
  */
 /datum
 	/**
-	 * Tick count time when this object was destroyed.
-	 *
-	 * If this is non zero then the object has been garbage collected and is awaiting either
-	 * a hard del by the GC subsystme, or to be autocollected (if it has no references)
-	 */
+	* Tick count time when this object was destroyed.
+	*
+	* If this is non zero then the object has been garbage collected and is awaiting either
+	* a hard del by the GC subsystme, or to be autocollected (if it has no references)
+	*/
 	var/gc_destroyed
 
 	/// Open uis owned by this datum
@@ -28,7 +28,7 @@
 
 	/// Components attached to this datum
 	/// Lazy associated list in the structure of `type:component/list of components`
-	var/list/datum_components
+	var/list/_datum_components
 	/// Any datum registered to receive signals from this datum is in this list
 	/// Lazy associated list in the structure of `signal:registree/list of registrees`
 	var/list/comp_lookup
@@ -121,7 +121,7 @@
 	//BEGIN: ECS SHIT
 	signal_enabled = FALSE
 
-	var/list/dc = datum_components
+	var/list/dc = _datum_components
 	if(dc)
 		var/all_components = dc[/datum/component]
 		if(length(all_components))

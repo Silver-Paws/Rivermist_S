@@ -1,6 +1,7 @@
 /* FLAILS - Zero wdefense, can´t parry, best AP
 ==========================================================*/
 /obj/item/weapon/flail
+	item_weight = 1.5 KILOGRAMS
 	name = "iron flail"
 	desc = "A sturdy handle affixed to a cruel spiked ball with a harrowing metal chain."
 	icon_state = "iflail"
@@ -43,12 +44,14 @@
 
 //................ Militia Flail ............... //
 /obj/item/weapon/flail/militia
+	item_weight = 1.5 KILOGRAMS
 	name = "militia flail"
 	desc = "A lucky hit from such a flail can squash a cheap helmet along with the wearer's skull."
 	icon_state = "militiaflail"
 
 //................ Wooden Flail ............... // Obsolete by the thresher? No smash so its bad
 /obj/item/weapon/flail/towner
+	item_weight = 700 GRAMS
 	name = "wooden flail"
 	desc = "During peacetime these flails are used to thresh wheat. During wartime - to chase off marauders."
 	icon_state = "peasantflail"
@@ -64,6 +67,7 @@
 
 //................ Steel Flail ............... //
 /obj/item/weapon/flail/sflail
+	item_weight = 1.4 KILOGRAMS
 	name = "steel flail"
 	desc = "A knightly flail made of worked steel, with a flanged head. An effective and brutal design."
 	icon_state = "flail"
@@ -75,17 +79,20 @@
 	sellprice = 35
 
 /obj/item/weapon/flail/sflail/ancient
+	item_weight = 1.4 KILOGRAMS
 	name = "ancient flail"
 	desc = "An ancient knightly flail made of worked steel, with a flanged head. An effective and brutal design."
 	icon_state = "aflail"
 
 /obj/item/weapon/flail/sflail/necraflail
+	item_weight = 1.4 KILOGRAMS
 	name = "swift journey"
 	icon = 'icons/roguetown/weapons/32/patron.dmi'
 	icon_state = "necraflail"
 
 //................ Psydon Flail ............... //
 /obj/item/weapon/flail/psydon
+	item_weight = 1.4 KILOGRAMS
 	name = "exotic flail"
 	desc = "A flail fashioned with the iconography of Psydon, and crafted entirely out of silver."
 	icon = 'icons/roguetown/weapons/32/psydonite.dmi'
@@ -103,6 +110,7 @@
 	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /obj/item/weapon/flail/psydon/relic
+	item_weight = 1.5 KILOGRAMS
 	name = "Consecratia"
 	desc = "A peculiar-looking morningstar."
 	icon_state = "psymorningstar"
@@ -110,6 +118,7 @@
 
 //................ Peasant Flail ............... // A little confusing still
 /obj/item/weapon/flail/peasant
+	item_weight = 2.5 KILOGRAMS
 	name = "peasant flail"
 	desc = "What used to be a humble thresher by design, has become a deadly flail with extended range and punch. Favored by the peasantry militia or knight errants."
 	icon = 'icons/roguetown/weapons/64/flails.dmi'
@@ -130,6 +139,7 @@
 	sellprice = 20
 
 /obj/item/weapon/flail/peasant/getonmobprop(tag)
+	item_weight = 3.5 KILOGRAMS
 	. = ..()
 	if(tag)
 		switch(tag)
@@ -142,6 +152,7 @@
 
 
 /obj/item/weapon/flail/peasantwarflail //Unattainable
+	item_weight = 3.5 KILOGRAMS
 	name = "militia thresher"
 	desc = "Just like how a sling's bullet can fell a giant, so too does this great flail follow the principle of converting 'momentum' into 'plate-rupturing force'."
 	icon = 'icons/roguetown/weapons/64/flails.dmi'
@@ -177,6 +188,7 @@
 
 
 /obj/item/weapon/flail/peasantwarflail/matthios
+	item_weight = 4 KILOGRAMS
 	name = "Gilded Flail"
 	desc = "Weight of wealth in a deadly striking end."
 	icon = 'icons/roguetown/weapons/64/patron.dmi'
@@ -186,7 +198,7 @@
 	gripped_intents = list(MATTHIOS_STRIKE, MATTHIOS_SMASH)
 	max_integrity = INTEGRITY_STRONGEST
 	slot_flags = ITEM_SLOT_BACK
-	anvilrepair = /datum/attribute/skill/craft/weaponsmithing
+	anvilrepair = /datum/attribute/skill/craft/weapon_repair
 	melting_material = /datum/material/steel
 	melt_amount = 150
 	sellprice = 250

@@ -25,7 +25,7 @@
 	/// How many times this can have its duration refreshed, -1 for infinite
 	var/refresh_count = -1
 	/// Skill threshold required to refresh, 0 for none
-	var/skill_threshold = SKILL_LEVEL_NONE
+	var/skill_threshold = SKILL_RANK_NONE
 	/// Outline to add as a filter
 	var/item_outline
 

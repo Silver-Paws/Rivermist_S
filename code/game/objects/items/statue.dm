@@ -1,5 +1,6 @@
 
 /obj/item/statue
+	item_weight = 1.5 KILOGRAMS
 	icon = 'icons/roguetown/items/valuable.dmi'
 	name = "statue"
 	icon_state = ""
@@ -9,6 +10,7 @@
 	grid_height = 64
 
 /obj/item/statue/gold
+	item_weight = 3 KILOGRAMS
 	name = "gold statue"
 	icon_state = "gstatue1"
 	smeltresult = /obj/item/ingot/gold
@@ -21,6 +23,7 @@
 	icon_state = "gstatue[pick(1,2)]"
 
 /obj/item/statue/gold/loot
+	item_weight = 1 KILOGRAMS
 	name = "gold statuette"
 	icon_state = "lstatue1"
 	sellprice = 45
@@ -31,6 +34,7 @@
 	icon_state = "lstatue[pick(1,2)]"
 
 /obj/item/statue/silver
+	item_weight = 2 KILOGRAMS
 	name = "silver statue"
 	icon_state = "sstatue1"
 	smeltresult = /obj/item/ingot/silver
@@ -45,12 +49,14 @@
 
 /*	..................   Misc   ................... */
 /obj/item/statue/silver/gnome
+	item_weight = 2 KILOGRAMS
 	name = "petrified gnome"
 	desc = "A literal gnome, turned to stone mid-step and put on a matching stone platform. Rather unsettling."
 	smeltresult = null
 	sellprice = 120
 
 /obj/item/statue/steel
+	item_weight = 2.5 KILOGRAMS
 	name = "steel statue"
 	icon_state = "ststatue1"
 	melt_amount = 50
@@ -62,6 +68,7 @@
 	icon_state = "ststatue[pick(1,2)]"
 
 /obj/item/statue/iron
+	item_weight = 2 KILOGRAMS
 	name = "iron statue"
 	icon_state = "istatue1"
 	smeltresult = /obj/item/ingot/iron
@@ -429,6 +436,7 @@
 /*	.................. Bronze  ................... */
 
 /obj/item/statue/bronze
+	item_weight = 2.2 KILOGRAMS
 	name = "bronze statue"
 	icon_state = "bstatue1"
 	smeltresult = /obj/item/ingot/bronze

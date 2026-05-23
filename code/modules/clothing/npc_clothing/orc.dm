@@ -71,7 +71,7 @@
 	armor = list("blunt" = 27, "slash" = 27, "stab" = 27,  "piercing" = 0, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_BLUNT, BCLASS_TWIST)
 	anvilrepair = null
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/craft/tanning/patching
 	blocksound = SOFTHIT
 
 /obj/item/clothing/armor/leather/hide/orc

@@ -1,4 +1,5 @@
 /obj/item/clothing/barding
+	item_weight = 3 KILOGRAMS
 	name = "padded barding"
 	desc = "A set of padded body armor for a Saiga, designed to protect your mount's vital organs."
 	slot_flags = null
@@ -15,7 +16,7 @@
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 	salvage_result = /obj/item/natural/cloth
 	salvage_amount = 1
 	fiber_salvage = TRUE
@@ -58,6 +59,7 @@
 	. = ..()
 
 /obj/item/clothing/barding/chain
+	item_weight = 8 KILOGRAMS
 	name = "chainmail barding"
 	desc = "A set of chainmail body armor for a Saiga, designed to protect your mount's vital organs."
 	icon_state = "armorkit"
@@ -67,16 +69,17 @@
 	max_integrity = ARMOR_INT_CHEST_MEDIUM_STEEL
 	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
 	pickup_sound = 'sound/foley/equip/equip_armor_chain.ogg'
-	anvilrepair = /datum/attribute/skill/craft/armorsmithing
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
 	smeltresult = /obj/item/ingot/steel
 	melting_material = /datum/material/steel
 	melt_amount = 100
-	sewrepair = FALSE
+	sewrepair = null
 	salvage_result = null
 	salvage_amount = 0
 	fiber_salvage = FALSE
 
 /obj/item/clothing/barding/honse
+	item_weight = 4 KILOGRAMS
 	name = "padded barding"
 	desc = "A set of padded body armor for a Honse, designed to protect your mount's vital organs."
 	icon_state = "sewingkit"
@@ -88,6 +91,7 @@
 	)
 
 /obj/item/clothing/barding/honse/chain
+	item_weight = 10 KILOGRAMS
 	name = "chainmail barding"
 	desc = "A set of chainmail body armor for a Honse, designed to protect your mount's vital organs."
 	icon_state = "armorkit"
@@ -97,10 +101,10 @@
 	max_integrity = ARMOR_INT_CHEST_MEDIUM_STEEL
 	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
 	pickup_sound = 'sound/foley/equip/equip_armor_chain.ogg'
-	anvilrepair = /datum/attribute/skill/craft/armorsmithing
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
 	melting_material = /datum/material/steel
 	melt_amount = 80
-	sewrepair = FALSE
+	sewrepair = null
 	salvage_result = null
 	salvage_amount = 0
 	fiber_salvage = FALSE

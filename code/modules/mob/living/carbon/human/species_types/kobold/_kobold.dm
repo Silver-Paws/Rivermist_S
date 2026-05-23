@@ -6,7 +6,7 @@
 
 ///mmmm yumymumyumuymuymym
 #define DIET_KOBOLD list(\
-	/obj/item/natural/dirtclod,\
+	/obj/item/natural/clod,\
 	/obj/item/natural/stone,\
 	/obj/item/coin,\
 	/obj/item/gem,\
@@ -56,6 +56,8 @@
 
 	possible_ages = NORMAL_AGES_LIST
 	use_skintones = TRUE
+
+	default_mob_weight = HUMAN_WEIGHT * 0.6
 
 	changesource_flags = WABBAJACK
 
@@ -121,6 +123,7 @@
 
 	organs = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain/smooth,
+		ORGAN_SLOT_SPLEEN = /obj/item/organ/spleen,
 		ORGAN_SLOT_HEART = /obj/item/organ/heart,
 		ORGAN_SLOT_LUNGS = /obj/item/organ/lungs,
 		ORGAN_SLOT_EYES = /obj/item/organ/eyes/kobold,
@@ -192,7 +195,7 @@
 	. = ..()
 	RegisterSignal(C, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	if(hungry_hungry_kobold)
-		C.AddComponent(/datum/component/abberant_eater, DIET_KOBOLD, FALSE, DIET_TURF_KOBOLD)
+		C.AddComponent(/datum/component/abberant_eater, DIET_KOBOLD, FALSE, DIET_TURF_KOBOLD, _keeps_items = TRUE)
 	C.grant_language(/datum/language/common)
 
 /datum/species/kobold/on_species_loss(mob/living/carbon/C)

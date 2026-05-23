@@ -1,4 +1,5 @@
 /obj/item/natural/poo
+	item_weight = 16 GRAMS
 	name = "nitesoil"
 	desc = "This smells bad. Excrement from some disgusting individual."
 	icon_state = "humpoo"

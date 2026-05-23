@@ -1,4 +1,5 @@
 /obj/item/clothing/head/chaperon
+	item_weight = 250 GRAMS
 	name = "chaperon hat"
 	icon_state = "chaperon"
 	flags_inv = HIDEEARS

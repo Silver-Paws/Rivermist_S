@@ -2,6 +2,7 @@
 ==========================================================*/
 
 /obj/item/weapon/polearm
+	item_weight = 2 KILOGRAMS
 	throwforce = DAMAGE_STAFF
 	icon = 'icons/roguetown/weapons/64/polearms.dmi'
 	wdefense = GREAT_PARRY
@@ -44,6 +45,7 @@
 
 //................ Wooden Staff ............... //
 /obj/item/weapon/polearm/woodstaff
+	item_weight = 1 KILOGRAMS
 	name = "wooden staff"
 	desc = "The ultimate tool of travel for weary wanderers, support your weight or crack the heads that don't support you."
 	icon_state = "woodstaff"
@@ -73,6 +75,7 @@
 
 //................ Quarterstaff ............... //!
 /obj/item/weapon/polearm/woodstaff/quarterstaff
+	item_weight = 1.2 KILOGRAMS
 	name = "wooden quarterstaff"
 	desc = "A staff that makes any journey easier. Durable and swift, capable of bludgeoning stray volves and ruffians alike."
 	icon_state = "quarterstaff"
@@ -82,6 +85,7 @@
 
 //................ Iron-shod Staff ............... //
 /obj/item/weapon/polearm/woodstaff/quarterstaff/iron
+	item_weight = 1.8 KILOGRAMS
 	name = "iron quarterstaff"
 	desc = "A perfect tool for bounty hunters who prefer their prisoners broken and bruised but not slain. This reinforced staff is capable of clubbing even an armed opponent into submission with some carefully placed strikes."
 	icon_state = "quarterstaff_iron"
@@ -90,6 +94,7 @@
 	minstr = 7
 
 /obj/item/weapon/polearm/woodstaff/quarterstaff/steel
+	item_weight = 2.2 KILOGRAMS
 	name = "steel quarterstaff"
 	desc = "An unusual sight, a knightly combat staff made out of worked steel and reinforced wood. It is a heavy and powerful weapon, more than capable of beating the living daylights out of any brigand."
 	icon_state = "quarterstaff_steel"
@@ -100,6 +105,7 @@
 
 //................ Staff of the Testimonium ............... //
 /obj/item/weapon/polearm/woodstaff/aries
+	item_weight = 1.2 KILOGRAMS
 	name = "staff of the testimonium"
 	desc = "A symbolic staff, granted to enlightened acolytes who have achieved and bear witnessed to the miracles of the Gods."
 	icon_state = "aries"
@@ -109,6 +115,7 @@
 	sellprice = 100
 
 /obj/item/weapon/polearm/woodstaff/seer
+	item_weight = 1.2 KILOGRAMS
 	name = "staff of the rous seer"
 	desc = "A staff used by the rousman seers, mainly to protect themselves."
 	icon_state = "seerstaff"
@@ -117,6 +124,7 @@
 
 //................ Spear ............... //
 /obj/item/weapon/polearm/spear
+	item_weight = 2.5 KILOGRAMS
 	name = "spear"
 	desc = "The humble spear, use the pointy end."
 	icon_state = "spear"
@@ -146,6 +154,7 @@
 
 
 /obj/item/weapon/polearm/spear/abyssor
+	item_weight = 2.7 KILOGRAMS
 	name = "depthseeker"
 	desc = "An instrument of Abyssor's wrath to punish the ignorant."
 	icon = 'icons/roguetown/weapons/64/patron.dmi'
@@ -157,6 +166,7 @@
 	melting_material = /datum/material/steel
 
 /obj/item/weapon/polearm/spear/assegai
+	item_weight = 1.5 KILOGRAMS
 	name = "iron assegai"
 	desc = "A long throwing spear originating from the east."
 	icon = 'icons/roguetown/weapons/64/polearms.dmi'
@@ -173,6 +183,7 @@
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 50, "embedded_fall_chance" = 0, "embedded_ignore_throwspeed_threshold" = 1)
 
 /obj/item/weapon/polearm/spear/assegai/steel
+	item_weight = 1.8 KILOGRAMS
 	name = "steel assegai"
 	icon = 'icons/roguetown/weapons/64/polearms.dmi'
 	icon_state = "assegai_steel"
@@ -186,6 +197,7 @@
 
 //................ Psydonian Spear ............... //
 /obj/item/weapon/polearm/spear/psydon
+	item_weight = 2.5 KILOGRAMS
 	name = "exotic spear"
 	desc = "A polearm with a twisting trident head perfect for mangling the bodies of the impure."
 	icon = 'icons/roguetown/weapons/64/psydonite.dmi'
@@ -212,6 +224,7 @@
 
 //................ Billhook ............... //
 /obj/item/weapon/polearm/spear/billhook
+	item_weight = 3 KILOGRAMS
 	name = "billhook"
 	desc = "A polearm with a curved krag, a Luskanian design for dismounting mounted warriors and to strike down monstrous beasts."
 	icon_state = "billhook"
@@ -225,12 +238,14 @@
 	sellprice = 60
 
 /obj/item/weapon/polearm/spear/billhook/ji
+	item_weight = 3 KILOGRAMS
 	name = "steel dagger-ax"
 	desc = "An eastern polearm of ancient design. It's rarely seen on the battlefield these daes."
 	icon_state = "ji_steel"
 	gripsprite = FALSE
 
 /obj/item/weapon/polearm/spear/billhook/ji/iron
+	item_weight = 2.5 KILOGRAMS
 	name = "iron dagger-ax"
 	icon_state = "ji_iron"
 	force = DAMAGE_SPEAR
@@ -241,6 +256,7 @@
 	melt_amount = 75
 
 /obj/item/weapon/polearm/spear/billhook/ji/bronze
+	item_weight = 2.5 KILOGRAMS
 	name = "bronze dagger-ax"
 	icon_state = "ji_bronze"
 	force = DAMAGE_SPEAR
@@ -253,6 +269,7 @@
 
 //................ Stone Short Spear ............... //		- Short spears got shorter reach and worse wield effect, made for one handed and throwing
 /obj/item/weapon/polearm/spear/stone
+	item_weight = 1.5 KILOGRAMS
 	name = "simple spear"
 	desc = "With this weapon, the tribes of humanity rose from the beasly state."
 	icon_state = "stonespear"
@@ -272,6 +289,7 @@
 
 //................ Javelin ............... //
 /obj/item/weapon/polearm/spear/stone/copper
+	item_weight = 900 GRAMS
 	name = "javelin"
 	desc = "Made for throwing, long out of favor and using inferior metals, it still can kill when the aim is true."
 	icon_state = "cspear"
@@ -298,6 +316,7 @@
 
 //................ Halberd ............... //
 /obj/item/weapon/polearm/halberd
+	item_weight = 3.5 KILOGRAMS
 	name = "halberd"
 	desc = "A reinforced polearm for clobbering ordained with a crested ax head, pick and sharp point, a royal arm for defence and aggression."
 	icon_state = "halberd"
@@ -331,6 +350,7 @@
 //originally in the axes.dm file, moved here because they inherit from the bardiche
 //................ Woodcutter Axe ............... //
 /obj/item/weapon/polearm/halberd/bardiche/woodcutter
+	item_weight = 3 KILOGRAMS
 	name = "woodcutter axe"
 	desc = "The tool, weapon, and loyal companion of woodcutters. Able to chop mighty trees and repel the threats of the forest."
 	icon = 'icons/roguetown/weapons/64/axes.dmi'
@@ -365,6 +385,7 @@
 //................ War Axe ............... //
 //attempting to fix transformation issues//it worked wohoo, don't touch it.
 /obj/item/weapon/polearm/halberd/bardiche/warcutter
+	item_weight = 3.5 KILOGRAMS
 	name = "footman war axe"
 	desc = "An enormous spiked axe. The ideal choice for a militiaman wanting to cut a fancy noble whoreson down to size."
 	icon = 'icons/roguetown/weapons/64/axes.dmi'
@@ -400,6 +421,7 @@
 
 //................ Psydonian Halberd ............... //
 /obj/item/weapon/polearm/halberd/psydon
+	item_weight = 3.5 KILOGRAMS
 	name = "exotic halberd"
 	desc = "A mighty halberd capable of cutting down the heretical with remarkable ease, be it effigy, man, or beast."
 	icon = 'icons/roguetown/weapons/64/psydonite.dmi'
@@ -429,12 +451,14 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/weapon/polearm/halberd/psydon/relic
+	item_weight = 3.5 KILOGRAMS
 	name = "Sanctum"
 	desc = "These silver-tipped polearms are the bulwark of the Ordo Venatari, borrowing techniques from the Ordo Benetarus. During the early sieges, the Ordos used these to hold the horrors at bay for forty days-and-nites. A time always comes to fight - strike true."
 	icon_state = "psyhalberd"
 
 //................ Bardiche ............... //
 /obj/item/weapon/polearm/halberd/bardiche
+	item_weight = 4 KILOGRAMS
 	name = "bardiche"
 	desc = "A grand axe of northernly design, renowned for easily chopping off limbs clean with brutal strength."
 	icon_state = "bardiche"
@@ -461,6 +485,7 @@
 	icon_state = "ancient_bardiche"
 
 /obj/item/weapon/polearm/halberd/bardiche/dendor
+	item_weight = 3.5 KILOGRAMS
 	name = "summer scythe"
 	desc = "Summer's verdancy runs through the head of this scythe. All the more to sow."
 	icon = 'icons/roguetown/weapons/64/patron.dmi'
@@ -470,6 +495,7 @@
 
 //................ Eagle Beak ............... //
 /obj/item/weapon/polearm/eaglebeak
+	item_weight = 4 KILOGRAMS
 	name = "eagle's beak"
 	desc = "A reinforced pole affixed with an ornate steel eagle's head, of which it's beak is intended to pierce with great harm."
 	icon_state = "eaglebeak"
@@ -503,6 +529,7 @@
 
 //................ Lucerne Hammer ............... //
 /obj/item/weapon/polearm/eaglebeak/lucerne
+	item_weight = 4 KILOGRAMS
 	name = "lucerne"
 	desc = "A polehammer of simple iron, fracture bone and dissent with simple brute force."
 	icon_state = "polehammer"
@@ -515,6 +542,7 @@
 
 //................ Hoplite Spear ............... //
 /obj/item/weapon/polearm/spear/hoplite
+	item_weight = 2.5 KILOGRAMS
 	name = "ancient spear"
 	desc = "A humble spear with a bronze head, a rare survivor from the battles long past that nearly destroyed Psydonia."
 	icon_state = "bronzespear"
@@ -524,12 +552,14 @@
 	sellprice = 120 // A noble collector would love to get his/her hands on one of these spears
 
 /obj/item/weapon/polearm/spear/hoplite/winged // Winged version has +1 weapon defence and sells for a bit more, but is identical otherwise
+	item_weight = 2.5 KILOGRAMS
 	name = "ancient winged spear"
 	desc = "A spear with a winged bronze head, a rare survivor from the battles long past that nearly destroyed Psydonia."
 	icon_state = "bronzespear_winged"
 	sellprice = 150 // A noble collector would love to get his/her hands on one of these spears
 
 /obj/item/weapon/polearm/spear/hoplite/abyssal
+	item_weight = 2.5 KILOGRAMS
 	name = "Abyssal spear"
 	desc = "A spear with a toothed end, inspired after the teeth of an abyssal monstrosity"
 	icon = 'icons/roguetown/weapons/64/ancient.dmi'
@@ -537,6 +567,7 @@
 	sellprice = 40
 
 /obj/item/weapon/polearm/spear/bronze
+	item_weight = 2.5 KILOGRAMS
 	name = "Bronze Spear"
 	desc = "A spear forged of bronze. Expensive but more durable than a regular iron one."
 	icon_state = "bronzespear"
@@ -546,7 +577,9 @@
 
 
 //scythe
+	item_weight = 3 KILOGRAMS
 /obj/item/weapon/sickle/scythe //This is supposed to be bad
+	item_weight = 3 KILOGRAMS
 	name = "scythe"
 	desc = "A humble farming tool with long reach, traditionally used to cut grass or wheat."
 	icon = 'icons/roguetown/weapons/64/polearms.dmi'
@@ -582,6 +615,7 @@
 	AddElement(/datum/element/walking_stick)
 
 /obj/item/weapon/polearm/spear/bonespear
+	item_weight = 1.5 KILOGRAMS
 	name = "bone spear"
 	desc = "A spear made of bones."
 	// icon_state = "bonespear"
@@ -601,6 +635,7 @@
 	melting_material = null
 
 /obj/item/weapon/polearm/spear/naginata
+	item_weight = 2 KILOGRAMS
 	name = "Naginata"
 	desc = "A traditional eastern polearm, combining the reach of a spear with the cutting power of a curved blade. Due to the brittle quality of certain eastern bladesmithing, weaponsmiths have adapted its blade to be easily replaceable when broken by a peg upon the end of the shaft."
 	icon = 'icons/roguetown/weapons/64/polearms.dmi'
@@ -623,6 +658,7 @@
 
 
 /obj/item/weapon/polearm/woodstaff/naledi
+	item_weight = 1.5 KILOGRAMS
 	name = "exotic warstaff"
 	desc = "A staff carrying the black and gold insignia of the war scholars."
 	icon_state = "naledistaff"

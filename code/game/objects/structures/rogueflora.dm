@@ -149,7 +149,7 @@
 	var/atom/throw_target = get_edge_target_turf(attacked_tree, get_dir(attacked_tree, target))
 	target.throw_at(throw_target, 4, 2)
 	target.Knockdown(2 SECONDS)
-	target.adjustBruteLoss(8)
+	target.adjustBruteLoss(8, damage_type = BCLASS_LASHING)
 
 /obj/structure/flora/tree/wise/attackby(obj/item/I, mob/user, list/modifiers)
 	. = ..()
@@ -510,7 +510,7 @@
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/was_hard_collision = (H.m_intent == MOVE_INTENT_RUN || H.throwing || H.atom_flags & Z_FALLING)
+		var/was_hard_collision = (H.m_intent == MOVE_INTENT_RUN || H.throwing || H.atom_flags & Z_FALLING || HAS_TRAIT(H, TRAIT_STUMBLE))
 		if(was_hard_collision)
 			var/obj/item/bodypart/BP = pick(H.bodyparts)
 			BP.receive_damage(10)
@@ -720,7 +720,11 @@
 
 		else
 			if(!HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
-				user.apply_damage(5, BRUTE)
+				var/obj/item/bodypart/hand = user.get_active_hand()
+				if(hand)
+					hand.bodypart_attacked_by(BCLASS_CUT, 5)
+				else
+					user.apply_damage(5, BRUTE, damage_type = BCLASS_CUT)
 			to_chat(user, span_warning("You cut yourself on the thorns!"))
 
 	prob2findstuff = 15
@@ -737,16 +741,16 @@
 				return
 			else
 				to_chat(L, span_warning("I'm scratched by the thorns."))
-				L.apply_damage(5, BRUTE)
+				L.apply_damage(5, BRUTE, damage_type = BCLASS_CUT, can_crit = FALSE)
 				L.Immobilize(10)
 				var/obj/item/clothing/socks = L.get_item_by_slot(ITEM_SLOT_SOCKS)
 				if(socks)
 					socks.take_damage(30)
 
-		if(L.m_intent == MOVE_INTENT_RUN)
+		if(L.m_intent == MOVE_INTENT_RUN || HAS_TRAIT(L, TRAIT_STUMBLE))
 			if(!ishuman(L))
 				to_chat(L, span_warning("I'm cut on a thorn!"))
-				L.apply_damage(5, BRUTE)
+				L.apply_damage(5, BRUTE, damage_type = BCLASS_CUT)
 			else
 				var/mob/living/carbon/human/H = L
 				var/obj/item/clothing/socks = L.get_item_by_slot(ITEM_SLOT_SOCKS)
@@ -823,10 +827,10 @@
 		L.Immobilize(5)
 		if(L.m_intent == MOVE_INTENT_WALK)
 			L.Immobilize(5)
-		if(L.m_intent == MOVE_INTENT_RUN)
+		if(L.m_intent == MOVE_INTENT_RUN || HAS_TRAIT(L, TRAIT_STUMBLE))
 			if(!ishuman(L))
 				to_chat(L, span_warning("I'm cut on a thorn!"))
-				L.apply_damage(5, BRUTE)
+				L.apply_damage(5, BRUTE, damage_type = BCLASS_CUT)
 				L.Immobilize(5)
 			else
 				var/mob/living/carbon/human/H = L

@@ -1,5 +1,6 @@
 
 /obj/item/clothing/pants/loincloth
+	item_weight = 65 GRAMS
 	name = "loincloth"
 	desc = "Protects your modesty, but not much else."
 	icon_state = "loincloth"

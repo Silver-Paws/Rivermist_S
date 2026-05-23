@@ -194,6 +194,7 @@
 		qdel(mystery_box)
 
 /obj/item/mystery
+	item_weight = 750 GRAMS
 	name = "locked box"
 	desc = "A mysterious locked box."
 	icon = 'icons/roguetown/items/misc.dmi'

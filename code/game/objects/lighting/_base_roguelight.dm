@@ -132,7 +132,7 @@
 					var/list/possible_recipes = list()
 					for(var/recipe_type in subtypesof(/datum/container_craft/pan))
 						var/datum/container_craft/recipe = new recipe_type
-						if(recipe.used_skill != /datum/attribute/skill/craft/cooking)
+						if(!ispath(recipe.used_skill, /datum/attribute/skill/craft/cooking))
 							continue // Only want cooking recipes
 
 						// Check if our food item matches any recipe requirement
@@ -247,7 +247,7 @@
 		return
 	else
 		if(on)
-			if(istype(W, /obj/item/natural/dirtclod))
+			if(istype(W, /obj/item/natural/clod))
 				if(!user.temporarilyRemoveItemFromInventory(W))
 					return
 				on = FALSE

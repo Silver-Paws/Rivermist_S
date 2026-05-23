@@ -1,4 +1,5 @@
 /obj/item/clothing/head/beekeeper
+	item_weight = 900 GRAMS
 	name = "beekeeper's hood"
 	desc = ""
 	flags_inv = HIDEEARS|HIDEHAIR
@@ -16,4 +17,4 @@
 	adjustable = CANT_CADJUST
 	toggle_icon_state = FALSE
 	max_integrity = 100
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending

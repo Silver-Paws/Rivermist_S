@@ -13,7 +13,7 @@
 	smeltresult = /obj/item/ingot/bronze
 	melting_material = /datum/material/bronze
 	melt_amount = 100
-	item_weight = 7 * BRONZE_MULTIPLIER
+	item_weight = 7 KILOGRAMS
 
 /obj/item/clothing/shoes/boots/armor/steam/dropped(mob/living/carbon/user)
 	// Locate the boiler in the back slots

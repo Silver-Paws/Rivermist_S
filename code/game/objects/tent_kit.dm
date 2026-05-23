@@ -6,11 +6,13 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	grid_width = 32
 	grid_height = 96
+	item_weight = 2.7 KILOGRAMS
 	var/assembled = FALSE
 	var/list/tent_walls = list() // Stored wall objects
 	var/list/tent_doors = list() // Stored door objects
 	var/tent_width = 3 //! Always 3 wide
 	var/tent_length = 5 // Default length, can be adjusted for deluxes
+
 
 /obj/item/tent_kit/Initialize()
 	. = ..()
@@ -442,4 +444,4 @@
 	. = ..()
 	if(atom_integrity < 100)
 		damaged = TRUE
-		opacity = FALSE
+		set_opacity(FALSE)

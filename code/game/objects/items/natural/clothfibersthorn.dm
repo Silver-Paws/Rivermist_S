@@ -1,4 +1,5 @@
 /obj/item/natural/fibers
+	item_weight = 1 GRAMS
 	name = "fiber"
 	desc = "Plant fiber. The peasants make their living sewing these into fabrics and clothing."
 	icon_state = "fibers"
@@ -14,8 +15,17 @@
 	w_class = WEIGHT_CLASS_TINY
 	spitoutmouth = FALSE
 	bundletype = /obj/item/natural/bundle/fibers
+	item_flags = OBTAINED_DATA
+	obtained_from = list(
+		list("From foraging in bushes.", /obj/structure/flora/grass/bush_meagre),
+		list("From cutting grass.", /obj/structure/flora/grass),
+		list("From cutting leafy mushrooms.", /obj/structure/flora/grass/mushroom),
+		list("From cutting herbal flowers.", /obj/structure/flora/grass/herb/atropa),
+		list("From threshing chaff.", /obj/item/natural/chaff/wheat)
+	)
 
 /obj/item/natural/silk
+	item_weight = 1 GRAMS
 	name = "silk"
 	icon_state = "fibers"
 	possible_item_intents = list(/datum/intent/use)
@@ -50,6 +60,7 @@
 #endif
 
 /obj/item/natural/thorn
+	item_weight = 3 GRAMS
 	name = "thorn"
 	desc = "This bog-grown thorn is sharp and resistant like a needle."
 	icon_state = "thorn"

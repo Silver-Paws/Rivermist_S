@@ -18,8 +18,8 @@
 	body_parts_covered = HEAD|HAIR|EARS
 	flags_inv = HIDEHAIR
 	clothing_flags = CANT_SLEEP_IN
-	anvilrepair = /datum/skill/craft/blacksmithing
-	sewrepair = FALSE
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
+	sewrepair = null
 
 /obj/item/clothing/head/roguetown/duchess_hood
 	name = "duchess' veil"

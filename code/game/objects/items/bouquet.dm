@@ -1,6 +1,7 @@
 // BOUQUETS & FLOWER CROWNS
 
 /obj/item/bouquet
+	item_weight = 27 GRAMS
 	name = "bouquet"
 	desc = "The bouquet people love the most is one that produces a beautiful display of flowers."
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -31,6 +32,7 @@
 	icon_state = "bouquet_calendula"
 
 /obj/item/clothing/head/flowercrown
+	item_weight = 22 GRAMS
 	name = ""
 	desc = ""
 	icon = 'icons/roguetown/clothing/head.dmi'

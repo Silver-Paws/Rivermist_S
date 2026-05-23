@@ -192,7 +192,7 @@
 					return
 
 	// operate three levels deep here (item in backpack in src; item in box in backpack in src, not any deeper)
-	if(!isturf(clicked_atom) && clicked_atom == loc || (clicked_atom in contents) || (clicked_atom.loc in contents) || (clicked_atom.loc && (clicked_atom.loc.loc in contents)))
+	if(!isturf(clicked_atom) && clicked_atom == loc || (clicked_atom in contents) || (clicked_atom.loc in contents) || (clicked_atom.loc && (clicked_atom.loc.loc in contents)) || (isitem(clicked_atom) && clicked_atom:stored_in))
 		// the above ensures adjacency
 		resolveAdjacentClick(clicked_atom, held_item, modifiers)
 		return
@@ -612,7 +612,7 @@
 	icon_state = "catcher"
 	plane = CLICKCATCHER_PLANE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
-	screen_loc = "CENTER"
+	screen_loc = "1,1"
 	xyoverride = TRUE
 	blockscharging = FALSE
 

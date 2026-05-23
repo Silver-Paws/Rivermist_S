@@ -1,4 +1,5 @@
 /obj/item/quicksilver
+	item_weight = 50 GRAMS
 	name = "quicksilver poultice"
 	icon_state = "quicksilver"
 	possible_item_intents = list(/datum/intent/use)

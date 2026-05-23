@@ -5,7 +5,7 @@
 	gender = PLURAL
 	icon_state = "plate_legs"
 	item_state = "plate_legs"
-	sewrepair = FALSE
+	sewrepair = null
 	blocksound = PLATEHIT
 	equip_delay_self = 30
 	unequip_delay_self = 30
@@ -15,7 +15,7 @@
 	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
 	pickup_sound = "rustle"
 	break_sound = 'sound/foley/breaksound.ogg'
-	anvilrepair = /datum/attribute/skill/craft/armorsmithing
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
 	melt_amount = 75
 	melting_material = /datum/material/steel
 	r_sleeve_status = SLEEVE_NOMOD
@@ -26,7 +26,7 @@
 	armor = ARMOR_PLATE
 	max_integrity = INTEGRITY_STRONGEST
 	prevent_crits = ALL_EXCEPT_BLUNT
-	item_weight = 9 * STEEL_MULTIPLIER
+	item_weight = 3.95 KILOGRAMS
 
 	material_category = ARMOR_MAT_PLATE
 
@@ -44,7 +44,7 @@
 
 	armor = ARMOR_PLATE_BAD
 	max_integrity = INTEGRITY_STRONG
-	item_weight = 9 * IRON_MULTIPLIER
+	item_weight = 3.95 KILOGRAMS
 
 /obj/item/clothing/pants/platelegs/captain
 	name = "captain's chausses"
@@ -80,7 +80,7 @@
 	melting_material = /datum/material/blacksteel
 	armor_class = AC_MEDIUM
 	armor = ARMOR_PLATE_GOOD
-	item_weight = 9 * BLACKSTEEL_MULTIPLIER
+	item_weight = 4.95 KILOGRAMS
 	sellprice = VALUE_SILVER_ITEM * 2
 
 //............... Evil Pants ............... //
@@ -122,7 +122,7 @@
 	armor = ARMOR_PLATE_SILVER
 	smeltresult = /obj/item/ingot/silver
 	melting_material = /datum/material/silver
-	item_weight = 9 * SILVER_MULTIPLIER
+	item_weight = 5.42 KILOGRAMS
 	sellprice = VALUE_SILVER_ARMOR
 
 /obj/item/clothing/pants/platelegs/silver/Initialize(mapload)

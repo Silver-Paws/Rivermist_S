@@ -1,4 +1,5 @@
 /obj/item/clothing/armor/gambeson
+	item_weight = 4.7 KILOGRAMS
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
 	name = "gambeson"
 	desc = "Thick quilted cloth in layers, good on its own or worn below metal as padding."
@@ -10,7 +11,7 @@
 	pickup_sound = 'sound/foley/equip/cloak_take_off.ogg'
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 //	nodismemsleeves = FALSE gambesson being ripped by hand to bandages makes no sense. OTOH it can go into shirt slot asnd its kinda fun so maybe?
 	r_sleeve_status = SLEEVE_NOMOD
 	l_sleeve_status = SLEEVE_NOMOD
@@ -24,6 +25,7 @@
 	material_category = ARMOR_MAT_FABRIC
 
 /obj/item/clothing/armor/gambeson/light
+	item_weight = 3.1 KILOGRAMS
 	name = "light gambeson"
 	desc = "Thin and the maker skimped on the padding, typically worn by the peasantry to give some protection against cold for the whole body."
 	icon_state = "gambesonl"
@@ -45,6 +47,7 @@
 	color = CLOTHING_SOOT_BLACK
 
 /obj/item/clothing/armor/gambeson/heavy
+	item_weight = 5.6 KILOGRAMS
 	name = "padded gambeson"
 	desc = "Thick, padded, this will help a little even against arrows. A wise man carried steel as well, but it will do in a pinch."
 	icon_state = "gambesonp"
@@ -65,7 +68,7 @@
 	max_integrity = INTEGRITY_STRONG
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
-	sewrepair = TRUE
+	sewrepair = /datum/attribute/skill/misc/sewing/mending
 
 	armor = ARMOR_PADDED_GOOD
 

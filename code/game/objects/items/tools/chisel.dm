@@ -1,5 +1,6 @@
 //................	Chisel	............... //
 /obj/item/weapon/chisel
+	item_weight = 212 GRAMS
 	name = "chisel"
 	desc = "Hold it in one hand with a mallet or stone in the other. Strike with this to stonework."
 	icon_state = "chisel"
@@ -45,6 +46,7 @@
 	time_multiplier = 1.1
 
 /obj/item/weapon/chisel/bronze
+	item_weight = 245 GRAMS
 	name = "bronze chisel"
 	smeltresult = /obj/item/ingot/bronze
 	melting_material = /datum/material/bronze

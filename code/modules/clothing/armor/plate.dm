@@ -1,8 +1,9 @@
 /obj/item/clothing/armor/plate
+	item_weight = 8.4 KILOGRAMS
 	name = "steel half-plate"
 	desc = "Steel plate armor with shoulder guards. An incomplete, bulky set of excellent armor."
 	icon_state = "halfplate"
-	anvilrepair = /datum/attribute/skill/craft/armorsmithing
+	anvilrepair = /datum/attribute/skill/craft/armor_repair
 	melt_amount = 75
 	melting_material = /datum/material/steel
 	equip_delay_self = 4 SECONDS
@@ -46,7 +47,7 @@
 
 	armor = ARMOR_PLATE
 	body_parts_covered = COVERAGE_FULL
-	item_weight = 12 * STEEL_MULTIPLIER
+	item_weight = 17 KILOGRAMS
 
 /obj/item/clothing/armor/plate/full/iron
 	name = "iron plate armor"
@@ -59,7 +60,7 @@
 
 	armor = ARMOR_PLATE_BAD
 	max_integrity = INTEGRITY_STRONG
-	item_weight = 12 * IRON_MULTIPLIER
+	item_weight = 17 KILOGRAMS
 
 //................ Rusted Half-plate ............... //
 /obj/item/clothing/armor/plate/rust
@@ -75,7 +76,7 @@
 	sellprice = VALUE_IRON_ARMOR/2
 	armor = ARMOR_PLATE_BAD
 	max_integrity = INTEGRITY_STANDARD
-	item_weight = 12 * IRON_MULTIPLIER
+	item_weight = 8.75 KILOGRAMS
 
 
 /obj/item/clothing/armor/plate/blkknight
@@ -90,7 +91,7 @@
 	anvilrepair = /datum/attribute/skill/craft/blacksmithing
 	smeltresult = /obj/item/ingot/blacksteel
 	melting_material = /datum/material/blacksteel
-	item_weight = 12 * BLACKSTEEL_MULTIPLIER
+	item_weight = 20.45 KILOGRAMS
 	sellprice = VALUE_SILVER_ITEM * 6
 	stand_speed_reduction = 1.05
 
@@ -153,7 +154,7 @@
 	armor = ARMOR_PLATE_SILVER
 	smeltresult = /obj/item/ingot/silver
 	melting_material = /datum/material/silver
-	item_weight = 12 * SILVER_MULTIPLIER
+	item_weight = 22 KILOGRAMS
 	sellprice = VALUE_SILVER_ITEM * 3
 
 /obj/item/clothing/armor/plate/full/silver/Initialize(mapload)
@@ -197,11 +198,11 @@
 /datum/status_effect/buff/psydonic_endurance/on_apply()
 	. = ..()
 	if(HAS_TRAIT(owner, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(owner, TRAIT_HEAVYARMOR))
-		ADD_TRAIT(owner, TRAIT_HEAVYARMOR, src)
+		ADD_TRAIT(owner, TRAIT_HEAVYARMOR, id)
 
 /datum/status_effect/buff/psydonic_endurance/on_remove()
 	. = ..()
-	REMOVE_TRAIT(owner, TRAIT_HEAVYARMOR, src)
+	REMOVE_TRAIT(owner, TRAIT_HEAVYARMOR, id)
 
 /atom/movable/screen/alert/status_effect/buff/psydonic_endurance
 	name = "Psydonic Endurance"

@@ -27,6 +27,7 @@ And it also helps for the character set panel
 
 	/// List of traits that are applied to members of this Clan
 	var/list/clane_traits = list(
+		TRAIT_BLOODDRINKER,
 		TRAIT_STRONGBITE,
 		TRAIT_NOENERGY,
 		TRAIT_NOHUNGER,
@@ -530,7 +531,8 @@ And it also helps for the character set panel
 	. = ..()
 	if(.)
 		owner.add_stress(/datum/stress_event/bad_blood)
-		owner.adjustBruteLoss(5)
+		var/obj/item/organ/stomach = owner.getorganslot(ORGAN_SLOT_STOMACH)
+		stomach?.take_damage(5)
 
 /datum/status_effect/debuff/blood_disgust/on_remove()
 	. = ..()

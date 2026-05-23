@@ -6,6 +6,7 @@
 	. = ..()
 
 /obj/item/neuFarm/seed
+	item_weight = 3 GRAMS
 	name = "seeds"
 	icon = 'icons/roguetown/items/produce.dmi'
 	icon_state = "seeds"
@@ -80,7 +81,7 @@
 		if(located)
 			to_chat(user, span_notice("[located] is in the way!"))
 			return
-		if(!(GET_MOB_SKILL_VALUE_OLD(user, /datum/attribute/skill/labor/farming) >= SKILL_LEVEL_JOURNEYMAN))
+		if(!(GET_MOB_SKILL_VALUE_OLD(user, /datum/attribute/skill/labor/farming) >= SKILL_RANK_JOURNEYMAN))
 			to_chat(user, span_notice("I don't know enough to make a mound without tools."))
 			return
 		to_chat(user, span_notice("I begin making a mound for the seeds..."))
