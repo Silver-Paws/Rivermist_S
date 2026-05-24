@@ -126,29 +126,9 @@
 	. = ..()
 	if(!user || !user.mind)
 		return
-	if(!iscarbon(user))
-		return
-	var/mob/living/carbon/cuser = user
 	if(user.mana_pool.amount < mana_per_charge)
-		if(!cuser.get_bleed_rate())
-			user.show_message("<span class='warning'>[src] needs more mana to recharge.</span>")
-			return
-		else
-			//blood magic
-			user.show_message("<span class='warning'>[src] needs more mana to recharge, but you start using your blood instead.</span>")
-			while(charges < max_charges)
-				cuser.blood_volume -= max(5, (mana_per_charge - GET_MOB_SKILL_VALUE(cuser, /datum/attribute/skill/magic/blood)))
-				playsound(src, recharging_sound, 20)
-				if(!do_after(user, recharge_time, src))
-					break
-				charges++
-				update_icon()
-				if(cuser.blood_volume <= BLOOD_VOLUME_BAD)
-					user.show_message("<span class='notice'>[src] is recharged, but not completely, you feel horrible so you stop.</span>")
-					return
-			if(charges == max_charges)
-				user.show_message("<span class='notice'>[src] is completely charged.</span>")
-				return
+		user.show_message("<span class='warning'>[src] needs more mana to recharge.</span>")
+		return
 	if(charges >= max_charges)
 		user.show_message("<span class='notice'>[src] does not need to be recharged.</span>")
 		return
@@ -229,25 +209,8 @@
 /obj/item/natural/stone/attack_self_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(user.mana_pool.amount <= STONE_TRANSFORMATION_MANA_COST)
-		if(!iscarbon(user))
-			return
-		var/mob/living/carbon/cuser = user
-		if(!cuser.get_bleed_rate())
-			user.show_message("<span class='notice'>You squeeze [src] in your hand but you lack the necessary mana, you could bleed yourself to use your blood instead....</span>")
-			return
-		else
-			//using blood instead, probably for people without mana
-			user.show_message("<span class='notice'>You squeeze [src] in your hand but you lack the necessary mana, you start to use your blood instead...</span>")
-			playsound(src, 'sound/magic/diagnose.ogg', 10)
-			if(!do_after(user, 20 SECONDS, src))
-				return
-			cuser.blood_volume -= max(5, (STONE_TRANSFORMATION_MANA_COST -GET_MOB_SKILL_VALUE(cuser, /datum/attribute/skill/magic/blood)))
-			user.dropItemToGround(src, TRUE, TRUE)
-			var/obj/item/rmh_waystone_chunk/empty/waystone_chunk = new(get_turf(src))
-			user.put_in_active_hand(waystone_chunk, TRUE, TRUE)
-			user.show_message("<span class='warning'>When you relax your hand, you see [waystone_chunk] in it.</span>")
-			qdel(src)
-			return
+		user.show_message("<span class='notice'>You squeeze [src] in your hand but you lack the necessary mana.</span>")
+		return
 
 	user.show_message("<span class='notice'>You squeeze [src] in your hand and concentrate your mana on it.</span>")
 	playsound(src, 'sound/magic/diagnose.ogg', 10)
