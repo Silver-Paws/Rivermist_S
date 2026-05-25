@@ -29,6 +29,10 @@
 	var/resistance_to_pleasure = RESIST_NONE
 	/// Recent orgasm count
 	var/recent_orgasm_count = 0
+	/// How much recent orgasms have strained the body. Built by quick/intense climaxes, not ordinary ones.
+	var/orgasm_strain = 0
+	/// Last time orgasm strain naturally decayed
+	var/last_orgasm_strain_decay_time = 0
 	/// Are we edged by partner
 	var/is_edged = FALSE
 
@@ -86,6 +90,7 @@
 	handle_charge()
 	handle_aroousal_cooling()
 	handle_orgasm_count()
+	handle_orgasm_strain()
 	handle_statuses()
 	handle_passive_orgasm()
 	handle_orgasm_cooling()
@@ -98,6 +103,19 @@
 	if(last_climax_reset_time + ORGASM_RESET_TIME < world.time)
 		recent_orgasm_count -= 1
 		last_climax_reset_time = world.time
+
+/datum/component/arousal/proc/handle_orgasm_strain()
+	if(orgasm_strain <= 0)
+		last_orgasm_strain_decay_time = 0
+		return
+	if(!last_orgasm_strain_decay_time)
+		last_orgasm_strain_decay_time = world.time
+		return
+	var/elapsed_intervals = FLOOR((world.time - last_orgasm_strain_decay_time) / ORGASM_STRAIN_DECAY_INTERVAL, 1)
+	if(elapsed_intervals <= 0)
+		return
+	orgasm_strain = max(0, orgasm_strain - elapsed_intervals * ORGASM_STRAIN_DECAY_AMOUNT)
+	last_orgasm_strain_decay_time += elapsed_intervals * ORGASM_STRAIN_DECAY_INTERVAL
 
 /datum/component/arousal/proc/handle_orgasm_cooling()
 	if(last_orgasm_prog_increase_time >= world.time - 8 SECONDS)
@@ -205,6 +223,7 @@
 		"last_ejaculation_time" = last_ejaculation_time,
 		"is_spent" = is_spent(),
 		"edging" = edging_charge,
+		"orgasm_strain" = orgasm_strain,
 		"resistance_to_pleasure" = resistance_to_pleasure,
 		"orgasm_progress" = orgasm_progress
 	)
@@ -238,9 +257,9 @@
 
 	if(user.has_status_effect(/datum/status_effect/debuff/orgasmbroken))
 		if(isnymph)
-			arousal_amt *= 2
-		else
 			arousal_amt *= 1.5
+		else
+			arousal_amt *= 1.25
 		update_aching(1, giving)
 		var/lovermessage = pick("This feels too good!", "I must never stop!", "I want MORE!", "I need this!")
 		if(prob(15))
@@ -250,7 +269,7 @@
 		update_aching(5, giving)
 		var/lovermessage
 		if(!isnymph)
-			arousal_amt *= 0.5
+			arousal_amt *= 0.75
 			lovermessage = pick("My mind is going blank!", "I'm too spent!", "This is too much!")
 		else
 			lovermessage = pick("This feels too good!", "I must never stop!", "I want MORE!", "I need this!", "I LOVE this!")
@@ -262,7 +281,7 @@
 		update_aching(2, giving)
 		var/lovermessage
 		if(!isnymph)
-			arousal_amt *= 0.8
+			arousal_amt *= 0.9
 			lovermessage = pick("This is starting to feel unpleasant...", "Maybe I should rest soon...", "My loins are starting to chafe a bit.")
 		else
 			lovermessage = pick("This is starting to feel interesting.", "We're getting there...", "I love this feeling.")
@@ -270,7 +289,7 @@
 			to_chat(user, span_love(lovermessage))
 
 	if(user.has_status_effect(/datum/status_effect/edging_overstimulation))
-		arousal_amt *= 2
+		arousal_amt *= 1.5
 		if(prob(15))
 			var/stimmessage
 			stimmessage = pick("I'm too sensitive!", "There's too much pleasure!")
@@ -369,9 +388,9 @@
 		isnymph = TRUE
 	if(user.has_status_effect(/datum/status_effect/debuff/orgasmbroken))
 		if(isnymph)
-			arousal_amt *= 2
-		else
 			arousal_amt *= 1.5
+		else
+			arousal_amt *= 1.25
 		update_aching(1, giving)
 		var/lovermessage = pick("This feels too good!", "I must never stop!", "I want MORE!", "I need this!")
 		if(prob(15))
@@ -380,7 +399,7 @@
 		update_aching(5, giving)
 		var/lovermessage
 		if(!isnymph)
-			arousal_amt *= 0.5
+			arousal_amt *= 0.75
 			lovermessage = pick("My mind is going blank!", "I'm too spent!", "This is too much!")
 		else
 			lovermessage = pick("This feels too good!", "I must never stop!", "I want MORE!", "I need this!", "I LOVE this!")
@@ -390,14 +409,14 @@
 		update_aching(2, giving)
 		var/lovermessage
 		if(!isnymph)
-			arousal_amt *= 0.8
+			arousal_amt *= 0.9
 			lovermessage = pick("This is starting to feel unpleasant...", "Maybe I should rest soon...", "My loins are starting to chafe a bit.")
 		else
 			lovermessage = pick("This is starting to feel interesting.", "We're getting there...", "I love this feeling.")
 		if(prob(15))
 			to_chat(user, span_love(lovermessage))
 	if(user.has_status_effect(/datum/status_effect/edging_overstimulation))
-		arousal_amt *= 2
+		arousal_amt *= 1.5
 		if(prob(15))
 			var/stimmessage
 			stimmessage = pick("I'm too sensitive!", "There's too much pleasure!")
@@ -654,6 +673,45 @@
 	else
 		recipient.apply_status_effect(/datum/status_effect/facial/internal)
 
+/datum/component/arousal/proc/add_orgasm_strain(mob/living/user)
+	if(!user)
+		return
+	var/strain_to_add = 0
+	if(last_ejaculation_time)
+		var/time_since_last = world.time - last_ejaculation_time
+		if(time_since_last <= 45 SECONDS)
+			strain_to_add += 20
+		else if(time_since_last <= 2 MINUTES)
+			strain_to_add += 14
+		else if(time_since_last <= 4 MINUTES)
+			strain_to_add += 8
+		else if(time_since_last <= 6 MINUTES)
+			strain_to_add += 4
+
+	switch(edging_charge)
+		if(30 to 50)
+			strain_to_add += 4
+		if(51 to 70)
+			strain_to_add += 8
+		if(71 to INFINITY)
+			strain_to_add += 14
+
+	switch(arousal)
+		if(160 to 239)
+			strain_to_add += 4
+		if(240 to INFINITY)
+			strain_to_add += 8
+
+	if(charge <= CHARGE_FOR_CLIMAX)
+		strain_to_add += 10
+	if(user.has_status_effect(/datum/status_effect/edging_overstimulation))
+		strain_to_add += 8
+	if(strain_to_add <= 0)
+		return
+
+	orgasm_strain = clamp(orgasm_strain + strain_to_add, 0, ORGASM_STRAIN_MAX)
+	last_orgasm_strain_decay_time = world.time
+
 /datum/component/arousal/proc/after_ejaculation(intimate = FALSE, mob/living/user, mob/living/target, datum/sex_action/action, mob/living/action_initiator, mob/living/action_target, mob/living/action_performer)
 	switch(edging_charge)
 		if(10 to 20)
@@ -662,6 +720,8 @@
 			to_chat(user, span_love("Oh gods, I came!"))
 		if(51 to MAX_EDGING)
 			to_chat(user, span_love("Finally finally finally!"))
+
+	add_orgasm_strain(user)
 
 	if(user.has_penis())
 		if(is_spent())
@@ -1013,55 +1073,48 @@
 	var/mob/living/user = parent
 	var/nymph_mod = 0
 	if(HAS_TRAIT(user, TRAIT_NYMPHO_CURSE) || user.has_quirk(/datum/quirk/vice/lovefiend))
-		nymph_mod = 2
+		nymph_mod = ORGASM_STRAIN_NYMPH_THRESHOLD_MOD
 
-	//Sorry but idk how else to do this
 	if(user.has_status_effect(/datum/status_effect/debuff/loinspent))
-		if(recent_orgasm_count <= LOW_ORGASM_THRESHOLD_LOSS + nymph_mod)
+		if(orgasm_strain <= LOW_ORGASM_STRAIN_LOSS + nymph_mod)
 			user.remove_status_effect(/datum/status_effect/debuff/loinspent)
 	else
-		if(recent_orgasm_count >= LOW_ORGASM_THRESHOLD_GAIN + nymph_mod)
+		if(orgasm_strain >= LOW_ORGASM_STRAIN_GAIN + nymph_mod)
 			user.apply_status_effect(/datum/status_effect/debuff/loinspent)
 
 	if(user.has_status_effect(/datum/status_effect/debuff/cumbrained))
-		if(recent_orgasm_count <= MED_ORGASM_THRESHOLD_LOSS + nymph_mod)
+		if(orgasm_strain <= MED_ORGASM_STRAIN_LOSS + nymph_mod)
 			user.remove_status_effect(/datum/status_effect/debuff/cumbrained)
 	else
-		if(recent_orgasm_count >= MED_ORGASM_THRESHOLD_GAIN + nymph_mod)
+		if(orgasm_strain >= MED_ORGASM_STRAIN_GAIN + nymph_mod)
 			user.apply_status_effect(/datum/status_effect/debuff/cumbrained)
 
 	if(user.has_status_effect(/datum/status_effect/debuff/orgasmbroken))
-		if(recent_orgasm_count <= HIGH_ORGASM_THRESHOLD_LOSS + nymph_mod)
+		if(orgasm_strain <= HIGH_ORGASM_STRAIN_LOSS + nymph_mod)
 			user.remove_status_effect(/datum/status_effect/debuff/orgasmbroken)
 	else
-		if(recent_orgasm_count >= HIGH_ORGASM_THRESHOLD_GAIN + nymph_mod)
+		if(orgasm_strain >= HIGH_ORGASM_STRAIN_GAIN + nymph_mod)
 			user.apply_status_effect(/datum/status_effect/debuff/orgasmbroken)
 
-	/*if(user.has_status_effect(/datum/status_effect/debuff/nympho_addiction))
-		if(recent_orgasm_count <= OVER_THE_TOP_ORGASM_THRESHOLD_LOSS + nymph_mod)
-			user.remove_status_effect(/datum/status_effect/debuff/nympho_addiction)
-	else
-		if(recent_orgasm_count >= OVER_THE_TOP_ORGASM_THRESHOLD_GAIN + nymph_mod)
-			user.apply_status_effect(/datum/status_effect/debuff/nympho_addiction)*/
+	if(!user.has_status_effect(/datum/status_effect/debuff/nympho_addiction))
+		if(orgasm_strain >= OVER_THE_TOP_ORGASM_STRAIN_GAIN + nymph_mod)
+			user.apply_status_effect(/datum/status_effect/debuff/nympho_addiction)
 
 	if(user.has_penis())
 		if(user.has_status_effect(/datum/status_effect/blue_balls))
-			if(edging_charge <= 15)
+			if(edging_charge <= 20)
 				user.remove_status_effect(/datum/status_effect/blue_balls)
 		else
-			if(edging_charge >= 20)
+			if(edging_charge >= 35)
 				user.apply_status_effect(/datum/status_effect/blue_balls)
 	if(user.has_vagina())
 		if(user.has_status_effect(/datum/status_effect/blue_bean))
-			if(edging_charge <= 15)
+			if(edging_charge <= 20)
 				user.remove_status_effect(/datum/status_effect/blue_bean)
 		else
-			if(edging_charge >= 20)
+			if(edging_charge >= 35)
 				user.apply_status_effect(/datum/status_effect/blue_bean)
-	if(edging_charge > 60)
-		if(!MOBTIMER_FINISHED(user, "edging_overstimulation", 5 MINUTES)) //this isn't how mob timers work
-			return
-
+	if(edging_charge > 75 && MOBTIMER_FINISHED(user, "edging_overstimulation", 5 MINUTES)) //this isn't how mob timers work
 		MOBTIMER_SET(user, "edging_overstimulation")
 		user.apply_status_effect(/datum/status_effect/edging_overstimulation)
 
