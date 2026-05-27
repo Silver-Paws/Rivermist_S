@@ -428,6 +428,48 @@
 
 	TEST_ASSERT_EQUAL(injury.germ_level, 0, "Ordinary movement should not infect wounds; infection should require explicit contamination.")
 
+/datum/unit_test/prosthetic_mechanical_injuries_do_not_bleed
+#ifdef FOCUS_RUNTIME_REGRESSION_TEST
+	focus = TRUE
+#endif
+
+/datum/unit_test/prosthetic_mechanical_injuries_do_not_bleed/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/bodypart/r_arm/original_arm = patient.get_bodypart(BODY_ZONE_R_ARM)
+	TEST_ASSERT_NOTNULL(original_arm, "Test human should have a right arm to replace.")
+	original_arm.drop_limb()
+	qdel(original_arm)
+
+	var/obj/item/bodypart/r_arm/prosthetic/wood/prosthetic_arm = allocate(/obj/item/bodypart/r_arm/prosthetic/wood)
+	prosthetic_arm.attach_limb(patient, special = TRUE)
+	var/datum/injury/injury = prosthetic_arm.create_injury(WOUND_SLASH, 30)
+	TEST_ASSERT_NOTNULL(injury, "Test setup should create a mechanical injury on a prosthetic limb.")
+	TEST_ASSERT_EQUAL(injury.required_status, BODYPART_ROBOTIC, "Prosthetic limbs should use mechanical injury datums.")
+
+	TEST_ASSERT(!injury.is_bleeding(), "Mechanical injuries on prosthetic limbs should not bleed.")
+	TEST_ASSERT_EQUAL(prosthetic_arm.get_bleed_rate(), 0, "Prosthetic limbs should not contribute blood loss after mechanical injury.")
+
+/datum/unit_test/prosthetic_limbs_do_not_have_blood_bearing_organs
+#ifdef FOCUS_RUNTIME_REGRESSION_TEST
+	focus = TRUE
+#endif
+
+/datum/unit_test/prosthetic_limbs_do_not_have_blood_bearing_organs/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/bodypart/r_leg/original_leg = patient.get_bodypart(BODY_ZONE_R_LEG)
+	TEST_ASSERT_NOTNULL(original_leg, "Test human should have a right leg to replace.")
+	original_leg.drop_limb()
+	qdel(original_leg)
+
+	var/obj/item/bodypart/r_leg/prosthetic/wood/prosthetic_leg = allocate(/obj/item/bodypart/r_leg/prosthetic/wood)
+	TEST_ASSERT(!prosthetic_leg.artery_needed(), "Prosthetic limbs should not need artery organs.")
+	TEST_ASSERT(!length(prosthetic_leg.getorganslotlist(ORGAN_SLOT_ARTERY)), "Prosthetic limbs should not spawn artery organs.")
+
+	prosthetic_leg.attach_limb(patient, special = TRUE)
+	prosthetic_leg.burn_dam = prosthetic_leg.max_damage
+
+	TEST_ASSERT_EQUAL(prosthetic_leg.get_bleed_rate(), 0, "Severe prosthetic burn damage should not create blood loss.")
+
 /datum/unit_test/poison_splash_contaminates_wounds
 #ifdef FOCUS_RUNTIME_REGRESSION_TEST
 	focus = TRUE
@@ -511,3 +553,42 @@
 	TEST_ASSERT(findtext(output, "<details><summary>Genitals</summary>"), "Self injury checks should show genital information in a collapsible section.")
 	TEST_ASSERT(findtext(output, "penis"), "Self injury checks should name present genital organs.")
 	TEST_ASSERT(!findtext(output, "heart"), "The genital self-check section should not list non-genital organs.")
+
+/datum/unit_test/npc_damage_threshold_uses_total_damage
+#ifdef FOCUS_RUNTIME_REGRESSION_TEST
+	focus = TRUE
+#endif
+
+/datum/unit_test/npc_damage_threshold_uses_total_damage/Run()
+	var/mob/living/carbon/human/npc = allocate(/mob/living/carbon/human)
+	npc.threshold_brute = 20
+	npc.threshold_burn = 20
+	npc.threshold_tox = 20
+	npc.threshold_oxy = 20
+	npc.chance_escape = 0
+
+	npc.setToxLoss(15, updating_health = FALSE)
+	npc.setOxyLoss(10, updating_health = FALSE)
+	npc.npc_damage_threshold()
+
+	TEST_ASSERT_EQUAL(npc.stat, DEAD, "NPC threshold deaths should trigger when combined weighted damage passes the configured threshold.")
+
+/datum/unit_test/npc_damage_threshold_escape_chance_uses_configured_percent
+#ifdef FOCUS_RUNTIME_REGRESSION_TEST
+	focus = TRUE
+#endif
+
+/datum/unit_test/npc_damage_threshold_escape_chance_uses_configured_percent/Run()
+	for(var/i in 1 to 3)
+		var/mob/living/carbon/human/npc = allocate(/mob/living/carbon/human)
+		npc.threshold_brute = 20
+		npc.threshold_burn = 20
+		npc.threshold_tox = 20
+		npc.threshold_oxy = 20
+		npc.chance_escape = 100
+		npc.setToxLoss(15, updating_health = FALSE)
+		npc.setOxyLoss(10, updating_health = FALSE)
+
+		npc.npc_damage_threshold()
+
+		TEST_ASSERT(QDELETED(npc), "NPCs with a 100 percent escape chance should always escape instead of dying.")

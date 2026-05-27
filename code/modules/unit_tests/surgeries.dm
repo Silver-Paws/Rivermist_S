@@ -88,3 +88,61 @@
 	TEST_ASSERT(penis in organ_storage.contents(), "Inserted genital organ was not visible in open organ storage")
 	TEST_ASSERT(!organ_storage.remove_from_storage(penis, get_turf(patient)), "Surgery storage removed a genital organ")
 	TEST_ASSERT_EQUAL(penis.owner, patient, "Blocked genital removal still detached the organ from its owner")
+
+/datum/unit_test/suture_tool_only_tends_brute_healing_steps
+#ifdef FOCUS_SURGERY_TEST
+	focus = TRUE
+#endif
+
+/datum/unit_test/suture_tool_only_tends_brute_healing_steps/Run()
+	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human)
+	var/obj/item/needle/needle = allocate(/obj/item/needle)
+	var/datum/surgery_step/heal/brute/basic/brute_step = allocate(/datum/surgery_step/heal/brute/basic)
+	var/datum/surgery_step/heal/burn/basic/burn_step = allocate(/datum/surgery_step/heal/burn/basic)
+	var/datum/surgery_step/heal/combo/combo_step = allocate(/datum/surgery_step/heal/combo)
+
+	TEST_ASSERT_EQUAL(brute_step.tool_check(user, needle), TOOL_SUTURE, "Needles should still be valid for brute tending.")
+	TEST_ASSERT(!burn_step.tool_check(user, needle), "Needles should not be valid for burn tending.")
+	TEST_ASSERT(!combo_step.tool_check(user, needle), "Needles should not be valid for mixed burn/brute tending.")
+
+/datum/unit_test/surgery_success_chance_is_driven_by_medicine_skill
+#ifdef FOCUS_SURGERY_TEST
+	focus = TRUE
+#endif
+
+/datum/unit_test/surgery_success_chance_is_driven_by_medicine_skill/Run()
+	var/datum/surgery_step/heal/brute/basic/step = allocate(/datum/surgery_step/heal/brute/basic)
+
+	TEST_ASSERT_EQUAL(step.get_base_success_chance_for_skill(0), 20, "No medicine skill should still leave a desperate baseline chance.")
+	TEST_ASSERT_EQUAL(step.get_base_success_chance_for_skill(14), 48, "Barely trained surgeons should still be unreliable.")
+	TEST_ASSERT_EQUAL(step.get_base_success_chance_for_skill(15), 50, "Critical failure cutoff should begin at 15 medicine.")
+	TEST_ASSERT_EQUAL(step.get_base_success_chance_for_skill(30), 80, "Journeyman-level medicine should be strongly reliable.")
+	TEST_ASSERT_EQUAL(step.get_base_success_chance_for_skill(40), 95, "Skilled surgeons should nearly always succeed.")
+	TEST_ASSERT_EQUAL(step.get_base_success_chance_for_skill(60), 99, "Legendary surgeons should be capped just short of guaranteed success.")
+
+/datum/unit_test/surgery_critical_failure_chance_only_exists_for_unskilled_medicine
+#ifdef FOCUS_SURGERY_TEST
+	focus = TRUE
+#endif
+
+/datum/unit_test/surgery_critical_failure_chance_only_exists_for_unskilled_medicine/Run()
+	var/datum/surgery_step/heal/brute/basic/step = allocate(/datum/surgery_step/heal/brute/basic)
+
+	TEST_ASSERT_EQUAL(step.get_critical_failure_chance_for_skill(0), 10.5, "No medicine skill should carry meaningful critical failure risk.")
+	TEST_ASSERT_EQUAL(step.get_critical_failure_chance_for_skill(10), 3.5, "Low medicine skill should still carry some critical failure risk.")
+	TEST_ASSERT_EQUAL(step.get_critical_failure_chance_for_skill(14), 0.7, "Critical failure risk should nearly vanish just below 15 medicine.")
+	TEST_ASSERT_EQUAL(step.get_critical_failure_chance_for_skill(15), 0, "Critical failures should stop once medicine reaches 15.")
+	TEST_ASSERT_EQUAL(step.get_critical_failure_chance_for_skill(40), 0, "Skilled medicine should not critically fail through normal surgery odds.")
+
+/datum/unit_test/surgery_tool_quality_modifiers_reward_better_tools
+#ifdef FOCUS_SURGERY_TEST
+	focus = TRUE
+#endif
+
+/datum/unit_test/surgery_tool_quality_modifiers_reward_better_tools/Run()
+	var/datum/surgery_step/heal/brute/basic/step = allocate(/datum/surgery_step/heal/brute/basic)
+
+	TEST_ASSERT_EQUAL(step.get_tool_quality_success_modifier(100), 4, "Excellent tools should improve surgery odds.")
+	TEST_ASSERT_EQUAL(step.get_tool_quality_success_modifier(80), 0, "The normal proper tool rating should be neutral.")
+	TEST_ASSERT_EQUAL(step.get_tool_quality_success_modifier(60), -4, "Marginal tools should make surgery harder.")
+	TEST_ASSERT_EQUAL(step.get_tool_quality_success_modifier(50), -6, "Improvised tools should make surgery noticeably harder.")

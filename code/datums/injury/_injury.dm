@@ -361,6 +361,8 @@
 	return TRUE
 
 /datum/injury/proc/is_bleeding()
+	if((required_status & BODYPART_ROBOTIC) || (parent_bodypart && !parent_bodypart.is_organic_limb()))
+		return FALSE
 	for(var/thing in embedded_objects)
 		var/obj/item/item = thing
 		if(item.w_class >= WEIGHT_CLASS_SMALL)
