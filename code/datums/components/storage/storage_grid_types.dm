@@ -332,7 +332,7 @@
 	insert_preposition = "on"
 
 /datum/component/storage/concrete/grid/food/cooking/pot
-	screen_max_rows = 3
+	screen_max_rows = 4
 	screen_max_columns = 3
 	insert_verb = "put"
 	insert_preposition = "in"
