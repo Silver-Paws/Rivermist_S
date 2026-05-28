@@ -31,6 +31,18 @@
 		return FALSE
 	if(affected.limb_flags & BODYPART_BONE_ENCASED && !affected.has_wound(/datum/wound/fracture))
 		return FALSE
+	if(!find_usable_artery(affected))
+		return FALSE
+
+/datum/wound/artery/proc/find_usable_artery(obj/item/bodypart/affected)
+	for(var/obj/item/organ/possible_artery in shuffle(affected.getorganslotlist(ORGAN_SLOT_ARTERY)))
+		if(!possible_artery)
+			continue
+		if(possible_artery.damage >= possible_artery.maxHealth)
+			continue
+		if(artery_type_override && !istype(possible_artery, artery_type_override))
+			continue
+		return possible_artery
 
 /datum/wound/artery/can_stack_with(datum/wound/other)
 	if(istype(other, /datum/wound/artery) && (type == other.type))
@@ -41,22 +53,15 @@
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/organ/artery/artery
-	for(var/obj/item/organ/possible_artery in shuffle(affected.getorganslotlist(ORGAN_SLOT_ARTERY)))
-		if(!possible_artery)
-			continue
-		if(possible_artery.damage >= possible_artery.maxHealth)
-			continue
-		if(artery_type_override && !istype(possible_artery, artery_type_override))
-			continue
-		artery = possible_artery
-		break
-	var/dissection = (severity >= WOUND_SEVERITY_CRITICAL) || (artery?.damage >= (artery.maxHealth * 0.5))
-	if(artery)
-		if(dissection)
-			artery.dissect()
-		else
-			artery.tear()
+	var/obj/item/organ/artery/artery = find_usable_artery(affected)
+	if(!artery)
+		qdel(src)
+		return
+	var/dissection = (severity >= WOUND_SEVERITY_CRITICAL) || (artery.damage >= (artery.maxHealth * 0.5))
+	if(dissection)
+		artery.dissect()
+	else
+		artery.tear()
 	qdel(src)
 
 /datum/wound/artery/neck

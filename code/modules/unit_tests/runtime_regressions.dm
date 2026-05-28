@@ -364,6 +364,29 @@
 	TEST_ASSERT(injury.is_disinfected(), "A disinfectant-soaked bandage should disinfect the injury as soon as it is applied.")
 	TEST_ASSERT(injury.germ_level < 10, "A disinfectant-soaked bandage should reduce injury germs when it is applied.")
 
+/datum/unit_test/artery_wound_handles_missing_usable_artery
+#ifdef FOCUS_RUNTIME_REGRESSION_TEST
+	focus = TRUE
+#endif
+
+/datum/unit_test/artery_wound_handles_missing_usable_artery/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/bodypart/l_arm/arm = patient.get_bodypart(BODY_ZONE_L_ARM)
+	TEST_ASSERT_NOTNULL(arm, "Test human should have a left arm bodypart.")
+
+	var/datum/injury/incision = arm.create_injury(WOUND_SLASH, 20)
+	TEST_ASSERT_NOTNULL(incision, "Test setup should create an incision so artery wounds can apply.")
+
+	var/list/arteries = arm.getorganslotlist(ORGAN_SLOT_ARTERY)
+	TEST_ASSERT(length(arteries), "Test arm should have artery organs to exhaust.")
+	for(var/obj/item/organ/artery/artery as anything in arteries)
+		artery.applyOrganDamage(artery.maxHealth)
+
+	arm.add_wound(/datum/wound/artery, silent = TRUE, crit_message = TRUE)
+
+	for(var/obj/item/organ/artery/artery as anything in arteries)
+		TEST_ASSERT_EQUAL(artery.damage, artery.maxHealth, "Applying an artery wound with no usable artery should leave existing fully damaged arteries unchanged.")
+
 /datum/unit_test/player_bodypart_attacks_do_not_roll_violent_organ_damage
 #ifdef FOCUS_RUNTIME_REGRESSION_TEST
 	focus = TRUE
