@@ -71,7 +71,7 @@
 /datum/quirk/vice/tongueless
 	name = "Tongueless"
 	desc = "I said one word too many to a noble, they cut out my tongue."
-	desc_hint = "(Being mute is not an excuse to forego roleplay. Use of custom emotes is recommended)"
+	desc_hint = "Being mute is not an excuse to forego roleplay. Use of custom emotes is recommended"
 	point_value = 4
 
 /datum/quirk/vice/tongueless/on_spawn()

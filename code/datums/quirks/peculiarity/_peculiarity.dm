@@ -246,5 +246,5 @@
 /datum/quirk/peculiarity/selfawaregeni
 	name = "Sensitiveness"
 	desc = "I can tell more about my private bits."
-	desc_hint = "(May be spammy, exact liquid information and alerts e.t.c.)"
+	desc_hint = "May be spammy, exact liquid information and alerts e.t.c."
 	point_value = 0

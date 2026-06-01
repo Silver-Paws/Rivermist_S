@@ -2,9 +2,10 @@
 /datum/quirk/vice/wanted
 	name = "Wanted"
 	desc = "Something in my past has made me a target. I am marked as an outlaw in these lands. I'm always looking over my shoulder. And protecting my loins..."
-	desc_hint = "THIS IS A DIFFICULT FLAW, YOU WILL BE HUNTED AND HAVE NON-CON AND RAPE ATTEMPTS MADE AGAINST YOU BY TOWN GUARDS. \
-	This does not give you a license to grief or perform criminal acts with impunity, \
-	This is a roleplay flaw to make you a 'target' - play at your own risk."
+	desc_hint = "THIS IS A DIFFICULT FLAW. \
+	<br>You will be hunted and have non-con and rape attempts made against you by town guards. \
+	<br>This does not give you a license to grief or perform criminal acts with impunity, \
+	this is a roleplay flaw to make you a 'target' - play at your own risk"
 	point_value = 3
 	customization_type = QUIRK_TEXT
 	customization_label = "Why are you being hunted?"
@@ -291,7 +292,7 @@
 /datum/quirk/vice/weak_heart
 	name = "Weak Heart"
 	desc = "You were born with a weak heart. You can't handle stressful situations for fear of your heart giving out."
-	desc_hint = "(Half threshold for heart attacks and heart attack from being overly stressed)"
+	desc_hint = "Half threshold for heart attacks and heart attack from being overly stressed"
 	point_value = 6
 	incompatible_quirks = list(
 		/datum/quirk/boon/iron_will
