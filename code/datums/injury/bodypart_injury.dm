@@ -16,6 +16,8 @@
 						return /datum/injury/slash/deep
 					if(0 to 15)
 						return /datum/injury/slash/small
+			if(WOUND_SCRATCH)
+				return /datum/injury/scratch/small
 			if(WOUND_PIERCE)
 				switch(damage)
 					if(60 to INFINITY)

@@ -373,6 +373,8 @@ DEFINE_BITFIELD(organ_flags, list(
 #define WOUND_INTERNAL_BRUISE 12
 ///wounds coming from divine sources
 #define WOUND_DIVINE 13
+///shallow nuisance scratches that hurt and bruise the skin, but do not bleed
+#define WOUND_SCRATCH 14
 
 // ~injury flags
 /// This injury creates sounds hints when applied

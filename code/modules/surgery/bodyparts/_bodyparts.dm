@@ -425,14 +425,20 @@
 	if(can_decay())
 		if(germ_level || (getorganslotefficiency(ORGAN_SLOT_ARTERY) < ORGAN_FAILING_EFFICIENCY))
 			update_germs(delta_time, times_fired)
+	if(length(wounds))
+		for(var/datum/wound/wound as anything in wounds)
+			wound.on_life()
 	if(number_injuries)
 		update_injuries(delta_time, times_fired)
+	consider_processing()
 
 /// Check if we need to run on_life()
 /obj/item/bodypart/proc/consider_processing()
 	. = FALSE
 	//else if.. else if.. so on.
 	if(pain_dam >= DAMAGE_PRECISION)
+		. = TRUE
+	else if(length(wounds))
 		. = TRUE
 	else if(number_injuries)
 		. = TRUE
@@ -981,10 +987,7 @@
 		if((brute <= 0) && (burn <= 0))
 			break
 		var/datum/injury/injury = thing
-		var/list/heal_list = list(WOUND_SLASH, WOUND_PIERCE, WOUND_BLUNT, WOUND_INTERNAL_BRUISE)
-		if(true_heal)
-			heal_list |= list(WOUND_BITE, WOUND_BLUNT, WOUND_DIVINE, WOUND_LASH)
-		if(injury.damage_type in heal_list)
+		if(injury.heals_as_brute_damage(true_heal))
 			brute = injury.heal_damage(brute)
 		else if(injury.damage_type == WOUND_BURN)
 			burn = injury.heal_damage(burn)

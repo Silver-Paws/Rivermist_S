@@ -154,9 +154,6 @@
 	if(damage > low_threshold)
 		if(prob(3))
 			to_chat(H, span_warning("My [pick(altnames)] aches..."))
-		if(prob(15) && damage > high_threshold) //internal bleeding ig
-			owner.transfer_blood_to(src, round(damage/15), TRUE)
-			to_chat(H, span_boldwarning("My [pick(altnames)] BLEED..!"))
 
 	if(reagents.maximum_volume < reagents.total_volume) //overflow
 		if(world.time > last_damagespill_alert + 30 SECONDS)

@@ -167,6 +167,20 @@
 /datum/injury/proc/damage_per_injury()
 	return (damage/amount)
 
+/datum/injury/proc/heals_as_brute_damage(include_divine = FALSE)
+	var/static/list/camp_brute_damage_types = list(
+		WOUND_SLASH,
+		WOUND_PIERCE,
+		WOUND_BLUNT,
+		WOUND_INTERNAL_BRUISE,
+		WOUND_SCRATCH,
+		WOUND_BITE,
+		WOUND_LASH,
+	)
+	if(damage_type in camp_brute_damage_types)
+		return TRUE
+	return include_divine && (damage_type == WOUND_DIVINE)
+
 /datum/injury/proc/can_autoheal()
 	if(parent_mob.stat == DEAD)
 		return FALSE
@@ -183,7 +197,7 @@
 	switch(damage_type)
 		if(WOUND_SLASH, WOUND_PIERCE, WOUND_BITE, WOUND_LASH)
 			return (is_bandaged() || is_sutured() || parent_bodypart.bandage)
-		if(WOUND_BLUNT, WOUND_DIVINE)
+		if(WOUND_BLUNT, WOUND_INTERNAL_BRUISE, WOUND_SCRATCH, WOUND_DIVINE)
 			return (is_bandaged() || parent_bodypart.bandage)
 		if(WOUND_BURN)
 			return (is_salved() || (is_disinfected() && (is_bandaged() || parent_bodypart.bandage) ) )
@@ -358,7 +372,9 @@
 	var/static/list/needle_suturable_wounds = list(WOUND_SLASH, WOUND_PIERCE, WOUND_BITE, WOUND_LASH)
 	if(!(damage_type in needle_suturable_wounds))
 		return FALSE
-	return is_bleeding() || (damage_per_injury() > autoheal_cutoff)
+	if(is_sutured())
+		return FALSE
+	return (current_stage <= max_bleeding_stage) || (damage_per_injury() > autoheal_cutoff)
 
 // bandages the injury
 /datum/injury/proc/bandage_injury()

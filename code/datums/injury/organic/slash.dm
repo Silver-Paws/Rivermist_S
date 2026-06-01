@@ -72,3 +72,20 @@
 		"massive jagged scar" = 0
 		)
 	fade_away_time = INFINITY
+
+/** SCRATCHES **/
+/datum/injury/scratch
+	bleed_rate = 0
+	bleed_threshold = INFINITY
+	damage_type = WOUND_SCRATCH
+	infection_rate = 0
+
+/datum/injury/scratch/infection_check(delta_time = 2, times_fired)
+	return FALSE
+
+/datum/injury/scratch/small
+	stages = list(
+		"angry scratch" = 10,
+		"scratch" = 5,
+		"fading scratch" = 0
+	)

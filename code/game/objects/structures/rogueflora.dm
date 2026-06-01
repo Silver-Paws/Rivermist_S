@@ -1,6 +1,11 @@
 #define SEARCHTIME 1.2 SECONDS
 #define BUSH_PRIMARY_LOOT_CHANCE 88
 #define BUSH_BONUS_LOOT_CHANCE 66
+#define BUSH_SCRATCH_DAMAGE 5
+#define BUSH_CLOTHING_TEAR_NORMAL 12
+#define BUSH_CLOTHING_TEAR_MEAGRE 10
+#define BUSH_CLOTHING_TEAR_THORN_WALK 35
+#define BUSH_CLOTHING_TEAR_THORN_RUN 80
 
 // Base Flora
 /obj/structure/flora
@@ -379,6 +384,75 @@
 			res_replenish = world.time + 8 MINUTES
 		return
 
+/obj/structure/flora/grass/proc/apply_bush_collision_effects(mob/living/carbon/human/H, scratch_damage = BUSH_SCRATCH_DAMAGE, clothing_damage = 0, clothing_chance = 0, scratch_source = "Branches")
+	if(!istype(H))
+		return
+	damage_bush_clothing(H, clothing_damage, clothing_chance)
+	if(scratch_damage <= 0 || HAS_TRAIT(H, TRAIT_PIERCEIMMUNE))
+		return
+	var/obj/item/bodypart/scratched_bodypart = pick_bush_scratch_bodypart(H)
+	if(!scratched_bodypart)
+		return
+	var/datum/injury/scratch = scratched_bodypart.create_injury(WOUND_SCRATCH, scratch_damage)
+	if(!scratch)
+		return
+	scratched_bodypart.update_damages()
+	scratched_bodypart.update_limb_efficiency()
+	if(scratched_bodypart.can_be_disabled)
+		scratched_bodypart.update_disabled()
+	scratched_bodypart.consider_processing()
+	H.updatehealth()
+	H.update_damage_overlays()
+	to_chat(H, span_warning("[scratch_source] [pick("scrape", "scratch", "nick")] my [scratched_bodypart.name]."))
+	return scratch
+
+/obj/structure/flora/grass/proc/pick_bush_scratch_bodypart(mob/living/carbon/human/H)
+	var/static/list/scratch_zone_weights = list(
+		BODY_ZONE_L_LEG = 4,
+		BODY_ZONE_R_LEG = 4,
+		BODY_ZONE_L_ARM = 2,
+		BODY_ZONE_R_ARM = 2,
+		BODY_ZONE_CHEST = 1,
+	)
+	var/list/candidates = list()
+	for(var/body_zone in scratch_zone_weights)
+		var/obj/item/bodypart/bodypart = H.get_bodypart(body_zone)
+		if(bodypart?.is_organic_limb())
+			candidates[bodypart] = scratch_zone_weights[body_zone]
+	if(!length(candidates))
+		for(var/obj/item/bodypart/bodypart as anything in H.bodyparts)
+			if(bodypart?.is_organic_limb())
+				candidates[bodypart] = 1
+	if(!length(candidates))
+		return
+	return pickweight(candidates)
+
+/obj/structure/flora/grass/proc/damage_bush_clothing(mob/living/carbon/human/H, clothing_damage = 0, clothing_chance = 0)
+	if(clothing_damage <= 0 || clothing_chance <= 0 || !prob(clothing_chance))
+		return
+	var/list/clothing_candidates = list()
+	var/obj/item/clothing/socks = H.get_item_by_slot(ITEM_SLOT_SOCKS)
+	if(socks)
+		clothing_candidates[socks] = 6
+	var/obj/item/clothing/pants = H.get_item_by_slot(ITEM_SLOT_PANTS)
+	if(pants)
+		clothing_candidates[pants] = 4
+	var/obj/item/clothing/shoes = H.get_item_by_slot(ITEM_SLOT_SHOES)
+	if(shoes)
+		clothing_candidates[shoes] = 2
+	var/obj/item/clothing/shirt = H.get_item_by_slot(ITEM_SLOT_SHIRT)
+	if(shirt)
+		clothing_candidates[shirt] = 1
+	var/obj/item/clothing/armor = H.get_item_by_slot(ITEM_SLOT_ARMOR)
+	if(armor)
+		clothing_candidates[armor] = 1
+	if(!length(clothing_candidates))
+		return
+	var/obj/item/clothing/torn_clothing = pickweight(clothing_candidates)
+	torn_clothing.take_damage(clothing_damage, BRUTE, BCLASS_CUT, FALSE)
+	to_chat(H, span_warning("[torn_clothing] catches on \the [src] and tears."))
+	return torn_clothing
+
 /obj/structure/flora/grass/tundra
 	name = "tundra grass"
 	icon_state = "tundragrass1"
@@ -513,17 +587,7 @@
 		var/mob/living/carbon/human/H = L
 		var/was_hard_collision = (H.m_intent == MOVE_INTENT_RUN || H.throwing || H.atom_flags & Z_FALLING || HAS_TRAIT(H, TRAIT_STUMBLE))
 		if(was_hard_collision)
-			var/obj/item/bodypart/BP = pick(H.bodyparts)
-			BP.receive_damage(10)
-			to_chat(H, span_warning("A thorn [pick("slices","cuts","nicks")] my [BP.name]."))
-			if((prob(20)) && !HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
-				var/obj/item/natural/thorn/TH = new(src.loc)
-				BP.add_embedded_object(TH, silent = TRUE)
-				to_chat(H, span_danger("\A [TH] impales my [BP.name]."))
-				if(!HAS_TRAIT(H, TRAIT_NOPAIN))
-					H.emote("painscream")
-					L.Stun(3 SECONDS) //that fucking hurt
-					H.consider_ambush()
+			apply_bush_collision_effects(H, BUSH_SCRATCH_DAMAGE, BUSH_CLOTHING_TEAR_NORMAL, 70)
 
 /obj/structure/flora/grass/bush/wall
 	name = "great bush"
@@ -741,35 +805,18 @@
 			if(!ishuman(L))
 				return
 			else
-				to_chat(L, span_warning("I'm scratched by the thorns."))
-				L.apply_damage(5, BRUTE, damage_type = BCLASS_CUT, can_crit = FALSE)
+				var/mob/living/carbon/human/H = L
+				apply_bush_collision_effects(H, BUSH_SCRATCH_DAMAGE, BUSH_CLOTHING_TEAR_THORN_WALK, 90, "Thorns")
 				L.Immobilize(10)
-				var/obj/item/clothing/socks = L.get_item_by_slot(ITEM_SLOT_SOCKS)
-				if(socks)
-					socks.take_damage(30)
 
 		if(L.m_intent == MOVE_INTENT_RUN || HAS_TRAIT(L, TRAIT_STUMBLE))
 			if(!ishuman(L))
-				to_chat(L, span_warning("I'm cut on a thorn!"))
-				L.apply_damage(5, BRUTE, damage_type = BCLASS_CUT)
+				to_chat(L, span_warning("I'm scratched by the thorns."))
+				L.apply_damage(BUSH_SCRATCH_DAMAGE, BRUTE)
 			else
 				var/mob/living/carbon/human/H = L
-				var/obj/item/clothing/socks = L.get_item_by_slot(ITEM_SLOT_SOCKS)
-				if(socks)
-					socks.take_damage(110)
-				if(prob(80))
-					if(!HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
-						var/obj/item/bodypart/BP = pick(H.bodyparts)
-						var/obj/item/natural/thorn/TH = new(src.loc)
-						BP.add_embedded_object(TH, silent = TRUE)
-						BP.receive_damage(10)
-						to_chat(H, span_danger("\A [TH] impales my [BP.name]!"))
-						L.Paralyze(10)
-				else
-					var/obj/item/bodypart/BP = pick(H.bodyparts)
-					to_chat(H, span_warning("A thorn [pick("slices","cuts","nicks")] my [BP.name]."))
-					BP.receive_damage(10)
-					L.Immobilize(10)
+				apply_bush_collision_effects(H, BUSH_SCRATCH_DAMAGE, BUSH_CLOTHING_TEAR_THORN_RUN, 100, "Thorns")
+				L.Immobilize(10)
 
 
 /*	..................   Meagre Bush   ................... */	// This works on the characters stats and doesnt have a preset vendor content. Hardmode compared to the OG one.
@@ -830,23 +877,12 @@
 			L.Immobilize(5)
 		if(L.m_intent == MOVE_INTENT_RUN || HAS_TRAIT(L, TRAIT_STUMBLE))
 			if(!ishuman(L))
-				to_chat(L, span_warning("I'm cut on a thorn!"))
-				L.apply_damage(5, BRUTE, damage_type = BCLASS_CUT)
+				to_chat(L, span_warning("I'm scratched by the branches."))
+				L.apply_damage(BUSH_SCRATCH_DAMAGE, BRUTE)
 				L.Immobilize(5)
 			else
 				var/mob/living/carbon/human/H = L
-				if(prob(20))
-					if(!HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
-						var/obj/item/bodypart/BP = pick(H.bodyparts)
-						var/obj/item/natural/thorn/TH = new(src.loc)
-						BP.add_embedded_object(TH, silent = TRUE)
-						BP.receive_damage(10)
-						to_chat(H, span_danger("\A [TH] impales my [BP.name]!"))
-						L.Paralyze(5)
-				else
-					var/obj/item/bodypart/BP = pick(H.bodyparts)
-					to_chat(H, span_warning("A thorn [pick("slices","cuts","nicks")] my [BP.name]."))
-					BP.receive_damage(10)
+				apply_bush_collision_effects(H, BUSH_SCRATCH_DAMAGE, BUSH_CLOTHING_TEAR_MEAGRE, 60)
 
 /obj/structure/flora/grass/bush_meagre/attack_hand(mob/living/user)
 	var/mob/living/L = user
@@ -939,3 +975,8 @@
 #undef SEARCHTIME
 #undef BUSH_PRIMARY_LOOT_CHANCE
 #undef BUSH_BONUS_LOOT_CHANCE
+#undef BUSH_SCRATCH_DAMAGE
+#undef BUSH_CLOTHING_TEAR_NORMAL
+#undef BUSH_CLOTHING_TEAR_MEAGRE
+#undef BUSH_CLOTHING_TEAR_THORN_WALK
+#undef BUSH_CLOTHING_TEAR_THORN_RUN

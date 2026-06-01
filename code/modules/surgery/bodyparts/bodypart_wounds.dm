@@ -95,6 +95,7 @@
 	if(owner && COOLDOWN_FINISHED(owner, adrenaline_burst))
 		COOLDOWN_START(owner, adrenaline_burst, 45 SECONDS)
 		owner.reagents?.add_reagent(/datum/reagent/adrenaline, 12)
+	consider_processing()
 	return wound
 
 /// Removes a wound from this bodypart, removing any associated effects
@@ -106,6 +107,7 @@
 	. = wound.remove_from_bodypart()
 	if(.)
 		qdel(wound)
+		consider_processing()
 
 /// Check to see if we can apply a bleeding wound on this bodypart
 /obj/item/bodypart/proc/can_bloody_wound()
