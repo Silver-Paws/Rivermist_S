@@ -2,10 +2,10 @@
 /datum/quirk/vice/wanted
 	name = "Wanted"
 	desc = "Something in my past has made me a target. I am marked as an outlaw in these lands. I'm always looking over my shoulder. And protecting my loins..."
-	desc_hint = "THIS IS A DIFFICULT FLAW. \
+	desc_hint = "THIS IS A DIFFICULT FLAW - play at your own risk. \
 	<br>You will be hunted and have non-con and rape attempts made against you by town guards. \
-	<br>This does not give you a license to grief or perform criminal acts with impunity, \
-	this is a roleplay flaw to make you a 'target' - play at your own risk"
+	This does not give you a license to grief or perform criminal acts with impunity, \
+	this is a roleplay flaw to make you a 'target'"
 	point_value = 3
 	customization_type = QUIRK_TEXT
 	customization_label = "Why are you being hunted?"
@@ -45,7 +45,6 @@
 		/datum/species/goblin,
 		/datum/species/orc,
 	)
-*/
 
 /datum/quirk/vice/luxless/on_examined(mob/user, list/P, list/examine_contents)
 	if(HAS_TRAIT(user, TRAIT_RECOGNIZE_ADDICTS))
@@ -56,6 +55,7 @@
 		return
 	var/mob/living/carbon/human/H = owner
 	H.apply_status_effect(/datum/status_effect/debuff/flaw_lux_taken)
+*/
 
 /datum/quirk/vice/pacifist
 	name = "Pacifist"
