@@ -279,6 +279,15 @@ body {
 	margin-bottom: 8px;
 }
 
+.quirk-desc_hint {
+	color: #f1d669;
+	font-size: 9px;
+	line-height: 1.4;
+	margin-bottom: 8px;
+	font-style: italic;
+	text-align: center;
+}
+
 .quirk-status {
 	font-size: 11px;
 	color: #4CAF50;
