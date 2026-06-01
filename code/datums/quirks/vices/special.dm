@@ -30,7 +30,7 @@
 	if(HAS_TRAIT(user, TRAIT_RECOGNIZE_ADDICTS))
 		LAZYADDASSOCLIST(examine_contents, EXAMINE_SECT_PREGEAR, span_info("A wanted person..."))
 
-/*
+/* THIS QUIRK ISN'T LIABLE FOR RIVERMIST HOLLOW BUILD
 /datum/quirk/vice/luxless
 	name = "Lux-less"
 	desc = "Through some grand misfortune, or heroic sacrifice - you have given up your link to Psydon, and with it - your soul. A putrid, horrid thing, you consign yourself to an eternity of nil after death. EXPECT A DIFFICULT, MECHANICALLY UNFAIR EXPERIENCE. (Rakshari, Hollowkin and Kobolds cannot take this - they already have no lux.)"
