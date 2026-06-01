@@ -59,7 +59,7 @@
 /datum/repeatable_crafting_recipe/bomb/gunpowder
 	name = "blastpowder"
 	requirements = list(
-		/obj/item/reagent_containers/food/snacks/badrecipe = 1,
+		/obj/item/fertilizer/ash = 1,
 		/obj/item/alch/coaldust = 1,
 		/obj/item/alch/firedust = 1,
 	)

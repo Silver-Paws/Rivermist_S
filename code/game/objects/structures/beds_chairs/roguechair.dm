@@ -273,7 +273,7 @@
 
 /obj/item/chair/stool/bar
 	name = "barstool"
-	icon_state = "barstoolover"
+	icon_state = "baritem"
 	icon = 'icons/roguetown/misc/structure.dmi'
 	origin_type = /obj/structure/chair/stool/bar
 	blade_dulling = DULLING_BASHCHOP
