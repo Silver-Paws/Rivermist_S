@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(quirk_points_by_type)
 			"name" = initial(quirk_type.name),
 			"type" = quirk_type,
 			"desc" = initial(quirk_type.desc),
+			"desc_hint" = initial(quirk_type.desc_hint),
 			"value" = initial(quirk_type.point_value)
 		))
 		LAZYADDASSOC(GLOB.quirk_singletons, quirk_type, new quirk_type)
@@ -56,6 +57,8 @@ GLOBAL_LIST_EMPTY(quirk_points_by_type)
 	var/name = "Quirk"
 	/// Description of what this quirk does
 	var/desc = "A quirk."
+	/// Optional hint to show below the desc, for OOC or important info
+	var/desc_hint = ""
 	/// Category: QUIRK_BOON, QUIRK_VICE, or QUIRK_PECULIARITY
 	var/quirk_category = QUIRK_PECULIARITY
 	/// Point value (negative = costs points, positive = gives points)
@@ -120,6 +123,9 @@ GLOBAL_LIST_EMPTY(quirk_points_by_type)
 
 /datum/quirk/proc/get_desc(datum/preferences/prefs)
 	return desc
+
+/datum/quirk/proc/get_desc_hint(datum/preferences/prefs)
+	return desc_hint
 
 /datum/quirk/proc/after_job_spawn(datum/job/job)
 	return

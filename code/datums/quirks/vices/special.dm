@@ -1,10 +1,11 @@
 
 /datum/quirk/vice/wanted
 	name = "Wanted"
-	desc = "Something in my past has made me a target. I am marked as an outlaw in these lands. I'm always looking over my shoulder. And protecting my loins...	\
-	\nTHIS IS A DIFFICULT FLAW, YOU WILL BE HUNTED AND HAVE NON-CON AND RAPE ATTEMPTS MADE AGAINST YOU BY TOWN GUARDS. \
-	THIS DOES NOT GIVE YOU A LICENSE TO GRIEF OR PERFORM CRIMINAL ACTS WITH IMPUNITY, \
-	THIS IS A ROLEPLAY FLAW TO MAKE YOU A 'TARGET' - PLAY AT YOUR OWN RISK."
+	desc = "Something in my past has made me a target. I am marked as an outlaw in these lands. I'm always looking over my shoulder. And protecting my loins..."
+	desc_hint = "THIS IS A DIFFICULT FLAW - play at your own risk. \
+	<br>You will be hunted and have non-con and rape attempts made against you by town guards. \
+	This does not give you a license to grief or perform criminal acts with impunity, \
+	this is a roleplay flaw to make you a 'target'"
 	point_value = 3
 	customization_type = QUIRK_TEXT
 	customization_label = "Why are you being hunted?"
@@ -30,6 +31,7 @@
 	if(HAS_TRAIT(user, TRAIT_RECOGNIZE_ADDICTS))
 		LAZYADDASSOCLIST(examine_contents, EXAMINE_SECT_PREGEAR, span_info("A wanted person..."))
 
+/* THIS QUIRK ISN'T LIABLE FOR RIVERMIST HOLLOW BUILD
 /datum/quirk/vice/luxless
 	name = "Lux-less"
 	desc = "Through some grand misfortune, or heroic sacrifice - you have given up your link to Psydon, and with it - your soul. A putrid, horrid thing, you consign yourself to an eternity of nil after death. EXPECT A DIFFICULT, MECHANICALLY UNFAIR EXPERIENCE. (Rakshari, Hollowkin and Kobolds cannot take this - they already have no lux.)"
@@ -53,6 +55,7 @@
 		return
 	var/mob/living/carbon/human/H = owner
 	H.apply_status_effect(/datum/status_effect/debuff/flaw_lux_taken)
+*/
 
 /datum/quirk/vice/pacifist
 	name = "Pacifist"
@@ -288,7 +291,8 @@
 
 /datum/quirk/vice/weak_heart
 	name = "Weak Heart"
-	desc = "You were born with a weak heart. You can't handle stressful situations for fear of your heart giving out (Half threshold for heart attacks and heart attack from being overly stressed)."
+	desc = "You were born with a weak heart. You can't handle stressful situations for fear of your heart giving out."
+	desc_hint = "Half threshold for heart attacks and heart attack from being overly stressed"
 	point_value = 6
 	incompatible_quirks = list(
 		/datum/quirk/boon/iron_will
