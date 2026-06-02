@@ -173,14 +173,11 @@
 	if(world.time < lastclick + 3 SECONDS)
 		return
 	lastclick = world.time
-	if(!HAS_TRAIT(usr, TRAIT_BLUEPRINT_VISION))
-		var/mob/vision = usr
-		vision.enter_blueprint()
+	var/mob/vision = usr
+	if(vision.has_active_blueprint_mode())
+		vision.exit_blueprint()
 	else
-		var/mob/vision = usr
-		REMOVE_TRAIT(usr, TRAIT_BLUEPRINT_VISION, TRAIT_GENERIC)
-		vision.blueprints.quit()
-		vision.blueprints = null
+		vision.enter_blueprint()
 
 /atom/movable/screen/craft/Destroy()
 	QDEL_NULL(book)

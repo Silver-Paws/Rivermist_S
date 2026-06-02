@@ -32,6 +32,7 @@
 	if(registered_mob)
 		RegisterSignal(registered_mob, COMSIG_USER_MOUSE_ENTERED, PROC_REF(on_mouse_moved))
 		RegisterSignal(registered_mob, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(on_mouse_moved_pre))
+		RegisterSignal(registered_mob, COMSIG_MOB_LOGOUT, PROC_REF(on_mob_logout))
 
 /datum/blueprint_system/proc/quit()
 	if(holder)
@@ -49,15 +50,20 @@
 /datum/blueprint_system/proc/unregister_mouse_signals()
 	if(!registered_mob)
 		return
-	UnregisterSignal(registered_mob, COMSIG_USER_MOUSE_ENTERED)
-	UnregisterSignal(registered_mob, COMSIG_ATOM_MOUSE_ENTERED)
+	UnregisterSignal(registered_mob, list(COMSIG_USER_MOUSE_ENTERED, COMSIG_ATOM_MOUSE_ENTERED, COMSIG_MOB_LOGOUT))
 	registered_mob = null
+
+/datum/blueprint_system/proc/on_mob_logout(mob/source)
+	SIGNAL_HANDLER
+	source.exit_blueprint()
 
 /datum/blueprint_system/Destroy()
 	if(holder)
 		holder.screen -= buttons
 		if(holder.click_intercept == src)
 			holder.click_intercept = null
+		for(var/obj/structure/blueprint/blueprint in GLOB.active_blueprints)
+			blueprint.remove_viewer_client(holder)
 	unregister_mouse_signals()
 	holder?.player_details?.post_login_callbacks -= li_cb
 	li_cb = null

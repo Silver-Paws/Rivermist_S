@@ -122,12 +122,18 @@
 	viewer.client.images += blueprint_image
 
 /obj/structure/blueprint/proc/remove_viewer(mob/living/viewer)
-	if(!viewer.client || !viewing_images[viewer.client])
+	if(!viewer.client)
+		return
+	remove_viewer_client(viewer.client)
+
+/obj/structure/blueprint/proc/remove_viewer_client(client/viewer_client)
+	if(!viewer_client || !viewing_images[viewer_client])
 		return
 
-	var/image/blueprint_image = viewing_images[viewer.client]
-	viewer.client.images -= blueprint_image
-	viewing_images -= viewer.client
+	var/image/blueprint_image = viewing_images[viewer_client]
+	if(!QDELETED(viewer_client))
+		viewer_client.images -= blueprint_image
+	viewing_images -= viewer_client
 
 /obj/structure/blueprint/proc/clear_all_viewers()
 	for(var/client/C in viewing_images)

@@ -97,8 +97,8 @@
 
 /atom/movable/screen/blueprint/quit/Click()
 	if(bd)
-		REMOVE_TRAIT(usr, TRAIT_BLUEPRINT_VISION, TRAIT_GENERIC)
-		bd.quit()
+		var/mob/user = usr
+		user.exit_blueprint()
 
 /atom/movable/blueprint_pixel_dummy
 	name = "pixel positioning tracker"

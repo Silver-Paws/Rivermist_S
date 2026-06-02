@@ -79,8 +79,23 @@ GLOBAL_LIST_EMPTY(blueprint_recipes)
 /mob
 	var/datum/blueprint_system/blueprints
 
+/mob/proc/has_active_blueprint_mode()
+	return client && HAS_TRAIT(src, TRAIT_BLUEPRINT_VISION) && blueprints && !QDELETED(blueprints) && blueprints.holder == client
+
 /mob/proc/enter_blueprint()
 	if(!client)
 		return
+	if(blueprints || HAS_TRAIT(src, TRAIT_BLUEPRINT_VISION))
+		exit_blueprint()
 	ADD_TRAIT(src, TRAIT_BLUEPRINT_VISION, TRAIT_GENERIC)
 	blueprints = new(client)
+
+/mob/proc/exit_blueprint()
+	if(HAS_TRAIT(src, TRAIT_BLUEPRINT_VISION))
+		REMOVE_TRAIT(src, TRAIT_BLUEPRINT_VISION, TRAIT_GENERIC)
+	if(!blueprints)
+		return
+	var/datum/blueprint_system/current_blueprints = blueprints
+	blueprints = null
+	if(!QDELETED(current_blueprints))
+		current_blueprints.quit()

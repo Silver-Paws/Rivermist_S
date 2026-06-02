@@ -27,10 +27,11 @@
 /datum/status_effect/buff/secondsight/on_apply()
 	. = ..()
 	ADD_TRAIT(owner, TRAIT_THERMAL_VISION, type)
+	owner.update_sight()
 	owner.hud_used?.plane_masters_update()
 
 /datum/status_effect/buff/secondsight/on_remove()
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_THERMAL_VISION, type)
-	owner.see_invisible = SEE_INVISIBLE_LIVING
+	owner.update_sight()
 	owner.hud_used?.plane_masters_update()
