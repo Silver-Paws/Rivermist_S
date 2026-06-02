@@ -13,7 +13,7 @@
 	///the amount we pollute
 	var/pollute_amount = 600
 	///our required_baking temperature
-	var/required_chem_temp = 374
+	var/required_chem_temp = 232
 	///what we add for optionals ie chunks of
 	var/wording_choice = "chunks of"
 	cooking_sound = /datum/looping_sound/boiling

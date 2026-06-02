@@ -425,6 +425,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_AMAZING_BACK "Light Load"
 #define TRAIT_KITTEN_MOM "Loved By Kittens"
 #define TRAIT_WATER_BREATHING "Waterbreathing"
+#define TRAIT_WATER_LOVER "WaterLover"
 #define TRAIT_MOONWATER_ELIXIR "Moonwater Elixir"
 #define TRAIT_FLOWERFIELD_IMMUNITY "Flower Strider"
 #define TRAIT_SECRET_OFFICIANT "Secret Officiant"

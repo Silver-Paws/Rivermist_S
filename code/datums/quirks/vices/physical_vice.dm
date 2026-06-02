@@ -70,7 +70,8 @@
 
 /datum/quirk/vice/tongueless
 	name = "Tongueless"
-	desc = "I said one word too many to a noble, they cut out my tongue. (Being mute is not an excuse to forego roleplay. Use of custom emotes is recommended.)"
+	desc = "I said one word too many to a noble, they cut out my tongue."
+	desc_hint = "Being mute is not an excuse to forego roleplay. Use of custom emotes is recommended"
 	point_value = 4
 
 /datum/quirk/vice/tongueless/on_spawn()
@@ -521,12 +522,18 @@
 
 /datum/quirk/vice/nopouch
 	name = "No Pouch"
-	desc = "I lost my pouch recently, I'm without a zenny.."
+	desc = "I lost my pouch recently, I'm without an amna.."
 	point_value = 1
 
-/datum/quirk/vice/nopouch/on_spawn()
+/datum/quirk/vice/nopouch/after_job_spawn(datum/job/job)
 	var/mob/living/carbon/human/H = owner
-	var/obj/item/pouch = locate(/obj/item/storage/belt/pouch) in H
+	var/pouch = find_pouch(H)
+
+	if(!pouch)
+		penalize_points(span_warning("No pouch found! Amaunator removed some of your traits to compensate."))
+		return
+
+	// Pouch deletion if found
 	if(H.wear_neck == pouch)
 		H.wear_neck = null
 	if(H.beltl == pouch)
@@ -534,6 +541,17 @@
 	if(H.beltr == pouch)
 		H.beltr = null
 	qdel(pouch)
+	to_chat(H, span_warning("I've lost my pouch... Damn it..."))
+
+/// Proc to find pouch in inventory, including slots and containers like satchels
+/datum/quirk/vice/nopouch/proc/find_pouch(mob/living/carbon/human/H)
+	var/obj/item/storage/belt/pouch/inventory_pouch
+	for(inventory_pouch in H.contents)
+		return inventory_pouch
+	for(var/obj/item/storage/storages in H.contents)
+		for(inventory_pouch in storages.contents)
+			return inventory_pouch
+	return null
 
 /datum/quirk/vice/wild_night
 	name = "Wild Night"

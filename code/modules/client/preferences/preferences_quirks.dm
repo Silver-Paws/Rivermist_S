@@ -438,6 +438,7 @@
 		dat += "<span class='quirk-points'>[quirk_data["value"]] pts</span>"
 		dat += "</div>"
 		dat += "<div class='quirk-desc'>[quirk_data["desc"]]</div>"
+		dat += "<div class='quirk-desc_hint'>[quirk_data["desc_hint"]]</div>"
 
 		if(is_selected)
 			dat += "<div class='quirk-status'>Selected</div>"
@@ -473,6 +474,7 @@
 		dat += "<span class='quirk-points'>[quirk.point_value] pts</span>"
 		dat += "</div>"
 		dat += "<div class='quirk-desc'>[quirk.get_desc(src)]</div>"
+		dat += "<div class='quirk-desc_hint'>[quirk.get_desc_hint(src)]</div>"
 
 		var/custom_type = quirk.customization_type
 		var/list/options = quirk?.return_customization(src)
