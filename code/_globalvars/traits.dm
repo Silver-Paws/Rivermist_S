@@ -177,6 +177,7 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		"Light Load" = TRAIT_AMAZING_BACK,
 		"Loved By Kittens" = TRAIT_KITTEN_MOM,
 		"Waterbreathing" = TRAIT_WATER_BREATHING,
+		"WaterLover" = TRAIT_WATER_LOVER,
 		"Moonwater Elixir" = TRAIT_MOONWATER_ELIXIR,
 		"Violator of the Coven" = TRAIT_VIOLATOR,
 		"Endless Slumber" = TRAIT_TORPOR,

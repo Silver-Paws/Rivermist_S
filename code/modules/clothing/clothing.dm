@@ -605,7 +605,10 @@ BLIND     // can't see anything
 	if(wet.water_stacks < 0)
 		if(COOLDOWN_FINISHED(src, wet_stress_cd))
 			COOLDOWN_START(src, wet_stress_cd, 60 SECONDS)
-			C.add_stress(/datum/stress_event/wet_cloth)
+			if(HAS_TRAIT(C, TRAIT_WATER_LOVER) || istriton(C))
+				C.add_stress(/datum/stress_event/wet_cloth_positive)
+			else
+				C.add_stress(/datum/stress_event/wet_cloth)
 
 /obj/item/clothing/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armor_penetration)
 	. = ..()

@@ -55,7 +55,7 @@
 	use_skintones = TRUE
 
 	species_traits = list(NO_UNDERWEAR, HAIR, FACEHAIR, OLDGREY)
-	inherent_traits = list(TRAIT_NOMOBSWAP, TRAIT_WATER_BREATHING, TRAIT_GOOD_SWIM)
+	inherent_traits = list(TRAIT_NOMOBSWAP, TRAIT_WATER_BREATHING, TRAIT_GOOD_SWIM, TRAIT_WATER_LOVER)
 	inherent_traits_m = list(TRAIT_STRONGBITE)
 	inherent_sheet = /datum/attribute_holder/sheet/job/species/triton/inherent
 
