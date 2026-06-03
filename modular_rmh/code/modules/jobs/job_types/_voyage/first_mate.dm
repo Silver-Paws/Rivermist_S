@@ -31,6 +31,7 @@
 	attribute_sheet = /datum/attribute_holder/sheet/job/advclass/councilor/first_mate
 
 	traits = list(
+		TRAIT_CAN_STEER_SHIP,
 		TRAIT_MEDIUMARMOR,
 		TRAIT_DODGEEXPERT,
 		TRAIT_BREADY,

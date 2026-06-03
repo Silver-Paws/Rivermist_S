@@ -4122,6 +4122,7 @@
 #include "modular_rmh\code\modules\jobs\job_types\_advclass.dm"
 #include "modular_rmh\code\modules\jobs\job_types\_voyage\first_mate.dm"
 #include "modular_rmh\code\modules\jobs\job_types\_voyage\lord_captain.dm"
+#include "modular_rmh\code\modules\jobs\job_types\_voyage\navigator.dm"
 #include "modular_rmh\code\modules\jobs\job_types\_voyage\passenger.dm"
 #include "modular_rmh\code\modules\jobs\job_types\_voyage\ship_doctor.dm"
 #include "modular_rmh\code\modules\jobs\job_types\_voyage\ship_guard.dm"

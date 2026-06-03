@@ -119,6 +119,7 @@
 #include "timer_sanity.dm"
 #include "unit_test.dm"
 #include "visible_message_fov.dm"
+#include "voyage_navigator.dm"
 #include "weapon_icons.dm"
 // END_INCLUDE
 
