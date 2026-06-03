@@ -464,7 +464,7 @@
 		var/handcuff_msg = "[capitalize(P[THEIR])] arms are restrained by [handcuffed.get_examine_string(user)]!"
 		. += "<A href='byond://?src=[REF(src)];item=[ITEM_SLOT_HANDCUFFED]'>[handcuff_msg]</A>"
 	if(legcuffed)
-		var/legcuff_msg = "[capitalize(P[THEIR])] legs are restrained by [handcuffed.get_examine_string(user)]!"
+		var/legcuff_msg = "[capitalize(P[THEIR])] legs are restrained by [legcuffed.get_examine_string(user)]!"
 		. += "<A href='byond://?src=[REF(src)];item=[ITEM_SLOT_LEGCUFFED]'>[legcuff_msg]</A>"
 
 	//Bloody hands
