@@ -586,20 +586,20 @@
 			r_hand = /obj/item/weapon/polearm/halberd
 			armor = /obj/item/clothing/armor/plate/orc/warlord
 			pants = /obj/item/clothing/pants/trou/leathertights
-			boots = /obj/item/clothing/shoes/boots/armor/orc/warlord
+			shoes = /obj/item/clothing/shoes/boots/armor/orc/warlord
 			head = /obj/item/clothing/head/helmet/orc/warlord
 		if(2)
 			r_hand = /obj/item/weapon/sword/long/greatsword
 			armor = /obj/item/clothing/armor/plate/orc/warlord
 			pants = /obj/item/clothing/pants/trou/leathertights
-			boots = /obj/item/clothing/shoes/boots/armor/orc/warlord
+			shoes = /obj/item/clothing/shoes/boots/armor/orc/warlord
 			head = /obj/item/clothing/head/helmet/orc/warlord
 		if(3)
 			r_hand = /obj/item/weapon/whip/antique
 			l_hand = /obj/item/weapon/sword/short/iron
 			armor = /obj/item/clothing/armor/plate/orc/warlord
 			pants = /obj/item/clothing/pants/trou/leathertights
-			boots = /obj/item/clothing/shoes/boots/armor/orc/warlord
+			shoes = /obj/item/clothing/shoes/boots/armor/orc/warlord
 			head = /obj/item/clothing/head/helmet/orc/warlord
 		if(4)
 			armor = /obj/item/clothing/armor/plate/orc/warlord
@@ -611,7 +611,7 @@
 			r_hand = /obj/item/weapon/flail/sflail
 			armor = /obj/item/clothing/armor/plate/orc/warlord
 			pants = /obj/item/clothing/pants/trou/leathertights
-			boots = /obj/item/clothing/shoes/boots/armor/orc/warlord
+			shoes = /obj/item/clothing/shoes/boots/armor/orc/warlord
 			head = /obj/item/clothing/head/helmet/orc/warlord
 
 /mob/living/carbon/human/species/orc/warlord/skilled/after_creation()
