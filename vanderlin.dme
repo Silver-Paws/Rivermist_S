@@ -3919,6 +3919,7 @@
 #include "modular_ratwood\modular_deserttown\desertstuff.dm"
 #include "modular_ratwood\modular_deserttown\desertwalls.dm"
 #include "modular_rmh\code\tweaks.dm"
+#include "modular_rmh\code\_DEFINES\species\_species.dm"
 #include "modular_rmh\code\area\misc.dm"
 #include "modular_rmh\code\area\rmh_areas.dm"
 #include "modular_rmh\code\area\rmh_bogforest_areas.dm"

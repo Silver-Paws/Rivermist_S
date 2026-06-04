@@ -39,6 +39,14 @@
 	if(!opened)
 		to_chat(user, span_red("The [name] is zipped shut!"))
 		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.dna?.species.id in SPECIES_BIG_BODY)
+			if(M == user)
+				to_chat(user, span_red("I'm too big for the [name]!"))
+			else
+				to_chat(user, span_red("[M] is too big for the [name]!"))
+			return
 	. = ..()
 
 /obj/structure/bed/sleepingbag/deluxe/post_buckle_mob(mob/living/M)
