@@ -4015,6 +4015,7 @@
 #include "modular_rmh\code\game\objects\structures\machinery.dm"
 #include "modular_rmh\code\game\objects\structures\maneater.dm"
 #include "modular_rmh\code\game\objects\structures\pelts.dm"
+#include "modular_rmh\code\game\objects\structures\roguechair_rmh.dm"
 #include "modular_rmh\code\game\objects\structures\selune_walldeco.dm"
 #include "modular_rmh\code\game\objects\structures\ship.dm"
 #include "modular_rmh\code\game\objects\structures\sign.dm"
