@@ -11,6 +11,10 @@ GLOBAL_LIST_EMPTY(locked_sex_objects)
 #define ERP_PREFERENCE_EDIT_GRACE_MINUTES 20
 #define ERP_PREFERENCE_EDIT_GRACE_PERIOD (ERP_PREFERENCE_EDIT_GRACE_MINUTES MINUTES)
 
+#define MAGE_HAND_ACTION_MESSAGE_START "start"
+#define MAGE_HAND_ACTION_MESSAGE_PERFORM "perform"
+#define MAGE_HAND_ACTION_MESSAGE_FINISH "finish"
+
 
 #define COMSIG_SEX_ADJUST_AROUSAL "sex_adjust_arousal"                  // (amount) - Adjust arousal level
 #define COMSIG_SEX_SET_AROUSAL "sex_set_arousal"                        // (amount) - Set arousal to specific value

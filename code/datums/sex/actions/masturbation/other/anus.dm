@@ -1,6 +1,7 @@
 /datum/sex_action/masturbate/other/anus
 	name = "Finger their butt"
 	check_same_tile = FALSE
+	mage_hand_overlay_zone = MAGE_HAND_ZONE_BUTT
 
 /datum/sex_action/masturbate/other/anus/shows_on_menu(mob/living/user, mob/living/target)
 	if(user == target)

@@ -4,6 +4,8 @@
 	target_menu_zone_mask = SEX_UI_ZONE_BODY
 	check_same_tile = FALSE
 	requires_free_hands = TRUE
+	mage_hand_allowed = TRUE
+	mage_hand_overlay_zone = MAGE_HAND_ZONE_BODY
 
 /datum/sex_action/rub_body/shows_on_menu(mob/living/user, mob/living/target)
 	if(user == target)

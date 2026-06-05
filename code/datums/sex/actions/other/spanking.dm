@@ -7,6 +7,8 @@
 	do_time = 2.5 SECONDS // Slightly faster than average for repeated action
 	stamina_cost = 0
 	requires_free_hands = TRUE
+	mage_hand_allowed = TRUE
+	mage_hand_overlay_zone = MAGE_HAND_ZONE_BUTT
 
 /datum/sex_action/spanking/shows_on_menu(mob/living/user, mob/living/target)
 	if(user == target)
@@ -21,7 +23,7 @@
 		return FALSE
 	if(user == target)
 		return FALSE
-	if(!user.Adjacent(target))
+	if(!user.Adjacent(target) && !can_mage_hand_reach(user, target))
 		return FALSE
 	// No clothing or body zone checks, can always spank
 	return TRUE
