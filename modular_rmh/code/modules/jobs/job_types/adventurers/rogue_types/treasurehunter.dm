@@ -51,7 +51,7 @@
 	pants = /obj/item/clothing/pants/trou/leather/explorer
 	shoes = /obj/item/clothing/shoes/boots/leather
 	backr = /obj/item/weapon/shovel
-	backl = /obj/item/storage/backpack/satchel
+	backl = /obj/item/storage/backpack/backpack/longhike/with_bedroll
 	belt = /obj/item/storage/belt/leather/adventurers_subclasses
 	beltl = /obj/item/weapon/whip // You know why.
 	beltr = /obj/item/flashlight/flare/torch/lantern

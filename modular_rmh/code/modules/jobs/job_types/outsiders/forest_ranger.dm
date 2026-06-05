@@ -98,7 +98,7 @@
 	pants = /obj/item/clothing/pants/trou/leather
 	shoes = /obj/item/clothing/shoes/boots
 	backr = /obj/item/weapon/shield/heater
-	backl = /obj/item/storage/backpack/satchel
+	backl = /obj/item/storage/backpack/backpack/longhike
 	belt = /obj/item/storage/belt/leather/fgarrison
 	beltl = /obj/item/weapon/flail/militia
 	beltr = /obj/item/weapon/axe/iron
@@ -183,7 +183,7 @@
 	pants = /obj/item/clothing/pants/trou/leather
 	shoes = /obj/item/clothing/shoes/boots
 	backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/long
-	backl = /obj/item/storage/backpack/satchel
+	backl = /obj/item/storage/backpack/backpack/longhike/with_bedroll
 	belt = /obj/item/storage/belt/leather/fgarrison
 	beltl = /obj/item/weapon/knife/cleaver/combat
 	beltr = /obj/item/ammo_holder/quiver/arrows
@@ -270,7 +270,7 @@
 	pants = /obj/item/clothing/pants/trou/leather
 	shoes = /obj/item/clothing/shoes/boots
 	backr = /obj/item/weapon/polearm/halberd/bardiche/woodcutter
-	backl = /obj/item/storage/backpack/satchel
+	backl = /obj/item/storage/backpack/backpack/longhike
 	belt = /obj/item/storage/belt/leather/fgarrison
 	beltl = /obj/item/weapon/mace/steel/morningstar
 	beltr = /obj/item/weapon/axe/iron
