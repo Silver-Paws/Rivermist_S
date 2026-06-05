@@ -43331,7 +43331,7 @@
 /obj/machinery/light/fueled/wallfire/candle,
 /obj/structure/carpet/red,
 /obj/structure/closet/crate/chest/neu_fancy,
-/obj/item/storage/belt/pouch/coins/mid,
+/obj/item/storage/belt/pouch/cloth/coins/mid,
 /turf/open/floor/ruinedwood/herringbone_clear,
 /area/indoors/town/rmh/loudmouth)
 "oqp" = (
