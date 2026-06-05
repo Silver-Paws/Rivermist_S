@@ -42,7 +42,7 @@
 	name = "Treasure Hunter"
 	head = /obj/item/clothing/head/explorer
 	mask = null
-	neck = /obj/item/storage/belt/pouch
+	neck = /obj/item/storage/belt/pouch/cloth
 	cloak = /obj/item/clothing/cloak/raincloak/colored/mortus
 	armor = /obj/item/clothing/armor/gambeson/explorer
 	shirt = /obj/item/clothing/shirt/undershirt/colored/black

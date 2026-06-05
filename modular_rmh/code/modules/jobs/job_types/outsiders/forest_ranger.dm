@@ -109,7 +109,7 @@
 	backpack_contents = list(
 		/obj/item/weapon/knife/hunting = 1,
 		/obj/item/rope/chain = 1,
-		/obj/item/storage/belt/pouch/coins/poor = 1,
+		/obj/item/storage/belt/pouch/cloth/coins/poor = 1,
 		/obj/item/signal_horn = 1,
 	)
 
@@ -194,7 +194,7 @@
 	backpack_contents = list(
 		/obj/item/weapon/knife/hunting = 1,
 		/obj/item/rope/chain = 1,
-		/obj/item/storage/belt/pouch/coins/poor = 1,
+		/obj/item/storage/belt/pouch/cloth/coins/poor = 1,
 		/obj/item/signal_horn = 1,
 	)
 
@@ -281,7 +281,7 @@
 	backpack_contents = list(
 		/obj/item/weapon/knife/hunting = 1,
 		/obj/item/rope/chain = 1,
-		/obj/item/storage/belt/pouch/coins/poor = 1,
+		/obj/item/storage/belt/pouch/cloth/coins/poor = 1,
 		/obj/item/signal_horn = 1
 	)
 

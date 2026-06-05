@@ -45,7 +45,7 @@
 	name = "Hunter"
 	head = /obj/item/clothing/head/brimmed
 	mask = null
-	neck = /obj/item/storage/belt/pouch/coins/poor
+	neck = /obj/item/storage/belt/pouch/cloth/coins/poor
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak/colored/brown
 	armor = null
 	shirt = /obj/item/clothing/shirt/shortshirt/colored/random
