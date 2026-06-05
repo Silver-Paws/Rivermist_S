@@ -190,6 +190,28 @@
 	TEST_ASSERT(!SEND_SIGNAL(vagina, COMSIG_BODYSTORAGE_FIND_ITEM_LAYER, burrowing), "The pulled leech should no longer be inside the host organ storage.")
 	TEST_ASSERT(!QDELETED(burrowing), "Pulling off a leech should preserve the item.")
 
+/datum/unit_test/erotic_leeches_attach_to_bodyparts_and_suck_blood
+#ifdef FOCUS_LEECH_TEST
+	focus = TRUE
+#endif
+
+/datum/unit_test/erotic_leeches_attach_to_bodyparts_and_suck_blood/Run()
+	var/mob/living/carbon/human/host = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human)
+	user.zone_selected = BODY_ZONE_L_ARM
+	var/obj/item/bodypart/arm = host.get_bodypart(BODY_ZONE_L_ARM)
+	TEST_ASSERT_NOTNULL(arm, "Test host should have a left arm for bodypart leech attachment.")
+	var/obj/item/natural/worms/leech/erotic/basic/leech = allocate(/obj/item/natural/worms/leech/erotic/basic)
+
+	leech.attack(host, user, list())
+
+	TEST_ASSERT(leech in arm.embedded_objects, "Erotic leeches should attach to ordinary bodyparts when aimed away from intimate organs.")
+	var/starting_blood = host.blood_volume
+	leech.on_embed_life(host, arm)
+	TEST_ASSERT(host.blood_volume < starting_blood, "An erotic leech attached to an ordinary bodypart should suck blood.")
+	TEST_ASSERT(leech.blood_storage > 0, "Blood sucked from an ordinary bodypart should be stored in the erotic leech.")
+	TEST_ASSERT_NULL(leech.target_organ, "An erotic leech attached to an ordinary bodypart should not switch into genital behavior.")
+
 /datum/unit_test/burrowing_leech_egg_laying_requires_both_prefs
 #ifdef FOCUS_LEECH_TEST
 	focus = TRUE

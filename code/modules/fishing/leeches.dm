@@ -386,7 +386,7 @@
 	color = "#b86f86"
 	consistent = TRUE
 	drainage = 0
-	blood_sucking = 0
+	blood_sucking = 2
 	toxin_healing = 0
 	max_storage = 500
 	var/list/valid_organ_slots = list(ORGAN_SLOT_PENIS, ORGAN_SLOT_VAGINA, ORGAN_SLOT_ANUS, ORGAN_SLOT_LEFT_NIP, ORGAN_SLOT_RIGHT_NIP)
@@ -421,11 +421,11 @@
 		to_chat(user, span_warning("[src] curls away, unable to find a suitable host."))
 		return
 	var/mob/living/carbon/human/H = M
+	if(!is_erotic_organ_zone(user.zone_selected))
+		attach_to_bodypart_for_blood(H, user)
+		return
 	if(!target_allows_pref(H, /datum/erp_preference/boolean/allow_horny_leeches))
 		to_chat(user, span_notice("[src] slips away without latching on."))
-		return
-	if(!(user.zone_selected in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)))
-		to_chat(user, span_notice("[src] searches for a more intimate place to latch."))
 		return
 	if(!get_location_accessible(H, check_zone(user.zone_selected)))
 		to_chat(user, "<span class='warning'>Something in the way.</span>")
@@ -452,6 +452,8 @@
 	if(!ishuman(user))
 		bodypart?.remove_embedded_object(src)
 		return TRUE
+	if(!should_try_erotic_migration_from_bodypart(bodypart))
+		return ..()
 	if(trying_to_attach)
 		return FALSE
 	var/mob/living/carbon/human/H = user
@@ -468,6 +470,36 @@
 	trying_to_attach = TRUE
 	feedback(H, span_info("Something slimy on my [bodypart?.name || "skin"] starts crawling toward my [target_organ.name]."), TRUE)
 	addtimer(CALLBACK(src, PROC_REF(migrate_to_erotic_slot), target_organ, STORAGE_LAYER_OUTER, bodypart), LEECH_MIGRATION_TIME)
+	return TRUE
+
+/obj/item/natural/worms/leech/erotic/proc/is_erotic_organ_zone(zone)
+	return zone in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)
+
+/obj/item/natural/worms/leech/erotic/proc/should_try_erotic_migration_from_bodypart(obj/item/bodypart/bodypart)
+	return bodypart?.body_zone in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)
+
+/obj/item/natural/worms/leech/erotic/proc/attach_to_bodypart_for_blood(mob/living/carbon/human/H, mob/user)
+	if(!H || !user)
+		return FALSE
+	var/target_zone = check_zone(user.zone_selected)
+	var/obj/item/bodypart/affecting = H.get_bodypart(target_zone)
+	if(!affecting)
+		return FALSE
+	if(!get_location_accessible(H, target_zone))
+		to_chat(user, span_warning("Something in the way."))
+		return FALSE
+	if(!do_after(user, 0, H))
+		return FALSE
+
+	user.dropItemToGround(src)
+	forceMove(H)
+	affecting.add_embedded_object(src, silent = TRUE, crit_message = FALSE)
+	target_organ = null
+	trying_to_attach = FALSE
+	if(H == user)
+		user.visible_message(span_notice("[user] places [src] on [user.p_their()] [affecting.name]."), span_notice("I place [src] on my [affecting.name]."))
+	else
+		user.visible_message(span_notice("[user] places [src] on [H]'s [affecting.name]."), span_notice("I place [src] on [H]'s [affecting.name]."))
 	return TRUE
 
 /obj/item/natural/worms/leech/erotic/proc/target_allows_pref(mob/living/carbon/human/H, pref_type)
