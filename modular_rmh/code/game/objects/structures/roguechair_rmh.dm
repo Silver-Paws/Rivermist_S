@@ -8,8 +8,8 @@
 	item_weight = 0.343
 
 /obj/item/sleepingbag/deluxe/pre_attack_secondary(atom/target, mob/living/user, list/modifiers)
-	if(istype(target, /obj/item/storage/backpack/backpack/deluxe))
-		var/obj/item/storage/backpack/backpack/deluxe/deluxepack = target
+	if(istype(target, /obj/item/storage/backpack/backpack/longhike))
+		var/obj/item/storage/backpack/backpack/longhike/deluxepack = target
 		deluxepack.add_bedroll(src, user)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	return ..()
