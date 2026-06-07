@@ -212,6 +212,46 @@
 	TEST_ASSERT(leech.blood_storage > 0, "Blood sucked from an ordinary bodypart should be stored in the erotic leech.")
 	TEST_ASSERT_NULL(leech.target_organ, "An erotic leech attached to an ordinary bodypart should not switch into genital behavior.")
 
+/datum/unit_test/source_erotic_leeches_migrate_from_bodyparts
+#ifdef FOCUS_LEECH_TEST
+	focus = TRUE
+#endif
+
+/datum/unit_test/source_erotic_leeches_migrate_from_bodyparts/Run()
+	var/mob/living/carbon/human/host = allocate(/mob/living/carbon/human)
+	var/datum/preferences/prefs = allocate(/datum/preferences)
+	prefs.setup_default_erp_preferences()
+	var/datum/erp_preference/boolean/allow_horny_leeches/horny_pref = new
+	horny_pref.set_value(prefs, TRUE)
+	var/datum/erp_preference/boolean/allow_forced_lactation/lactation_pref = new
+	lactation_pref.set_value(prefs, TRUE)
+	host.cache_erp_preferences_from_prefs(prefs)
+
+	var/obj/item/organ/genitals/penis/penis = allocate(/obj/item/organ/genitals/penis)
+	penis.Insert(host, TRUE, FALSE)
+	var/obj/item/organ/genitals/filling_organ/vagina/vagina = allocate(/obj/item/organ/genitals/filling_organ/vagina)
+	vagina.Insert(host, TRUE, FALSE)
+	var/obj/item/organ/genitals/filling_organ/anus/anus = allocate(/obj/item/organ/genitals/filling_organ/anus)
+	anus.Insert(host, TRUE, FALSE)
+	var/obj/item/organ/genitals/filling_organ/breasts/breasts = allocate(/obj/item/organ/genitals/filling_organ/breasts)
+	breasts.Insert(host, TRUE, FALSE)
+	var/obj/item/organ/genitals/nipple/left/left_nipple = allocate(/obj/item/organ/genitals/nipple/left)
+	left_nipple.Insert(host, TRUE, FALSE)
+
+	var/obj/item/bodypart/leg = host.get_bodypart(BODY_ZONE_L_LEG)
+	TEST_ASSERT_NOTNULL(leg, "Test host should have a left leg for source leech attachment.")
+	var/obj/item/natural/worms/leech/source_leech = spawn_wild_leech(host)
+	TEST_ASSERT(istype(source_leech, /obj/item/natural/worms/leech/erotic), "Leech sources should spawn erotic leeches for horny-pref hosts.")
+	var/obj/item/natural/worms/leech/erotic/erotic_leech = source_leech
+	leg.add_embedded_object(erotic_leech, silent = TRUE)
+
+	var/starting_blood = host.blood_volume
+	erotic_leech.on_embed_life(host, leg)
+
+	TEST_ASSERT_EQUAL(host.blood_volume, starting_blood, "A source-spawned erotic leech should migrate instead of sucking blood from its initial limb.")
+	TEST_ASSERT(erotic_leech.trying_to_attach, "A source-spawned erotic leech should start migrating from its initial bodypart attachment.")
+	TEST_ASSERT_NOTNULL(erotic_leech.target_organ, "A source-spawned erotic leech should select an intimate organ to migrate toward.")
+
 /datum/unit_test/burrowing_leech_egg_laying_requires_both_prefs
 #ifdef FOCUS_LEECH_TEST
 	focus = TRUE

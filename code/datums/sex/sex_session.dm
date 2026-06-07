@@ -159,17 +159,17 @@
 	assign_to_collective()
 
 	RegisterSignal(user, COMSIG_SEX_CLIMAX, PROC_REF(on_climax))
-	RegisterSignal(user, COMSIG_PARENT_QDELETING, PROC_REF(on_participant_qdeleting))
+	RegisterSignal(user, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DEATH), PROC_REF(on_participant_invalidated))
 	if(target != user)
-		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(on_participant_qdeleting))
+		RegisterSignal(target, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DEATH), PROC_REF(on_participant_invalidated))
 
 	addtimer(CALLBACK(src, PROC_REF(check_sex)), 30 SECONDS)
 
 /datum/sex_session/Destroy(force, ...)
 	if(user)
-		UnregisterSignal(user, list(COMSIG_SEX_CLIMAX, COMSIG_SEX_AROUSAL_CHANGED, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(user, list(COMSIG_SEX_CLIMAX, COMSIG_SEX_AROUSAL_CHANGED, COMSIG_PARENT_QDELETING, COMSIG_LIVING_DEATH))
 	if(target && target != user)
-		UnregisterSignal(target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(target, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DEATH))
 	stop_current_action()
 	clear_remote_context()
 	unregister_sex_session(src)
@@ -223,7 +223,7 @@
 		return
 	qdel(src)
 
-/datum/sex_session/proc/on_participant_qdeleting()
+/datum/sex_session/proc/on_participant_invalidated()
 	SIGNAL_HANDLER
 	qdel(src)
 
@@ -509,9 +509,13 @@
 	var/datum/sex_action/action = get_action_template(action_type)
 	if(!action)
 		return FALSE
-	if(!target)
+	if(!user || !target)
+		return FALSE
+	if(QDELETED(user) || QDELETED(target))
 		return FALSE
 	if(user.stat != CONSCIOUS)
+		return FALSE
+	if(target.stat == DEAD)
 		return FALSE
 	var/remote_interaction = can_remote_interact_with_action(action)
 	if(!remote_interaction && !user.adjacent_or_closet(target) && action.check_distance)
