@@ -64,6 +64,7 @@
 		/obj/item/bodypart/taur/wasp,
 		/obj/item/bodypart/taur/insect,
 		/obj/item/bodypart/taur/jdeer,
+		/obj/item/bodypart/taur/goat,
 	)
 
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
