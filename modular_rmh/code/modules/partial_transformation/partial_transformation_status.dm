@@ -51,7 +51,8 @@
 	var/mob/living/carbon/human/human_owner = owner
 	for(var/slot in kit.organ_swaps)
 		// Paired slots (like ears) hold several organs - every one of them gets swapped.
-		var/list/originals = human_owner.getorganslotlist(slot).Copy()
+		// getorganslotlist builds a fresh list, so removing organs below won't shift it under us.
+		var/list/originals = human_owner.getorganslotlist(slot)
 		if(!length(originals) && (slot in kit.swap_only_if_present))
 			continue
 		var/obj/item/organ/first_original = length(originals) ? originals[1] : null
