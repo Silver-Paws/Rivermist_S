@@ -435,7 +435,8 @@
 	caster_mob.Knockdown(30)
 	caster_mob.Stun(30)
 
-	mark_transformation_complete()
+	// Async because we are a signal handler and StartCooldown's call tree can theoretically sleep.
+	INVOKE_ASYNC(src, PROC_REF(mark_transformation_complete))
 
 /// The beast body was hard-deleted (gibbed, admin-removed) without unshapeshifting; clear the stale state.
 /datum/antagonist/werewolf/proc/on_werewolf_body_deleted(datum/source)

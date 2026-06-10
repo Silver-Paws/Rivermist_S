@@ -34,6 +34,8 @@
 	var/datum/antagonist/werewolf/werewolf_antag = IS_WEREWOLF(owner)
 	var/howler_name = werewolf_antag ? werewolf_antag.wolfname : owner.real_name
 
+	to_chat(owner, span_boldannounce("I howl to the hidden moon: \"[message]\""))
+
 	for(var/mob/player as anything in (GLOB.player_list - owner))
 		if(!player.mind)
 			continue

@@ -11,9 +11,13 @@
 	alert_type = /atom/movable/screen/alert/status_effect/partial_transformation
 	// Mob deletion (gibs etc.) must run on_remove so the parked original organs get cleaned up.
 	on_remove_on_mob_delete = TRUE
+	// Organ regeneration (admin heal, resurrection) rebuilds the body's default organs and would
+	// desync the shift - drop the whole form whenever that happens.
+	remove_on_fullheal = TRUE
+	heal_flag_necessary = HEAL_ORGANS|HEAL_REFRESH_ORGANS
 	/// Config datum. Owned by the toggle spell - never qdel it from here.
 	var/datum/partial_transformation_kit/kit
-	/// ORGAN_SLOT -> original organ instance, parked in nullspace while shifted.
+	/// ORGAN_SLOT -> list of original organ instances, parked in nullspace while shifted.
 	var/list/stored_originals = list()
 	/// Organ instances we created and inserted.
 	var/list/granted_organs = list()
@@ -43,31 +47,43 @@
 	restore_organs()
 	return ..()
 
-/datum/status_effect/partial_transformation/Destroy()
-	kit = null
-	return ..()
-
 /datum/status_effect/partial_transformation/proc/apply_organ_swaps()
 	var/mob/living/carbon/human/human_owner = owner
 	for(var/slot in kit.organ_swaps)
-		var/obj/item/organ/original = human_owner.getorganslot(slot)
-		if(!original && (slot in kit.swap_only_if_present))
+		// Paired slots (like ears) hold several organs - every one of them gets swapped.
+		var/list/originals = human_owner.getorganslotlist(slot).Copy()
+		if(!length(originals) && (slot in kit.swap_only_if_present))
 			continue
-		if(!kit.can_swap_slot(slot, original, human_owner))
+		var/obj/item/organ/first_original = length(originals) ? originals[1] : null
+		if(!kit.can_swap_slot(slot, first_original, human_owner))
 			continue
-		if(original)
+
+		var/organ_path = kit.organ_swaps[slot]
+		if(!length(originals))
+			grant_replacement_organ(organ_path, null, human_owner)
+			continue
+
+		var/list/stored = list()
+		for(var/obj/item/organ/original as anything in originals)
 			original.Remove(human_owner, special = TRUE)
 			original.moveToNullspace()
-			// Remove() puts organs on the decay loop; the parked original must keep fresh.
+			// Remove() puts organs on the decay loop; the parked originals must keep fresh.
 			STOP_PROCESSING(SSobj, original)
-			stored_originals[slot] = original
-		var/organ_path = kit.organ_swaps[slot]
-		var/obj/item/organ/replacement = new organ_path()
-		kit.prepare_replacement(replacement, original, human_owner)
-		replacement.Insert(human_owner, TRUE, FALSE)
-		replacement.build_colors_for_accessory(null)
-		granted_organs += replacement
+			stored += original
+			grant_replacement_organ(organ_path, original, human_owner)
+		stored_originals[slot] = stored
 	human_owner.update_body_parts(TRUE)
+
+/datum/status_effect/partial_transformation/proc/grant_replacement_organ(organ_path, obj/item/organ/original, mob/living/carbon/human/human_owner)
+	var/obj/item/organ/replacement = new organ_path()
+	if(original)
+		// Paired organs render per side - the replacement takes the original's place.
+		replacement.switch_side(original.side)
+	kit.prepare_replacement(replacement, original, human_owner)
+	replacement.Insert(human_owner, TRUE, FALSE)
+	replacement.build_colors_for_accessory(null)
+	granted_organs += replacement
+	return replacement
 
 /datum/status_effect/partial_transformation/proc/restore_organs()
 	var/mob/living/carbon/human/human_owner = owner
@@ -81,14 +97,16 @@
 		qdel(granted)
 	granted_organs.Cut()
 	for(var/slot in stored_originals)
-		var/obj/item/organ/original = stored_originals[slot]
-		if(QDELETED(original))
-			continue
-		// If the owner is gone, or surgery refilled the slot while shifted, the original has nowhere to go.
-		if(owner_gone || human_owner.getorganslot(slot))
-			qdel(original)
-		else
-			original.Insert(human_owner, TRUE, FALSE)
+		// If the owner is gone, or something (surgery, organ regeneration) refilled the slot
+		// while shifted, the parked originals have nowhere to go.
+		var/slot_blocked = owner_gone || length(human_owner.getorganslotlist(slot))
+		for(var/obj/item/organ/original as anything in stored_originals[slot])
+			if(QDELETED(original))
+				continue
+			if(slot_blocked)
+				qdel(original)
+			else
+				original.Insert(human_owner, TRUE, FALSE)
 	stored_originals.Cut()
 	if(!owner_gone)
 		human_owner.update_body_parts(TRUE)
