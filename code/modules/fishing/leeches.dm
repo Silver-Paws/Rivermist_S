@@ -23,7 +23,11 @@
 
 /proc/spawn_wild_leech(atom/location)
 	var/leech_type = roll_wild_leech_type()
-	return new leech_type(location)
+	var/obj/item/natural/worms/leech/leech = new leech_type(location)
+	if(ishuman(location))
+		var/mob/living/carbon/human/H = location
+		leech.prepare_source_attachment(H)
+	return leech
 
 /obj/item/natural/worms/leech
 	name = "leech"
@@ -190,6 +194,9 @@
 		return TRUE
 	user.visible_message("<span class='notice'>[user] squeezes some liquid out of [src] into [container].</span>", "<span class='notice'>I squeeze some liquid out of [src] into [container].</span>")
 	return TRUE
+
+/obj/item/natural/worms/leech/proc/prepare_source_attachment(mob/living/carbon/human/H)
+	return FALSE
 
 /obj/item/natural/worms/leech/proc/horny_leech_unattach(mob/living/user, obj/item/organ/organ, storage_layer, atom/drop_location_override)
 	if(istype(src, /obj/item/natural/worms/leech/erotic))
@@ -396,6 +403,7 @@
 	var/next_feedback_time = 0
 	var/obj/item/organ/target_organ
 	var/trying_to_attach = FALSE
+	var/source_migrates_to_erotic = FALSE
 
 /obj/item/natural/worms/leech/erotic/Initialize()
 	. = ..()
@@ -472,11 +480,17 @@
 	addtimer(CALLBACK(src, PROC_REF(migrate_to_erotic_slot), target_organ, STORAGE_LAYER_OUTER, bodypart), LEECH_MIGRATION_TIME)
 	return TRUE
 
+/obj/item/natural/worms/leech/erotic/prepare_source_attachment(mob/living/carbon/human/H)
+	if(!target_allows_pref(H, /datum/erp_preference/boolean/allow_horny_leeches))
+		return FALSE
+	source_migrates_to_erotic = TRUE
+	return TRUE
+
 /obj/item/natural/worms/leech/erotic/proc/is_erotic_organ_zone(zone)
 	return zone in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)
 
 /obj/item/natural/worms/leech/erotic/proc/should_try_erotic_migration_from_bodypart(obj/item/bodypart/bodypart)
-	return bodypart?.body_zone in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)
+	return source_migrates_to_erotic || (bodypart?.body_zone in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN))
 
 /obj/item/natural/worms/leech/erotic/proc/attach_to_bodypart_for_blood(mob/living/carbon/human/H, mob/user)
 	if(!H || !user)
@@ -496,6 +510,7 @@
 	affecting.add_embedded_object(src, silent = TRUE, crit_message = FALSE)
 	target_organ = null
 	trying_to_attach = FALSE
+	source_migrates_to_erotic = FALSE
 	if(H == user)
 		user.visible_message(span_notice("[user] places [src] on [user.p_their()] [affecting.name]."), span_notice("I place [src] on my [affecting.name]."))
 	else

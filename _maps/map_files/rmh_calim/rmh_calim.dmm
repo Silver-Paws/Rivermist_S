@@ -1748,7 +1748,6 @@
 /obj/structure/lootable_structure/fish_barrel{
 	pixel_y = 0;
 	pixel_x = 1;
-	plane = -7;
 	layer = 5;
 	interaction_time = 120;
 	max_spawns = 2
